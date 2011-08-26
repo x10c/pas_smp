@@ -1,0 +1,69 @@
+<%--
+ % Copyright 2011 - Kementerian Pendidikan Nasional - Dit.PSMP
+ %
+ % Author(s):
+ % + x10c-Lab
+ %   - agus sugianto (agus.delonge@gmail.com)
+--%>
+
+<%@ page import = "java.sql.*" %>
+<%
+try{
+	Connection	db_con	= (Connection) session.getAttribute("db.con");
+	if (db_con == null || (db_con != null && db_con.isClosed())) {
+		response.sendRedirect(request.getContextPath());
+		return;
+	}
+
+	Statement	db_stmt = db_con.createStatement();
+
+	int dml 						= Integer.parseInt(request.getParameter("dml_type"));
+	String kd_tahun_ajaran			= (String) session.getAttribute("kd.tahun_pelajaran");
+	String id_jenis_lomba			= request.getParameter("id_jenis_lomba");
+	String id_jenis_lomba_old		= request.getParameter("id_jenis_lomba_old");
+	String kd_tingkat_prestasi		= request.getParameter("kd_tingkat_prestasi");
+	String kd_tingkat_prestasi_old	= request.getParameter("kd_tingkat_prestasi_old");
+	String tanggal_prestasi			= request.getParameter("tanggal_prestasi");
+	String tanggal_prestasi_old		= request.getParameter("tanggal_prestasi_old");
+	String juara_ke					= request.getParameter("juara_ke");
+	String keterangan				= request.getParameter("keterangan");
+	String username					= (String) session.getAttribute("user.id");
+	String q;
+
+	switch (dml) {
+	case 2:
+		q	=" insert into t_sekolah_prestasi (kd_tahun_ajaran, id_jenis_lomba, kd_tingkat_prestasi, tanggal_prestasi, juara_ke, keterangan, username)"
+			+" values ('"+ kd_tahun_ajaran +"', "+ id_jenis_lomba +", '"+ kd_tingkat_prestasi +"', '"+ tanggal_prestasi +"', "+ juara_ke +", '"+ keterangan +"', '" + username +"')";
+		break;
+	case 3:
+		q	=" update	t_sekolah_prestasi"
+			+" set		id_jenis_lomba		= "+ id_jenis_lomba
+			+" ,		kd_tingkat_prestasi	= '"+ kd_tingkat_prestasi +"'"
+			+" ,		tanggal_prestasi	= cast('"+ tanggal_prestasi +"' as date)"
+			+" ,		juara_ke			=  "+ juara_ke
+			+" ,		keterangan			= '"+ keterangan +"'"
+			+" ,		username			= '"+ username +"'"
+			+" where	kd_tahun_ajaran		= '"+ kd_tahun_ajaran + "'"
+			+" and		id_jenis_lomba		= "+ id_jenis_lomba_old
+			+" and		kd_tingkat_prestasi	= '"+ kd_tingkat_prestasi_old + "'"
+			+" and		tanggal_prestasi	= cast('"+ tanggal_prestasi_old +"' as date)";
+		break;
+	case 4:
+		q 	= " delete	from t_sekolah_prestasi"
+			+ " where	kd_tahun_ajaran		= '"+ kd_tahun_ajaran + "'"
+			+ " and		id_jenis_lomba		= "+ id_jenis_lomba
+			+ " and		kd_tingkat_prestasi	= '"+ kd_tingkat_prestasi + "'"
+			+ " and		tanggal_prestasi	= cast('"+ tanggal_prestasi +"' as date)";
+		break;
+	default:
+		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");
+		return;
+	}
+
+	db_stmt.executeUpdate(q);
+
+	out.print("{success:true,info:'Data telah tersimpan.'}");
+} catch (Exception e){
+	out.print("{success:false,info:'"+ e.toString().replace("'", "\\'") +"'}");
+}
+%>
