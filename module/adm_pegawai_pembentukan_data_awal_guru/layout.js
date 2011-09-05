@@ -79,8 +79,8 @@ function M_AdmPegawaiPembentukanDataAwalGuruDetail()
 	this.store_sertifikasi = new Ext.data.ArrayStore({
 			fields		: ['id','name']
 		,	data		: [
-				['0','Sudah']
-			,	['1','Belum']
+				['0','Belum']
+			,	['1','Sudah']
 			]
 		,	idIndex		: 0
 	});
