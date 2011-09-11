@@ -25,8 +25,8 @@ try {
 
 	q	=" select	username"
 		+" from		__auth"
-		+" where	username		= '"+ id_user +"'"
-		+" and		password_web	= '"+ lama +"'";
+		+" where	username	= '"+ id_user +"'"
+		+" and		password	= '"+ lama +"'";
 
 	rs = db_stmt.executeQuery(q);
 
@@ -38,8 +38,8 @@ try {
 	rs.close();
 
 	q	=" update	__auth"
-		+" set		password_web	= '"+ baru +"'"
-		+" where	username		= '"+ id_user +"'";
+		+" set		password	= '"+ baru +"'"
+		+" where	username	= '"+ id_user +"'";
 
 	db_stmt.executeUpdate(q);
 

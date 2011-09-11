@@ -53,7 +53,7 @@ try {
 	
 	q	=" select distinct		a.menu_name, a.menu_folder, a.menu_id, a.menu_leaf, a.menu_kd, a.icon, a.menu_status "
 		+" from			__menu		as a"
-		+" left join	__hak_akses	as b on b.menu_id = a.menu_id and b.ha_level >= 1 and b.id_grup in (select id_grup from __user_grup as c where c.username = '" + user + "')"
+		+" left join	__hak_akses	as b on b.menu_id = a.menu_id and b.ha_level >= 1 and b.id_grup in (select id_grup from __auth as c where c.username = '" + user + "')"
 		+" where		a.menu_parent = '%s' "
 		+" order by		a.menu_id ";
 

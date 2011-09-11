@@ -9,8 +9,7 @@
 var m_app_home;
 var m_app_home_d		= _g_root +'/module/app_home/';
 
-function M_HomeWinChange(title, form_old_title, form_new_title
-							, form_type, url)
+function M_HomeWinChange(title, form_old_title, form_new_title, form_new_confirm_title, form_type, url)
 {
 	this.type	= form_type;
 	this.url	= url;
@@ -23,6 +22,13 @@ function M_HomeWinChange(title, form_old_title, form_new_title
 
 	this.form_new = new Ext.form.TextField({
 			fieldLabel	:form_new_title
+		,	inputType	:form_type
+		,	allowBlank	:false
+		,	width		:200
+		});
+
+	this.form_new_confirm = new Ext.form.TextField({
+			fieldLabel	:form_new_confirm_title
 		,	inputType	:form_type
 		,	allowBlank	:false
 		,	width		:200
@@ -56,10 +62,11 @@ function M_HomeWinChange(title, form_old_title, form_new_title
 	,	resizable	:false
 	,	plain		:true
 	,	autoHeight	:true
-	,	width		:350
+	,	width		:340
 	,	items		:[
 			this.form_old
 		,	this.form_new
+		,	this.form_new_confirm
 		]
 	,	bbar		: [
 			this.btn_cancel, '->'
@@ -76,20 +83,32 @@ function M_HomeWinChange(title, form_old_title, form_new_title
 	{
 		if (this.type == 'password') {
 			if (!this.form_old.isValid()) {
+				Ext.Msg.alert('Kesalahan', 'Data yang anda inputkan kosong atau tidak sesuai format yang ditentukan!');
 				return false;
 			}
 		}
+		
 		if (!this.form_new.isValid()) {
+			Ext.Msg.alert('Kesalahan', 'Data yang anda inputkan kosong atau tidak sesuai format yang ditentukan!');
 			return false;
 		}
+
+		if (!this.form_new_confirm.isValid()) {
+			Ext.Msg.alert('Kesalahan', 'Data yang anda inputkan kosong atau tidak sesuai format yang ditentukan!');
+			return false;
+		}
+
+		if (this.form_new.getValue() != this.form_new_confirm.getValue()) {
+			Ext.Msg.alert('Kesalahan', 'Kata Kunci Baru tidak sesuai dengan Konfirmasinya!');
+			return false;
+		}
+		
 		return true;
 	}
 
 	this.do_save = function(record)
 	{
 		if (!this.is_form_valid()) {
-			Ext.Msg.alert('Kesalahan'
-, 'Data yang anda inputkan kosong atau tidak sesuai format yang ditentukan!');
 			return;
 		}
 
@@ -136,9 +155,10 @@ function M_HomeWinChange(title, form_old_title, form_new_title
 function M_Home()
 {
 	this.win_pass = new M_HomeWinChange(
-			'User Password Change'
-		,	'Old Password'
-		,	'New Password'
+			'Penggantian Kata Kunci'
+		,	'Kata Kunci Lama'
+		,	'Kata Kunci Baru'
+		,	'Konfirmasi Kata Kunci Baru'
 		,	'password'
 		,	m_app_home_d +'submit_change_password.jsp'
 		);
@@ -146,7 +166,7 @@ function M_Home()
 	this.menu = new Ext.menu.Menu({
 		items	:[
 			{
-				text	: 'Change Password'
+				text	: 'Ganti Kata Kunci'
 			,	scope	: this
 			,	handler	: function (b,e) {
 					this.do_change_password()

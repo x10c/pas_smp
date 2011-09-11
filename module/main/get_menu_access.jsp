@@ -36,7 +36,7 @@ try {
 	+" where	menu_id = '"+ menu_id +"'"
 	+" and		id_grup in ("
 	+" 	select	id_grup"
-	+" 	from	__user_grup"
+	+" 	from	__auth"
 	+" 	where	username = '"+ user_id +"'"
 	+" )";
 
