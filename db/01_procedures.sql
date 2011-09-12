@@ -1,21 +1,7 @@
-/*==============================================================*/
-/* Database name:  PAS_SMP                                      */
-/* DBMS name:      MySQL 5.0                                    */
-/* Created on:     9/12/2011 6:35:09 PM                         */
-/*==============================================================*/
+USE PAS_SMP;
 
 
-drop database if exists PAS_SMP;
-
-/*==============================================================*/
-/* Database: PAS_SMP                                            */
-/*==============================================================*/
-create database PAS_SMP;
-
-use PAS_SMP;
-
-
-delimiter $$
+DELIMITER $$
 
 CREATE FUNCTION F_GAJI_ORTU (
     picC_ids    BIGINT

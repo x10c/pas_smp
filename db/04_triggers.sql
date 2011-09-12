@@ -1,17 +1,3 @@
-/*==============================================================*/
-/* Database name:  PAS_SMP                                      */
-/* DBMS name:      MySQL 5.0                                    */
-/* Created on:     9/12/2011 6:36:21 PM                         */
-/*==============================================================*/
-
-
-drop database if exists PAS_SMP;
-
-/*==============================================================*/
-/* Database: PAS_SMP                                            */
-/*==============================================================*/
-create database PAS_SMP;
-
 use PAS_SMP;
 
 
@@ -29,7 +15,7 @@ begin
 	from 	t_sekolah_saldo_awal;
 	
 	if v__do = 0 then
-	  insert into t_sekolah_saldo_awal values(new.kd_tahun_ajaran, new.saldo_awal, 0, new.username, now());
+		insert into t_sekolah_saldo_awal values(new.kd_tahun_ajaran, new.saldo_awal, 0, new.username, now());
 	end if;
 end
 $$
@@ -110,7 +96,7 @@ delimiter $$
 create trigger R_GOL_PEKERJAAN_ORTU_BIR before insert
 on R_GOL_PEKERJAAN_ORTU for each row
 begin
-    IF OLD.KD_PEKERJAAN_ORTU != '9' THEN
+    IF NEW.KD_PEKERJAAN_ORTU != '9' THEN
         INSERT INTO __AUTH VALUES('ditpsmp');
     END IF;
 end
@@ -258,11 +244,11 @@ delimiter $$
 create trigger R_PENATARAN_BUR before update
 on R_PENATARAN for each row
 begin
-   set new.ID_PENATARAN = old.ID_PENATARAN;
-   
-   if new.NM_PENATARAN is null or TRIM(new.NM_PENATARAN) = '' then
-      set new.NM_PENATARAN = old.NM_PENATARAN;
-   end if;
+	set new.ID_PENATARAN = old.ID_PENATARAN;
+
+	if new.NM_PENATARAN is null or TRIM(new.NM_PENATARAN) = '' then
+	  set new.NM_PENATARAN = old.NM_PENATARAN;
+	end if;
 end
 $$
 
@@ -323,22 +309,6 @@ $$
 delimiter ;
 
 
-drop trigger if exists T_KUR_KURIKULUM_BIR;
-
-delimiter $$
-
-create trigger T_KUR_KURIKULUM_BIR before insert
-on T_KUR_KURIKULUM for each row
-begin
-    IF new.kd_kel_mata_pelajaran <> '16' THEN
-        INSERT INTO __AUTH VALUES('ditpsmp');
-    END IF;
-end
-$$
-
-delimiter ;
-
-
 drop trigger if exists T_NILAI_NEM_BIR;
 
 delimiter $$
@@ -349,6 +319,12 @@ begin
     DECLARE v_nis VARCHAR(25);
 	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
     IF new.ID_SISWA IS NOT NULL THEN
         SELECT  NIS
         INTO    v_nis
@@ -357,12 +333,6 @@ begin
         
         SET new.NIS = v_nis;
     END IF;
-
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-
-		SET new.ID_SISWA = v_ids;
-	END IF;
 end
 $$
 
@@ -410,6 +380,12 @@ begin
     DECLARE v_nis VARCHAR(25);
 	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
 	IF new.ID_SISWA IS NOT NULL THEN
 		SELECT	NIS
 		INTO	v_nis
@@ -417,12 +393,6 @@ begin
 		WHERE	ID_SISWA = new.ID_SISWA;
 		
 		SET new.NIS = v_nis;
-	END IF;
-
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-
-		SET new.ID_SISWA = v_ids;
 	END IF;
 end
 $$
@@ -464,6 +434,12 @@ begin
     DECLARE v_nis VARCHAR(25);
 	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
 	IF new.ID_SISWA IS NOT NULL THEN
 		SELECT	NIS
 		INTO	v_nis
@@ -471,12 +447,6 @@ begin
 		WHERE	ID_SISWA = new.ID_SISWA;
 		
 		SET new.NIS = v_nis;
-	END IF;
-
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-
-		SET new.ID_SISWA = v_ids;
 	END IF;
 end
 $$
@@ -494,6 +464,12 @@ begin
     DECLARE v_nis VARCHAR(25);
 	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
 	IF new.ID_SISWA IS NOT NULL THEN
 		SELECT	NIS
 		INTO	v_nis
@@ -501,12 +477,6 @@ begin
 		WHERE	ID_SISWA = new.ID_SISWA;
 		
 		SET new.NIS = v_nis;
-	END IF;
-
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-
-		SET new.ID_SISWA = v_ids;
 	END IF;
 end
 $$
@@ -524,6 +494,12 @@ begin
     DECLARE v_nis VARCHAR(25);
 	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
 	IF new.ID_SISWA IS NOT NULL THEN
 		SELECT	NIS
 		INTO	v_nis
@@ -531,12 +507,6 @@ begin
 		WHERE	ID_SISWA = new.ID_SISWA;
 		
 		SET new.NIS = v_nis;
-	END IF;
-
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-
-		SET new.ID_SISWA = v_ids;
 	END IF;
 end
 $$
@@ -574,6 +544,12 @@ begin
     DECLARE v_nis VARCHAR(25);
 	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
 	IF new.ID_SISWA IS NOT NULL THEN
 		SELECT	NIS
 		INTO	v_nis
@@ -581,12 +557,6 @@ begin
 		WHERE	ID_SISWA = new.ID_SISWA;
 		
 		SET new.NIS = v_nis;
-	END IF;
-
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-
-		SET new.ID_SISWA = v_ids;
 	END IF;
 end
 $$
@@ -735,6 +705,12 @@ begin
     DECLARE v_nip VARCHAR(18);
 	DECLARE v_idp SMALLINT UNSIGNED;
 
+	IF new.NIP IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+
+		SET new.ID_PEGAWAI = v_idp;
+	END IF;
+
 	IF new.ID_PEGAWAI IS NOT NULL THEN
 		SELECT	NIP
 		INTO	v_nip
@@ -742,12 +718,6 @@ begin
 		WHERE	ID_PEGAWAI = new.ID_PEGAWAI;
 
 		SET new.NIP = v_nip;
-	END IF;
-
-	IF new.NIP IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
-
-		SET new.ID_PEGAWAI = v_idp;
 	END IF;
 end
 $$
@@ -765,6 +735,12 @@ begin
     DECLARE v_nip VARCHAR(18);
 	DECLARE v_idp SMALLINT UNSIGNED;
 
+	IF new.NIP IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+
+		SET new.ID_PEGAWAI = v_idp;
+	END IF;
+
 	IF new.ID_PEGAWAI IS NOT NULL THEN
 		SELECT	NIP
 		INTO	v_nip
@@ -772,12 +748,6 @@ begin
 		WHERE	ID_PEGAWAI = new.ID_PEGAWAI;
 
 		SET new.NIP = v_nip;
-	END IF;
-
-	IF new.NIP IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
-
-		SET new.ID_PEGAWAI = v_idp;
 	END IF;
 end
 $$
@@ -835,6 +805,12 @@ begin
     DECLARE v_nip VARCHAR(18);
 	DECLARE v_idp SMALLINT UNSIGNED;
 
+	IF new.NIP IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+
+		SET new.ID_PEGAWAI = v_idp;
+	END IF;
+
 	IF new.ID_PEGAWAI IS NOT NULL THEN
 		SELECT	NIP
 		INTO	v_nip
@@ -842,12 +818,6 @@ begin
 		WHERE	ID_PEGAWAI = new.ID_PEGAWAI;
 
 		SET new.NIP = v_nip;
-	END IF;
-
-	IF new.NIP IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
-
-		SET new.ID_PEGAWAI = v_idp;
 	END IF;
 end
 $$
@@ -865,6 +835,12 @@ begin
     DECLARE v_nip VARCHAR(18);
 	DECLARE v_idp SMALLINT UNSIGNED;
 
+	IF new.NIP IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+
+		SET new.ID_PEGAWAI = v_idp;
+	END IF;
+
 	IF new.ID_PEGAWAI IS NOT NULL THEN
 		SELECT	NIP
 		INTO	v_nip
@@ -872,12 +848,6 @@ begin
 		WHERE	ID_PEGAWAI = new.ID_PEGAWAI;
 
 		SET new.NIP = v_nip;
-	END IF;
-
-	IF new.NIP IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
-
-		SET new.ID_PEGAWAI = v_idp;
 	END IF;
 end
 $$
@@ -911,6 +881,12 @@ begin
     DECLARE v_nip VARCHAR(18);
 	DECLARE v_idp SMALLINT UNSIGNED;
 
+	IF new.NIP IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+
+		SET new.ID_PEGAWAI = v_idp;
+	END IF;
+
 	IF new.ID_PEGAWAI IS NOT NULL THEN
 		SELECT	NIP
 		INTO	v_nip
@@ -918,12 +894,6 @@ begin
 		WHERE	ID_PEGAWAI = new.ID_PEGAWAI;
 
 		SET new.NIP = v_nip;
-	END IF;
-
-	IF new.NIP IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
-
-		SET new.ID_PEGAWAI = v_idp;
 	END IF;
 end
 $$
@@ -941,6 +911,12 @@ begin
     DECLARE v_nip VARCHAR(18);
 	DECLARE v_idp SMALLINT UNSIGNED;
 
+	IF new.NIP IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+
+		SET new.ID_PEGAWAI = v_idp;
+	END IF;
+
 	IF new.ID_PEGAWAI IS NOT NULL THEN
 		SELECT	NIP
 		INTO	v_nip
@@ -948,12 +924,6 @@ begin
 		WHERE	ID_PEGAWAI = new.ID_PEGAWAI;
 
 		SET new.NIP = v_nip;
-	END IF;
-
-	IF new.NIP IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
-
-		SET new.ID_PEGAWAI = v_idp;
 	END IF;
 end
 $$
@@ -971,6 +941,12 @@ begin
     DECLARE v_nip VARCHAR(18);
 	DECLARE v_idp SMALLINT UNSIGNED;
 
+	IF new.NIP IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+
+		SET new.ID_PEGAWAI = v_idp;
+	END IF;
+
 	IF new.ID_PEGAWAI IS NOT NULL THEN
 		SELECT	NIP
 		INTO	v_nip
@@ -978,12 +954,6 @@ begin
 		WHERE	ID_PEGAWAI = new.ID_PEGAWAI;
 
 		SET new.NIP = v_nip;
-	END IF;
-
-	IF new.NIP IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
-
-		SET new.ID_PEGAWAI = v_idp;
 	END IF;
 end
 $$
@@ -1058,6 +1028,12 @@ begin
     DECLARE v_nip VARCHAR(18);
 	DECLARE v_idp SMALLINT UNSIGNED;
 
+	IF new.NIP IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+
+		SET new.ID_PEGAWAI = v_idp;
+	END IF;
+
 	IF new.ID_PEGAWAI IS NOT NULL THEN
 		SELECT	NIP
 		INTO	v_nip
@@ -1067,10 +1043,10 @@ begin
 		SET new.NIP = v_nip;
 	END IF;
 
-	IF new.NIP IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+	IF new.NIP_BK IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP_BK) INTO v_idp;
 
-		SET new.ID_PEGAWAI = v_idp;
+		SET new.ID_PEGAWAI_BK = v_idp;
 	END IF;
 
 	IF new.ID_PEGAWAI_BK IS NOT NULL THEN
@@ -1080,12 +1056,6 @@ begin
 		WHERE	ID_PEGAWAI = new.ID_PEGAWAI_BK;
 
 		SET new.NIP_BK = v_nip;
-	END IF;
-
-	IF new.NIP_BK IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP_BK) INTO v_idp;
-
-		SET new.ID_PEGAWAI_BK = v_idp;
 	END IF;
 end
 $$
@@ -1266,6 +1236,12 @@ begin
     DECLARE v_nip VARCHAR(18);
 	DECLARE v_idp SMALLINT UNSIGNED;
 
+	IF new.NIP IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+
+		SET new.ID_PEGAWAI = v_idp;
+	END IF;
+
 	IF new.ID_PEGAWAI IS NOT NULL THEN
 		SELECT	NIP
 		INTO	v_nip
@@ -1273,12 +1249,6 @@ begin
 		WHERE	ID_PEGAWAI = new.ID_PEGAWAI;
 
 		SET new.NIP = v_nip;
-	END IF;
-
-	IF new.NIP IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
-
-		SET new.ID_PEGAWAI = v_idp;
 	END IF;
 end
 $$
@@ -1473,6 +1443,12 @@ begin
     DECLARE v_nip VARCHAR(18);
 	DECLARE v_idp SMALLINT UNSIGNED;
 
+	IF new.NIP IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+
+		SET new.ID_PEGAWAI = v_idp;
+	END IF;
+
 	IF new.ID_PEGAWAI IS NOT NULL THEN
 		SELECT	NIP
 		INTO	v_nip
@@ -1480,12 +1456,6 @@ begin
 		WHERE	ID_PEGAWAI = new.ID_PEGAWAI;
 
 		SET new.NIP = v_nip;
-	END IF;
-
-	IF new.NIP IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
-
-		SET new.ID_PEGAWAI = v_idp;
 	END IF;
 end
 $$
@@ -1503,6 +1473,12 @@ begin
     DECLARE v_nip VARCHAR(18);
 	DECLARE v_idp SMALLINT UNSIGNED;
 
+	IF new.NIP IS NOT NULL THEN
+		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
+
+		SET new.ID_PEGAWAI = v_idp;
+	END IF;
+
 	IF new.ID_PEGAWAI IS NOT NULL THEN
 		SELECT	NIP
 		INTO	v_nip
@@ -1510,12 +1486,6 @@ begin
 		WHERE	ID_PEGAWAI = new.ID_PEGAWAI;
 
 		SET new.NIP = v_nip;
-	END IF;
-
-	IF new.NIP IS NOT NULL THEN
-		SELECT F_PEGAWAI_NIP(new.NIP) INTO v_idp;
-
-		SET new.ID_PEGAWAI = v_idp;
 	END IF;
 end
 $$
@@ -2219,6 +2189,9 @@ $$
 
 delimiter ;
 
+drop trigger if exists T_SEKOLAH_SALDO_AWAL_BIR;
+
+delimiter $$
 
 create trigger T_SEKOLAH_SALDO_AWAL_BIR before insert
 on T_SEKOLAH_SALDO_AWAL for each row
@@ -2341,7 +2314,10 @@ begin
 								WHERE 	KD_TAHUN_AJARAN < new.KD_TAHUN_AJARAN
 								);
 	END IF;
-end;
+end
+$$
+
+delimiter ;
 
 
 drop trigger if exists T_SISWA_AIR;
@@ -2767,6 +2743,24 @@ delimiter $$
 create trigger T_SISWA_ALUMNI_BIR before insert
 on T_SISWA_ALUMNI for each row
 begin
+    DECLARE v_nis VARCHAR(25);
+	DECLARE v_ids BIGINT UNSIGNED;
+
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
+	IF new.ID_SISWA IS NOT NULL THEN
+		SELECT	NIS
+		INTO	v_nis
+		FROM	T_SISWA
+		WHERE	ID_SISWA = new.ID_SISWA;
+		
+		SET new.NIS = v_nis;
+	END IF;
+	
     SET new.TAHUN_LULUS = YEAR(NOW());
 end
 $$
@@ -2784,6 +2778,12 @@ begin
     DECLARE v_nis VARCHAR(25);
 	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
 	IF new.ID_SISWA IS NOT NULL THEN
 		SELECT	NIS
 		INTO	v_nis
@@ -2791,12 +2791,6 @@ begin
 		WHERE	ID_SISWA = new.ID_SISWA;
 		
 		SET new.NIS = v_nis;
-	END IF;
-    
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-	  
-		SET new.ID_SISWA = v_ids;
 	END IF;
 end
 $$
@@ -2829,7 +2823,7 @@ on T_SISWA_CUTI for each row
 begin
     UPDATE  T_SISWA
     SET     STATUS_SISWA = old.STATUS_ASAL
-    WHERE   ID_SISWA = new.ID_SISWA;
+    WHERE   ID_SISWA = old.ID_SISWA;
 end
 $$
 
@@ -2844,7 +2838,24 @@ create trigger T_SISWA_CUTI_BIR before insert
 on T_SISWA_CUTI for each row
 begin
     DECLARE v_sts CHAR(1);
+    DECLARE v_nis VARCHAR(25);
+	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
+	IF new.ID_SISWA IS NOT NULL THEN
+		SELECT	NIS
+		INTO	v_nis
+		FROM	T_SISWA
+		WHERE	ID_SISWA = new.ID_SISWA;
+		
+		SET new.NIS = v_nis;
+	END IF;
+	
     SELECT  STATUS_SISWA
     INTO    v_sts
     FROM    T_SISWA
@@ -2869,6 +2880,12 @@ begin
     DECLARE v_nis VARCHAR(25);
 	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
 	IF new.ID_SISWA IS NOT NULL THEN
 		SELECT	NIS
 		INTO	v_nis
@@ -2876,12 +2893,6 @@ begin
 		WHERE	ID_SISWA = new.ID_SISWA;
 		
 		SET new.NIS = v_nis;
-	END IF;
-
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-	  
-		SET new.ID_SISWA = v_ids;
 	END IF;
 end
 $$
@@ -2899,6 +2910,12 @@ begin
     DECLARE v_nis VARCHAR(25);
 	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
 	IF new.ID_SISWA IS NOT NULL THEN
 		SELECT	NIS
 		INTO	v_nis
@@ -2906,12 +2923,6 @@ begin
 		WHERE	ID_SISWA = new.ID_SISWA;
 		
 		SET new.NIS = v_nis;
-	END IF;
-    
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-	  
-		SET new.ID_SISWA = v_ids;
 	END IF;
 end
 $$
@@ -2929,6 +2940,12 @@ begin
     DECLARE v_nis VARCHAR(25);
 	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
 	IF new.ID_SISWA IS NOT NULL THEN
 		SELECT	NIS
 		INTO	v_nis
@@ -2936,12 +2953,6 @@ begin
 		WHERE	ID_SISWA = new.ID_SISWA;
 		
 		SET new.NIS = v_nis;
-	END IF;
-    
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-	  
-		SET new.ID_SISWA = v_ids;
 	END IF;
 end
 $$
@@ -2969,6 +2980,36 @@ $$
 delimiter ;
 
 
+drop trigger if exists T_SISWA_PELANGGARAN_BIR;
+
+delimiter $$
+
+create trigger T_SISWA_PELANGGARAN_BIR before insert
+on T_SISWA_PELANGGARAN for each row
+begin
+    DECLARE v_nis VARCHAR(25);
+	DECLARE v_ids BIGINT UNSIGNED;
+
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
+	IF new.ID_SISWA IS NOT NULL THEN
+		SELECT	NIS
+		INTO	v_nis
+		FROM	T_SISWA
+		WHERE	ID_SISWA = new.ID_SISWA;
+		
+		SET new.NIS = v_nis;
+	END IF;
+end
+$$
+
+delimiter ;
+
+
 drop trigger if exists T_SISWA_PINDAH_BDR;
 
 delimiter $$
@@ -2978,7 +3019,7 @@ on T_SISWA_PINDAH for each row
 begin
     UPDATE  T_SISWA
     SET     STATUS_SISWA = old.STATUS_ASAL
-    WHERE   ID_SISWA = new.ID_SISWA;
+    WHERE   ID_SISWA = old.ID_SISWA;
 end
 $$
 
@@ -2993,7 +3034,24 @@ create trigger T_SISWA_PINDAH_BIR before insert
 on T_SISWA_PINDAH for each row
 begin
     DECLARE v_sts CHAR(1);
+    DECLARE v_nis VARCHAR(25);
+	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
+	IF new.ID_SISWA IS NOT NULL THEN
+		SELECT	NIS
+		INTO	v_nis
+		FROM	T_SISWA
+		WHERE	ID_SISWA = new.ID_SISWA;
+		
+		SET new.NIS = v_nis;
+	END IF;
+	
     SELECT  STATUS_SISWA
     INTO    v_sts
     FROM    T_SISWA
@@ -3002,6 +3060,36 @@ begin
     SET new.STATUS_ASAL = v_sts;
 
     UPDATE T_SISWA SET STATUS_SISWA = '4' WHERE ID_SISWA = new.ID_SISWA;
+end
+$$
+
+delimiter ;
+
+
+drop trigger if exists T_SISWA_PRESTASI_BIR;
+
+delimiter $$
+
+create trigger T_SISWA_PRESTASI_BIR before insert
+on T_SISWA_PRESTASI for each row
+begin
+    DECLARE v_nis VARCHAR(25);
+	DECLARE v_ids BIGINT UNSIGNED;
+
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
+	IF new.ID_SISWA IS NOT NULL THEN
+		SELECT	NIS
+		INTO	v_nis
+		FROM	T_SISWA
+		WHERE	ID_SISWA = new.ID_SISWA;
+		
+		SET new.NIS = v_nis;
+	END IF;
 end
 $$
 
@@ -3017,7 +3105,7 @@ on T_SISWA_PUTUS for each row
 begin
     UPDATE  T_SISWA
     SET     STATUS_SISWA = old.STATUS_ASAL
-    WHERE   ID_SISWA = new.ID_SISWA;
+    WHERE   ID_SISWA = old.ID_SISWA;
 end
 $$
 
@@ -3032,7 +3120,24 @@ create trigger T_SISWA_PUTUS_BIR before insert
 on T_SISWA_PUTUS for each row
 begin
     DECLARE v_sts CHAR(1);
+    DECLARE v_nis VARCHAR(25);
+	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
+	IF new.ID_SISWA IS NOT NULL THEN
+		SELECT	NIS
+		INTO	v_nis
+		FROM	T_SISWA
+		WHERE	ID_SISWA = new.ID_SISWA;
+		
+		SET new.NIS = v_nis;
+	END IF;
+	
     SELECT  STATUS_SISWA
     INTO    v_sts
     FROM    T_SISWA
@@ -3057,6 +3162,12 @@ begin
     DECLARE v_nis VARCHAR(25);
 	DECLARE v_ids BIGINT UNSIGNED;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
 	IF new.ID_SISWA IS NOT NULL THEN
 		SELECT	NIS
 		INTO	v_nis
@@ -3064,12 +3175,6 @@ begin
 		WHERE	ID_SISWA = new.ID_SISWA;
 		
 		SET new.NIS = v_nis;
-	END IF;
-    
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-	  
-		SET new.ID_SISWA = v_ids;
 	END IF;
 end
 $$
@@ -3095,6 +3200,12 @@ begin
 	
 	DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET v_sia = NULL;
 
+	IF new.NIS IS NOT NULL THEN
+		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
+	  
+		SET new.ID_SISWA = v_ids;
+	END IF;
+
 	IF new.ID_SISWA IS NOT NULL THEN
 		SELECT	NIS
 		INTO	v_nis
@@ -3102,12 +3213,6 @@ begin
 		WHERE	ID_SISWA = new.ID_SISWA;
 	
 		SET new.NIS = v_nis;
-	END IF;
-
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-	  
-		SET new.ID_SISWA = v_ids;
 	END IF;
 
 	SET v_sia = NULL;

@@ -1,7 +1,7 @@
 /*==============================================================*/
 /* Database name:  PAS_SMP                                      */
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     9/12/2011 6:33:40 PM                         */
+/* Created on:     9/13/2011 12:42:35 AM                        */
 /*==============================================================*/
 
 
@@ -61,11 +61,9 @@ create table K_SEKOLAH_KEUANGAN
    SALDO_AKHIR          decimal(18,2) not null default 0.00,
    STATUS_AKHIR         char(1) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN)
 );
-
-alter table K_SEKOLAH_KEUANGAN
-   add primary key (KD_TAHUN_AJARAN);
 
 /*==============================================================*/
 /* Table: K_SEKOLAH_LISM                                        */
@@ -87,11 +85,9 @@ create table K_SEKOLAH_LISM
    JML_JAM_LAB_KOMPUTER tinyint unsigned not null default 0,
    JML_JAM_LAB_MULTIMEDIA tinyint unsigned not null default 0,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN)
 );
-
-alter table K_SEKOLAH_LISM
-   add primary key (KD_TAHUN_AJARAN);
 
 /*==============================================================*/
 /* Table: K_SEKOLAH_PASSING_GRADE                               */
@@ -110,11 +106,9 @@ create table K_SEKOLAH_PASSING_GRADE
    JML_TERM_PKT_L       smallint unsigned not null default 0,
    JML_TERM_PKT_P       smallint unsigned not null default 0,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN)
 );
-
-alter table K_SEKOLAH_PASSING_GRADE
-   add primary key (KD_TAHUN_AJARAN);
 
 /*==============================================================*/
 /* Table: R_AGAMA                                               */
@@ -123,11 +117,9 @@ create table R_AGAMA
 (
    KD_AGAMA             char(1) not null,
    NM_AGAMA             varchar(50) not null,
-   ID_AGAMA             tinyint not null
+   ID_AGAMA             tinyint not null,
+   primary key (KD_AGAMA)
 );
-
-alter table R_AGAMA
-   add primary key (KD_AGAMA);
 
 /*==============================================================*/
 /* Table: R_AKREDITASI                                          */
@@ -135,11 +127,9 @@ alter table R_AGAMA
 create table R_AKREDITASI
 (
    KD_AKREDITASI        char(1) not null,
-   NM_AKREDITASI        varchar(50) not null
+   NM_AKREDITASI        varchar(50) not null,
+   primary key (KD_AKREDITASI)
 );
-
-alter table R_AKREDITASI
-   add primary key (KD_AKREDITASI);
 
 /*==============================================================*/
 /* Table: R_AKREDITASI_LAMA                                     */
@@ -147,11 +137,9 @@ alter table R_AKREDITASI
 create table R_AKREDITASI_LAMA
 (
    ID_AKREDITASI_LAMA   tinyint not null,
-   NM_AKREDITASI_LAMA   varchar(50) not null
+   NM_AKREDITASI_LAMA   varchar(50) not null,
+   primary key (ID_AKREDITASI_LAMA)
 );
-
-alter table R_AKREDITASI_LAMA
-   add primary key (ID_AKREDITASI_LAMA);
 
 /*==============================================================*/
 /* Table: R_ASAL_SEKOLAH                                        */
@@ -168,11 +156,9 @@ create table R_ASAL_SEKOLAH
    ID_KECAMATAN         smallint unsigned default NULL,
    NO_TELP              varchar(30) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ASAL_SD)
 );
-
-alter table R_ASAL_SEKOLAH
-   add primary key (ASAL_SD);
 
 /*==============================================================*/
 /* Index: R_ASAL_SEKOLAH_UK                                     */
@@ -191,11 +177,9 @@ create unique index R_ASAL_SEKOLAH_UK on R_ASAL_SEKOLAH
 create table R_BANTUAN
 (
    KD_BANTUAN           char(2) not null,
-   NM_BANTUAN           varchar(50) not null
+   NM_BANTUAN           varchar(50) not null,
+   primary key (KD_BANTUAN)
 );
-
-alter table R_BANTUAN
-   add primary key (KD_BANTUAN);
 
 /*==============================================================*/
 /* Table: R_BEASISWA                                            */
@@ -203,11 +187,9 @@ alter table R_BANTUAN
 create table R_BEASISWA
 (
    KD_BEASISWA          char(2) not null,
-   NM_BEASISWA          varchar(50) not null
+   NM_BEASISWA          varchar(50) not null,
+   primary key (KD_BEASISWA)
 );
-
-alter table R_BEASISWA
-   add primary key (KD_BEASISWA);
 
 /*==============================================================*/
 /* Table: R_BENTUK_SEKOLAH                                      */
@@ -215,11 +197,9 @@ alter table R_BEASISWA
 create table R_BENTUK_SEKOLAH
 (
    KD_BENTUK_SEKOLAH    char(1) not null,
-   NM_BENTUK_SEKOLAH    varchar(50) not null
+   NM_BENTUK_SEKOLAH    varchar(50) not null,
+   primary key (KD_BENTUK_SEKOLAH)
 );
-
-alter table R_BENTUK_SEKOLAH
-   add primary key (KD_BENTUK_SEKOLAH);
 
 /*==============================================================*/
 /* Table: R_DAERAH                                              */
@@ -227,11 +207,9 @@ alter table R_BENTUK_SEKOLAH
 create table R_DAERAH
 (
    KD_DAERAH            char(1) not null,
-   NM_DAERAH            varchar(50) not null
+   NM_DAERAH            varchar(50) not null,
+   primary key (KD_DAERAH)
 );
-
-alter table R_DAERAH
-   add primary key (KD_DAERAH);
 
 /*==============================================================*/
 /* Table: R_DAYA_LISTRIK                                        */
@@ -239,11 +217,9 @@ alter table R_DAERAH
 create table R_DAYA_LISTRIK
 (
    KD_DAYA_LISTRIK      char(1) not null,
-   NM_DAYA_LISTRIK      varchar(50) not null
+   NM_DAYA_LISTRIK      varchar(50) not null,
+   primary key (KD_DAYA_LISTRIK)
 );
-
-alter table R_DAYA_LISTRIK
-   add primary key (KD_DAYA_LISTRIK);
 
 /*==============================================================*/
 /* Table: R_EKSTRAKURIKULER                                     */
@@ -253,11 +229,9 @@ create table R_EKSTRAKURIKULER
    ID_EKSTRAKURIKULER   tinyint unsigned not null auto_increment,
    NM_EKSTRAKURIKULER   varchar(50) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_EKSTRAKURIKULER)
 );
-
-alter table R_EKSTRAKURIKULER
-   add primary key (ID_EKSTRAKURIKULER);
 
 /*==============================================================*/
 /* Index: R_EKSTRAKURIKULER_UK                                  */
@@ -273,11 +247,9 @@ create unique index R_EKSTRAKURIKULER_UK on R_EKSTRAKURIKULER
 create table R_GOL_DARAH
 (
    KD_GOL_DARAH         char(1) not null,
-   NM_GOL_DARAH         varchar(50) not null
+   NM_GOL_DARAH         varchar(50) not null,
+   primary key (KD_GOL_DARAH)
 );
-
-alter table R_GOL_DARAH
-   add primary key (KD_GOL_DARAH);
 
 /*==============================================================*/
 /* Table: R_GOL_PEKERJAAN_ORTU                                  */
@@ -288,11 +260,9 @@ create table R_GOL_PEKERJAAN_ORTU
    KD_PEKERJAAN_ORTU    char(1) not null,
    NM_GOL_PEKERJAAN_ORTU varchar(50) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_GOL_PEKERJAAN_ORTU)
 );
-
-alter table R_GOL_PEKERJAAN_ORTU
-   add primary key (ID_GOL_PEKERJAAN_ORTU);
 
 /*==============================================================*/
 /* Index: R_GOL_PEKERJAAN_ORTU_UK                               */
@@ -308,11 +278,9 @@ create unique index R_GOL_PEKERJAAN_ORTU_UK on R_GOL_PEKERJAAN_ORTU
 create table R_HASIL_EVALUASI
 (
    KD_HASIL_EVALUASI    char(1) not null,
-   NM_HASIL_EVALUASI    varchar(50) not null
+   NM_HASIL_EVALUASI    varchar(50) not null,
+   primary key (KD_HASIL_EVALUASI)
 );
-
-alter table R_HASIL_EVALUASI
-   add primary key (KD_HASIL_EVALUASI);
 
 /*==============================================================*/
 /* Table: R_HOBI                                                */
@@ -323,11 +291,9 @@ create table R_HOBI
    KD_KEL_HOBI          char(1) not null,
    NM_HOBI              varchar(50) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_HOBI)
 );
-
-alter table R_HOBI
-   add primary key (ID_HOBI);
 
 /*==============================================================*/
 /* Index: R_HOBI_UK                                             */
@@ -343,11 +309,9 @@ create unique index R_HOBI_UK on R_HOBI
 create table R_JABATAN_PEGAWAI
 (
    KD_JABATAN_PEGAWAI   char(2) not null,
-   NM_JABATAN_PEGAWAI   varchar(50) not null
+   NM_JABATAN_PEGAWAI   varchar(50) not null,
+   primary key (KD_JABATAN_PEGAWAI)
 );
-
-alter table R_JABATAN_PEGAWAI
-   add primary key (KD_JABATAN_PEGAWAI);
 
 /*==============================================================*/
 /* Table: R_JENIS_KETENAGAAN                                    */
@@ -355,11 +319,9 @@ alter table R_JABATAN_PEGAWAI
 create table R_JENIS_KETENAGAAN
 (
    KD_JENIS_KETENAGAAN  char(1) not null,
-   NM_JENIS_KETENAGAAN  varchar(50) not null
+   NM_JENIS_KETENAGAAN  varchar(50) not null,
+   primary key (KD_JENIS_KETENAGAAN)
 );
-
-alter table R_JENIS_KETENAGAAN
-   add primary key (KD_JENIS_KETENAGAAN);
 
 /*==============================================================*/
 /* Table: R_JENIS_LOMBA                                         */
@@ -371,11 +333,9 @@ create table R_JENIS_LOMBA
    STATUS_JENIS_LOMBA   tinyint unsigned not null comment '1 = sekolah; 2 = guru; 4 = tenaga administrasi; 8 = siswa',
    JENIS_LOMBA          char(1) not null comment '0 = non akademik; 1 = akademik',
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_JENIS_LOMBA)
 );
-
-alter table R_JENIS_LOMBA
-   add primary key (ID_JENIS_LOMBA);
 
 /*==============================================================*/
 /* Table: R_JENIS_ORTU                                          */
@@ -383,11 +343,9 @@ alter table R_JENIS_LOMBA
 create table R_JENIS_ORTU
 (
    KD_JENIS_ORTU        char(1) not null,
-   NM_JENIS_ORTU        varchar(50) not null
+   NM_JENIS_ORTU        varchar(50) not null,
+   primary key (KD_JENIS_ORTU)
 );
-
-alter table R_JENIS_ORTU
-   add primary key (KD_JENIS_ORTU);
 
 /*==============================================================*/
 /* Table: R_JENIS_PEGAWAI                                       */
@@ -395,11 +353,9 @@ alter table R_JENIS_ORTU
 create table R_JENIS_PEGAWAI
 (
    KD_JENIS_PEGAWAI     char(2) not null,
-   NM_JENIS_PEGAWAI     varchar(255) not null
+   NM_JENIS_PEGAWAI     varchar(255) not null,
+   primary key (KD_JENIS_PEGAWAI)
 );
-
-alter table R_JENIS_PEGAWAI
-   add primary key (KD_JENIS_PEGAWAI);
 
 /*==============================================================*/
 /* Table: R_JENIS_PENATARAN                                     */
@@ -407,11 +363,9 @@ alter table R_JENIS_PEGAWAI
 create table R_JENIS_PENATARAN
 (
    KD_JENIS_PENATARAN   char(1) not null,
-   NM_JENIS_PENATARAN   varchar(50) not null
+   NM_JENIS_PENATARAN   varchar(50) not null,
+   primary key (KD_JENIS_PENATARAN)
 );
-
-alter table R_JENIS_PENATARAN
-   add primary key (KD_JENIS_PENATARAN);
 
 /*==============================================================*/
 /* Table: R_JENIS_PENGHARGAAN                                   */
@@ -419,11 +373,9 @@ alter table R_JENIS_PENATARAN
 create table R_JENIS_PENGHARGAAN
 (
    KD_JENIS_PENGHARGAAN char(1) not null,
-   NM_JENIS_PENGHARGAAN varchar(50) not null
+   NM_JENIS_PENGHARGAAN varchar(50) not null,
+   primary key (KD_JENIS_PENGHARGAAN)
 );
-
-alter table R_JENIS_PENGHARGAAN
-   add primary key (KD_JENIS_PENGHARGAAN);
 
 /*==============================================================*/
 /* Table: R_JENIS_PESERTA_PENATARAN                             */
@@ -431,11 +383,9 @@ alter table R_JENIS_PENGHARGAAN
 create table R_JENIS_PESERTA_PENATARAN
 (
    KD_JENIS_PESERTA_PENATARAN char(1) not null,
-   NM_JENIS_PESERTA_PENATARAN varchar(50) not null
+   NM_JENIS_PESERTA_PENATARAN varchar(50) not null,
+   primary key (KD_JENIS_PESERTA_PENATARAN)
 );
-
-alter table R_JENIS_PESERTA_PENATARAN
-   add primary key (KD_JENIS_PESERTA_PENATARAN);
 
 /*==============================================================*/
 /* Table: R_JENIS_PKH                                           */
@@ -445,11 +395,9 @@ create table R_JENIS_PKH
    ID_JENIS_PKH         tinyint unsigned not null auto_increment,
    NM_JENIS_PKH         varchar(50) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_JENIS_PKH)
 );
-
-alter table R_JENIS_PKH
-   add primary key (ID_JENIS_PKH);
 
 /*==============================================================*/
 /* Index: R_JENIS_PKH_UK                                        */
@@ -465,11 +413,9 @@ create unique index R_JENIS_PKH_UK on R_JENIS_PKH
 create table R_JENIS_SEKOLAH
 (
    KD_JENIS_SEKOLAH     char(2) not null,
-   NM_JENIS_SEKOLAH     varchar(50) not null
+   NM_JENIS_SEKOLAH     varchar(50) not null,
+   primary key (KD_JENIS_SEKOLAH)
 );
-
-alter table R_JENIS_SEKOLAH
-   add primary key (KD_JENIS_SEKOLAH);
 
 /*==============================================================*/
 /* Table: R_KABUPATEN                                           */
@@ -479,11 +425,9 @@ create table R_KABUPATEN
    ID_KABUPATEN         smallint unsigned not null,
    NM_KABUPATEN         varchar(50) not null,
    STATUS_KOTA          char(1) not null comment '1 = kabupaten; 2 = kota',
-   STATUS_PILIH         char(1) not null comment '0 = tidak dipilih; 1 = dipilih'
+   STATUS_PILIH         char(1) not null comment '0 = tidak dipilih; 1 = dipilih',
+   primary key (ID_KABUPATEN)
 );
-
-alter table R_KABUPATEN
-   add primary key (ID_KABUPATEN);
 
 /*==============================================================*/
 /* Table: R_KECAMATAN                                           */
@@ -491,11 +435,9 @@ alter table R_KABUPATEN
 create table R_KECAMATAN
 (
    ID_KECAMATAN         smallint unsigned not null,
-   NM_KECAMATAN         varchar(50) not null
+   NM_KECAMATAN         varchar(50) not null,
+   primary key (ID_KECAMATAN)
 );
-
-alter table R_KECAMATAN
-   add primary key (ID_KECAMATAN);
 
 /*==============================================================*/
 /* Table: R_KEL_HOBI                                            */
@@ -503,11 +445,9 @@ alter table R_KECAMATAN
 create table R_KEL_HOBI
 (
    KD_KEL_HOBI          char(1) not null,
-   NM_KEL_HOBI          varchar(50) not null
+   NM_KEL_HOBI          varchar(50) not null,
+   primary key (KD_KEL_HOBI)
 );
-
-alter table R_KEL_HOBI
-   add primary key (KD_KEL_HOBI);
 
 /*==============================================================*/
 /* Table: R_KEL_MATA_PELAJARAN                                  */
@@ -515,11 +455,9 @@ alter table R_KEL_HOBI
 create table R_KEL_MATA_PELAJARAN
 (
    KD_KEL_MATA_PELAJARAN char(2) not null,
-   NM_KEL_MATA_PELAJARAN varchar(50) not null
+   NM_KEL_MATA_PELAJARAN varchar(50) not null,
+   primary key (KD_KEL_MATA_PELAJARAN)
 );
-
-alter table R_KEL_MATA_PELAJARAN
-   add primary key (KD_KEL_MATA_PELAJARAN);
 
 /*==============================================================*/
 /* Table: R_KEL_PROGRAM_STUDI                                   */
@@ -527,11 +465,9 @@ alter table R_KEL_MATA_PELAJARAN
 create table R_KEL_PROGRAM_STUDI
 (
    KD_KEL_PROGRAM_STUDI char(2) not null,
-   NM_KEL_PROGRAM_STUDI varchar(50) not null
+   NM_KEL_PROGRAM_STUDI varchar(50) not null,
+   primary key (KD_KEL_PROGRAM_STUDI)
 );
-
-alter table R_KEL_PROGRAM_STUDI
-   add primary key (KD_KEL_PROGRAM_STUDI);
 
 /*==============================================================*/
 /* Table: R_KEL_YAYASAN                                         */
@@ -539,11 +475,9 @@ alter table R_KEL_PROGRAM_STUDI
 create table R_KEL_YAYASAN
 (
    KD_KEL_YAYASAN       char(2) not null,
-   NM_KEL_YAYASAN       varchar(50) not null
+   NM_KEL_YAYASAN       varchar(50) not null,
+   primary key (KD_KEL_YAYASAN)
 );
-
-alter table R_KEL_YAYASAN
-   add primary key (KD_KEL_YAYASAN);
 
 /*==============================================================*/
 /* Table: R_KEPEMILIKAN                                         */
@@ -551,11 +485,9 @@ alter table R_KEL_YAYASAN
 create table R_KEPEMILIKAN
 (
    KD_KEPEMILIKAN       char(1) not null,
-   NM_KEPEMILIKAN       varchar(50) not null
+   NM_KEPEMILIKAN       varchar(50) not null,
+   primary key (KD_KEPEMILIKAN)
 );
-
-alter table R_KEPEMILIKAN
-   add primary key (KD_KEPEMILIKAN);
 
 /*==============================================================*/
 /* Table: R_KEPRIBADIAN                                         */
@@ -564,11 +496,9 @@ create table R_KEPRIBADIAN
 (
    KD_KEPRIBADIAN       char(1) not null,
    NM_KEPRIBADIAN       varchar(50) not null,
-   STATUS_RAPOR         char(1) not null comment '0 = tidak aktif; 1 = aktif'
+   STATUS_RAPOR         char(1) not null comment '0 = tidak aktif; 1 = aktif',
+   primary key (KD_KEPRIBADIAN)
 );
-
-alter table R_KEPRIBADIAN
-   add primary key (KD_KEPRIBADIAN);
 
 /*==============================================================*/
 /* Table: R_KESEJAHTERAAN_KELUARGA                              */
@@ -576,11 +506,9 @@ alter table R_KEPRIBADIAN
 create table R_KESEJAHTERAAN_KELUARGA
 (
    KD_KESEJAHTERAAN_KELUARGA char(1) not null,
-   NM_KESEJAHTERAAN_KELUARGA varchar(50) not null
+   NM_KESEJAHTERAAN_KELUARGA varchar(50) not null,
+   primary key (KD_KESEJAHTERAAN_KELUARGA)
 );
-
-alter table R_KESEJAHTERAAN_KELUARGA
-   add primary key (KD_KESEJAHTERAAN_KELUARGA);
 
 /*==============================================================*/
 /* Table: R_KETUNAAN                                            */
@@ -588,11 +516,9 @@ alter table R_KESEJAHTERAAN_KELUARGA
 create table R_KETUNAAN
 (
    KD_KETUNAAN          char(2) not null,
-   NM_KETUNAAN          varchar(50) not null
+   NM_KETUNAAN          varchar(50) not null,
+   primary key (KD_KETUNAAN)
 );
-
-alter table R_KETUNAAN
-   add primary key (KD_KETUNAAN);
 
 /*==============================================================*/
 /* Table: R_KLASIFIKASI_GEOGRAFIS                               */
@@ -601,11 +527,9 @@ create table R_KLASIFIKASI_GEOGRAFIS
 (
    KD_KLASIFIKASI_GEOGRAFIS char(1) not null,
    NM_KLASIFIKASI_GEOGRAFIS varchar(50) not null,
-   ID_KLASIFIKASI_GEOGRAFIS tinyint not null
+   ID_KLASIFIKASI_GEOGRAFIS tinyint not null,
+   primary key (KD_KLASIFIKASI_GEOGRAFIS)
 );
-
-alter table R_KLASIFIKASI_GEOGRAFIS
-   add primary key (KD_KLASIFIKASI_GEOGRAFIS);
 
 /*==============================================================*/
 /* Table: R_KLASIFIKASI_SEKOLAH                                 */
@@ -613,11 +537,9 @@ alter table R_KLASIFIKASI_GEOGRAFIS
 create table R_KLASIFIKASI_SEKOLAH
 (
    KD_KLASIFIKASI_SEKOLAH char(1) not null,
-   NM_KLASIFIKASI_SEKOLAH varchar(50) not null
+   NM_KLASIFIKASI_SEKOLAH varchar(50) not null,
+   primary key (KD_KLASIFIKASI_SEKOLAH)
 );
-
-alter table R_KLASIFIKASI_SEKOLAH
-   add primary key (KD_KLASIFIKASI_SEKOLAH);
 
 /*==============================================================*/
 /* Table: R_KONDISI_RUANGAN                                     */
@@ -625,11 +547,9 @@ alter table R_KLASIFIKASI_SEKOLAH
 create table R_KONDISI_RUANGAN
 (
    KD_KONDISI_RUANGAN   char(1) not null,
-   NM_KONDISI_RUANGAN   varchar(50) not null
+   NM_KONDISI_RUANGAN   varchar(50) not null,
+   primary key (KD_KONDISI_RUANGAN)
 );
-
-alter table R_KONDISI_RUANGAN
-   add primary key (KD_KONDISI_RUANGAN);
 
 /*==============================================================*/
 /* Table: R_KURIKULUM                                           */
@@ -638,11 +558,9 @@ create table R_KURIKULUM
 (
    KD_KURIKULUM         char(2) not null,
    NM_KURIKULUM         varchar(50) not null,
-   KETERANGAN           varchar(255) default ''
+   KETERANGAN           varchar(255) default '',
+   primary key (KD_KURIKULUM)
 );
-
-alter table R_KURIKULUM
-   add primary key (KD_KURIKULUM);
 
 /*==============================================================*/
 /* Table: R_MATA_PELAJARAN_DIAJARKAN                            */
@@ -658,11 +576,9 @@ create table R_MATA_PELAJARAN_DIAJARKAN
    ORDER_NEM            smallint default NULL,
    ORDER_LNS            smallint default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_MATA_PELAJARAN_DIAJARKAN)
 );
-
-alter table R_MATA_PELAJARAN_DIAJARKAN
-   add primary key (KD_MATA_PELAJARAN_DIAJARKAN);
 
 /*==============================================================*/
 /* Index: R_MATA_PELAJARAN_DIAJARKAN_UK                         */
@@ -681,11 +597,9 @@ create table R_NILAI_AFEKTIF
    NM_NILAI_AFEKTIF     varchar(50) not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_NILAI_AFEKTIF)
 );
-
-alter table R_NILAI_AFEKTIF
-   add primary key (ID_NILAI_AFEKTIF);
 
 /*==============================================================*/
 /* Index: R_NILAI_AFEKTIF_UK                                    */
@@ -701,11 +615,9 @@ create unique index R_NILAI_AFEKTIF_UK on R_NILAI_AFEKTIF
 create table R_PANGKAT
 (
    KD_PANGKAT           char(2) not null,
-   NM_PANGKAT           varchar(50) not null
+   NM_PANGKAT           varchar(50) not null,
+   primary key (KD_PANGKAT)
 );
-
-alter table R_PANGKAT
-   add primary key (KD_PANGKAT);
 
 /*==============================================================*/
 /* Table: R_PEKERJAAN_ORTU                                      */
@@ -713,11 +625,9 @@ alter table R_PANGKAT
 create table R_PEKERJAAN_ORTU
 (
    KD_PEKERJAAN_ORTU    char(1) not null,
-   NM_PEKERJAAN_ORTU    varchar(50) not null
+   NM_PEKERJAAN_ORTU    varchar(50) not null,
+   primary key (KD_PEKERJAAN_ORTU)
 );
-
-alter table R_PEKERJAAN_ORTU
-   add primary key (KD_PEKERJAAN_ORTU);
 
 /*==============================================================*/
 /* Table: R_PENATARAN                                           */
@@ -728,11 +638,9 @@ create table R_PENATARAN
    NM_PENATARAN         varchar(50) not null,
    KD_JENIS_KETENAGAAN  char(1) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_PENATARAN)
 );
-
-alter table R_PENATARAN
-   add primary key (ID_PENATARAN);
 
 /*==============================================================*/
 /* Index: R_PENATARAN_UK                                        */
@@ -748,11 +656,9 @@ create unique index R_PENATARAN_UK on R_PENATARAN
 create table R_PENGGUNAAN_TANAH
 (
    KD_PENGGUNAAN_TANAH  char(1) not null,
-   NM_PENGGUNAAN_TANAH  varchar(50) not null
+   NM_PENGGUNAAN_TANAH  varchar(50) not null,
+   primary key (KD_PENGGUNAAN_TANAH)
 );
-
-alter table R_PENGGUNAAN_TANAH
-   add primary key (KD_PENGGUNAAN_TANAH);
 
 /*==============================================================*/
 /* Table: R_PENYAKIT                                            */
@@ -762,11 +668,9 @@ create table R_PENYAKIT
    ID_PENYAKIT          smallint unsigned not null auto_increment,
    NM_PENYAKIT          varchar(50) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_PENYAKIT)
 );
-
-alter table R_PENYAKIT
-   add primary key (ID_PENYAKIT);
 
 /*==============================================================*/
 /* Index: R_PENYAKIT_UK                                         */
@@ -782,11 +686,9 @@ create unique index R_PENYAKIT_UK on R_PENYAKIT
 create table R_PENYELENGGARA_PENATARAN
 (
    KD_PENYELENGGARA_PENATARAN char(1) not null,
-   NM_PENYELENGGARA_PENATARAN varchar(50) not null
+   NM_PENYELENGGARA_PENATARAN varchar(50) not null,
+   primary key (KD_PENYELENGGARA_PENATARAN)
 );
-
-alter table R_PENYELENGGARA_PENATARAN
-   add primary key (KD_PENYELENGGARA_PENATARAN);
 
 /*==============================================================*/
 /* Table: R_PERIODE_BELAJAR                                     */
@@ -794,11 +696,9 @@ alter table R_PENYELENGGARA_PENATARAN
 create table R_PERIODE_BELAJAR
 (
    KD_PERIODE_BELAJAR   char(1) not null,
-   NM_PERIODE_BELAJAR   varchar(50) not null
+   NM_PERIODE_BELAJAR   varchar(50) not null,
+   primary key (KD_PERIODE_BELAJAR)
 );
-
-alter table R_PERIODE_BELAJAR
-   add primary key (KD_PERIODE_BELAJAR);
 
 /*==============================================================*/
 /* Table: R_PERLENGKAPAN_SEKOLAH                                */
@@ -806,11 +706,9 @@ alter table R_PERIODE_BELAJAR
 create table R_PERLENGKAPAN_SEKOLAH
 (
    KD_PERLENGKAPAN_SEKOLAH char(2) not null,
-   NM_PERLENGKAPAN_SEKOLAH varchar(50) not null
+   NM_PERLENGKAPAN_SEKOLAH varchar(50) not null,
+   primary key (KD_PERLENGKAPAN_SEKOLAH)
 );
-
-alter table R_PERLENGKAPAN_SEKOLAH
-   add primary key (KD_PERLENGKAPAN_SEKOLAH);
 
 /*==============================================================*/
 /* Table: R_PROGRAM_STUDI                                       */
@@ -819,11 +717,9 @@ create table R_PROGRAM_STUDI
 (
    KD_PROGRAM_STUDI     char(4) not null,
    KD_KEL_PROGRAM_STUDI char(2) not null,
-   NM_PROGRAM_STUDI     varchar(50) not null
+   NM_PROGRAM_STUDI     varchar(50) not null,
+   primary key (KD_PROGRAM_STUDI)
 );
-
-alter table R_PROGRAM_STUDI
-   add primary key (KD_PROGRAM_STUDI);
 
 /*==============================================================*/
 /* Index: R_PROGRAM_STUDI_UK                                    */
@@ -845,11 +741,9 @@ create table R_PROPINSI
    TAHUN_AWAL           smallint unsigned not null,
    TAHUN_AKHIR          smallint unsigned default NULL,
    TANGGAL              date default NULL,
-   STATUS_PILIH         char(1) not null comment '0 = tidak dipilih; 1 = dipilih'
+   STATUS_PILIH         char(1) not null comment '0 = tidak dipilih; 1 = dipilih',
+   primary key (ID_PROPINSI)
 );
-
-alter table R_PROPINSI
-   add primary key (ID_PROPINSI);
 
 /*==============================================================*/
 /* Table: R_RUANG                                               */
@@ -857,11 +751,9 @@ alter table R_PROPINSI
 create table R_RUANG
 (
    KD_RUANG             char(2) not null,
-   NM_RUANG             varchar(50) not null
+   NM_RUANG             varchar(50) not null,
+   primary key (KD_RUANG)
 );
-
-alter table R_RUANG
-   add primary key (KD_RUANG);
 
 /*==============================================================*/
 /* Table: R_SANKSI                                              */
@@ -871,11 +763,9 @@ create table R_SANKSI
    ID_SANKSI            tinyint unsigned not null auto_increment,
    NM_SANKSI            varchar(50) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SANKSI)
 );
-
-alter table R_SANKSI
-   add primary key (ID_SANKSI);
 
 /*==============================================================*/
 /* Index: R_SANKSI_UK                                           */
@@ -900,11 +790,9 @@ create table R_SEKOLAH_SETINGKAT
    ID_KECAMATAN         smallint unsigned default NULL,
    NO_TELP              varchar(30) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ASAL_SMP)
 );
-
-alter table R_SEKOLAH_SETINGKAT
-   add primary key (ASAL_SMP);
 
 /*==============================================================*/
 /* Index: R_SEKOLAH_SETINGKAT_UK                                */
@@ -923,11 +811,9 @@ create unique index R_SEKOLAH_SETINGKAT_UK on R_SEKOLAH_SETINGKAT
 create table R_SERTIFIKAT
 (
    KD_SERTIFIKAT        char(1) not null,
-   NM_SERTIFIKAT        varchar(50) not null
+   NM_SERTIFIKAT        varchar(50) not null,
+   primary key (KD_SERTIFIKAT)
 );
-
-alter table R_SERTIFIKAT
-   add primary key (KD_SERTIFIKAT);
 
 /*==============================================================*/
 /* Table: R_STATUS_PEGAWAI                                      */
@@ -935,11 +821,9 @@ alter table R_SERTIFIKAT
 create table R_STATUS_PEGAWAI
 (
    KD_STATUS_PEGAWAI    char(1) not null,
-   NM_STATUS_PEGAWAI    varchar(50) not null
+   NM_STATUS_PEGAWAI    varchar(50) not null,
+   primary key (KD_STATUS_PEGAWAI)
 );
-
-alter table R_STATUS_PEGAWAI
-   add primary key (KD_STATUS_PEGAWAI);
 
 /*==============================================================*/
 /* Table: R_SUMBER_LISTRIK                                      */
@@ -947,11 +831,9 @@ alter table R_STATUS_PEGAWAI
 create table R_SUMBER_LISTRIK
 (
    KD_SUMBER_LISTRIK    char(1) not null,
-   NM_SUMBER_LISTRIK    varchar(50) not null
+   NM_SUMBER_LISTRIK    varchar(50) not null,
+   primary key (KD_SUMBER_LISTRIK)
 );
-
-alter table R_SUMBER_LISTRIK
-   add primary key (KD_SUMBER_LISTRIK);
 
 /*==============================================================*/
 /* Table: R_TAHUN_AJARAN                                        */
@@ -959,11 +841,9 @@ alter table R_SUMBER_LISTRIK
 create table R_TAHUN_AJARAN
 (
    KD_TAHUN_AJARAN      char(2) not null,
-   NM_TAHUN_AJARAN      varchar(50) not null
+   NM_TAHUN_AJARAN      varchar(50) not null,
+   primary key (KD_TAHUN_AJARAN)
 );
-
-alter table R_TAHUN_AJARAN
-   add primary key (KD_TAHUN_AJARAN);
 
 /*==============================================================*/
 /* Table: R_TENAGA_ADMINISTRASI                                 */
@@ -971,11 +851,9 @@ alter table R_TAHUN_AJARAN
 create table R_TENAGA_ADMINISTRASI
 (
    KD_TENAGA_ADMINISTRASI char(1) not null,
-   NM_TENAGA_ADMINISTRASI varchar(50) not null
+   NM_TENAGA_ADMINISTRASI varchar(50) not null,
+   primary key (KD_TENAGA_ADMINISTRASI)
 );
-
-alter table R_TENAGA_ADMINISTRASI
-   add primary key (KD_TENAGA_ADMINISTRASI);
 
 /*==============================================================*/
 /* Table: R_TINGKAT_IJAZAH                                      */
@@ -983,11 +861,9 @@ alter table R_TENAGA_ADMINISTRASI
 create table R_TINGKAT_IJAZAH
 (
    KD_TINGKAT_IJAZAH    char(2) not null,
-   NM_TINGKAT_IJAZAH    varchar(50) not null
+   NM_TINGKAT_IJAZAH    varchar(50) not null,
+   primary key (KD_TINGKAT_IJAZAH)
 );
-
-alter table R_TINGKAT_IJAZAH
-   add primary key (KD_TINGKAT_IJAZAH);
 
 /*==============================================================*/
 /* Table: R_TINGKAT_KELAS                                       */
@@ -996,11 +872,9 @@ create table R_TINGKAT_KELAS
 (
    KD_TINGKAT_KELAS     char(2) not null,
    NM_TINGKAT_KELAS     varchar(50) not null,
-   KETERANGAN           varchar(255) default NULL
+   KETERANGAN           varchar(255) default NULL,
+   primary key (KD_TINGKAT_KELAS)
 );
-
-alter table R_TINGKAT_KELAS
-   add primary key (KD_TINGKAT_KELAS);
 
 /*==============================================================*/
 /* Table: R_TINGKAT_PRESTASI                                    */
@@ -1008,11 +882,9 @@ alter table R_TINGKAT_KELAS
 create table R_TINGKAT_PRESTASI
 (
    KD_TINGKAT_PRESTASI  char(1) not null,
-   NM_TINGKAT_PRESTASI  varchar(50) not null
+   NM_TINGKAT_PRESTASI  varchar(50) not null,
+   primary key (KD_TINGKAT_PRESTASI)
 );
-
-alter table R_TINGKAT_PRESTASI
-   add primary key (KD_TINGKAT_PRESTASI);
 
 /*==============================================================*/
 /* Table: R_TYPE_SEKOLAH                                        */
@@ -1020,11 +892,9 @@ alter table R_TINGKAT_PRESTASI
 create table R_TYPE_SEKOLAH
 (
    KD_TYPE_SEKOLAH      char(1) not null,
-   NM_TYPE_SEKOLAH      varchar(50) not null
+   NM_TYPE_SEKOLAH      varchar(50) not null,
+   primary key (KD_TYPE_SEKOLAH)
 );
-
-alter table R_TYPE_SEKOLAH
-   add primary key (KD_TYPE_SEKOLAH);
 
 /*==============================================================*/
 /* Table: R_VOLTASE                                             */
@@ -1032,11 +902,9 @@ alter table R_TYPE_SEKOLAH
 create table R_VOLTASE
 (
    KD_VOLTASE           char(1) not null,
-   NM_VOLTASE           varchar(50) not null
+   NM_VOLTASE           varchar(50) not null,
+   primary key (KD_VOLTASE)
 );
-
-alter table R_VOLTASE
-   add primary key (KD_VOLTASE);
 
 /*==============================================================*/
 /* Table: R_WAKTU_PENYELENGGARAAN                               */
@@ -1045,11 +913,9 @@ create table R_WAKTU_PENYELENGGARAAN
 (
    KD_WAKTU_PENYELENGGARAAN char(1) not null,
    NM_WAKTU_PENYELENGGARAAN varchar(50) not null,
-   ID_WAKTU_PENYELENGGARAAN tinyint unsigned not null
+   ID_WAKTU_PENYELENGGARAAN tinyint unsigned not null,
+   primary key (KD_WAKTU_PENYELENGGARAAN)
 );
-
-alter table R_WAKTU_PENYELENGGARAAN
-   add primary key (KD_WAKTU_PENYELENGGARAAN);
 
 /*==============================================================*/
 /* Table: T_KABUPATEN_KECAMATAN                                 */
@@ -1061,11 +927,9 @@ create table T_KABUPATEN_KECAMATAN
    TAHUN_AWAL           smallint unsigned not null,
    KD_KECAMATAN         char(6) not null,
    TAHUN_AKHIR          smallint unsigned default NULL,
-   TANGGAL              date default NULL
+   TANGGAL              date default NULL,
+   primary key (ID_KABUPATEN, ID_KECAMATAN, TAHUN_AWAL)
 );
-
-alter table T_KABUPATEN_KECAMATAN
-   add primary key (ID_KABUPATEN, ID_KECAMATAN, TAHUN_AWAL);
 
 /*==============================================================*/
 /* Table: T_KUR_KKM_MATPEL                                      */
@@ -1080,11 +944,9 @@ create table T_KUR_KKM_MATPEL
    KD_MATA_PELAJARAN_DIAJARKAN char(5) not null,
    KKM                  tinyint unsigned not null default 65,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_KURIKULUM, KD_PERIODE_BELAJAR, KD_MATA_PELAJARAN_DIAJARKAN)
 );
-
-alter table T_KUR_KKM_MATPEL
-   add primary key (KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_KURIKULUM, KD_PERIODE_BELAJAR, KD_MATA_PELAJARAN_DIAJARKAN);
 
 /*==============================================================*/
 /* Table: T_KUR_KURIKULUM                                       */
@@ -1099,11 +961,9 @@ create table T_KUR_KURIKULUM
    UAN                  char(1) not null default '0',
    ELEMEN               tinyint not null default 21,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_KURIKULUM, KD_TINGKAT_KELAS, KD_PERIODE_BELAJAR, KD_MATA_PELAJARAN_DIAJARKAN)
 );
-
-alter table T_KUR_KURIKULUM
-   add primary key (KD_KURIKULUM, KD_TINGKAT_KELAS, KD_PERIODE_BELAJAR, KD_MATA_PELAJARAN_DIAJARKAN);
 
 /*==============================================================*/
 /* Table: T_NILAI_NEM                                           */
@@ -1122,11 +982,9 @@ create table T_NILAI_NEM
    NILAI_HURUF          varchar(255) default NULL,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_KURIKULUM, KD_PERIODE_BELAJAR, KD_MATA_PELAJARAN_DIAJARKAN)
 );
-
-alter table T_NILAI_NEM
-   add primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_KURIKULUM, KD_PERIODE_BELAJAR, KD_MATA_PELAJARAN_DIAJARKAN);
 
 /*==============================================================*/
 /* Table: T_NILAI_RAPOR                                         */
@@ -1147,11 +1005,9 @@ create table T_NILAI_RAPOR
    TANGGAL_DIBERIKAN    date default NULL,
    CATATAN              varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_PERIODE_BELAJAR)
 );
-
-alter table T_NILAI_RAPOR
-   add primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_PERIODE_BELAJAR);
 
 /*==============================================================*/
 /* Table: T_NILAI_RAPOR_EKSTRA                                  */
@@ -1168,11 +1024,9 @@ create table T_NILAI_RAPOR_EKSTRA
    ID_NILAI_AFEKTIF     tinyint unsigned not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_PERIODE_BELAJAR, ID_EKSTRAKURIKULER)
 );
-
-alter table T_NILAI_RAPOR_EKSTRA
-   add primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_PERIODE_BELAJAR, ID_EKSTRAKURIKULER);
 
 /*==============================================================*/
 /* Table: T_NILAI_RAPOR_KEPRIBADIAN                             */
@@ -1189,11 +1043,9 @@ create table T_NILAI_RAPOR_KEPRIBADIAN
    ID_NILAI_AFEKTIF     tinyint unsigned not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_PERIODE_BELAJAR, KD_KEPRIBADIAN)
 );
-
-alter table T_NILAI_RAPOR_KEPRIBADIAN
-   add primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_PERIODE_BELAJAR, KD_KEPRIBADIAN);
 
 /*==============================================================*/
 /* Table: T_NILAI_RAPOR_NILAI                                   */
@@ -1212,11 +1064,9 @@ create table T_NILAI_RAPOR_NILAI
    NILAI                decimal(5,2) not null default 0.00,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_PERIODE_BELAJAR, KD_KURIKULUM, KD_MATA_PELAJARAN_DIAJARKAN)
 );
-
-alter table T_NILAI_RAPOR_NILAI
-   add primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_PERIODE_BELAJAR, KD_KURIKULUM, KD_MATA_PELAJARAN_DIAJARKAN);
 
 /*==============================================================*/
 /* Table: T_NILAI_STTB                                          */
@@ -1235,11 +1085,9 @@ create table T_NILAI_STTB
    NILAI_HURUF          varchar(255) default NULL,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_KURIKULUM, KD_PERIODE_BELAJAR, KD_MATA_PELAJARAN_DIAJARKAN)
 );
-
-alter table T_NILAI_STTB
-   add primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, KD_KURIKULUM, KD_PERIODE_BELAJAR, KD_MATA_PELAJARAN_DIAJARKAN);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI                                             */
@@ -1266,11 +1114,9 @@ create table T_PEGAWAI
    KURSUS_KOMPUTER      char(1) default '0' comment '0 = belum pernah; 1 = pernah',
    SERTIFIKASI          char(1) default '0' comment '0 = belum; 1 = sudah',
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_PEGAWAI)
 );
-
-alter table T_PEGAWAI
-   add primary key (ID_PEGAWAI);
 
 /*==============================================================*/
 /* Index: T_PEGAWAI_UK                                          */
@@ -1303,11 +1149,9 @@ create table T_PEGAWAI_AKTIF
    STATUS_AKTIF         char(1) not null default '0' comment '0 = tidak aktif; 1 = aktif',
    STATUS_ENTRI         char(1) not null default '0',
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, ID_PEGAWAI)
 );
-
-alter table T_PEGAWAI_AKTIF
-   add primary key (KD_TAHUN_AJARAN, ID_PEGAWAI);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI_DIDIK_FORMAL                                */
@@ -1327,11 +1171,9 @@ create table T_PEGAWAI_DIDIK_FORMAL
    NO_IJAZAH            varchar(50) default NULL,
    TANGGAL_IJAZAH       date default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_PEGAWAI, NO_URUT)
 );
-
-alter table T_PEGAWAI_DIDIK_FORMAL
-   add primary key (ID_PEGAWAI, NO_URUT);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI_GURU_KEBUTUHAN                              */
@@ -1344,11 +1186,9 @@ create table T_PEGAWAI_GURU_KEBUTUHAN
    JUMLAH_TAK_TETAP     tinyint unsigned not null default 0,
    JUMLAH_BUTUH         tinyint unsigned not null default 0,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_KEL_MATA_PELAJARAN)
 );
-
-alter table T_PEGAWAI_GURU_KEBUTUHAN
-   add primary key (KD_TAHUN_AJARAN, KD_KEL_MATA_PELAJARAN);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI_KELUARGA                                    */
@@ -1371,11 +1211,9 @@ create table T_PEGAWAI_KELUARGA
    TAHUN_MENINGGAL      smallint unsigned default NULL,
    ALAMAT               varchar(150) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_PEGAWAI, NO_URUT)
 );
-
-alter table T_PEGAWAI_KELUARGA
-   add primary key (ID_PEGAWAI, NO_URUT);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI_MENGAJAR                                    */
@@ -1388,11 +1226,9 @@ create table T_PEGAWAI_MENGAJAR
    KD_MATA_PELAJARAN_DIAJARKAN char(5) not null,
    TAHUN_MULAI_AJAR     smallint unsigned not null default 0,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, ID_PEGAWAI, KD_MATA_PELAJARAN_DIAJARKAN)
 );
-
-alter table T_PEGAWAI_MENGAJAR
-   add primary key (KD_TAHUN_AJARAN, ID_PEGAWAI, KD_MATA_PELAJARAN_DIAJARKAN);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI_PENATARAN                                   */
@@ -1411,11 +1247,9 @@ create table T_PEGAWAI_PENATARAN
    TANGGAL_AKHIR        date default NULL,
    JAM                  smallint unsigned not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_PEGAWAI, NO_URUT)
 );
-
-alter table T_PEGAWAI_PENATARAN
-   add primary key (ID_PEGAWAI, NO_URUT);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI_PENGHARGAAN                                 */
@@ -1428,11 +1262,9 @@ create table T_PEGAWAI_PENGHARGAAN
    TANGGAL_PENGHARGAAN  date not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_PEGAWAI, KD_JENIS_PENGHARGAAN)
 );
-
-alter table T_PEGAWAI_PENGHARGAAN
-   add primary key (ID_PEGAWAI, KD_JENIS_PENGHARGAAN);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI_PRESTASI                                    */
@@ -1447,11 +1279,9 @@ create table T_PEGAWAI_PRESTASI
    JUARA_KE             tinyint unsigned not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_PEGAWAI, ID_JENIS_LOMBA, KD_TINGKAT_PRESTASI, TANGGAL_PRESTASI)
 );
-
-alter table T_PEGAWAI_PRESTASI
-   add primary key (ID_PEGAWAI, ID_JENIS_LOMBA, KD_TINGKAT_PRESTASI, TANGGAL_PRESTASI);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI_ROMBEL                                      */
@@ -1474,11 +1304,9 @@ create table T_PEGAWAI_ROMBEL
    TANGGAL_SEMESTER_1   date default NULL,
    TANGGAL_SEMESTER_2   date default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL)
 );
-
-alter table T_PEGAWAI_ROMBEL
-   add primary key (KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI_RWYT_AJAR                                   */
@@ -1492,11 +1320,9 @@ create table T_PEGAWAI_RWYT_AJAR
    STATUS_AJAR          char(1) default NULL,
    NM_SEKOLAH           varchar(50) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_PEGAWAI, KD_MATA_PELAJARAN_DIAJARKAN)
 );
-
-alter table T_PEGAWAI_RWYT_AJAR
-   add primary key (ID_PEGAWAI, KD_MATA_PELAJARAN_DIAJARKAN);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI_RWYT_JABATAN                                */
@@ -1517,11 +1343,9 @@ create table T_PEGAWAI_RWYT_JABATAN
    TAHUN_BERHENTI       smallint unsigned default NULL,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_PEGAWAI, NO_URUT)
 );
-
-alter table T_PEGAWAI_RWYT_JABATAN
-   add primary key (ID_PEGAWAI, NO_URUT);
 
 /*==============================================================*/
 /* Table: T_PEGAWAI_RWYT_PANGKAT                                */
@@ -1538,11 +1362,9 @@ create table T_PEGAWAI_RWYT_PANGKAT
    TMT_SK               date not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_PEGAWAI, NO_URUT)
 );
-
-alter table T_PEGAWAI_RWYT_PANGKAT
-   add primary key (ID_PEGAWAI, NO_URUT);
 
 /*==============================================================*/
 /* Table: T_PROPINSI_KABUPATEN                                  */
@@ -1554,11 +1376,9 @@ create table T_PROPINSI_KABUPATEN
    TAHUN_AWAL           smallint unsigned not null,
    KD_KABUPATEN         char(4) not null,
    TAHUN_AKHIR          smallint unsigned default NULL,
-   TANGGAL              date default NULL
+   TANGGAL              date default NULL,
+   primary key (ID_PROPINSI, ID_KABUPATEN, TAHUN_AWAL)
 );
-
-alter table T_PROPINSI_KABUPATEN
-   add primary key (ID_PROPINSI, ID_KABUPATEN, TAHUN_AWAL);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_ANCAM_DO                                    */
@@ -1569,11 +1389,9 @@ create table T_SEKOLAH_ANCAM_DO
    KD_TINGKAT_KELAS     char(2) not null,
    JUMLAH               smallint unsigned not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_TINGKAT_KELAS)
 );
-
-alter table T_SEKOLAH_ANCAM_DO
-   add primary key (KD_TAHUN_AJARAN, KD_TINGKAT_KELAS);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_BANTUAN                                     */
@@ -1588,11 +1406,9 @@ create table T_SEKOLAH_BANTUAN
    DANA_PENDAMPING      decimal(18,2) default 0.00,
    PERUNTUKAN_DANA      varchar(255) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_BANTUAN, SUMBER_BANTUAN)
 );
-
-alter table T_SEKOLAH_BANTUAN
-   add primary key (KD_TAHUN_AJARAN, KD_BANTUAN, SUMBER_BANTUAN);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_BERUBAH                                     */
@@ -1606,11 +1422,9 @@ create table T_SEKOLAH_BERUBAH
    ALAMAT_LAMA          varchar(150) not null,
    ID_PROPINSI          tinyint unsigned not null,
    ID_KABUPATEN         smallint unsigned not null,
-   ID_KECAMATAN         smallint unsigned not null
+   ID_KECAMATAN         smallint unsigned not null,
+   primary key (KD_TAHUN_AJARAN)
 );
-
-alter table T_SEKOLAH_BERUBAH
-   add primary key (KD_TAHUN_AJARAN);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_BUALPEN                                     */
@@ -1629,11 +1443,9 @@ create table T_SEKOLAH_BUALPEN
    PAKTEK               smallint unsigned not null default 0,
    MULMED               smallint unsigned not null default 0,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_MATA_PELAJARAN_DIAJARKAN)
 );
-
-alter table T_SEKOLAH_BUALPEN
-   add primary key (KD_TAHUN_AJARAN, KD_MATA_PELAJARAN_DIAJARKAN);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_DO                                          */
@@ -1652,11 +1464,9 @@ create table T_SEKOLAH_DO
    LAIN_LAIN            tinyint unsigned not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN)
 );
-
-alter table T_SEKOLAH_DO
-   add primary key (KD_TAHUN_AJARAN);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_IDENTITAS                                   */
@@ -1686,11 +1496,9 @@ create table T_SEKOLAH_IDENTITAS
    KATEGORI             char(1) comment '1 = smp satu atap; 2 = biasa',
    KD_KLASIFIKASI_GEOGRAFIS char(1),
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN)
 );
-
-alter table T_SEKOLAH_IDENTITAS
-   add primary key (KD_TAHUN_AJARAN);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_INFO                                        */
@@ -1710,11 +1518,9 @@ create table T_SEKOLAH_INFO
    BUJUR                decimal(7,4) default NULL,
    LINTANG              decimal(7,4) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN)
 );
-
-alter table T_SEKOLAH_INFO
-   add primary key (KD_TAHUN_AJARAN);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_JURUSAN                                     */
@@ -1725,11 +1531,9 @@ create table T_SEKOLAH_JURUSAN
    KD_TINGKAT_KELAS     char(2) not null,
    KD_KURIKULUM         char(2) not null default '02',
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_TINGKAT_KELAS)
 );
-
-alter table T_SEKOLAH_JURUSAN
-   add primary key (KD_TAHUN_AJARAN, KD_TINGKAT_KELAS);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_KEGIATAN                                    */
@@ -1743,11 +1547,9 @@ create table T_SEKOLAH_KEGIATAN
    TANGGAL_SELESAI      date not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, NO_KEGIATAN)
 );
-
-alter table T_SEKOLAH_KEGIATAN
-   add primary key (KD_TAHUN_AJARAN, NO_KEGIATAN);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_KEPALA                                      */
@@ -1760,11 +1562,9 @@ create table T_SEKOLAH_KEPALA
    NM_PEGAWAI           varchar(50) not null,
    NO_SK                varchar(30) not null,
    TANGGAL_SK           date not null,
-   TMT_SK               date not null
+   TMT_SK               date not null,
+   primary key (KD_TAHUN_AJARAN, ID_PEGAWAI)
 );
-
-alter table T_SEKOLAH_KEPALA
-   add primary key (KD_TAHUN_AJARAN, ID_PEGAWAI);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_PEMAKAIAN_LISTRIK                           */
@@ -1776,11 +1576,9 @@ create table T_SEKOLAH_PEMAKAIAN_LISTRIK
    KD_DAYA_LISTRIK      char(1) not null,
    KD_VOLTASE           char(1) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_SUMBER_LISTRIK, KD_DAYA_LISTRIK, KD_VOLTASE)
 );
-
-alter table T_SEKOLAH_PEMAKAIAN_LISTRIK
-   add primary key (KD_TAHUN_AJARAN, KD_SUMBER_LISTRIK, KD_DAYA_LISTRIK, KD_VOLTASE);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_PERINGKAT_UAN                               */
@@ -1792,11 +1590,9 @@ create table T_SEKOLAH_PERINGKAT_UAN
    PERINGKAT_SEJENIS    smallint unsigned not null,
    PERINGKAT_GABUNGAN   smallint unsigned not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_TINGKAT_PRESTASI)
 );
-
-alter table T_SEKOLAH_PERINGKAT_UAN
-   add primary key (KD_TAHUN_AJARAN, KD_TINGKAT_PRESTASI);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_PERLENGKAPAN                                */
@@ -1807,11 +1603,9 @@ create table T_SEKOLAH_PERLENGKAPAN
    KD_PERLENGKAPAN_SEKOLAH char(2) not null,
    JUMLAH               smallint unsigned not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_PERLENGKAPAN_SEKOLAH)
 );
-
-alter table T_SEKOLAH_PERLENGKAPAN
-   add primary key (KD_TAHUN_AJARAN, KD_PERLENGKAPAN_SEKOLAH);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_PERLENGKAPAN_KBM                            */
@@ -1822,11 +1616,9 @@ create table T_SEKOLAH_PERLENGKAPAN_KBM
    KD_PERLENGKAPAN_SEKOLAH char(2) not null,
    JUMLAH               smallint unsigned not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_PERLENGKAPAN_SEKOLAH)
 );
-
-alter table T_SEKOLAH_PERLENGKAPAN_KBM
-   add primary key (KD_TAHUN_AJARAN, KD_PERLENGKAPAN_SEKOLAH);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_PKH_ALAT                                    */
@@ -1841,11 +1633,9 @@ create table T_SEKOLAH_PKH_ALAT
    JUMLAH_SEDANG        smallint unsigned not null default 0,
    JUMLAH_BERAT         smallint unsigned not null default 0,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, NO_URUT)
 );
-
-alter table T_SEKOLAH_PKH_ALAT
-   add primary key (KD_TAHUN_AJARAN, NO_URUT);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_PKH_GURU                                    */
@@ -1856,11 +1646,9 @@ create table T_SEKOLAH_PKH_GURU
    ID_PEGAWAI           smallint unsigned not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, ID_PEGAWAI)
 );
-
-alter table T_SEKOLAH_PKH_GURU
-   add primary key (KD_TAHUN_AJARAN, ID_PEGAWAI);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_PKH_KEGIATAN                                */
@@ -1875,11 +1663,9 @@ create table T_SEKOLAH_PKH_KEGIATAN
    KD_HASIL_EVALUASI    char(1) not null,
    KETERANGAN           varchar(255),
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, NO_URUT)
 );
-
-alter table T_SEKOLAH_PKH_KEGIATAN
-   add primary key (KD_TAHUN_AJARAN, NO_URUT);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_PKH_MITRA                                   */
@@ -1891,11 +1677,9 @@ create table T_SEKOLAH_PKH_MITRA
    NM_MITRA             varchar(50) not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, NO_URUT)
 );
-
-alter table T_SEKOLAH_PKH_MITRA
-   add primary key (KD_TAHUN_AJARAN, NO_URUT);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_PKH_NARASUMBER                              */
@@ -1913,11 +1697,9 @@ create table T_SEKOLAH_PKH_NARASUMBER
    SEDIA_WAKTU          tinyint unsigned not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, NO_URUT)
 );
-
-alter table T_SEKOLAH_PKH_NARASUMBER
-   add primary key (KD_TAHUN_AJARAN, NO_URUT);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_PRESTASI                                    */
@@ -1931,11 +1713,9 @@ create table T_SEKOLAH_PRESTASI
    JUARA_KE             tinyint unsigned not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, ID_JENIS_LOMBA, KD_TINGKAT_PRESTASI, TANGGAL_PRESTASI)
 );
-
-alter table T_SEKOLAH_PRESTASI
-   add primary key (KD_TAHUN_AJARAN, ID_JENIS_LOMBA, KD_TINGKAT_PRESTASI, TANGGAL_PRESTASI);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_PROPERTI                                    */
@@ -1949,11 +1729,9 @@ create table T_SEKOLAH_PROPERTI
    LUAS                 decimal(9,2) default NULL,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, KD_PENGGUNAAN_TANAH, KD_KEPEMILIKAN, KD_SERTIFIKAT)
 );
-
-alter table T_SEKOLAH_PROPERTI
-   add primary key (KD_TAHUN_AJARAN, KD_PENGGUNAAN_TANAH, KD_KEPEMILIKAN, KD_SERTIFIKAT);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_REKENING                                    */
@@ -1967,11 +1745,9 @@ create table T_SEKOLAH_REKENING
    NM_BANK              varchar(50) not null,
    CABANG_BANK          varchar(50) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, NO_URUT)
 );
-
-alter table T_SEKOLAH_REKENING
-   add primary key (KD_TAHUN_AJARAN, NO_URUT);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_RUANG                                       */
@@ -1990,11 +1766,9 @@ create table T_SEKOLAH_RUANG
    LUAS                 decimal(9,2) default 0.00,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_RUANG_KELAS)
 );
-
-alter table T_SEKOLAH_RUANG
-   add primary key (ID_RUANG_KELAS);
 
 /*==============================================================*/
 /* Index: T_SEKOLAH_RUANG_UK                                    */
@@ -2014,11 +1788,9 @@ create table T_SEKOLAH_SALDO_AWAL
    SALDO_AWAL           decimal(18,2) not null default 0.00,
    STATUS               char(1) not null default '0',
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN)
 );
-
-alter table T_SEKOLAH_SALDO_AWAL
-   add primary key (KD_TAHUN_AJARAN);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_SK                                          */
@@ -2037,11 +1809,9 @@ create table T_SEKOLAH_SK
    TANGGAL_SK_AKREDITASI_AKHIR date default NULL,
    KD_AKREDITASI        char(1) not null,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN)
 );
-
-alter table T_SEKOLAH_SK
-   add primary key (KD_TAHUN_AJARAN);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_SK_SWASTA                                   */
@@ -2062,11 +1832,9 @@ create table T_SEKOLAH_SK_SWASTA
    KD_DESA_YAYASAN      varchar(50) not null,
    NO_TELP              varchar(30) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN)
 );
-
-alter table T_SEKOLAH_SK_SWASTA
-   add primary key (KD_TAHUN_AJARAN);
 
 /*==============================================================*/
 /* Table: T_SEKOLAH_SOFTWARE                                    */
@@ -2079,11 +1847,9 @@ create table T_SEKOLAH_SOFTWARE
    JUMLAH_BAJAK         tinyint unsigned not null default 0,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (KD_TAHUN_AJARAN, NM_SOFTWARE)
 );
-
-alter table T_SEKOLAH_SOFTWARE
-   add primary key (KD_TAHUN_AJARAN, NM_SOFTWARE);
 
 /*==============================================================*/
 /* Table: T_SISWA                                               */
@@ -2114,11 +1880,9 @@ create table T_SISWA
    NILAI                decimal(5,2) default NULL,
    STATUS_ENTRI         char(1) not null default '1',
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA)
 );
-
-alter table T_SISWA
-   add primary key (ID_SISWA);
 
 /*==============================================================*/
 /* Index: T_SISWA_UK                                            */
@@ -2142,11 +1906,9 @@ create table T_SISWA_ALUMNI
    TANGGAL_BEKERJA      date default NULL,
    NM_PERUSAHAAN        varchar(50) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA)
 );
-
-alter table T_SISWA_ALUMNI
-   add primary key (ID_SISWA);
 
 /*==============================================================*/
 /* Table: T_SISWA_BEASISWA                                      */
@@ -2161,11 +1923,9 @@ create table T_SISWA_BEASISWA
    JUMLAH_BEASISWA_PER_BULAN decimal(18,2) not null default 0.00,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_BEASISWA, TAHUN_MASUK)
 );
-
-alter table T_SISWA_BEASISWA
-   add primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_BEASISWA, TAHUN_MASUK);
 
 /*==============================================================*/
 /* Table: T_SISWA_CUTI                                          */
@@ -2179,11 +1939,9 @@ create table T_SISWA_CUTI
    KETERANGAN           varchar(255) default NULL,
    STATUS_ASAL          char(1) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, TANGGAL)
 );
-
-alter table T_SISWA_CUTI
-   add primary key (ID_SISWA, TANGGAL);
 
 /*==============================================================*/
 /* Table: T_SISWA_HOBI                                          */
@@ -2195,11 +1953,9 @@ create table T_SISWA_HOBI
    ID_HOBI              smallint unsigned not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, ID_HOBI)
 );
-
-alter table T_SISWA_HOBI
-   add primary key (ID_SISWA, ID_HOBI);
 
 /*==============================================================*/
 /* Table: T_SISWA_INFO                                          */
@@ -2228,11 +1984,9 @@ create table T_SISWA_INFO
    TANGGAL_STL_SD       date default NULL,
    LAMA_BELAJAR_SD      tinyint unsigned default NULL,
    USERNAME             varchar(20),
-   TANGGAL_AKSES        timestamp default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA)
 );
-
-alter table T_SISWA_INFO
-   add primary key (ID_SISWA);
 
 /*==============================================================*/
 /* Table: T_SISWA_ORTU                                          */
@@ -2265,11 +2019,9 @@ create table T_SISWA_ORTU
             2 = sudah meninggal',
    TAHUN_MENINGGAL      smallint unsigned default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, KD_JENIS_ORTU)
 );
-
-alter table T_SISWA_ORTU
-   add primary key (ID_SISWA, KD_JENIS_ORTU);
 
 /*==============================================================*/
 /* Table: T_SISWA_PELANGGARAN                                   */
@@ -2287,11 +2039,9 @@ create table T_SISWA_PELANGGARAN
    TANGGAL_AKHIR_SANKSI date not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, TANGGAL)
 );
-
-alter table T_SISWA_PELANGGARAN
-   add primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, TANGGAL);
 
 /*==============================================================*/
 /* Table: T_SISWA_PINDAH                                        */
@@ -2304,11 +2054,9 @@ create table T_SISWA_PINDAH
    PINDAH_ALASAN        varchar(255) not null,
    STATUS_ASAL          char(1) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA)
 );
-
-alter table T_SISWA_PINDAH
-   add primary key (ID_SISWA);
 
 /*==============================================================*/
 /* Table: T_SISWA_PRESTASI                                      */
@@ -2323,11 +2071,9 @@ create table T_SISWA_PRESTASI
    JUARA_KE             tinyint unsigned not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, ID_JENIS_LOMBA, KD_TINGKAT_PRESTASI, TANGGAL_PRESTASI)
 );
-
-alter table T_SISWA_PRESTASI
-   add primary key (ID_SISWA, ID_JENIS_LOMBA, KD_TINGKAT_PRESTASI, TANGGAL_PRESTASI);
 
 /*==============================================================*/
 /* Table: T_SISWA_PUTUS                                         */
@@ -2340,11 +2086,9 @@ create table T_SISWA_PUTUS
    ALASAN_KELUAR        varchar(255) not null,
    STATUS_ASAL          char(1) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA)
 );
-
-alter table T_SISWA_PUTUS
-   add primary key (ID_SISWA);
 
 /*==============================================================*/
 /* Table: T_SISWA_RWYT_SAKIT                                    */
@@ -2358,11 +2102,9 @@ create table T_SISWA_RWYT_SAKIT
    LAMA_SAKIT           tinyint unsigned not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, ID_PENYAKIT)
 );
-
-alter table T_SISWA_RWYT_SAKIT
-   add primary key (ID_SISWA, ID_PENYAKIT);
 
 /*==============================================================*/
 /* Table: T_SISWA_TINGKAT                                       */
@@ -2385,11 +2127,9 @@ create table T_SISWA_TINGKAT
    NO_IJAZAH            varchar(50) default NULL,
    KODE                 char(4) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL)
 );
-
-alter table T_SISWA_TINGKAT
-   add primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL);
 
 /*==============================================================*/
 /* Table: T_SISWA_TINGKAT_THN                                   */
@@ -2402,11 +2142,9 @@ create table T_SISWA_TINGKAT_THN
    KD_ROMBEL            varchar(15) default NULL,
    KD_STATUS_SISWA      char(1) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA)
 );
-
-alter table T_SISWA_TINGKAT_THN
-   add primary key (ID_SISWA);
 
 /*==============================================================*/
 /* Table: T_SISWA_TINGKAT_THN_BARU                              */
@@ -2418,11 +2156,9 @@ create table T_SISWA_TINGKAT_THN_BARU
    KD_TINGKAT_KELAS     char(2) default NULL,
    KD_ROMBEL            varchar(15) default NULL,
    USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   primary key (ID_SISWA)
 );
-
-alter table T_SISWA_TINGKAT_THN_BARU
-   add primary key (ID_SISWA);
 
 /*==============================================================*/
 /* Table: X_REF_SEKOLAH                                         */
@@ -2443,11 +2179,9 @@ create table X_REF_SEKOLAH
    TAHUN_DIBUKA         smallint unsigned,
    KD_STATUS_SEKOLAH    char(1),
    KD_WAKTU_PENYELENGGARAAN char(1) not null,
-   JENJANG_SEKOLAH      tinyint unsigned not null
+   JENJANG_SEKOLAH      tinyint unsigned not null,
+   primary key (NPSN)
 );
-
-alter table X_REF_SEKOLAH
-   add primary key (NPSN);
 
 /*==============================================================*/
 /* Table: __AUTH                                                */
@@ -2457,11 +2191,9 @@ create table __AUTH
    USERNAME             varchar(20) not null,
    ID_GRUP              int not null,
    PASSWORD             varchar(255) not null,
-   STATUS_USER          tinyint unsigned not null default 1 comment '0 = tidak aktif; 1 = aktif'
+   STATUS_USER          tinyint unsigned not null default 1 comment '0 = tidak aktif; 1 = aktif',
+   primary key (USERNAME)
 );
-
-alter table __AUTH
-   add primary key (USERNAME);
 
 /*==============================================================*/
 /* Table: __GRUP_USER                                           */
@@ -2470,11 +2202,9 @@ create table __GRUP_USER
 (
    ID_GRUP              int not null auto_increment,
    NAMA_GRUP            varchar(100) not null,
-   KETERANGAN_GRUP      varchar(256)
+   KETERANGAN_GRUP      varchar(256),
+   primary key (ID_GRUP)
 );
-
-alter table __GRUP_USER
-   add primary key (ID_GRUP);
 
 /*==============================================================*/
 /* Table: __HAK_AKSES                                           */
@@ -2484,11 +2214,9 @@ create table __HAK_AKSES
    HA_ID                bigint not null auto_increment,
    ID_GRUP              int not null,
    MENU_ID              varchar(20) not null,
-   HA_LEVEL             smallint not null default 0 comment '0 = tidak ada akses; 1 = view; 2 = insert; 3 = update; 4 = delete'
+   HA_LEVEL             smallint not null default 0 comment '0 = tidak ada akses; 1 = view; 2 = insert; 3 = update; 4 = delete',
+   primary key (HA_ID)
 );
-
-alter table __HAK_AKSES
-   add primary key (HA_ID);
 
 /*==============================================================*/
 /* Table: __MENU                                                */
@@ -2503,11 +2231,9 @@ create table __MENU
    MENU_KD              varchar(25),
    MENU_PARENT          varchar(100),
    ICON                 varchar(20),
-   MENU_STATUS          char(1) default '1' comment '0 = tidak aktif; 1 = aktif'
+   MENU_STATUS          char(1) default '1' comment '0 = tidak aktif; 1 = aktif',
+   primary key (MENU_ID)
 );
-
-alter table __MENU
-   add primary key (MENU_ID);
 
 /*==============================================================*/
 /* Table: __VER                                                 */
@@ -2518,11 +2244,9 @@ create table __VER
    DB_VER               decimal(5,3) not null,
    APP_VER              decimal(5,3) not null,
    JENJANG_SEKOLAH      tinyint not null,
-   KD_MULOK             char(2) not null
+   KD_MULOK             char(2) not null,
+   primary key (TANGGAL)
 );
-
-alter table __VER
-   add primary key (TANGGAL);
 
 alter table K_SEKOLAH_KEUANGAN add constraint FK_T_SEKOLAH_IDENTITAS_K_SEKOLAH_KEUANGAN foreign key (KD_TAHUN_AJARAN)
       references T_SEKOLAH_IDENTITAS (KD_TAHUN_AJARAN) on delete restrict on update restrict;
