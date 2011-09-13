@@ -89,22 +89,6 @@ $$
 delimiter ;
 
 
-drop trigger if exists R_GOL_PEKERJAAN_ORTU_BIR;
-
-delimiter $$
-
-create trigger R_GOL_PEKERJAAN_ORTU_BIR before insert
-on R_GOL_PEKERJAAN_ORTU for each row
-begin
-    IF NEW.KD_PEKERJAAN_ORTU != '9' THEN
-        INSERT INTO __AUTH VALUES('ditpsmp');
-    END IF;
-end
-$$
-
-delimiter ;
-
-
 drop trigger if exists R_GOL_PEKERJAAN_ORTU_BUR;
 
 delimiter $$
@@ -210,8 +194,6 @@ begin
     	from	r_mata_pelajaran_diajarkan;
 	
     	set new.ORDER_RAPOR = v_max;
-    else
-        insert into __auth values('ditpsmp');
     end if;
 end
 $$
