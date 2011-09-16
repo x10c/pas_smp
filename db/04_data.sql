@@ -734,7 +734,7 @@ insert into r_kabupaten (ID_KABUPATEN, NM_KABUPATEN, STATUS_KOTA, STATUS_PILIH) 
 insert into r_kabupaten (ID_KABUPATEN, NM_KABUPATEN, STATUS_KOTA, STATUS_PILIH) values('20','Kab. Sukabumi','1','0');
 insert into r_kabupaten (ID_KABUPATEN, NM_KABUPATEN, STATUS_KOTA, STATUS_PILIH) values('21','Kab. Sumedang','1','0');
 insert into r_kabupaten (ID_KABUPATEN, NM_KABUPATEN, STATUS_KOTA, STATUS_PILIH) values('22','Kab. Tasikmalaya','1','0');
-insert into r_kabupaten (ID_KABUPATEN, NM_KABUPATEN, STATUS_KOTA, STATUS_PILIH) values('23','Kota Bandung','2','1');
+insert into r_kabupaten (ID_KABUPATEN, NM_KABUPATEN, STATUS_KOTA, STATUS_PILIH) values('23','Kota Bandung','2','0');
 insert into r_kabupaten (ID_KABUPATEN, NM_KABUPATEN, STATUS_KOTA, STATUS_PILIH) values('24','Kota Bekasi','2','0');
 insert into r_kabupaten (ID_KABUPATEN, NM_KABUPATEN, STATUS_KOTA, STATUS_PILIH) values('25','Kota Bogor','2','0');
 insert into r_kabupaten (ID_KABUPATEN, NM_KABUPATEN, STATUS_KOTA, STATUS_PILIH) values('26','Kota Cirebon','2','0');
