@@ -55,8 +55,7 @@ try {
 			+", kerja : "+ rs.getString("kerja")
 			+", menikah : "+ rs.getString("menikah")
 			+", lain_lain : "+ rs.getString("lain_lain")
-				+ ",\""+ rs.getString("keterangan") +"\""
-				+ "]";
+			+", keterangan : \""+ rs.getString("keterangan") +"\"";
 
 	data += "}";
 

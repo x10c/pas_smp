@@ -44,7 +44,6 @@ try {
 	+" ,		ifnull(jarak_skl_sjns, 0) as jarak_skl_sjns"
 	+" ,		ifnull(kd_klasifikasi_sekolah, '') as kd_klasifikasi_sekolah"
 	+" ,		ifnull(kategori, '') as kategori"
-	+" ,		inklusi"
 	+" from		t_sekolah_identitas "
 	+" where	kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'";
 
@@ -76,8 +75,7 @@ try {
 			+", no_fax : '"+ rs.getString("no_fax") + "'"
 			+", jarak_skl_sjns : "+ rs.getString("jarak_skl_sjns")
 			+", kd_klasifikasi_sekolah : '"+ rs.getString("kd_klasifikasi_sekolah") + "'"
-			+", kategori : '"+ rs.getString("kategori") + "'"
-			+", inklusi : '"+ rs.getString("inklusi") + "'";
+			+", kategori : '"+ rs.getString("kategori") + "'";
 
 	data += "}";
 

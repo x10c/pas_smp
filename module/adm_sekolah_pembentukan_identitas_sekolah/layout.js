@@ -390,10 +390,6 @@ function M_AdmSekolahPembentukanIdentitasSekolah(title)
 		,	msgTarget		: 'side'
 	});
 
-	this.form_inklusi = new Ext.form.Checkbox({
-			fieldLabel	: 'Program Inklusi'
-	});
-
 	/* form */
 	this.panel_form = new Ext.form.FormPanel({
 			labelAlign		: 'right'
@@ -450,7 +446,6 @@ function M_AdmSekolahPembentukanIdentitasSekolah(title)
 					}
 				,	this.form_klasifikasi_sekolah
 				,	this.form_kategori
-				,	this.form_inklusi
 			]
 	});
 
@@ -518,7 +513,6 @@ function M_AdmSekolahPembentukanIdentitasSekolah(title)
 		this.form_jarak_skl_sjns.setValue(data.jarak_skl_sjns);
 		this.form_klasifikasi_sekolah.setValue(data.kd_klasifikasi_sekolah);
 		this.form_kategori.setValue(data.kategori);
-		this.form_inklusi.setValue(data.inklusi);
 		
 		if(this.form_npsn.getValue() == ''){
 			this.dml_type	= 2;
@@ -583,8 +577,6 @@ function M_AdmSekolahPembentukanIdentitasSekolah(title)
 			return;
 		}
 
-		var inklusi = (this.form_inklusi.getValue() == true) ? '1' : '0';
-		
 		Ext.Ajax.request({
 				params  : {
 						npsn						: this.form_npsn.getValue()
@@ -607,7 +599,6 @@ function M_AdmSekolahPembentukanIdentitasSekolah(title)
 					,	jarak_skl_sjns				: this.form_jarak_skl_sjns.getValue()
 					,	kd_klasifikasi_sekolah		: this.form_klasifikasi_sekolah.getValue()
 					,	kategori					: this.form_kategori.getValue()
-					,	inklusi						: inklusi
 					,	dml_type					: this.dml_type
 				}
 			,	url		: m_adm_sekolah_pembentukan_identitas_sekolah_d +'submit.jsp'

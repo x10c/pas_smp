@@ -1726,241 +1726,6 @@ function M_AdmSekolahFasilitasSekolahBukuSekolahDanAlatPendidikan(title)
 	}
 }
 
-function M_AdmSekolahFasilitasSekolahProgramInklusi(title)
-{
-	this.title		= title;
-	this.dml_type	= 0;
-
-	this.record = new Ext.data.Record.create([
-			{ name	: 'kd_tahun_ajaran' }
-		,	{ name	: 'kd_ketunaan' }
-		,	{ name	: 'kd_ketunaan_old' }
-	]);
-
-	this.store = new Ext.data.ArrayStore({
-			fields		: this.record
-		,	url			: m_adm_sekolah_fasilitas_sekolah_d +'data_program_inklusi.jsp'
-		,	autoLoad	: false
-	});
-	
-	this.store_ketunaan = new Ext.data.ArrayStore({
-			fields		: ['id','name']
-		,	url			: m_adm_sekolah_fasilitas_sekolah_d +'data_ref_ketunaan.jsp'
-		,	idIndex		: 0
-		,	autoLoad	: false
-	});
-
-	this.form_ketunaan = new Ext.form.ComboBox({
-			store			: this.store_ketunaan
-		,	valueField		: 'id'
-		,	displayField	: 'name'
-		,	mode			: 'local'
-		,	allowBlank		: false
-		,	forceSelection	: true
-		,	typeAhead		: true
-		,	triggerAction	: 'all'
-		,	selectOnFocus	: true
-	});
-
-	/* plugins */
-	this.filters = new Ext.ux.grid.GridFilters({
-			encode	: true
-		,	local	: true
-	});
-
-	/* columns */
-	this.columns = [
-			new Ext.grid.RowNumberer()
-		,	{ header		: 'Jenis Ketunaan'
-			, dataIndex		: 'kd_ketunaan'
-			, sortable		: true
-			, editor		: this.form_ketunaan
-			, renderer		: combo_renderer(this.form_ketunaan)
-			, width			: 300
-			, filter		: {
-					type		: 'list'
-				,	store		: this.store_ketunaan
-				,	labelField	: 'name'
-				,	phpMode		: false
-			 }
-			}
-	];
-
-	this.sm = new Ext.grid.RowSelectionModel({
-			singleSelect	: true
-		,	listeners	: {
-				scope		: this
-			,	selectionchange	: function(sm) {
-					var data = sm.getSelections();
-					if (data.length && m_adm_sekolah_fasilitas_sekolah_ha_level == 4) {
-						this.btn_del.setDisabled(false);
-					} else {
-						this.btn_del.setDisabled(true);
-					}
-				}
-			}
-	});
-
-	this.editor = new MyRowEditor(this);
-
-	this.btn_add = new Ext.Button({
-			text	: 'Tambah'
-		,	iconCls	: 'add16'
-		,	scope	: this
-		,	handler	: function() {
-				this.do_add();
-			}
-	});
-
-	this.btn_ref = new Ext.Button({
-			text	: 'Refresh'
-		,	iconCls	: 'refresh16'
-		,	scope	: this
-		,	handler	: function() {
-				this.do_load();
-			}
-	});
-
-	this.btn_del = new Ext.Button({
-			text		: 'Hapus'
-		,	iconCls		: 'del16'
-		,	disabled	: true
-		,	scope		: this
-		,	handler		: function() {
-				this.do_del();
-			}
-	});
-
-	this.toolbar = new Ext.Toolbar({
-		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
-		,	'-'
-		,	this.btn_add
-		]
-	});
-
-	this.panel = new Ext.grid.GridPanel({
-			title		: this.title
-		,	store		: this.store
-		,	sm			: this.sm
-		,	columns		: this.columns
-		,	stripeRows	: true
-		,	columnLines	: true
-		,	plugins		: [this.editor, this.filters]
-		,	tbar		: this.toolbar
-		,	listeners	: {
-					scope		: this
-				,	rowclick	:
-						function (g, r, e) {
-							return this.do_edit(r);
-						}
-			}
-	});
-
-	this.do_add = function()
-	{
-		this.record_new = new this.record({
-				kd_ketunaan	: ''
-			});
-
-		this.editor.stopEditing();
-		this.store.insert(0, this.record_new);
-		this.sm.selectRow(0);
-		this.editor.startEditing(0);
-
-		this.dml_type = 2;
-	}
-
-	this.do_del = function()
-	{
-		var data = this.sm.getSelections();
-		if (!data.length) {
-			return;
-		}
-
-		this.dml_type = 4;
-		this.do_save(data[0]);
-	}
-
-	this.do_cancel = function()
-	{
-		if (this.dml_type == 2) {
-			this.store.remove(this.record_new);
-			this.sm.selectRow(0);
-		}
-	}
-
-	this.do_save = function(record)
-	{
-		Ext.Ajax.request({
-				params  : {
-						kd_ketunaan		: record.data['kd_ketunaan']
-					,	kd_ketunaan_old	: record.data['kd_ketunaan_old']
-					,	dml_type		: this.dml_type
-				}
-			,	url		: m_adm_sekolah_fasilitas_sekolah_d +'submit_program_inklusi.jsp'
-			,	waitMsg	: 'Mohon Tunggu ...'
-			,	success :
-					function (response)
-					{
-						var msg = Ext.util.JSON.decode(response.responseText);
-
-						if (msg.success == false) {
-							Ext.MessageBox.alert('Pesan', msg.info);
-						}
-
-						this.do_load();
-					}
-			,	scope	: this
-		});
-	}
-
-	this.do_edit = function(row)
-	{
-		if (m_adm_sekolah_fasilitas_sekolah_ha_level >= 3) {
-			this.dml_type = 3;
-			return true;
-		}
-		return false;
-	}
-
-	this.do_load = function()
-	{
-		this.store_ketunaan.load({
-			callback	: function(){
-				this.store.load();
-			}
-		,	scope		: this
-		});
-	}
-
-	this.do_refresh = function()
-	{
-		if (m_adm_sekolah_fasilitas_sekolah_ha_level < 1) {
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_sekolah_fasilitas_sekolah_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_sekolah_fasilitas_sekolah_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
-		}
-
-		this.do_load();
-	}
-}
-
 function M_AdmSekolahFasilitasSekolah()
 {
 	m_adm_sekolah_fasilitas_sekolah_properti_sekolah					= new M_AdmSekolahFasilitasSekolahPropertiSekolah('Properti Sekolah');
@@ -1969,7 +1734,6 @@ function M_AdmSekolahFasilitasSekolah()
 	m_adm_sekolah_fasilitas_sekolah_ruangan_sekolah						= new M_AdmSekolahFasilitasSekolahRuanganSekolah('Ruangan Sekolah');
 	m_adm_sekolah_fasilitas_sekolah_pemakaian_listrik					= new M_AdmSekolahFasilitasSekolahPemakaianListrik('Pemakaian Listrik');
 	m_adm_sekolah_fasilitas_sekolah_buku_sekolah_dan_alat_pendidikan	= new M_AdmSekolahFasilitasSekolahBukuSekolahDanAlatPendidikan('Buku Sekolah dan Alat Pendidikan');
-	m_adm_sekolah_fasilitas_sekolah_program_inklusi						= new M_AdmSekolahFasilitasSekolahProgramInklusi('Program Inklusi');
 
 	this.panel = new Ext.TabPanel({
 			id				: 'adm_sekolah_fasilitas_sekolah_panel'
@@ -1988,34 +1752,8 @@ function M_AdmSekolahFasilitasSekolah()
 			,	m_adm_sekolah_fasilitas_sekolah_ruangan_sekolah.panel
 			,	m_adm_sekolah_fasilitas_sekolah_pemakaian_listrik.panel
 			,	m_adm_sekolah_fasilitas_sekolah_buku_sekolah_dan_alat_pendidikan.panel
-			,	m_adm_sekolah_fasilitas_sekolah_program_inklusi.panel
 			]
 	});
-	
-	this.do_check = function()
-	{
-		Ext.Ajax.request({
-			url		: m_adm_sekolah_fasilitas_sekolah_d +'data_ref_sekolah.jsp'
-		,	waitMsg	: 'Pemuatan ...'
-		,	failure	: function(response) {
-				Ext.MessageBox.alert('Gagal', response.responseText);
-			}
-		,	success : function (response) {
-				var msg = Ext.util.JSON.decode(response.responseText);
-				
-				if (msg.success == false) {
-					Ext.MessageBox.alert('Pesan', msg.info);
-					this.panel.setDisabled(true);
-					return;
-				}
-				
-				if (msg.inklusi == '0'){
-					this.panel.getItem(6).setDisabled(true);
-				}
-			}
-		,	scope	: this		
-		});
-	}
 	
 	this.do_refresh = function(ha_level)
 	{
@@ -2027,9 +1765,6 @@ function M_AdmSekolahFasilitasSekolah()
 		m_adm_sekolah_fasilitas_sekolah_ruangan_sekolah.do_refresh();
 		m_adm_sekolah_fasilitas_sekolah_pemakaian_listrik.do_refresh();
 		m_adm_sekolah_fasilitas_sekolah_buku_sekolah_dan_alat_pendidikan.do_refresh();
-		m_adm_sekolah_fasilitas_sekolah_program_inklusi.do_refresh();
-		
-		this.do_check();
 	}
 }
 

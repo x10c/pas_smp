@@ -12,7 +12,8 @@ begin
 	
 	select	count(*)
 	into 	v__do
-	from 	t_sekolah_saldo_awal;
+	from 	t_sekolah_saldo_awal
+	where   kd_tahun_ajaran = new.kd_tahun_ajaran;
 	
 	if v__do = 0 then
 		insert into t_sekolah_saldo_awal values(new.kd_tahun_ajaran, new.saldo_awal, 0, new.username, now());
@@ -2216,7 +2217,6 @@ begin
 		,	KD_KLASIFIKASI_SEKOLAH
 		,	KATEGORI
 		,	KD_KLASIFIKASI_GEOGRAFIS
-		,	INKLUSI
 		,	new.USERNAME
 		,	new.TANGGAL_AKSES
 		FROM
@@ -2226,74 +2226,6 @@ begin
 								SELECT	MAX(KD_TAHUN_AJARAN)
 								FROM	T_SEKOLAH_IDENTITAS
 								WHERE	KD_TAHUN_AJARAN < new.KD_TAHUN_AJARAN
-								);
-
-		INSERT INTO T_SEKOLAH_INFO
-		SELECT
-			new.KD_TAHUN_AJARAN
-		,	EMAIL
-		,	WEBSITE
-		,	KELILING_TANAH
-		,	DIPAGAR_PERMANEN
-		,	LUAS_SIAP_BANGUN
-		,	LUAS_ATAS_SIAP_BANGUN
-		,	TAHUN_DIBUKA
-		,	TAHUN_OPERASI
-		,	TAHUN_AKHIR_RENOV
-		,	BUJUR
-		,	LINTANG
-		,	new.USERNAME
-		,	new.TANGGAL_AKSES
-		FROM
-			T_SEKOLAH_INFO
-		WHERE
-			KD_TAHUN_AJARAN	=	(
-								SELECT	MAX(KD_TAHUN_AJARAN)
-								FROM	T_SEKOLAH_INFO
-								WHERE	KD_TAHUN_AJARAN < new.KD_TAHUN_AJARAN
-								);
-
-		INSERT INTO T_SEKOLAH_REKENING
-		SELECT
-			new.KD_TAHUN_AJARAN
-		,	NO_URUT
-		,	NM_REK
-		,	NO_REK_SEKOLAH
-		,	NM_BANK
-		,	CABANG_BANK
-		,	new.USERNAME
-		,	new.TANGGAL_AKSES
-		FROM
-			T_SEKOLAH_REKENING
-		WHERE
-			KD_TAHUN_AJARAN	=	(
-								SELECT	MAX(KD_TAHUN_AJARAN)
-								FROM	T_SEKOLAH_REKENING
-								WHERE	KD_TAHUN_AJARAN < new.KD_TAHUN_AJARAN
-								);
-								
-		INSERT INTO T_SEKOLAH_SK
-		SELECT	
-			new.KD_TAHUN_AJARAN
-		,	NO_SK_PENDIRIAN
-		,	TANGGAL_SK_PENDIRIAN
-		,	KD_KETERANGAN_SK
-		,	NO_SK_AKHIR_STATUS
-		,	TANGGAL_SK_AKHIR_STATUS
-		,	NO_SK_AKREDITASI
-		,	TANGGAL_SK_AKREDITASI
-		,	NO_SK_AKREDITASI_AKHIR
-		,	TANGGAL_SK_AKREDITASI_AKHIR
-		,	KD_AKREDITASI
-		,	new.USERNAME
-		,	new.TANGGAL_AKSES
-		FROM
-			T_SEKOLAH_SK
-		WHERE
-			KD_TAHUN_AJARAN = 	(
-								SELECT 	MAX(KD_TAHUN_AJARAN)
-								FROM 	T_SEKOLAH_SK
-								WHERE 	KD_TAHUN_AJARAN < new.KD_TAHUN_AJARAN
 								);
 	END IF;
 end

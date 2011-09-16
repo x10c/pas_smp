@@ -16,15 +16,15 @@ try{
 	}
 
 	Statement	db_stmt = db_con.createStatement();
-	
-	String 		kd_tahun_ajaran		= (String) session.getAttribute("kd.tahun_pelajaran");
 
-	String q=" select	kd_tahun_ajaran"
-			+" ,		kd_ketunaan"
-			+" ,		kd_ketunaan as kd_ketunaan_old"
-			+" from		t_sekolah_tuna"
-			+" where	kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
-			+" order by	tanggal_akses asc";
+	String q=" select	a.kd_kurikulum"
+			+" ,		a.kd_tingkat_kelas"
+			+" ,		b.nm_tingkat_kelas"
+			+" from		v_kur_kurikulum_kelas	as a"
+			+" ,		r_tingkat_kelas			as b"
+			+" where	a.kd_tingkat_kelas	= b.kd_tingkat_kelas"
+			+" and		a.kd_kurikulum		= '02'"
+			+" order by	a.kd_kurikulum, a.kd_tingkat_kelas";
 	
 	ResultSet	rs	= db_stmt.executeQuery(q);
 	int		i	= 0;
@@ -36,9 +36,10 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="['"+ rs.getString("kd_tahun_ajaran") + "'"
-				+ ",'"+ rs.getString("kd_ketunaan") +"'"
-				+ ",'"+ rs.getString("kd_ketunaan_old") +"']";
+		data 	+="['"+ rs.getString("kd_kurikulum") + "'"
+				+ ",'"+ rs.getString("kd_tingkat_kelas") +"'"
+				+ ",\""+ rs.getString("nm_tingkat_kelas") +"\""
+				+ "]";
 	}	
 	data += "]";
 	

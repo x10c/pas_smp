@@ -40,7 +40,6 @@ try{
 	String jarak_skl_sjns			= request.getParameter("jarak_skl_sjns");
 	String kd_klasifikasi_sekolah	= request.getParameter("kd_klasifikasi_sekolah");
 	String kategori					= request.getParameter("kategori");
-	String inklusi					= request.getParameter("inklusi");
 	String username					= (String) session.getAttribute("user.id");
 
 	if (jarak_skl_sjns.equals("")){
@@ -75,7 +74,6 @@ try{
 			+", jarak_skl_sjns"
 			+", kd_klasifikasi_sekolah"
 			+", kategori"
-			+", inklusi"
 			+", username)"
 			+"  values ("
 			+"'"+ kd_tahun_ajaran +"'"
@@ -99,7 +97,6 @@ try{
 			+", "+ jarak_skl_sjns
 			+", "+ kd_klasifikasi_sekolah
 			+", '"+ kategori + "'"
-			+", '"+ inklusi + "'"
 			+", '"+ username +"')";
 		break;
 	case 3:
@@ -124,7 +121,6 @@ try{
 			+" ,		jarak_skl_sjns				= "+ jarak_skl_sjns
 			+" ,		kd_klasifikasi_sekolah		= "+ kd_klasifikasi_sekolah
 			+" ,		kategori					= '"+ kategori + "'"
-			+" ,		inklusi						= '"+ inklusi + "'"
 			+" ,		username					= '"+ username +"'"
 			+" where	kd_tahun_ajaran				= '"+ kd_tahun_ajaran +"'";
 		break;

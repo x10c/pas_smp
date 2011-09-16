@@ -17,10 +17,11 @@ try{
 
 	Statement	db_stmt = db_con.createStatement();
 
-	String q=" select	kd_ketunaan"
-			+" ,		nm_ketunaan"
-			+" from		r_ketunaan"
-			+" order by	kd_ketunaan";
+	String q=" select	kd_mata_pelajaran_diajarkan"
+			+" ,		nm_mata_pelajaran_diajarkan"
+			+" from		r_mata_pelajaran_diajarkan"
+			+" where	left(kd_mata_pelajaran_diajarkan,2)	= '16'"
+			+" order by	kd_mata_pelajaran_diajarkan";
 	
 	ResultSet	rs	= db_stmt.executeQuery(q);
 	int		i	= 0;
@@ -32,8 +33,8 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="['"+ rs.getString("kd_ketunaan") + "'"
-				+  ",\""+ rs.getString("nm_ketunaan") +"\""
+		data 	+="["+ rs.getString("kd_mata_pelajaran_diajarkan")
+				+  ",\""+ rs.getString("nm_mata_pelajaran_diajarkan") +"\""
 				+ "]";
 	}	
 	data += "]";
