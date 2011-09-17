@@ -21,8 +21,8 @@ try{
 	String 		kd_tingkat_kelas	= request.getParameter("kd_tingkat_kelas");
 	String 		kd_rombel			= request.getParameter("kd_rombel");
 
-	String q=" select	nis"
-			+" ,		concat(coalesce(nisn, no_induk), ' - ', nm_siswa) as list"
+	String q=" select	id_siswa"
+			+" ,		concat(nis, ' - ', nm_siswa) as list"
 			+" from		v_siswa_no_induk"
 			+" where	kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'"
 			+" and		kd_tingkat_kelas	= '" + kd_tingkat_kelas + "'"
@@ -39,8 +39,8 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="['"+ rs.getString("nis") + "'"
-				+  ",\""+ rs.getString("list") +"\""
+		data 	+="["+ rs.getString("id_siswa")
+				+ ",\""+ rs.getString("list") +"\""
 				+ "]";
 	}	
 	data += "]";

@@ -18,7 +18,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int 	dml 						= Integer.parseInt(request.getParameter("dml_type"));
-	String	nis							= request.getParameter("nis");
+	String	id_siswa					= request.getParameter("id_siswa");
 	String 	kd_tahun_ajaran				= request.getParameter("kd_tahun_ajaran");
 	String 	kd_tingkat_kelas			= request.getParameter("kd_tingkat_kelas");
 	String 	kd_rombel					= request.getParameter("kd_rombel");
@@ -36,7 +36,7 @@ try{
 			+" set		nilai		= "+ nilai
 			+" ,		keterangan	= '"+ keterangan +"'"
 			+" ,		username	= '"+ username +"'"
-			+" where	nis							= '"+ nis + "'"
+			+" where	id_siswa					=  "+ id_siswa
 			+" and		kd_tahun_ajaran				= '"+ kd_tahun_ajaran + "'"
 			+" and		kd_tingkat_kelas			= '"+ kd_tingkat_kelas + "'"
 			+" and		kd_rombel					= '"+ kd_rombel + "'"
@@ -46,7 +46,7 @@ try{
 		break;
 	case 4:
 		q	= " delete	from t_nilai_rapor_nilai"
-			+ " where	nis							= '"+ nis + "'"
+			+ " where	id_siswa					=  "+ id_siswa
 			+ " and		kd_tahun_ajaran				= '"+ kd_tahun_ajaran + "'"
 			+ " and		kd_tingkat_kelas			= '"+ kd_tingkat_kelas + "'"
 			+ " and		kd_rombel					= '"+ kd_rombel + "'"

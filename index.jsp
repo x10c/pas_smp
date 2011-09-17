@@ -72,8 +72,10 @@ if (user != null) {
 <body>
 <div id="back" class="clearfloat">
 	<div id="header" class="clearfloat">
+		<!--
 		<h1> PAKET APLIKASI SEKOLAH </h1>
-	</div><!--end #header-->
+		-->
+	</div>
 
 	<div id="wrap" class="clearfloat">
 		<div id="top">

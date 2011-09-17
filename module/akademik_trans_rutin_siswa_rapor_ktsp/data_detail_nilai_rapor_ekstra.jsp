@@ -22,21 +22,21 @@ try{
 	String 		kd_rombel					= request.getParameter("kd_rombel");
 	String 		kd_periode_belajar			= request.getParameter("kd_periode_belajar");
 	
-	String q=" select	a.nis"
-			+" ,		a.nis as nis_old"
+	String q=" select	a.id_siswa"
+			+" ,		a.id_siswa as id_siswa_old"
 			+" ,		a.id_ekstrakurikuler"
 			+" ,		a.id_ekstrakurikuler as id_ekstrakurikuler_old"
 			+" ,		a.nilai"
 			+" ,		a.keterangan"
-			+" ,		b.no_induk"
+			+" ,		b.nis"
 			+" from		t_nilai_rapor_ekstra	as a"
 			+" ,		t_siswa					as b"
-			+" where	a.nis							= b.nis"
+			+" where	a.id_siswa						= b.id_siswa"
 			+" and		a.kd_tahun_ajaran				= '" + kd_tahun_ajaran + "'"
 			+" and		a.kd_tingkat_kelas				= '" + kd_tingkat_kelas + "'"
 			+" and		a.kd_rombel						= '" + kd_rombel + "'"
 			+" and		a.kd_periode_belajar			= '" + kd_periode_belajar + "'"
-			+" order by	b.no_induk";
+			+" order by	b.nis";
 	
 	ResultSet	rs		= db_stmt.executeQuery(q);
 	int			i		= 0;
@@ -48,13 +48,13 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="['"+ rs.getString("nis") + "'"
-				+ ",'"+ rs.getString("nis_old") + "'"
+		data 	+="["+ rs.getString("id_siswa")
+				+ ","+ rs.getString("id_siswa_old")
 				+ ","+ rs.getString("id_ekstrakurikuler")
 				+ ","+ rs.getString("id_ekstrakurikuler_old")
 				+ ","+ rs.getString("nilai")
 				+  ",\""+ rs.getString("keterangan") +"\""
-				+ ",'"+ rs.getString("no_induk") + "'"
+				+ ",'"+ rs.getString("nis") + "'"
 				+ "]";
 	}	
 	data += "]";

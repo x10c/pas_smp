@@ -35,7 +35,7 @@ try{
 			+" ,		t_pegawai			as d"
 			+" ,		t_sekolah_ruang		as e"
 			+" where	a.kd_tingkat_kelas 		= c.kd_tingkat_kelas"
-			+" and		a.nip					= d.nip"
+			+" and		a.id_pegawai			= d.id_pegawai"
 			+" and		a.id_ruang_kelas		= e.id_ruang_kelas"
 			+" and		a.kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'"
 			+" and		b.kd_periode_belajar	= '" + kd_periode_belajar + "'"

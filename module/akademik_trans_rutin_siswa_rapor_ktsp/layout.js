@@ -75,14 +75,14 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRapor(title)
 	this.dml_type	= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nis' }
+			{ name	: 'id_siswa' }
 		,	{ name	: 'id_ahlak' }
 		,	{ name	: 'id_pribadi' }
 		,	{ name	: 'sakit' }
 		,	{ name	: 'ijin' }
 		,	{ name	: 'absen' }
 		,	{ name	: 'catatan' }
-		,	{ name	: 'no_induk' }
+		,	{ name	: 'nis' }
 		,	{ name	: 'nm_siswa' }
 	]);
 
@@ -158,8 +158,8 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRapor(title)
 
 	this.columns = [
 			new Ext.grid.RowNumberer()
-		,	{ header		: 'No.Induk'
-			, dataIndex		: 'no_induk'
+		,	{ header		: 'NIS'
+			, dataIndex		: 'nis'
 			, sortable		: true
 			, align			: 'center'
 			, width			: 100
@@ -312,7 +312,7 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRapor(title)
 		Ext.Ajax.request({
 				url		: m_akademik_trans_rutin_siswa_rapor_ktsp_d +'submit_detail_nilai_rapor.jsp'
 			,	params  : {
-						nis					: record.data['nis']
+						id_siswa			: record.data['id_siswa']
 					,	kd_tahun_ajaran		: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tahun_ajaran
 					,	kd_tingkat_kelas	: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tingkat_kelas
 					,	kd_rombel			: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_rombel
@@ -381,12 +381,12 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporNilai(title, 
 	this.dml_type						= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nis' }
+			{ name	: 'id_siswa' }
 		,	{ name	: 'kd_kurikulum' }
 		,	{ name	: 'kd_mata_pelajaran_diajarkan' }
 		,	{ name	: 'nilai' }
 		,	{ name	: 'keterangan' }
-		,	{ name	: 'no_induk' }
+		,	{ name	: 'nis' }
 		,	{ name	: 'nm_siswa' }
 		,	{ name	: 'nm_mata_pelajaran_diajarkan' }
 	]);
@@ -416,8 +416,8 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporNilai(title, 
 
 	this.columns = [
 			new Ext.grid.RowNumberer()
-		,	{ header		: 'No.Induk'
-			, dataIndex		: 'no_induk'
+		,	{ header		: 'NIS'
+			, dataIndex		: 'nis'
 			, sortable		: true
 			, align			: 'center'
 			, width			: 100
@@ -461,16 +461,6 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporNilai(title, 
 
 	this.editor = new MyRowEditor(this);
 
-	this.btn_del = new Ext.Button({
-			text		: 'Hapus'
-		,	iconCls		: 'del16'
-		,	disabled	: true
-		,	scope		: this
-		,	handler		: function() {
-				this.do_del();
-			}
-	});
-
 	this.btn_ref = new Ext.Button({
 			text	: 'Refresh'
 		,	iconCls	: 'refresh16'
@@ -482,9 +472,7 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporNilai(title, 
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		]
 	});
 
@@ -507,25 +495,6 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporNilai(title, 
 						}
 			}
 	});
-
-	this.do_del = function()
-	{
-		if (m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tahun_ajaran == ''
-		||	m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tingkat_kelas == ''
-		||	m_akademik_trans_rutin_siswa_rapor_ktsp_kd_rombel == ''
-		||	m_akademik_trans_rutin_siswa_rapor_ktsp_kd_periode_belajar == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Rombel terlebih dahulu!");
-			return;
-		}
-
-		var data = this.sm.getSelections();
-		if (!data.length) {
-			return;
-		}
-
-		this.dml_type = 4;
-		this.do_save(data[0]);
-	}
 
 	this.do_edit = function(row)
 	{
@@ -557,7 +526,7 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporNilai(title, 
 		Ext.Ajax.request({
 				url		: m_akademik_trans_rutin_siswa_rapor_ktsp_d +'submit_detail_nilai_rapor_nilai.jsp'
 			,	params  : {
-						nis							: record.data['nis']
+						id_siswa					: record.data['id_siswa']
 					,	kd_tahun_ajaran				: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tahun_ajaran
 					,	kd_tingkat_kelas			: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tingkat_kelas
 					,	kd_rombel					: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_rombel
@@ -602,16 +571,6 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporNilai(title, 
 
 	this.do_refresh = function()
 	{
-		if (this.kd_mata_pelajaran_diajarkan == '16') {
-			this.toolbar.removeAll();
-			this.toolbar.addItem(this.btn_del);
-			this.toolbar.addItem('-');
-			this.toolbar.addItem(this.btn_ref);
-		} else {
-			this.toolbar.removeAll();
-			this.toolbar.addItem(this.btn_ref);
-		}
-
 		if (m_akademik_trans_rutin_siswa_rapor_ktsp_ha_level < 1) {
 			this.panel.setDisabled(true);
 			return;
@@ -635,13 +594,13 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 	this.dml_type	= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nis' }
-		,	{ name	: 'nis_old' }
+			{ name	: 'id_siswa' }
+		,	{ name	: 'id_siswa_old' }
 		,	{ name	: 'id_ekstrakurikuler' }
 		,	{ name	: 'id_ekstrakurikuler_old' }
 		,	{ name	: 'nilai' }
 		,	{ name	: 'keterangan' }
-		,	{ name	: 'no_induk' }
+		,	{ name	: 'nis' }
 	]);
 
 	this.store = new Ext.data.ArrayStore({
@@ -651,7 +610,7 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 	});
 	
 	this.store_siswa = new Ext.data.ArrayStore({
-			fields		: ['nis','list']
+			fields		: ['id_siswa','list']
 		,	url			: m_akademik_trans_rutin_siswa_rapor_ktsp_d +'data_ref_siswa.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
@@ -666,7 +625,7 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 
 	this.form_nis = new Ext.form.ComboBox({
 			store			: this.store_siswa
-		,	valueField		: 'nis'
+		,	valueField		: 'id_siswa'
 		,	displayField	: 'list'
 		,	mode			: 'local'
 		,	allowBlank		: true
@@ -708,7 +667,7 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 	this.columns = [
 			new Ext.grid.RowNumberer()
 		,	{ header		: 'Nama Siswa'
-			, dataIndex		: 'nis'
+			, dataIndex		: 'id_siswa'
 			, sortable		: true
 			, editor		: this.form_nis
 			, renderer		: combo_renderer(this.form_nis)
@@ -854,7 +813,7 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 		}
 
 		this.record_new = new this.record({
-				nis					: ''
+				id_siswa			: ''
 			,	id_ekstrakurikuler	: ''
 			,	nilai				: ''
 			,	keterangan			: ''
@@ -898,8 +857,8 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 		Ext.Ajax.request({
 				url		: m_akademik_trans_rutin_siswa_rapor_ktsp_d +'submit_detail_nilai_rapor_ekstra.jsp'
 			,	params  : {
-						nis						: record.data['nis']
-					,	nis_old					: record.data['nis_old']
+						id_siswa				: record.data['id_siswa']
+					,	id_siswa_old			: record.data['id_siswa_old']
 					,	kd_tahun_ajaran			: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tahun_ajaran
 					,	kd_tingkat_kelas		: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tingkat_kelas
 					,	kd_rombel				: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_rombel

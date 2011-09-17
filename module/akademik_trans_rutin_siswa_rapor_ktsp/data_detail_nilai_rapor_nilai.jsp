@@ -31,25 +31,25 @@ try{
 		q_where	= "and a.kd_mata_pelajaran_diajarkan = '" + kd_mata_pelajaran_diajarkan + "'";
 	}
 	
-	String q=" select	a.nis"
+	String q=" select	a.id_siswa"
 			+" ,		a.kd_kurikulum"
 			+" ,		a.kd_mata_pelajaran_diajarkan"
 			+" ,		a.nilai"
 			+" ,		a.keterangan"
-			+" ,		b.no_induk"
+			+" ,		b.nis"
 			+" ,		b.nm_siswa"
 			+" ,		c.nm_mata_pelajaran_diajarkan"
 			+" from		t_nilai_rapor_nilai			as a"
 			+" ,		t_siswa						as b"
 			+" ,		r_mata_pelajaran_diajarkan	as c"
-			+" where	a.nis							= b.nis"
+			+" where	a.id_siswa						= b.id_siswa"
 			+" and		a.kd_mata_pelajaran_diajarkan	= c.kd_mata_pelajaran_diajarkan"
 			+" and		a.kd_tahun_ajaran				= '" + kd_tahun_ajaran + "'"
 			+" and		a.kd_tingkat_kelas				= '" + kd_tingkat_kelas + "'"
 			+" and		a.kd_rombel						= '" + kd_rombel + "'"
 			+" and		a.kd_periode_belajar			= '" + kd_periode_belajar + "'"
 			+  q_where
-			+" order by	b.no_induk";
+			+" order by	b.nis";
 	
 	ResultSet	rs		= db_stmt.executeQuery(q);
 	int			i		= 0;
@@ -61,12 +61,12 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="['"+ rs.getString("nis") + "'"
+		data 	+="["+ rs.getString("id_siswa")
 				+ ",'"+ rs.getString("kd_kurikulum") + "'"
 				+ ",'"+ rs.getString("kd_mata_pelajaran_diajarkan") + "'"
 				+ ","+ rs.getString("nilai")
 				+  ",\""+ rs.getString("keterangan") +"\""
-				+ ",'"+ rs.getString("no_induk") + "'"
+				+ ",'"+ rs.getString("nis") + "'"
 				+  ",\""+ rs.getString("nm_siswa") +"\""
 				+  ",\""+ rs.getString("nm_mata_pelajaran_diajarkan") +"\""
 				+ "]";
