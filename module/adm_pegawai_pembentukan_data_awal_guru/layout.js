@@ -9,7 +9,7 @@
 var m_adm_pegawai_pembentukan_data_awal_guru;
 var m_adm_pegawai_pembentukan_data_awal_guru_list;
 var m_adm_pegawai_pembentukan_data_awal_guru_detail;
-var m_adm_pegawai_pembentukan_data_awal_guru_nip = '';
+var m_adm_pegawai_pembentukan_data_awal_guru_id_pegawai = '';
 var m_adm_pegawai_pembentukan_data_awal_guru_d = _g_root +'/module/adm_pegawai_pembentukan_data_awal_guru/';
 var m_adm_pegawai_pembentukan_data_awal_guru_ha_level = 0;
 
@@ -85,7 +85,7 @@ function M_AdmPegawaiPembentukanDataAwalGuruDetail()
 		,	idIndex		: 0
 	});
 
-	this.form_nip_baru = new Ext.form.NumberField({
+	this.form_nip = new Ext.form.TextField({
 			fieldLabel		: 'NIP'
 		,	allowBlank		: false
 		,	allowDecimals	: false
@@ -326,7 +326,7 @@ function M_AdmPegawaiPembentukanDataAwalGuruDetail()
 		,	style			: 'margin: 8px;'
 		,	bodyCssClass	: 'stop-panel-form'
 		,	items			: [
-					this.form_nip_baru
+					this.form_nip
 				,	this.foto					
 				,	this.form_nuptk
 				,	this.form_nm_pegawai
@@ -393,7 +393,7 @@ function M_AdmPegawaiPembentukanDataAwalGuruDetail()
 
 	this.do_reset = function()
 	{
-		this.form_nip_baru.setValue('');
+		this.form_nip.setValue('');
 		this.form_nuptk.setValue('');
 		this.form_nm_pegawai.setValue('');
 		this.form_inisial.setValue('');
@@ -417,7 +417,7 @@ function M_AdmPegawaiPembentukanDataAwalGuruDetail()
 
 	this.edit_fill_form = function(data)
 	{
-		this.form_nip_baru.setValue(data.nip_baru);
+		this.form_nip.setValue(data.nip);
 		this.form_nuptk.setValue(data.nuptk);
 		this.form_nm_pegawai.setValue(data.nm_pegawai);
 		this.form_inisial.setValue(data.inisial);
@@ -436,7 +436,7 @@ function M_AdmPegawaiPembentukanDataAwalGuruDetail()
 		this.form_kursus_komputer.setValue(data.kursus_komputer);
 		this.form_sertifikasi.setValue(data.sertifikasi);
 		
-		this.foto.el.dom.src = _g_root + '/images/foto_guru/' + this.form_nip_baru.getValue() + '.jpg'
+		this.foto.el.dom.src = _g_root + '/images/foto_guru/' + this.form_nip.getValue() + '.jpg'
 	}
 
 	this.do_add = function()
@@ -452,7 +452,7 @@ function M_AdmPegawaiPembentukanDataAwalGuruDetail()
 		Ext.Ajax.request({
 			url		: m_adm_pegawai_pembentukan_data_awal_guru_d +'data.jsp'
 		,	params	: {
-				nip	: m_adm_pegawai_pembentukan_data_awal_guru_nip
+				id_pegawai	: m_adm_pegawai_pembentukan_data_awal_guru_id_pegawai
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
 		,	failure	: function(response) {
@@ -479,7 +479,7 @@ function M_AdmPegawaiPembentukanDataAwalGuruDetail()
 
 	this.is_valid = function()
 	{
-		if (!this.form_nip_baru.isValid()) {
+		if (!this.form_nip.isValid()) {
 			return false;
 		}
 
@@ -538,8 +538,8 @@ function M_AdmPegawaiPembentukanDataAwalGuruDetail()
 		Ext.Ajax.request({
 				url		: m_adm_pegawai_pembentukan_data_awal_guru_d +'submit.jsp'
 			,	params  : {
-						nip						: m_adm_pegawai_pembentukan_data_awal_guru_nip
-					,	nip_baru				: this.form_nip_baru.getValue()
+						id_pegawai						: m_adm_pegawai_pembentukan_data_awal_guru_id_pegawai
+					,	nip				: this.form_nip.getValue()
 					,	nomor_induk				: '1'
 					,	nuptk					: this.form_nuptk.getValue()
 					,	nm_pegawai				: this.form_nm_pegawai.getValue()
@@ -599,8 +599,8 @@ function M_AdmPegawaiPembentukanDataAwalGuruList()
 	this.dml_type	= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
-		,	{ name	: 'nip_baru' }
+			{ name	: 'id_pegawai' }
+		,	{ name	: 'nip' }
 		,	{ name	: 'nm_pegawai' }
 		,	{ name	: 'kd_jenis_ketenagaan' }
 		,	{ name	: 'alamat' }
@@ -642,7 +642,7 @@ function M_AdmPegawaiPembentukanDataAwalGuruList()
 		columns	: [
 			new Ext.grid.RowNumberer()
 		,	{ header		: 'NIP'
-			, dataIndex		: 'nip_baru'
+			, dataIndex		: 'nip'
 			, width			: 120
 			, filterable	: true
 			}
@@ -683,13 +683,13 @@ function M_AdmPegawaiPembentukanDataAwalGuruList()
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
 					if (data.length){
-						m_adm_pegawai_pembentukan_data_awal_guru_nip = data[0].data['nip'];
+						m_adm_pegawai_pembentukan_data_awal_guru_id_pegawai = data[0].data['id_pegawai'];
 						
 						if (m_adm_pegawai_pembentukan_data_awal_guru_ha_level == 4) {
 							this.btn_del.setDisabled(false);
 						}
 					} else {
-						m_adm_pegawai_pembentukan_data_awal_guru_nip = '';
+						m_adm_pegawai_pembentukan_data_awal_guru_id_pegawai = '';
 						this.btn_del.setDisabled(true);
 					}
 				}
@@ -770,7 +770,7 @@ function M_AdmPegawaiPembentukanDataAwalGuruList()
 			url		: m_adm_pegawai_pembentukan_data_awal_guru_d +'submit.jsp'
 		,	params	: {
 				dml_type				: 4
-			,	nip						: data.get('nip')
+			,	id_pegawai						: data.get('id_pegawai')
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
 		,	failure	: function(response) {
@@ -801,7 +801,7 @@ function M_AdmPegawaiPembentukanDataAwalGuruList()
 		}
 
 		m_adm_pegawai_pembentukan_data_awal_guru_detail.do_refresh();
-		m_adm_pegawai_pembentukan_data_awal_guru_detail.do_edit(data.get('nip'));
+		m_adm_pegawai_pembentukan_data_awal_guru_detail.do_edit(data.get('id_pegawai'));
 		m_adm_pegawai_pembentukan_data_awal_guru.panel.layout.setActiveItem(1);
 	}
 

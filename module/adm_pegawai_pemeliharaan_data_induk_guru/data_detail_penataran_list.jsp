@@ -17,15 +17,15 @@ try{
 
 	Statement	db_stmt = db_con.createStatement();
 	
-	String 		nip		= request.getParameter("nip");
+	String 		id_pegawai		= request.getParameter("id_pegawai");
 
-	String q=" select	nip"
+	String q=" select	id_pegawai"
 			+" ,		no_urut"
 			+" ,		id_penataran"
 			+" ,		kd_jenis_peserta_penataran"
 			+" ,		jam"
 			+" from		t_pegawai_penataran"
-			+" where	nip	= " + nip
+			+" where	id_pegawai	= " + id_pegawai
 			+" order by	no_urut";
 	
 	ResultSet	rs		= db_stmt.executeQuery(q);
@@ -38,7 +38,7 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="["+ rs.getString("nip")
+		data 	+="["+ rs.getString("id_pegawai")
 				+ ","+ rs.getString("no_urut")
 				+ ","+ rs.getString("id_penataran")
 				+ ",'"+ rs.getString("kd_jenis_peserta_penataran") + "'"

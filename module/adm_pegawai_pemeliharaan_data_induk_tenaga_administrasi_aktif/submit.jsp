@@ -24,12 +24,12 @@ try{
 	JSONArray	rows			= new JSONArray((String) request.getParameter("rows"));
 	JSONObject	row;
 	int			i,j;
-	String		nip, status_aktif;
+	String		id_pegawai, status_aktif;
 	
 	j = rows.length();
 	for (i = 0; i < j; i++) {
 		row				= rows.getJSONObject(i);
-		nip				= row.getString("nip");
+		id_pegawai				= row.getString("id_pegawai");
 		status_aktif	= row.getString("status_aktif");
 		
 		if (status_aktif.equals("false")){
@@ -42,7 +42,7 @@ try{
 			+" set		status_aktif	= '" + status_aktif + "'"
 			+" ,		username		= '" + username + "'"
 			+" where	kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
-			+" and		nip				=  " + nip;
+			+" and		id_pegawai				=  " + id_pegawai;
 		
 		db_stmt.executeUpdate(q);
 	}

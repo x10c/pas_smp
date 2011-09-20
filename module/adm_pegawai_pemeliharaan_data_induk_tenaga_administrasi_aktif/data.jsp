@@ -24,15 +24,15 @@ try{
 	int			i				= 0;
 
 	q	=" select	a.kd_tahun_ajaran"
+		+" ,		a.id_pegawai"
 		+" ,		a.nip"
-		+" ,		a.nip_baru"
 		+" ,		b.nm_pegawai"
 		+" ,		c.nm_jenis_ketenagaan"
 		+" ,		a.status_aktif"
 		+" from		t_pegawai_aktif		as a"
 		+" ,		t_pegawai			as b"
 		+" ,		r_jenis_ketenagaan	as c"
-		+" where	a.nip					= b.nip"
+		+" where	a.id_pegawai					= b.id_pegawai"
 		+" and		a.kd_jenis_ketenagaan	= c.kd_jenis_ketenagaan"
 		+" and		a.kd_jenis_ketenagaan	in ('2')"
 		+" and		a.kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'"
@@ -47,8 +47,8 @@ try{
 			i++;
 		}
 		data 	+="{ kd_tahun_ajaran : '"+ rs.getString("kd_tahun_ajaran") + "'"
-				+ ", nip : "+ rs.getString("nip")
-				+ ", nip_baru : '"+ rs.getString("nip_baru") + "'"
+				+ ", id_pegawai : "+ rs.getString("id_pegawai")
+				+ ", nip : '"+ rs.getString("nip") + "'"
 				+ ", nm_pegawai :\""+ rs.getString("nm_pegawai") +"\""
 				+ ", nm_jenis_ketenagaan : '"+ rs.getString("nm_jenis_ketenagaan") + "'"
 				+ ", status_aktif : '"+ rs.getString("status_aktif") +"'"

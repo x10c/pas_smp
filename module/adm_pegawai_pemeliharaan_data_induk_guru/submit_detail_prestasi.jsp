@@ -18,7 +18,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 						= Integer.parseInt(request.getParameter("dml_type"));
-	String nip						= request.getParameter("nip");
+	String id_pegawai						= request.getParameter("id_pegawai");
 	String id_jenis_lomba			= request.getParameter("id_jenis_lomba");
 	String id_jenis_lomba_old		= request.getParameter("id_jenis_lomba_old");
 	String kd_tingkat_prestasi		= request.getParameter("kd_tingkat_prestasi");
@@ -33,7 +33,7 @@ try{
 	switch (dml) {
 	case 2:
 		q	="  insert into t_pegawai_prestasi"
-			+"( nip"
+			+"( id_pegawai"
 			+", id_jenis_lomba"
 			+", kd_tingkat_prestasi"
 			+", tanggal_prestasi"
@@ -41,7 +41,7 @@ try{
 			+", keterangan"
 			+", username)"
 			+"  values("
-			+"   "+ nip
+			+"   "+ id_pegawai
 			+",  "+ id_jenis_lomba
 			+", '"+ kd_tingkat_prestasi + "'"
 			+", cast('"+ tanggal_prestasi +"' as date)"
@@ -57,14 +57,14 @@ try{
 			+" ,		juara_ke			=  "+ juara_ke
 			+" ,		keterangan			= '"+ keterangan +"'"
 			+" ,		username			= '"+ username +"'"
-			+" where	nip					=  "+ nip
+			+" where	id_pegawai					=  "+ id_pegawai
 			+" and		id_jenis_lomba		=  "+ id_jenis_lomba_old
 			+" and		kd_tingkat_prestasi	= '"+ kd_tingkat_prestasi_old + "'"
 			+" and		tanggal_prestasi	= cast('"+ tanggal_prestasi_old +"' as date)";
 		break;
 	case 4:
 		q 	= " delete	from t_pegawai_prestasi"
-			+ " where	nip					= "+ nip
+			+ " where	id_pegawai					= "+ id_pegawai
 			+ " and		id_jenis_lomba		=  "+ id_jenis_lomba
 			+ " and		kd_tingkat_prestasi	= '"+ kd_tingkat_prestasi + "'"
 			+ " and		tanggal_prestasi	= cast('"+ tanggal_prestasi +"' as date)";

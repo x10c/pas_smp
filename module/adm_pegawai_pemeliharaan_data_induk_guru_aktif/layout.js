@@ -16,8 +16,8 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruAktif(title)
 
 	this.records = [
 			{ name	: 'kd_tahun_ajaran' }
+		,	{ name	: 'id_pegawai' }
 		,	{ name	: 'nip' }
-		,	{ name	: 'nip_baru' }
 		,	{ name	: 'nm_pegawai' }
 		,	{ name	: 'nm_jenis_ketenagaan' }
 		,	{ name	: 'status_aktif', type : 'bool' }
@@ -50,7 +50,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruAktif(title)
 			new Ext.grid.RowNumberer({width:30})
 		,{
 			header		:'NIP'
-		,	dataIndex	:'nip_baru'
+		,	dataIndex	:'nip'
 		,	align		:'center'
 		,	width		: 150
 		,	filterable	: true
@@ -126,7 +126,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruAktif(title)
 				data += ",";
 			}
 
-			data	+="{ nip :  "+ mods[i].get('nip')
+			data	+="{ id_pegawai :  "+ mods[i].get('id_pegawai')
 					+ ", status_aktif : '"+ mods[i].get('status_aktif') +"' ";
 
 			data +="}";

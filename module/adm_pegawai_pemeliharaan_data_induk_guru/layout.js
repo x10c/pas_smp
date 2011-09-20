@@ -22,7 +22,7 @@ var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_detail;
 var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_prestasi;
 var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penghargaan;
 var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_mengajar;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_nip = '';
+var m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai = '';
 var m_adm_pegawai_pemeliharaan_data_induk_guru_keluarga_no_urut = '';
 var m_adm_pegawai_pemeliharaan_data_induk_guru_pendidikan_formal_no_urut = '';
 var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_no_urut = '';
@@ -40,7 +40,7 @@ function m_adm_pegawai_pemeliharaan_data_induk_guru_master_on_select_load_detail
 	||  typeof m_adm_pegawai_pemeliharaan_data_induk_guru_detail_prestasi == 'undefined'
 	||  typeof m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penghargaan == 'undefined'
 	||  typeof m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_mengajar == 'undefined'
-	||	m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+	||	m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 		return;
 	}
 
@@ -366,7 +366,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaDetail()
 		Ext.Ajax.request({
 			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_keluarga.jsp'
 		,	params	: {
-				nip		: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 			,	no_urut	: m_adm_pegawai_pemeliharaan_data_induk_guru_keluarga_no_urut
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
@@ -459,7 +459,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaDetail()
 		Ext.Ajax.request({
 				url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_keluarga.jsp'
 			,	params  : {
-						nip						: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+						id_pegawai						: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 					,	no_urut					: this.form_no_urut.getValue()
 					,	nm_keluarga				: this.form_nm_keluarga.getValue()
 					,	kd_hub_keluarga			: this.form_hubungan_keluarga.getValue()
@@ -520,7 +520,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaDetail()
 function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 {
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'no_urut' }
 		,	{ name	: 'nm_keluarga' }
 		,	{ name	: 'kd_hub_keluarga' }
@@ -687,7 +687,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -702,7 +702,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_keluarga.jsp'
 		,	params	: {
 				dml_type			: 4
-			,	nip					: data.get('nip')
+			,	id_pegawai					: data.get('id_pegawai')
 			,	no_urut				: data.get('no_urut')
 			,	nm_keluarga			: ''
 			, 	kd_hub_keluarga		: ''
@@ -739,7 +739,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 
 	this.do_edit = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -767,7 +767,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -791,7 +791,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 	{
 		this.store.load({
 			params	: {
-				nip		: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 			}
 		});
 	}
@@ -1111,7 +1111,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalDetail()
 		Ext.Ajax.request({
 			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_pendidikan_formal.jsp'
 		,	params	: {
-				nip		: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 			,	no_urut	: m_adm_pegawai_pemeliharaan_data_induk_guru_pendidikan_formal_no_urut
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
@@ -1192,7 +1192,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalDetail()
 		Ext.Ajax.request({
 				url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_pendidikan_formal.jsp'
 			,	params  : {
-						nip						: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+						id_pegawai						: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 					,	no_urut					: this.form_no_urut.getValue()
 					,	kd_tingkat_ijazah		: this.form_tingkat_ijazah.getValue()
 					,	nm_instansi_penddkn		: this.form_nm_instansi_penddkn.getValue()
@@ -1251,7 +1251,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalDetail()
 function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 {
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'no_urut' }
 		,	{ name	: 'kd_tingkat_ijazah' }
 		,	{ name	: 'nm_instansi_penddkn' }
@@ -1437,7 +1437,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -1452,7 +1452,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_pendidikan_formal.jsp'
 		,	params	: {
 				dml_type			: 4
-			,	nip					: data.get('nip')
+			,	id_pegawai					: data.get('id_pegawai')
 			,	no_urut				: data.get('no_urut')
 			,	kd_tingkat_ijazah	: ''
 			, 	nm_instansi_penddkn	: ''
@@ -1486,7 +1486,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 
 	this.do_edit = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -1514,7 +1514,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -1542,7 +1542,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 					callback	: function(){
 						this.store.load({
 							params	: {
-								nip		: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+								id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 							}
 						});
 					}
@@ -1614,7 +1614,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 	this.dml_type	= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'no_urut' }
 		,	{ name	: 'no_urut_old' }
 		,	{ name	: 'no_sk' }
@@ -1855,13 +1855,13 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nip					: ''
+				id_pegawai					: ''
 			,	no_urut				: ''
 			,	no_sk				: ''
 			,	tanggal_sk			: ''
@@ -1881,7 +1881,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -1907,7 +1907,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 	{
 		Ext.Ajax.request({
 				params  : {
-						nip					: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+						id_pegawai					: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 					,	no_urut				: record.data['no_urut']
 					,	no_urut_old			: record.data['no_urut_old']
 					,	no_sk				: record.data['no_sk']
@@ -1937,7 +1937,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -1957,7 +1957,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 					callback	: function(){
 						this.store.load({
 							params	: {
-								nip	: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+								id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 							}
 						});
 					}
@@ -1999,7 +1999,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 	this.dml_type	= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'no_urut' }
 		,	{ name	: 'no_urut_old' }
 		,	{ name	: 'no_sk' }
@@ -2228,13 +2228,13 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nip					: ''
+				id_pegawai					: ''
 			,	no_urut				: ''
 			,	no_sk				: ''
 			,	tanggal_sk			: ''
@@ -2254,7 +2254,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -2280,7 +2280,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 	{
 		Ext.Ajax.request({
 				params  : {
-						nip					: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+						id_pegawai					: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 					,	no_urut				: record.data['no_urut']
 					,	no_urut_old			: record.data['no_urut_old']
 					,	no_sk				: record.data['no_sk']
@@ -2310,7 +2310,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -2328,7 +2328,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 			callback	: function(){
 				this.store.load({
 					params	: {
-						nip	: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+						id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 					}
 				});
 			}
@@ -2621,7 +2621,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 		Ext.Ajax.request({
 			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_penataran.jsp'
 		,	params	: {
-				nip		: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 			,	no_urut	: m_adm_pegawai_pemeliharaan_data_induk_guru_penataran_no_urut
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
@@ -2702,7 +2702,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 		Ext.Ajax.request({
 				url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_penataran.jsp'
 			,	params  : {
-						nip							: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+						id_pegawai							: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 					,	no_urut						: this.form_no_urut.getValue()
 					,	id_penataran				: this.form_penataran.getValue()
 					,	kd_penyelenggara_penataran	: this.form_penyelenggara_penataran.getValue()
@@ -2762,7 +2762,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 {
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'no_urut' }
 		,	{ name	: 'id_penataran' }
 		,	{ name	: 'kd_jenis_peserta_penataran' }
@@ -2951,7 +2951,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -2966,7 +2966,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_penataran.jsp'
 		,	params	: {
 				dml_type					: 4
-			,	nip							: data.get('nip')
+			,	id_pegawai							: data.get('id_pegawai')
 			,	no_urut						: data.get('no_urut')
 			,	id_penataran				: ''
 			, 	kd_penyelenggara_penataran	: ''
@@ -2999,7 +2999,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 
 	this.do_edit = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -3027,7 +3027,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -3055,7 +3055,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 					callback	: function(){
 						this.store.load({
 							params	: {
-								nip		: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+								id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 							}
 						});
 					}
@@ -3127,7 +3127,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPrestasi(title)
 	this.dml_type	= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'id_jenis_lomba' }
 		,	{ name	: 'id_jenis_lomba_old' }
 		,	{ name	: 'kd_tingkat_prestasi' }
@@ -3341,13 +3341,13 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPrestasi(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nip					: ''
+				id_pegawai					: ''
 			,	id_jenis_lomba		: ''
 			,	kd_tingkat_prestasi	: ''
 			,	tanggal_prestasi	: ''
@@ -3365,7 +3365,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPrestasi(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -3391,7 +3391,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPrestasi(title)
 	{
 		Ext.Ajax.request({
 				params  : {
-						nip						: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+						id_pegawai						: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 					,	id_jenis_lomba			: record.data['id_jenis_lomba']
 					,	id_jenis_lomba_old		: record.data['id_jenis_lomba_old']
 					,	kd_tingkat_prestasi		: record.data['kd_tingkat_prestasi']
@@ -3421,7 +3421,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPrestasi(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -3441,7 +3441,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPrestasi(title)
 					callback	: function(){
 						this.store.load({
 							params	: {
-								nip	: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+								id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 							}
 						});
 					}
@@ -3483,7 +3483,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenghargaan(title)
 	this.dml_type	= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'kd_jenis_penghargaan' }
 		,	{ name	: 'kd_jenis_penghargaan_old' }
 		,	{ name	: 'tanggal_penghargaan' }
@@ -3642,13 +3642,13 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenghargaan(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nip						: ''
+				id_pegawai						: ''
 			,	kd_jenis_penghargaan	: ''
 			,	tanggal_penghargaan		: ''
 			,	keterangan				: ''
@@ -3664,7 +3664,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenghargaan(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -3690,7 +3690,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenghargaan(title)
 	{
 		Ext.Ajax.request({
 				params  : {
-						nip							: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+						id_pegawai							: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 					,	kd_jenis_penghargaan		: record.data['kd_jenis_penghargaan']
 					,	kd_jenis_penghargaan_old	: record.data['kd_jenis_penghargaan_old']
 					,	tanggal_penghargaan			: record.data['tanggal_penghargaan']
@@ -3716,7 +3716,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenghargaan(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -3734,7 +3734,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenghargaan(title)
 			callback	: function(){
 				this.store.load({
 					params	: {
-						nip	: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+						id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 					}
 				});
 			}
@@ -3773,7 +3773,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatMengajar(title)
 	this.dml_type	= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'kd_mata_pelajaran_diajarkan' }
 		,	{ name	: 'kd_mata_pelajaran_diajarkan_old' }
 		,	{ name	: 'tahun_mulai_ajar' }
@@ -3923,13 +3923,13 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatMengajar(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nip							: ''
+				id_pegawai							: ''
 			,	kd_mata_pelajaran_diajarkan	: ''
 			,	tahun_mulai_ajar			: ''
 			});
@@ -3944,7 +3944,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatMengajar(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -3970,7 +3970,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatMengajar(title)
 	{
 		Ext.Ajax.request({
 				params  : {
-						nip								: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+						id_pegawai								: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 					,	kd_mata_pelajaran_diajarkan		: record.data['kd_mata_pelajaran_diajarkan']
 					,	kd_mata_pelajaran_diajarkan_old	: record.data['kd_mata_pelajaran_diajarkan_old']
 					,	tahun_mulai_ajar				: record.data['tahun_mulai_ajar']
@@ -3995,7 +3995,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatMengajar(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
 			return;
 		}
@@ -4013,7 +4013,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatMengajar(title)
 			callback	: function(){
 				this.store.load({
 					params	: {
-						nip	: m_adm_pegawai_pemeliharaan_data_induk_guru_nip
+						id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
 					}
 				});
 			}
@@ -4051,8 +4051,8 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruMaster(title)
 	this.title		= title;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
-		,	{ name	: 'nip_baru' }
+			{ name	: 'id_pegawai' }
+		,	{ name	: 'nip' }
 		,	{ name	: 'nm_pegawai' }
 		,	{ name	: 'kd_jenis_ketenagaan' }
 		,	{ name	: 'alamat' }
@@ -4094,7 +4094,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruMaster(title)
 		columns	: [
 			new Ext.grid.RowNumberer()
 		,	{ header		: 'NIP'
-			, dataIndex		: 'nip_baru'
+			, dataIndex		: 'nip'
 			, width			: 120
 			, filterable	: true
 			}
@@ -4135,9 +4135,9 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruMaster(title)
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
 					if (data.length){
-						m_adm_pegawai_pemeliharaan_data_induk_guru_nip = data[0].data['nip'];						
+						m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai = data[0].data['id_pegawai'];						
 					} else {
-						m_adm_pegawai_pemeliharaan_data_induk_guru_nip = '';
+						m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai = '';
 					}
 					
 					m_adm_pegawai_pemeliharaan_data_induk_guru_master_on_select_load_detail();

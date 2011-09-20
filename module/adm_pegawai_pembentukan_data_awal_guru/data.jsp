@@ -18,15 +18,14 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 	
 	String 		kd_tahun_ajaran	= (String) session.getAttribute("kd.tahun_pelajaran");
-	String 		nip				= request.getParameter("nip");
+	String 		id_pegawai				= request.getParameter("id_pegawai");
 
 	ResultSet	rs;
 	String		q;
 	String		data;
 
-	q=" select	nip"
-	+" ,		nip_baru"
-	+" ,		nomor_induk"
+	q=" select	id_pegawai"
+	+" ,		nip"
 	+" ,		nuptk"
 	+" ,		nm_pegawai"
 	+" ,		inisial"
@@ -46,7 +45,7 @@ try{
 	+" ,		sertifikasi"
 	+" ,		dir_foto"
 	+" from		t_pegawai"
-	+" where	nip			= " + nip;
+	+" where	id_pegawai			= " + id_pegawai;
 	
 	rs	= db_stmt.executeQuery(q);
 
@@ -56,9 +55,8 @@ try{
 		return;
 	}
 	
-	data 	="{ nip : "+ rs.getString("nip")
-			+ ", nip_baru : '"+ rs.getString("nip_baru") + "'"
-			+ ", nomor_induk : '"+ rs.getString("nomor_induk") + "'"
+	data 	="{ id_pegawai : "+ rs.getString("id_pegawai")
+			+ ", nip : '"+ rs.getString("nip") + "'"
 			+ ", nuptk : '"+ rs.getString("nuptk") + "'"
 			+ ", nm_pegawai : '"+ rs.getString("nm_pegawai") + "'"
 			+ ", inisial : '"+ rs.getString("inisial") + "'"

@@ -18,7 +18,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 						= Integer.parseInt(request.getParameter("dml_type"));
-	String nip						= request.getParameter("nip");
+	String id_pegawai						= request.getParameter("id_pegawai");
 	String kd_jenis_penghargaan		= request.getParameter("kd_jenis_penghargaan");
 	String kd_jenis_penghargaan_old	= request.getParameter("kd_jenis_penghargaan_old");
 	String tanggal_penghargaan		= request.getParameter("tanggal_penghargaan");
@@ -29,13 +29,13 @@ try{
 	switch (dml) {
 	case 2:
 		q	="  insert into t_pegawai_penghargaan"
-			+"( nip"
+			+"( id_pegawai"
 			+", kd_jenis_penghargaan"
 			+", tanggal_penghargaan"
 			+", keterangan"
 			+", username)"
 			+"  values("
-			+"   "+ nip
+			+"   "+ id_pegawai
 			+", '"+ kd_jenis_penghargaan + "'"
 			+", cast('"+ tanggal_penghargaan +"' as date)"
 			+", '"+ keterangan + "'"
@@ -47,12 +47,12 @@ try{
 			+" ,		tanggal_penghargaan		= cast('"+ tanggal_penghargaan +"' as date)"
 			+" ,		keterangan				= '"+ keterangan +"'"
 			+" ,		username				= '"+ username +"'"
-			+" where	nip						=  "+ nip
+			+" where	id_pegawai						=  "+ id_pegawai
 			+" and		kd_jenis_penghargaan	= '"+ kd_jenis_penghargaan_old + "'";
 		break;
 	case 4:
 		q 	= " delete	from t_pegawai_penghargaan"
-			+" where	nip						=  "+ nip
+			+" where	id_pegawai						=  "+ id_pegawai
 			+" and		kd_jenis_penghargaan	= '"+ kd_jenis_penghargaan_old + "'";
 		break;
 	default:

@@ -9,7 +9,7 @@
 var m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi;
 var m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_list;
 var m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_detail;
-var m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_nip = '';
+var m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_id_pegawai = '';
 var m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_d = _g_root +'/module/adm_pegawai_pembentukan_data_awal_tenaga_administrasi/';
 var m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_ha_level = 0;
 
@@ -78,7 +78,7 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiDetail()
 		,	idIndex		: 0
 	});
 
-	this.form_nip_baru = new Ext.form.NumberField({
+	this.form_nip = new Ext.form.NumberField({
 			fieldLabel		: 'NIP'
 		,	allowBlank		: false
 		,	allowDecimals	: false
@@ -304,7 +304,7 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiDetail()
 		,	style			: 'margin: 8px;'
 		,	bodyCssClass	: 'stop-panel-form'
 		,	items			: [
-					this.form_nip_baru
+					this.form_nip
 				,	this.foto
 				,	this.form_nuptk
 				,	this.form_nm_pegawai
@@ -370,7 +370,7 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiDetail()
 
 	this.do_reset = function()
 	{
-		this.form_nip_baru.setValue('');
+		this.form_nip.setValue('');
 		this.form_nuptk.setValue('');
 		this.form_nm_pegawai.setValue('');
 		this.form_inisial.setValue('');
@@ -393,7 +393,7 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiDetail()
 
 	this.edit_fill_form = function(data)
 	{
-		this.form_nip_baru.setValue(data.nip_baru);
+		this.form_nip.setValue(data.nip);
 		this.form_nuptk.setValue(data.nuptk);
 		this.form_nm_pegawai.setValue(data.nm_pegawai);
 		this.form_inisial.setValue(data.inisial);
@@ -411,7 +411,7 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiDetail()
 		this.form_kursus_komputer.setValue(data.kursus_komputer);
 		this.form_sertifikasi.setValue(data.sertifikasi);
 		
-		this.foto.el.dom.src = _g_root + '/images/foto_guru/' + this.form_nip_baru.getValue() + '.jpg'
+		this.foto.el.dom.src = _g_root + '/images/foto_guru/' + this.form_nip.getValue() + '.jpg'
 	}
 
 	this.do_add = function()
@@ -427,7 +427,7 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiDetail()
 		Ext.Ajax.request({
 			url		: m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_d +'data.jsp'
 		,	params	: {
-				nip	: m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_nip
+				id_pegawai	: m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_id_pegawai
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
 		,	failure	: function(response) {
@@ -454,7 +454,7 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiDetail()
 
 	this.is_valid = function()
 	{
-		if (!this.form_nip_baru.isValid()) {
+		if (!this.form_nip.isValid()) {
 			return false;
 		}
 
@@ -509,9 +509,8 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiDetail()
 		Ext.Ajax.request({
 				url		: m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_d +'submit.jsp'
 			,	params  : {
-						nip						: m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_nip
-					,	nip_baru				: this.form_nip_baru.getValue()
-					,	nomor_induk				: '1'
+						id_pegawai						: m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_id_pegawai
+					,	nip				: this.form_nip.getValue()
 					,	nuptk					: this.form_nuptk.getValue()
 					,	nm_pegawai				: this.form_nm_pegawai.getValue()
 					,	inisial					: this.form_inisial.getValue()
@@ -569,8 +568,8 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiList()
 	this.dml_type	= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
-		,	{ name	: 'nip_baru' }
+			{ name	: 'id_pegawai' }
+		,	{ name	: 'nip' }
 		,	{ name	: 'nuptk' }
 		,	{ name	: 'nm_pegawai' }
 		,	{ name	: 'alamat' }
@@ -593,7 +592,7 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiList()
 		columns	: [
 			new Ext.grid.RowNumberer()
 		,	{ header		: 'NIP'
-			, dataIndex		: 'nip_baru'
+			, dataIndex		: 'nip'
 			, width			: 120
 			, filterable	: true
 			}
@@ -626,13 +625,13 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiList()
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
 					if (data.length){
-						m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_nip = data[0].data['nip'];
+						m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_id_pegawai = data[0].data['id_pegawai'];
 						
 						if (m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_ha_level == 4) {
 							this.btn_del.setDisabled(false);
 						}
 					} else {
-						m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_nip = '';
+						m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_id_pegawai = '';
 						this.btn_del.setDisabled(true);
 					}
 				}
@@ -713,7 +712,7 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiList()
 			url		: m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_d +'submit.jsp'
 		,	params	: {
 				dml_type				: 4
-			,	nip						: data.get('nip')
+			,	id_pegawai						: data.get('id_pegawai')
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
 		,	failure	: function(response) {
@@ -744,7 +743,7 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiList()
 		}
 
 		m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_detail.do_refresh();
-		m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_detail.do_edit(data.get('nip'));
+		m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi_detail.do_edit(data.get('id_pegawai'));
 		m_adm_pegawai_pembentukan_data_awal_tenaga_administrasi.panel.layout.setActiveItem(1);
 	}
 

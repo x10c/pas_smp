@@ -19,7 +19,7 @@ var m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_detail_riwayat_jab
 var m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_detail_penataran;
 var m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_detail_penataran_list;
 var m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_detail_penataran_detail;
-var m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip = '';
+var m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai = '';
 var m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_keluarga_no_urut = '';
 var m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_pendidikan_formal_no_urut = '';
 var m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_detail_penataran_no_urut = '';
@@ -34,7 +34,7 @@ function m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_master_on_sel
 	||  typeof m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_detail_riwayat_pangkat == 'undefined'
 	||  typeof m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_detail_riwayat_jabatan == 'undefined'
 	||  typeof m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_detail_penataran == 'undefined'
-	||	m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+	||	m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 		return;
 	}
 
@@ -357,7 +357,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailKeluargaDetail
 		Ext.Ajax.request({
 			url		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_d +'data_detail_keluarga.jsp'
 		,	params	: {
-				nip		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 			,	no_urut	: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_keluarga_no_urut
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
@@ -447,7 +447,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailKeluargaDetail
 		Ext.Ajax.request({
 				url		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_d +'submit_detail_keluarga.jsp'
 			,	params  : {
-						nip						: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+						id_pegawai						: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 					,	no_urut					: this.form_no_urut.getValue()
 					,	nm_keluarga				: this.form_nm_keluarga.getValue()
 					,	kd_hub_keluarga			: this.form_hubungan_keluarga.getValue()
@@ -505,7 +505,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailKeluargaDetail
 function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailKeluargaList()
 {
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'no_urut' }
 		,	{ name	: 'nm_keluarga' }
 		,	{ name	: 'kd_hub_keluarga' }
@@ -672,7 +672,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailKeluargaList()
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -687,7 +687,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailKeluargaList()
 			url		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_d +'submit_detail_keluarga.jsp'
 		,	params	: {
 				dml_type			: 4
-			,	nip					: data.get('nip')
+			,	id_pegawai					: data.get('id_pegawai')
 			,	no_urut				: data.get('no_urut')
 			,	nm_keluarga			: ''
 			, 	kd_hub_keluarga		: ''
@@ -724,7 +724,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailKeluargaList()
 
 	this.do_edit = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -749,7 +749,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailKeluargaList()
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -770,7 +770,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailKeluargaList()
 	{
 		this.store.load({
 			params	: {
-				nip		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 			}
 		});
 	}
@@ -1090,7 +1090,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPendidikanForm
 		Ext.Ajax.request({
 			url		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_d +'data_detail_pendidikan_formal.jsp'
 		,	params	: {
-				nip		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 			,	no_urut	: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_pendidikan_formal_no_urut
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
@@ -1168,7 +1168,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPendidikanForm
 		Ext.Ajax.request({
 				url		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_d +'submit_detail_pendidikan_formal.jsp'
 			,	params  : {
-						nip						: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+						id_pegawai						: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 					,	no_urut					: this.form_no_urut.getValue()
 					,	kd_tingkat_ijazah		: this.form_tingkat_ijazah.getValue()
 					,	nm_instansi_penddkn		: this.form_nm_instansi_penddkn.getValue()
@@ -1224,7 +1224,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPendidikanForm
 function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPendidikanFormalList()
 {
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'no_urut' }
 		,	{ name	: 'kd_tingkat_ijazah' }
 		,	{ name	: 'nm_instansi_penddkn' }
@@ -1410,7 +1410,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPendidikanForm
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -1425,7 +1425,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPendidikanForm
 			url		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_d +'submit_detail_pendidikan_formal.jsp'
 		,	params	: {
 				dml_type			: 4
-			,	nip					: data.get('nip')
+			,	id_pegawai					: data.get('id_pegawai')
 			,	no_urut				: data.get('no_urut')
 			,	kd_tingkat_ijazah	: ''
 			, 	nm_instansi_penddkn	: ''
@@ -1459,7 +1459,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPendidikanForm
 
 	this.do_edit = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -1484,7 +1484,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPendidikanForm
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -1509,7 +1509,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPendidikanForm
 					callback	: function(){
 						this.store.load({
 							params	: {
-								nip		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+								id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 							}
 						});
 					}
@@ -1581,7 +1581,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatPangkat
 	this.dml_type	= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'no_urut' }
 		,	{ name	: 'no_urut_old' }
 		,	{ name	: 'no_sk' }
@@ -1822,13 +1822,13 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatPangkat
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nip					: ''
+				id_pegawai					: ''
 			,	no_urut				: ''
 			,	no_sk				: ''
 			,	tanggal_sk			: ''
@@ -1848,7 +1848,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatPangkat
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -1874,7 +1874,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatPangkat
 	{
 		Ext.Ajax.request({
 				params  : {
-						nip					: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+						id_pegawai					: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 					,	no_urut				: record.data['no_urut']
 					,	no_urut_old			: record.data['no_urut_old']
 					,	no_sk				: record.data['no_sk']
@@ -1904,7 +1904,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatPangkat
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -1924,7 +1924,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatPangkat
 					callback	: function(){
 						this.store.load({
 							params	: {
-								nip	: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+								id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 							}
 						});
 					}
@@ -1966,7 +1966,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatJabatan
 	this.dml_type	= 0;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'no_urut' }
 		,	{ name	: 'no_urut_old' }
 		,	{ name	: 'no_sk' }
@@ -2229,13 +2229,13 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatJabatan
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nip						: ''
+				id_pegawai						: ''
 			,	no_urut					: ''
 			,	no_sk					: ''
 			,	tanggal_sk				: ''
@@ -2256,7 +2256,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatJabatan
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -2282,7 +2282,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatJabatan
 	{
 		Ext.Ajax.request({
 				params  : {
-						nip						: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+						id_pegawai						: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 					,	no_urut					: record.data['no_urut']
 					,	no_urut_old				: record.data['no_urut_old']
 					,	no_sk					: record.data['no_sk']
@@ -2313,7 +2313,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatJabatan
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -2333,7 +2333,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailRiwayatJabatan
 					callback	: function(){
 						this.store.load({
 							params	: {
-								nip	: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+								id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 							}
 						});
 					}
@@ -2604,7 +2604,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPenataranDetai
 		Ext.Ajax.request({
 			url		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_d +'data_detail_penataran.jsp'
 		,	params	: {
-				nip		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 			,	no_urut	: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_penataran_no_urut
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
@@ -2678,7 +2678,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPenataranDetai
 		Ext.Ajax.request({
 				url		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_d +'submit_detail_penataran.jsp'
 			,	params  : {
-						nip							: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+						id_pegawai							: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 					,	no_urut						: this.form_no_urut.getValue()
 					,	id_penataran				: this.form_penataran.getValue()
 					,	kd_penyelenggara_penataran	: this.form_penyelenggara_penataran.getValue()
@@ -2733,7 +2733,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPenataranDetai
 function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPenataranList()
 {
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
+			{ name	: 'id_pegawai' }
 		,	{ name	: 'no_urut' }
 		,	{ name	: 'id_penataran' }
 		,	{ name	: 'kd_jenis_peserta_penataran' }
@@ -2922,7 +2922,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPenataranList(
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -2937,7 +2937,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPenataranList(
 			url		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_d +'submit_detail_penataran.jsp'
 		,	params	: {
 				dml_type					: 4
-			,	nip							: data.get('nip')
+			,	id_pegawai							: data.get('id_pegawai')
 			,	no_urut						: data.get('no_urut')
 			,	id_penataran				: ''
 			, 	kd_penyelenggara_penataran	: ''
@@ -2970,7 +2970,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPenataranList(
 
 	this.do_edit = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -2995,7 +2995,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPenataranList(
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip == '') {
+		if (m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
@@ -3020,7 +3020,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiDetailPenataranList(
 					callback	: function(){
 						this.store.load({
 							params	: {
-								nip		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip
+								id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai
 							}
 						});
 					}
@@ -3091,8 +3091,8 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiMaster(title)
 	this.title		= title;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nip' }
-		,	{ name	: 'nip_baru' }
+			{ name	: 'id_pegawai' }
+		,	{ name	: 'nip' }
 		,	{ name	: 'nuptk' }
 		,	{ name	: 'nm_pegawai' }
 		,	{ name	: 'alamat' }
@@ -3115,7 +3115,7 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiMaster(title)
 		columns	: [
 			new Ext.grid.RowNumberer()
 		,	{ header		: 'NIP'
-			, dataIndex		: 'nip_baru'
+			, dataIndex		: 'nip'
 			, align			: 'center'
 			, width			: 120
 			, filterable	: true
@@ -3150,9 +3150,9 @@ function M_AdmPegawaiPemeliharaanDataIndukTenagaAdministrasiMaster(title)
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
 					if (data.length){
-						m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip = data[0].data['nip'];						
+						m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai = data[0].data['id_pegawai'];						
 					} else {
-						m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_nip = '';
+						m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_id_pegawai = '';
 					}
 					
 					m_adm_pegawai_pemeliharaan_data_induk_tenaga_administrasi_master_on_select_load_detail();

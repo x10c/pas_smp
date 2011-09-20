@@ -18,7 +18,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 					= Integer.parseInt(request.getParameter("dml_type"));
-	String nip					= request.getParameter("nip");
+	String id_pegawai					= request.getParameter("id_pegawai");
 	String no_urut				= request.getParameter("no_urut");
 	String no_urut_old			= request.getParameter("no_urut_old");
 	String no_sk				= request.getParameter("no_sk");
@@ -37,7 +37,7 @@ try{
 	switch (dml) {
 	case 2:
 		q	="  insert into t_pegawai_rwyt_jabatan"
-			+"( nip"
+			+"( id_pegawai"
 			+", no_urut"
 			+", no_sk"
 			+", tanggal_sk"
@@ -47,7 +47,7 @@ try{
 			+", keterangan"
 			+", username)"
 			+"  values("
-			+"   "+ nip
+			+"   "+ id_pegawai
 			+",  "+ no_urut
 			+", '"+ no_sk + "'"
 			+", cast('"+ tanggal_sk +"' as date)"
@@ -67,12 +67,12 @@ try{
 			+" ,		tahun_berhenti		=  "+ tahun_berhenti
 			+" ,		keterangan			= '"+ keterangan +"'"
 			+" ,		username			= '"+ username +"'"
-			+" where	nip		= "+ nip
+			+" where	id_pegawai		= "+ id_pegawai
 			+" and		no_urut	= "+ no_urut_old;
 		break;
 	case 4:
 		q 	= " delete	from t_pegawai_rwyt_jabatan"
-			+ " where	nip		= "+ nip
+			+ " where	id_pegawai		= "+ id_pegawai
 			+ " and		no_urut	= "+ no_urut;
 		break;
 	default:

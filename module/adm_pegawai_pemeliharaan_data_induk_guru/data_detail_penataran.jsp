@@ -17,14 +17,14 @@ try{
 
 	Statement	db_stmt = db_con.createStatement();
 	
-	String 		nip		= request.getParameter("nip");
+	String 		id_pegawai		= request.getParameter("id_pegawai");
 	String 		no_urut	= request.getParameter("no_urut");
 
 	ResultSet	rs;
 	String		q;
 	String		data;
 
-	q=" select	nip"
+	q=" select	id_pegawai"
 	+" ,		no_urut"
 	+" ,		id_penataran"
 	+" ,		kd_penyelenggara_penataran"
@@ -35,7 +35,7 @@ try{
 	+" ,		tanggal_akhir"
 	+" ,		jam"
 	+" from		t_pegawai_penataran"
-	+" where	nip			= " + nip
+	+" where	id_pegawai			= " + id_pegawai
 	+" and		no_urut		= " + no_urut;
 	
 	rs	= db_stmt.executeQuery(q);
@@ -46,7 +46,7 @@ try{
 		return;
 	}
 	
-	data 	="{ nip : "+ rs.getString("nip")
+	data 	="{ id_pegawai : "+ rs.getString("id_pegawai")
 			+ ", no_urut : "+ rs.getString("no_urut")
 			+ ", id_penataran : "+ rs.getString("id_penataran")
 			+ ", kd_penyelenggara_penataran : '"+ rs.getString("kd_penyelenggara_penataran") + "'"

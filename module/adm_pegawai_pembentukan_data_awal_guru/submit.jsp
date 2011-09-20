@@ -19,9 +19,8 @@ try{
 
 	int dml 					= Integer.parseInt(request.getParameter("dml_type"));
 	String kd_tahun_ajaran		= (String) session.getAttribute("kd.tahun_pelajaran");
-	String nip					= request.getParameter("nip");
-	String nip_baru				= request.getParameter("nip_baru");
-	String nomor_induk			= request.getParameter("nomor_induk");
+	String id_pegawai					= request.getParameter("id_pegawai");
+	String nip				= request.getParameter("nip");
 	String nuptk				= request.getParameter("nuptk");
 	String nm_pegawai			= request.getParameter("nm_pegawai");
 	String inisial				= request.getParameter("inisial");
@@ -46,8 +45,7 @@ try{
 	switch (dml) {
 	case 2:
 		q	="  insert into t_pegawai"
-			+"( nip_baru"
-			+", nomor_induk"
+			+"( nip"
 			+", nuptk"
 			+", nm_pegawai"
 			+", inisial"
@@ -65,11 +63,9 @@ try{
 			+", operasi_komputer"
 			+", kursus_komputer"
 			+", sertifikasi"
-			+", dir_foto"
 			+", username)"
 			+"  values("
-			+"  '"+ nip_baru + "'"
-			+", '"+ nomor_induk + "'"
+			+"  '"+ nip + "'"
 			+", '"+ nuptk + "'"
 			+", '"+ nm_pegawai + "'"
 			+", '"+ inisial + "'"
@@ -87,12 +83,11 @@ try{
 			+", '"+ operasi_komputer +"'"
 			+", '"+ kursus_komputer +"'"
 			+", '"+ sertifikasi +"'"
-			+", '"+ dir_foto +"'"
 			+", '" + username +"')";
 		break;
 	case 3:
 		q	=" update	t_pegawai"
-			+" set		nip_baru			= '"+ nip_baru +"'"
+			+" set		nip			= '"+ nip +"'"
 			+" ,		nuptk				= '"+ nuptk + "'"
 			+" ,		nm_pegawai			= '"+ nm_pegawai + "'"
 			+" ,		inisial				= '"+ inisial + "'"
@@ -111,11 +106,11 @@ try{
 			+" ,		kursus_komputer		= '"+ kursus_komputer +"'"
 			+" ,		sertifikasi			= '"+ sertifikasi +"'"
 			+" ,		username			= '"+ username +"'"
-			+" where	nip	= "+ nip;
+			+" where	id_pegawai	= "+ id_pegawai;
 		break;
 	case 4:
 		q 	= " delete	from t_pegawai"
-			+ " where	nip	= "+ nip;
+			+ " where	id_pegawai	= "+ id_pegawai;
 		break;
 	default:
 		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");
