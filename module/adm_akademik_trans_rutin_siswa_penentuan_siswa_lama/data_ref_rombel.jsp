@@ -17,7 +17,8 @@ try{
 
 	Statement	db_stmt = db_con.createStatement();
 	
-	String kd_tahun_ajaran	= (String) session.getAttribute("kd.tahun_pelajaran");
+	String kd_tahun_ajaran	= request.getParameter("kd_tahun_ajaran");
+	String kd_tingkat_kelas	= request.getParameter("kd_tingkat_kelas");
 
 	String q=" select	a.kd_rombel"
 			+" ,		b.nm_pegawai"
@@ -26,6 +27,7 @@ try{
 			+" where	a.id_pegawai		= b.id_pegawai"
 			+" and		a.kd_tingkat_kelas	in ('01','02','03')"
 			+" and		a.kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
+			+" and		a.kd_tingkat_kelas	= '" + kd_tingkat_kelas + "'"
 			+" order by	a.kd_rombel";
 	
 	ResultSet	rs	= db_stmt.executeQuery(q);

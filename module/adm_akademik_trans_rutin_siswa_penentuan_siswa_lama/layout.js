@@ -373,7 +373,11 @@ function M_AdmAkademikTransRutinSiswaPenentuanSiswaLamaDetail(title)
 	this.do_load = function()
 	{
 		this.store_rombel.load({
-				callback	: function(){
+				params		: {
+					kd_tahun_ajaran		: m_adm_akademik_trans_rutin_siswa_penentuan_siswa_lama_kd_tahun_ajaran
+				,	kd_tingkat_kelas	: m_adm_akademik_trans_rutin_siswa_penentuan_siswa_lama_kd_tingkat_kelas
+				}
+			,	callback	: function(){
 					this.store.load({
 						params	: {
 							kd_tahun_ajaran		: m_adm_akademik_trans_rutin_siswa_penentuan_siswa_lama_kd_tahun_ajaran
@@ -383,6 +387,12 @@ function M_AdmAkademikTransRutinSiswaPenentuanSiswaLamaDetail(title)
 				}
 			,	scope		: this
 		});	
+
+		if (this.store.getTotalCount() < 1){
+			this.btn_process.setDisabled(true);
+		} else {
+			this.btn_process.setDisabled(false);
+		}
 	}
 
 	this.do_refresh = function()

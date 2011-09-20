@@ -2024,26 +2024,6 @@ create table T_SISWA_ORTU
 );
 
 /*==============================================================*/
-/* Table: T_SISWA_PELANGGARAN                                   */
-/*==============================================================*/
-create table T_SISWA_PELANGGARAN
-(
-   ID_SISWA             bigint unsigned not null,
-   NIS                  varchar(25) default NULL,
-   KD_TAHUN_AJARAN      char(2) not null,
-   KD_TINGKAT_KELAS     char(2) not null,
-   KD_ROMBEL            varchar(15) not null,
-   TANGGAL              date not null,
-   ID_SANKSI            tinyint unsigned not null,
-   TK_PELANGGARAN       char(1) not null comment '1 = ringan; 2 = sedang; 3 = berat',
-   TANGGAL_AKHIR_SANKSI date not null,
-   KETERANGAN           varchar(255) default NULL,
-   USERNAME             varchar(20) not null,
-   TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-   primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, TANGGAL)
-);
-
-/*==============================================================*/
 /* Table: T_SISWA_PINDAH                                        */
 /*==============================================================*/
 create table T_SISWA_PINDAH
@@ -2065,6 +2045,9 @@ create table T_SISWA_PRESTASI
 (
    ID_SISWA             bigint unsigned not null,
    NIS                  varchar(25) default NULL,
+   KD_TAHUN_AJARAN      char(2) not null,
+   KD_TINGKAT_KELAS     char(2) not null,
+   KD_ROMBEL            varchar(15) not null,
    ID_JENIS_LOMBA       smallint unsigned not null,
    KD_TINGKAT_PRESTASI  char(1) not null,
    TANGGAL_PRESTASI     date not null,
@@ -2072,7 +2055,7 @@ create table T_SISWA_PRESTASI
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
    TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-   primary key (ID_SISWA, ID_JENIS_LOMBA, KD_TINGKAT_PRESTASI, TANGGAL_PRESTASI)
+   primary key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL, ID_JENIS_LOMBA, KD_TINGKAT_PRESTASI, TANGGAL_PRESTASI)
 );
 
 /*==============================================================*/
@@ -2980,15 +2963,6 @@ alter table T_SISWA_ORTU add constraint FK_T_SISWA_T_SISWA_ORTU foreign key (ID_
 alter table T_SISWA_ORTU add constraint FK___AUTH_T_SISWA_ORTU foreign key (USERNAME)
       references __AUTH (USERNAME) on delete restrict on update restrict;
 
-alter table T_SISWA_PELANGGARAN add constraint FK_R_SANKSI_T_SISWA_PELANGGARAN foreign key (ID_SANKSI)
-      references R_SANKSI (ID_SANKSI) on delete restrict on update restrict;
-
-alter table T_SISWA_PELANGGARAN add constraint FK_T_SISWA_TINGKAT_T_SISWA_PELANGGARAN foreign key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL)
-      references T_SISWA_TINGKAT (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL) on delete restrict on update restrict;
-
-alter table T_SISWA_PELANGGARAN add constraint FK___AUTH_T_SISWA_PELANGGARAN foreign key (USERNAME)
-      references __AUTH (USERNAME) on delete restrict on update restrict;
-
 alter table T_SISWA_PINDAH add constraint FK_R_SEKOLAH_SETINGKAT_T_SISWA_PINDAH foreign key (ASAL_SMP)
       references R_SEKOLAH_SETINGKAT (ASAL_SMP) on delete restrict on update restrict;
 
@@ -3004,8 +2978,8 @@ alter table T_SISWA_PRESTASI add constraint FK_R_JENIS_LOMBA_T_SISWA_PRESTASI fo
 alter table T_SISWA_PRESTASI add constraint FK_R_TINGKAT_PRESTASI_T_SISWA_PRESTASI foreign key (KD_TINGKAT_PRESTASI)
       references R_TINGKAT_PRESTASI (KD_TINGKAT_PRESTASI) on delete restrict on update restrict;
 
-alter table T_SISWA_PRESTASI add constraint FK_T_SISWA_T_SISWA_PRESTASI foreign key (ID_SISWA)
-      references T_SISWA (ID_SISWA) on delete restrict on update restrict;
+alter table T_SISWA_PRESTASI add constraint FK_T_SISWA_TINGKAT_T_SISWA_PRESTASI foreign key (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL)
+      references T_SISWA_TINGKAT (ID_SISWA, KD_TAHUN_AJARAN, KD_TINGKAT_KELAS, KD_ROMBEL) on delete restrict on update restrict;
 
 alter table T_SISWA_PRESTASI add constraint FK___AUTH_T_SISWA_PRESTASI foreign key (USERNAME)
       references __AUTH (USERNAME) on delete restrict on update restrict;

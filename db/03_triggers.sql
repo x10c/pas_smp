@@ -2894,36 +2894,6 @@ $$
 delimiter ;
 
 
-drop trigger if exists T_SISWA_PELANGGARAN_BIR;
-
-delimiter $$
-
-create trigger T_SISWA_PELANGGARAN_BIR before insert
-on T_SISWA_PELANGGARAN for each row
-begin
-    DECLARE v_nis VARCHAR(25);
-	DECLARE v_ids BIGINT UNSIGNED;
-
-	IF new.NIS IS NOT NULL THEN
-		SELECT F_SISWA_NIS(new.NIS) INTO v_ids;
-	  
-		SET new.ID_SISWA = v_ids;
-	END IF;
-
-	IF new.ID_SISWA IS NOT NULL THEN
-		SELECT	NIS
-		INTO	v_nis
-		FROM	T_SISWA
-		WHERE	ID_SISWA = new.ID_SISWA;
-		
-		SET new.NIS = v_nis;
-	END IF;
-end
-$$
-
-delimiter ;
-
-
 drop trigger if exists T_SISWA_PINDAH_BDR;
 
 delimiter $$

@@ -232,7 +232,13 @@ function M_AdmAkademikTransRutinSiswaPenentuanSiswaBaru(title)
 					this.store.load();
 				}
 			,	scope		: this
-		});		
+		});
+		
+		if (this.store.getTotalCount() < 1){
+			this.btn_process.setDisabled(true);
+		} else {
+			this.btn_process.setDisabled(false);
+		}
 	}
 
 	this.do_refresh = function(ha_level)
