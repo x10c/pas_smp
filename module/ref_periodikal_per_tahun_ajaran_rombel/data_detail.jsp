@@ -25,8 +25,8 @@ try{
 			+" ,		kd_rombel"
 			+" ,		kd_rombel as kd_rombel_old"
 			+" ,		id_ruang_kelas"
-			+" ,		nip"
-			+" ,		nip_bk"
+			+" ,		id_pegawai"
+			+" ,		id_pegawai_bk"
 			+" ,		keterangan"
 			+" from		t_pegawai_rombel"
 			+" where	kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'"
@@ -48,8 +48,8 @@ try{
 				+ ",'"+ rs.getString("kd_rombel") +"'"
 				+ ",'"+ rs.getString("kd_rombel_old") +"'"
 				+ ","+ rs.getString("id_ruang_kelas")
-				+ ","+ rs.getString("nip")
-				+ ","+ rs.getString("nip_bk")
+				+ ","+ rs.getString("id_pegawai")
+				+ ","+ rs.getString("id_pegawai_bk")
 				+ ",'"+ rs.getString("keterangan") +"']";
 	}	
 	data += "]";

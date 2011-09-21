@@ -135,7 +135,7 @@ function M_AdmAkademikTransRutinSiswaKenaikanKelasDetailKenaikanKelas(title)
 	});
 
 	this.btn_process = new Ext.Button({
-			text		: '<b>Tutup Tahun Pelajaran</b>'
+			text		: '<b>Kenaikan Kelas</b>'
 		,	iconCls		: 'dirup16'
 		,	disabled	: true
 		,	scope		: this
@@ -185,7 +185,7 @@ function M_AdmAkademikTransRutinSiswaKenaikanKelasDetailKenaikanKelas(title)
 
 	this.do_process = function()
 	{
-		Ext.MessageBox.confirm('Konfirmasi', 'Tutup Tahun Pelajaran?', function(btn, text){
+		Ext.MessageBox.confirm('Konfirmasi', 'Kenaikan Kelas?', function(btn, text){
 			if (btn == 'ok'){
 				this.dml_type = 5;
 				Ext.Ajax.request({

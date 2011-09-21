@@ -17,17 +17,13 @@ try{
 
 	Statement	db_stmt = db_con.createStatement();
 
-	String kd_tahun_ajaran	= (String) session.getAttribute("kd.tahun_pelajaran");
+	String kd_tahun_ajaran		= (String) session.getAttribute("kd.tahun_pelajaran");
 	
-	String q=" select	b.id_pegawai"
-			+" ,		b.nm_pegawai"
-			+" from		t_pegawai_aktif	as a"
-			+" ,		t_pegawai		as b"
-			+" where	a.id_pegawai			= b.id_pegawai"
-			+" and		b.kd_jenis_ketenagaan	= '6'"
-			+" and		a.status_aktif			= '1'"
-			+" and		a.kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'"
-			+" order by	b.id_pegawai";
+	String q=" select	kd_tahun_ajaran"
+			+" ,		saldo_awal"
+			+" from		t_sekolah_saldo_awal"
+			+" where	kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
+			+" order by	kd_tahun_ajaran";
 	
 	ResultSet	rs	= db_stmt.executeQuery(q);
 	int		i	= 0;
@@ -39,8 +35,8 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="["+ rs.getString("id_pegawai")
-				+  ",\""+ rs.getString("nm_pegawai") +"\""
+		data 	+="['"+ rs.getString("kd_tahun_ajaran") + "'"
+				+ ","+ rs.getString("saldo_awal")
 				+ "]";
 	}	
 	data += "]";

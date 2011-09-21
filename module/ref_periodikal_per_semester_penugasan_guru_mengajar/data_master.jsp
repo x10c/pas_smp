@@ -20,16 +20,15 @@ try{
 	String kd_tahun_ajaran	= (String) session.getAttribute("kd.tahun_pelajaran");
 	
 	String q=" select	a.kd_tahun_ajaran"
-			+" ,		a.nip"
-			+" ,		b.nomor_induk"
-			+" ,		b.nip_baru"
+			+" ,		a.id_pegawai"
+			+" ,		b.nip"
 			+" ,		b.nm_pegawai"
 			+" from		t_pegawai_aktif	as a"
 			+" ,		t_pegawai		as b"
-			+" where	a.nip					= b.nip"
+			+" where	a.id_pegawai			= b.id_pegawai"
 			+" and		a.kd_jenis_ketenagaan	<> '2'"
 			+" and		a.kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'"
-			+" order by	a.kd_tahun_ajaran, a.nip";
+			+" order by	a.kd_tahun_ajaran, a.id_pegawai";
 	
 	ResultSet	rs	= db_stmt.executeQuery(q);
 	int		i	= 0;
@@ -42,9 +41,8 @@ try{
 			i++;
 		}
 		data 	+="['"+ rs.getString("kd_tahun_ajaran") + "'"
-				+ ","+ rs.getString("nip")
-				+ ",'"+ rs.getString("nomor_induk") + "'"
-				+ ",'"+ rs.getString("nip_baru") + "'"
+				+ ","+ rs.getString("id_pegawai")
+				+ ",'"+ rs.getString("nip") + "'"
 				+ ",'"+ rs.getString("nm_pegawai") +"']";
 	}	
 	data += "]";

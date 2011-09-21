@@ -11,7 +11,7 @@ var m_ref_periodikal_per_semester_penugasan_guru_mengajar_master;
 var m_ref_periodikal_per_semester_penugasan_guru_mengajar_detail;
 var m_ref_periodikal_per_semester_penugasan_guru_mengajar_d = _g_root +'/module/ref_periodikal_per_semester_penugasan_guru_mengajar/';
 var m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran = '';
-var m_ref_periodikal_per_semester_penugasan_guru_mengajar_nip = '';
+var m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai = '';
 var m_ref_periodikal_per_semester_penugasan_guru_mengajar_ha_level = 0;
 
 function m_ref_periodikal_per_semester_penugasan_guru_mengajar_master_on_select_load_detail()
@@ -19,7 +19,7 @@ function m_ref_periodikal_per_semester_penugasan_guru_mengajar_master_on_select_
  	if (typeof m_ref_periodikal_per_semester_penugasan_guru_mengajar_master == 'undefined'
 	||  typeof m_ref_periodikal_per_semester_penugasan_guru_mengajar_detail == 'undefined'
 	||	m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran == ''
-	||	m_ref_periodikal_per_semester_penugasan_guru_mengajar_nip == '') {
+	||	m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai == '') {
 		return;
 	}
 
@@ -32,9 +32,8 @@ function M_RefPeriodikalPerSemesterPenugasanGuruMengajarMaster(title)
 
 	this.record = new Ext.data.Record.create([
 			{ name	: 'kd_tahun_ajaran' }
+		,	{ name	: 'id_pegawai' }
 		,	{ name	: 'nip' }
-		,	{ name	: 'nomor_induk' }
-		,	{ name	: 'nip_baru' }
 		,	{ name	: 'nm_pegawai' }
 	]);
 
@@ -52,16 +51,10 @@ function M_RefPeriodikalPerSemesterPenugasanGuruMengajarMaster(title)
 	this.columns = [
 			new Ext.grid.RowNumberer()
 		,	{ header		: 'NIP'
-			, dataIndex		: 'nomor_induk'
+			, dataIndex		: 'nip'
 			, sortable		: true
 			, align			: 'center'
 			, width			: 100
-			}
-		,	{ header		: 'NIP Baru'
-			, dataIndex		: 'nip_baru'
-			, sortable		: true
-			, align			: 'center'
-			, width			: 150
 			}
 		,	{ id			: 'nm_pegawai'
 			, header		: 'Nama Pegawai'
@@ -79,10 +72,10 @@ function M_RefPeriodikalPerSemesterPenugasanGuruMengajarMaster(title)
 						var data = sm.getSelections();
 						if (data.length) {
 							m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran	= data[0].data['kd_tahun_ajaran'];
-							m_ref_periodikal_per_semester_penugasan_guru_mengajar_nip				= data[0].data['nip'];
+							m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai		= data[0].data['id_pegawai'];
 						} else {
 							m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran	= '';
-							m_ref_periodikal_per_semester_penugasan_guru_mengajar_nip				= '';
+							m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai		= '';
 						}
 
 						m_ref_periodikal_per_semester_penugasan_guru_mengajar_master_on_select_load_detail();
@@ -124,7 +117,7 @@ function M_RefPeriodikalPerSemesterPenugasanGuruMengajarMaster(title)
 		this.store.load();
 
 		m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran	= '';
-		m_ref_periodikal_per_semester_penugasan_guru_mengajar_nip				= '';
+		m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai		= '';
 		
 		m_ref_periodikal_per_semester_penugasan_guru_mengajar_detail.do_load();
 	}
@@ -150,7 +143,7 @@ function M_RefPeriodikalPerSemesterPenugasanGuruMengajarDetail(title)
 
 	this.record = new Ext.data.Record.create([
 			{ name	: 'kd_tahun_ajaran' }
-		,	{ name	: 'nip' }
+		,	{ name	: 'id_pegawai' }
 		,	{ name	: 'kd_mata_pelajaran_diajarkan' }
 		,	{ name	: 'kd_mata_pelajaran_diajarkan_old' }
 	]);
@@ -271,14 +264,14 @@ function M_RefPeriodikalPerSemesterPenugasanGuruMengajarDetail(title)
 
 	this.do_add = function()
 	{
-		if (m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran == '' || m_ref_periodikal_per_semester_penugasan_guru_mengajar_nip == '') {
+		if (m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran == '' || m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Pegawai terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
 				kd_tahun_ajaran				: ''
-			,	nip							: ''
+			,	id_pegawai					: ''
 			,	kd_mata_pelajaran_diajarkan	: ''
 			});
 
@@ -292,7 +285,7 @@ function M_RefPeriodikalPerSemesterPenugasanGuruMengajarDetail(title)
 
 	this.do_del = function()
 	{
-		if (m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran == '' || m_ref_periodikal_per_semester_penugasan_guru_mengajar_nip == '') {
+		if (m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran == '' || m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Pegawai terlebih dahulu!");
 			return;
 		}
@@ -319,7 +312,7 @@ function M_RefPeriodikalPerSemesterPenugasanGuruMengajarDetail(title)
 		Ext.Ajax.request({
 				params  : {
 						kd_tahun_ajaran					: m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran
-					,	nip								: m_ref_periodikal_per_semester_penugasan_guru_mengajar_nip
+					,	id_pegawai						: m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai
 					,	kd_mata_pelajaran_diajarkan		: record.data['kd_mata_pelajaran_diajarkan']
 					,	kd_mata_pelajaran_diajarkan_old	: record.data['kd_mata_pelajaran_diajarkan_old']
 					,	dml_type						: this.dml_type
@@ -343,7 +336,7 @@ function M_RefPeriodikalPerSemesterPenugasanGuruMengajarDetail(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran == '' || m_ref_periodikal_per_semester_penugasan_guru_mengajar_nip == '') {
+		if (m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran == '' || m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Pegawai terlebih dahulu!");
 			return;
 		}
@@ -357,17 +350,19 @@ function M_RefPeriodikalPerSemesterPenugasanGuruMengajarDetail(title)
 
 	this.do_load = function()
 	{
-		this.store_mata_pelajaran_diajarkan.load({
-				callback	: function(){
-					this.store.load({
-						params	: {
-								kd_tahun_ajaran	: m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran
-							,	nip				: m_ref_periodikal_per_semester_penugasan_guru_mengajar_nip
-						}
-					});
-				}
-			,	scope		: this
-		});
+		if (m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran != '' || m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai != '') {
+			this.store_mata_pelajaran_diajarkan.load({
+					callback	: function(){
+						this.store.load({
+							params	: {
+									kd_tahun_ajaran	: m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran
+								,	id_pegawai		: m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai
+							}
+						});
+					}
+				,	scope		: this
+			});
+		}
 	}
 
 	this.do_refresh = function()
@@ -421,7 +416,7 @@ function M_RefPeriodikalPerSemesterPenugasanGuruMengajar()
 	{
 		m_ref_periodikal_per_semester_penugasan_guru_mengajar_ha_level	= ha_level;
 		m_ref_periodikal_per_semester_penugasan_guru_mengajar_kd_tahun_ajaran = '';
-		m_ref_periodikal_per_semester_penugasan_guru_mengajar_nip = '';
+		m_ref_periodikal_per_semester_penugasan_guru_mengajar_id_pegawai = '';
 
 		m_ref_periodikal_per_semester_penugasan_guru_mengajar_master.do_refresh(ha_level);
 	}

@@ -17,12 +17,39 @@ begin
 	
 	if v__do = 0 then
 		insert into t_sekolah_saldo_awal values(new.kd_tahun_ajaran, new.saldo_awal, 0, new.username, now());
+    else
+        update  t_sekolah_saldo_awal
+        set     saldo_awal      = new.saldo_awal
+        where   kd_tahun_ajaran = new.kd_tahun_ajaran;
 	end if;
 end
 $$
 
 delimiter ;
 
+drop trigger if exists K_SEKOLAH_KEUANGAN_AUR;
+
+delimiter $$
+
+create trigger K_SEKOLAH_KEUANGAN_AUR after update
+on K_SEKOLAH_KEUANGAN for each row
+begin
+	declare v__do tinyint default 0;
+	
+	select	count(*)
+	into 	v__do
+	from 	t_sekolah_saldo_awal
+    where   kd_tahun_ajaran = old.kd_tahun_ajaran;
+	
+	if v__do > 0 then
+        update  t_sekolah_saldo_awal
+        set     saldo_awal      = new.saldo_akhir
+        where   kd_tahun_ajaran = old.kd_tahun_ajaran;
+	end if;
+end
+$$
+
+delimiter ;
 
 drop trigger if exists K_SEKOLAH_KEUANGAN_BDR;
 

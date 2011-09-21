@@ -139,8 +139,8 @@ function M_RefPeriodikalPerTahunAjaranRombelDetail(title)
 		,	{ name	: 'kd_rombel' }
 		,	{ name	: 'kd_rombel_old' }
 		,	{ name	: 'id_ruang_kelas' }
-		,	{ name	: 'nip' }
-		,	{ name	: 'nip_bk' }
+		,	{ name	: 'id_pegawai' }
+		,	{ name	: 'id_pegawai_bk' }
 		,	{ name	: 'keterangan' }
 	]);
 
@@ -343,8 +343,8 @@ function M_RefPeriodikalPerTahunAjaranRombelDetail(title)
 			,	kd_tingkat_kelas	: ''
 			,	kd_rombel			: ''
 			,	id_ruang_kelas		: ''
-			,	nip					: ''
-			,	nip_bk				: ''
+			,	id_pegawai			: ''
+			,	id_pegawai_bk		: ''
 			,	keterangan			: ''
 			});
 
@@ -389,8 +389,8 @@ function M_RefPeriodikalPerTahunAjaranRombelDetail(title)
 					,	kd_rombel			: record.data['kd_rombel']
 					,	kd_rombel_old		: record.data['kd_rombel_old']
 					,	id_ruang_kelas		: record.data['id_ruang_kelas']
-					,	nip					: record.data['nip']
-					,	nip_bk				: record.data['nip_bk']
+					,	id_pegawai			: record.data['id_pegawai']
+					,	id_pegawai_bk		: record.data['id_pegawai_bk']
 					,	keterangan			: record.data['keterangan']
 					,	dml_type			: this.dml_type
 				}

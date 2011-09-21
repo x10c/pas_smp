@@ -18,15 +18,15 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	String kd_tahun_ajaran	= request.getParameter("kd_tahun_ajaran");
-	String nip				= request.getParameter("nip");
+	String id_pegawai		= request.getParameter("id_pegawai");
 	
 	String q=" select	kd_tahun_ajaran"
-			+" ,		nip"
+			+" ,		id_pegawai"
 			+" ,		kd_mata_pelajaran_diajarkan"
 			+" ,		kd_mata_pelajaran_diajarkan as kd_mata_pelajaran_diajarkan_old"
 			+" from		t_pegawai_mengajar"
-			+" where	kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'"
-			+" and		nip					= " + nip;
+			+" where	kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
+			+" and		id_pegawai		=  " + id_pegawai;
 	
 	ResultSet	rs	= db_stmt.executeQuery(q);
 	int		i	= 0;
@@ -39,7 +39,7 @@ try{
 			i++;
 		}
 		data 	+="['"+ rs.getString("kd_tahun_ajaran") + "'"
-				+ ","+ rs.getString("nip")
+				+ ","+ rs.getString("id_pegawai")
 				+ ",'"+ rs.getString("kd_mata_pelajaran_diajarkan") +"'"
 				+ ",'"+ rs.getString("kd_mata_pelajaran_diajarkan_old") +"']";
 	}	
