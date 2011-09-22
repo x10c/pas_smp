@@ -19,7 +19,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 					= Integer.parseInt(request.getParameter("dml_type"));
-	String nis					= request.getParameter("nis");
+	String id_siswa					= request.getParameter("id_siswa");
 	String kewarganegaraan		= request.getParameter("kewarganegaraan");
 	String anak_ke				= request.getParameter("anak_ke");
 	String jumlah_kandung		= request.getParameter("jumlah_kandung");
@@ -79,7 +79,7 @@ try{
 	case 2:
 		q	="  insert into t_siswa_info"
 			+"  values ("
-			+"  '"+ nis +"'"
+			+"  '"+ id_siswa +"'"
 			+", '"+ kewarganegaraan +"'"
 			+",  "+ anak_ke
 			+",  "+ jumlah_kandung
@@ -113,11 +113,11 @@ try{
 			+" ,		no_stl_sd			= '"+ no_stl_sd +"'"
 			+" ,		tanggal_stl_sd		= "+ tanggal_stl_sd
 			+" ,		lama_belajar_sd		= "+ lama_belajar_sd
-			+" where	nis					= '"+ nis +"'";
+			+" where	id_siswa					= '"+ id_siswa +"'";
 		break;
 	case 4:
 		q	= " delete	from t_siswa_info"
-			+ " where	nis = '"+ nis + "'";
+			+ " where	id_siswa = '"+ id_siswa + "'";
 		break;
 	default:
 		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");

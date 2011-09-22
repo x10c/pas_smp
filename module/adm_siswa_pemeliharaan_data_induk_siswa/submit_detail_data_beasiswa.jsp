@@ -20,7 +20,7 @@ try{
 	String 		kd_tahun_ajaran			= (String) session.getAttribute("kd.tahun_pelajaran");
 	
 	int	dml 							= Integer.parseInt(request.getParameter("dml_type"));
-	String nis							= request.getParameter("nis");
+	String id_siswa							= request.getParameter("id_siswa");
 	String kd_beasiswa					= request.getParameter("kd_beasiswa");
 	String kd_beasiswa_old				= request.getParameter("kd_beasiswa_old");
 	String tahun_masuk					= request.getParameter("tahun_masuk");
@@ -33,7 +33,7 @@ try{
 	switch (dml) {
 	case 2:
 		q	="  insert into t_siswa_beasiswa"
-			+"( nis"
+			+"( id_siswa"
 			+", kd_tahun_ajaran"
 			+", kd_beasiswa"
 			+", tahun_masuk"
@@ -41,7 +41,7 @@ try{
 			+", keterangan"
 			+", username)"
 			+"  values("
-			+"  '"+ nis + "'"
+			+"  '"+ id_siswa + "'"
 			+", '"+ kd_tahun_ajaran + "'"
 			+", '"+ kd_beasiswa + "'"
 			+",  "+ tahun_masuk
@@ -56,14 +56,14 @@ try{
 			+" ,		jumlah_beasiswa_per_bulan	=  "+ jumlah_beasiswa_per_bulan
 			+" ,		keterangan					= '"+ keterangan + "'"
 			+" ,		username					= '"+ username +"'"
-			+" where	nis					= '"+ nis + "'"
+			+" where	id_siswa					= '"+ id_siswa + "'"
 			+" and		kd_tahun_ajaran		= '"+ kd_tahun_ajaran + "'"
 			+" and		kd_beasiswa			=  "+ kd_beasiswa_old
 			+" and		tahun_masuk			=  "+ tahun_masuk_old;
 		break;
 	case 4:
 		q 	= " delete	from t_siswa_beasiswa"
-			+ " where	nis					= '"+ nis + "'"
+			+ " where	id_siswa					= '"+ id_siswa + "'"
 			+ " and		kd_tahun_ajaran		= '"+ kd_tahun_ajaran + "'"
 			+ " and		kd_beasiswa			=  "+ kd_beasiswa
 			+ " and		tahun_masuk			=  "+ tahun_masuk;

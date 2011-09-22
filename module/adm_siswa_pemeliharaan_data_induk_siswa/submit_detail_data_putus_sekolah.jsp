@@ -19,7 +19,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 				= Integer.parseInt(request.getParameter("dml_type"));
-	String nis				= request.getParameter("nis");
+	String id_siswa				= request.getParameter("id_siswa");
 	String tanggal_keluar	= request.getParameter("tanggal_keluar");
 	String alasan_keluar	= request.getParameter("alasan_keluar");
 	String username			= (String) session.getAttribute("user.id");
@@ -27,12 +27,12 @@ try{
 	switch (dml) {
 	case 2:
 		q	="  insert into t_siswa_putus"
-			+"( nis"
+			+"( id_siswa"
 			+", tanggal_keluar"
 			+", alasan_keluar"
 			+", username)"
 			+"  values ("
-			+"  '"+ nis +"'"
+			+"  '"+ id_siswa +"'"
 			+", cast('"+ tanggal_keluar +"' as date)"
 			+", '"+ alasan_keluar + "'"
 			+", '"+ username +"')";
@@ -42,11 +42,11 @@ try{
 			+" set		tanggal_keluar	= cast('"+ tanggal_keluar +"' as date)"
 			+" ,		alasan_keluar	= '"+ alasan_keluar + "'"
 			+" ,		username		= '"+ username +"'"
-			+" where	nis				= '"+ nis +"'";
+			+" where	id_siswa				= '"+ id_siswa +"'";
 		break;
 	case 4:
 		q	= " delete	from t_siswa_putus"
-			+ " where	nis 			= '"+ nis + "'";
+			+ " where	id_siswa 			= '"+ id_siswa + "'";
 		break;
 	default:
 		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");

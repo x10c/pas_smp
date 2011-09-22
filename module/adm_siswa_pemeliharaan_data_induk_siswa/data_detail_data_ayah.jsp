@@ -17,7 +17,7 @@ try {
 
 	Statement	db_stmt = db_con.createStatement();
 
-	String 		nis		= request.getParameter("nis");
+	String 		id_siswa		= request.getParameter("id_siswa");
 	
 	ResultSet	rs;
 	String		q;
@@ -25,8 +25,8 @@ try {
 
 	q=" select	*"
 	 +" from	t_siswa_ortu "
-	 +" where	kd_jenis_ortu	= '1'"
-	 +" and		nis				= '" + nis + "'";
+	 +" where	kd_jeid_siswa_ortu	= '1'"
+	 +" and		id_siswa				= '" + id_siswa + "'";
 
 	rs = db_stmt.executeQuery(q);
 
@@ -36,9 +36,9 @@ try {
 		return;
 	}
 
-	data	="{ nis	: '"+ rs.getString("nis") + "'"
-			+", kd_jenis_ortu : '"+ rs.getString("kd_jenis_ortu") + "'"
-			+", kd_jenis_kelamin : '"+ rs.getString("kd_jenis_kelamin") + "'"
+	data	="{ id_siswa	: '"+ rs.getString("id_siswa") + "'"
+			+", kd_jeid_siswa_ortu : '"+ rs.getString("kd_jeid_siswa_ortu") + "'"
+			+", kd_jeid_siswa_kelamin : '"+ rs.getString("kd_jeid_siswa_kelamin") + "'"
 			+", status_hub : '"+ rs.getString("status_hub") + "'"
 			+", nm_ortu : '"+ rs.getString("nm_ortu") + "'"
 			+", alamat : '"+ rs.getString("alamat") + "'"
@@ -61,7 +61,7 @@ try {
 			+", tahun_meninggal : "+ rs.getString("tahun_meninggal")
 			+", username : '"+ rs.getString("username") + "'"
 			+", tanggal_akses : '"+ rs.getString("tanggal_akses") + "'"
-			+", no_induk : '"+ rs.getString("no_induk") + "'";
+			+", nis : '"+ rs.getString("nis") + "'";
 
 	data += "}";
 

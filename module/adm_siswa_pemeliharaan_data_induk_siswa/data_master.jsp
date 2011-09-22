@@ -19,17 +19,16 @@ try{
 	
 	String 		kd_tahun_ajaran		= (String) session.getAttribute("kd.tahun_pelajaran");
 
-	String q=" select	a.nis"
-			+" ,		a.no_induk"
-			+" ,		a.nisn"
+	String q=" select	a.id_siswa"
+			+" ,		a.nis"
 			+" ,		a.nm_siswa"
 			+" ,		a.alamat"
 			+" from		t_siswa			as a"
-			+" ,		((select nis, kd_tahun_ajaran from t_siswa_tingkat where kd_tahun_ajaran = '" + kd_tahun_ajaran + "')"
-			+" 	union 	 (select nis, kd_tahun_ajaran from t_siswa_tingkat_thn where kd_tahun_ajaran = '" + kd_tahun_ajaran + "')"
-			+" 	union 	 (select nis, kd_tahun_ajaran from t_siswa_tingkat_thn_baru where kd_tahun_ajaran = '" + kd_tahun_ajaran + "')) as b"
-			+" where	a.nis	= b.nis"
-			+" order by	a.no_induk";
+			+" ,		((select id_siswa, kd_tahun_ajaran from t_siswa_tingkat where kd_tahun_ajaran = '" + kd_tahun_ajaran + "')"
+			+" 	union 	 (select id_siswa, kd_tahun_ajaran from t_siswa_tingkat_thn where kd_tahun_ajaran = '" + kd_tahun_ajaran + "')"
+			+" 	union 	 (select id_siswa, kd_tahun_ajaran from t_siswa_tingkat_thn_baru where kd_tahun_ajaran = '" + kd_tahun_ajaran + "')) as b"
+			+" where	a.id_siswa	= b.id_siswa"
+			+" order by	a.nis";
 	
 	ResultSet	rs		= db_stmt.executeQuery(q);
 	int			i		= 0;
@@ -41,9 +40,8 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="['"+ rs.getString("nis") + "'"
-				+ ",'"+ rs.getString("no_induk") + "'"
-				+ ",'"+ rs.getString("nisn") + "'"
+		data 	+="['"+ rs.getString("id_siswa") + "'"
+				+ ",'"+ rs.getString("nis") + "'"
 				+ ",\""+ rs.getString("nm_siswa") +"\""
 				+ ",\""+ rs.getString("alamat") +"\""
 				+ "]";

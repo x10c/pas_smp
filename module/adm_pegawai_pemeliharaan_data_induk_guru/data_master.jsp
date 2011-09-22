@@ -20,7 +20,7 @@ try{
 	String 		kd_tahun_ajaran		= (String) session.getAttribute("kd.tahun_pelajaran");
 
 	String q=" select	a.id_pegawai"
-			+" ,		a.id_pegawai_baru"
+			+" ,		a.nip"
 			+" ,		a.nm_pegawai"
 			+" ,		a.kd_jenis_ketenagaan"
 			+" ,		a.alamat"
@@ -43,7 +43,7 @@ try{
 			i++;
 		}
 		data 	+="["+ rs.getString("id_pegawai")
-				+ ",'"+ rs.getString("id_pegawai_baru") + "'"
+				+ ",'"+ rs.getString("nip") + "'"
 				+ ",'"+ rs.getString("nm_pegawai") + "'"
 				+ ",'"+ rs.getString("kd_jenis_ketenagaan") + "'"
 				+ ",'"+ rs.getString("alamat") + "']";

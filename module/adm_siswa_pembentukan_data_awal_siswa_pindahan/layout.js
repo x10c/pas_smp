@@ -9,7 +9,7 @@
 var m_adm_siswa_pembentukan_data_awal_siswa_pindahan;
 var m_adm_siswa_pembentukan_data_awal_siswa_pindahan_list;
 var m_adm_siswa_pembentukan_data_awal_siswa_pindahan_detail;
-var m_adm_siswa_pembentukan_data_awal_siswa_pindahan_nis = '';
+var m_adm_siswa_pembentukan_data_awal_siswa_pindahan_id_siswa = '';
 var m_adm_siswa_pembentukan_data_awal_siswa_pindahan_d = _g_root +'/module/adm_siswa_pembentukan_data_awal_siswa_pindahan/';
 var m_adm_siswa_pembentukan_data_awal_siswa_pindahan_ha_level = 0;
 
@@ -54,13 +54,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 		,	idIndex		: 0
 	});
 
-	this.store_kesejahteraan_keluarga = new Ext.data.ArrayStore({
-			fields		: ['id','name']
-		,	url			: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_d +'data_ref_kesejahteraan_keluarga.jsp'
-		,	idIndex		: 0
-		,	autoLoad	: false
-	});
-
 	this.store_gol_darah = new Ext.data.ArrayStore({
 			fields		: ['id','name']
 		,	url			: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_d +'data_ref_gol_darah.jsp'
@@ -82,7 +75,7 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 		,	autoLoad	: false
 	});
 
-	this.form_no_induk = new Ext.form.NumberField({
+	this.form_nis = new Ext.form.NumberField({
 			fieldLabel		: 'Nomor Induk'
 		,	allowBlank		: false
 		,	allowDecimals	: false
@@ -97,17 +90,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 				}
 			,	scope	: this
 			}
-	});
-
-	this.form_nisn = new Ext.form.NumberField({
-			fieldLabel		: 'NISN'
-		,	allowBlank		: true
-		,	allowDecimals	: false
-		,	allowNegative	: false
-		,	maxLength		: 10
-		,	maxLengthText	: 'Maksimal panjang kolom adalah 10'
-		,	width			: 130
-		,	msgTarget		: 'side'
 	});
 
 	this.form_nm_siswa = new Ext.form.TextField({
@@ -142,7 +124,7 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 	});
 
 	this.form_jenis_kelamin = new Ext.form.ComboBox({
-			fieldLabel		: 'Jenis Kelamin'
+			fieldLabel		: 'Jeid_siswa Kelamin'
 		,	store			: this.store_jenis_kelamin
 		,	valueField		: 'id'
 		,	displayField	: 'name'
@@ -159,51 +141,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 	this.form_agama = new Ext.form.ComboBox({
 			fieldLabel		: 'Agama'
 		,	store			: this.store_agama
-		,	valueField		: 'id'
-		,	displayField	: 'name'
-		,	mode			: 'local'
-		,	allowBlank		: false
-		,	forceSelection	: true
-		,	typeAhead		: true
-		,	triggerAction	: 'all'
-		,	selectOnFocus	: true
-		,	width			: 150
-		,	msgTarget		: 'side'
-	});
-
-	this.form_hubungi = new Ext.form.ComboBox({
-			fieldLabel		: 'Pihak yang bisa dihubungi'
-		,	store			: this.store_hubungi
-		,	valueField		: 'id'
-		,	displayField	: 'name'
-		,	mode			: 'local'
-		,	allowBlank		: false
-		,	forceSelection	: true
-		,	typeAhead		: true
-		,	triggerAction	: 'all'
-		,	selectOnFocus	: true
-		,	width			: 150
-		,	msgTarget		: 'side'
-	});
-
-	this.form_tanggung_biaya = new Ext.form.ComboBox({
-			fieldLabel		: 'Penanggung Biaya'
-		,	store			: this.store_tanggung_biaya
-		,	valueField		: 'id'
-		,	displayField	: 'name'
-		,	mode			: 'local'
-		,	allowBlank		: false
-		,	forceSelection	: true
-		,	typeAhead		: true
-		,	triggerAction	: 'all'
-		,	selectOnFocus	: true
-		,	width			: 150
-		,	msgTarget		: 'side'
-	});
-
-	this.form_kesejahteraan_keluarga = new Ext.form.ComboBox({
-			fieldLabel		: 'Kesejahteraan Keluarga'
-		,	store			: this.store_kesejahteraan_keluarga
 		,	valueField		: 'id'
 		,	displayField	: 'name'
 		,	mode			: 'local'
@@ -293,12 +230,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 		,	msgTarget		: 'side'
 	});
 
-	this.form_kelainan_jasmani = new Ext.form.TextArea({
-			fieldLabel		: 'Kelainan Jasmani'
-		,	allowBlank		: true
-		,	width			: 400
-		,	msgTarget		: 'side'
-	});
 
 	this.form_asal_smp = new Ext.form.ComboBox({
 			fieldLabel		: 'Dari Sekolah'
@@ -368,9 +299,8 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 		,	style			: 'margin: 8px;'
 		,	bodyCssClass	: 'stop-panel-form'
 		,	items			: [
-					this.form_no_induk
-				,	this.foto					
-				,	this.form_nisn
+					this.form_nis
+				,	this.foto			
 				,	{
 						xtype		: 'fieldset'
 					,	title		: 'Keterangan Tentang Diri Siswa'
@@ -393,9 +323,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 							}
 						,	this.form_jenis_kelamin
 						,	this.form_agama
-						,	this.form_hubungi
-						,	this.form_tanggung_biaya
-						,	this.form_kesejahteraan_keluarga
 						]
 					}
 				,	{
@@ -441,7 +368,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 					,	collapsible	: true
 					,	items		: [
 							this.form_gol_darah
-						,	this.form_kelainan_jasmani
 						]
 					}
 				,	{
@@ -513,17 +439,13 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 
 	this.do_reset = function()
 	{
-		this.form_no_induk.setValue('');
-		this.form_nisn.setValue('');
+		this.form_nis.setValue('');
 		this.form_nm_siswa.setValue('');
 		this.form_nm_panggilan.setValue('');
 		this.form_kota_lahir.setValue('');
 		this.form_tanggal_lahir.setValue('');
 		this.form_jenis_kelamin.setValue('');
 		this.form_agama.setValue('');
-		this.form_hubungi.setValue('');
-		this.form_tanggung_biaya.setValue('');
-		this.form_kesejahteraan_keluarga.setValue('');
 		this.form_alamat.setValue('');
 		this.form_rt.setValue('');
 		this.form_rw.setValue('');
@@ -531,7 +453,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 		this.form_no_telp.setValue('');
 		this.form_no_hp.setValue('');
 		this.form_gol_darah.setValue('');
-		this.form_kelainan_jasmani.setValue('');
 		this.form_asal_smp.setValue('');
 		this.form_pindah_alasan.setValue('');
 		this.form_tingkat_kelas.setValue('');
@@ -542,17 +463,13 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 
 	this.edit_fill_form = function(data)
 	{
-		this.form_no_induk.setValue(data.no_induk);
-		this.form_nisn.setValue(data.nisn);
+		this.form_nis.setValue(data.nis);
 		this.form_nm_siswa.setValue(data.nm_siswa);
 		this.form_nm_panggilan.setValue(data.nm_panggilan);
 		this.form_kota_lahir.setValue(data.kota_lahir);
 		this.form_tanggal_lahir.setValue(data.tanggal_lahir);
 		this.form_jenis_kelamin.setValue(data.kd_jenis_kelamin);
 		this.form_agama.setValue(data.kd_agama);
-		this.form_hubungi.setValue(data.hubungi);
-		this.form_tanggung_biaya.setValue(data.tanggung_biaya);
-		this.form_kesejahteraan_keluarga.setValue(data.kd_kesejahteraan_keluarga);
 		this.form_alamat.setValue(data.alamat);
 		this.form_rt.setValue(data.rt);
 		this.form_rw.setValue(data.rw);
@@ -560,13 +477,12 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 		this.form_no_telp.setValue(data.no_telp);
 		this.form_no_hp.setValue(data.no_hp);
 		this.form_gol_darah.setValue(data.kd_gol_darah);
-		this.form_kelainan_jasmani.setValue(data.kelainan_jasmani);
 		this.form_asal_smp.setValue(data.asal_smp);
 		this.form_pindah_alasan.setValue(data.pindah_alasan);
 		this.form_tingkat_kelas.setValue(data.kd_tingkat_kelas);
 		this.form_diterima_tanggal.setValue(data.diterima_tanggal);
 
-		this.foto.el.dom.src = _g_root + '/images/foto_siswa/' + left(this.form_no_induk.getValue(), 2) + '/' + this.form_no_induk.getValue() + '.jpg'
+		this.foto.el.dom.src = _g_root + '/images/foto_siswa/' + left(this.form_nis.getValue(), 2) + '/' + this.form_nis.getValue() + '.jpg'
 	}
 
 	this.do_add = function()
@@ -582,7 +498,7 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 		Ext.Ajax.request({
 			url		: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_d +'data.jsp'
 		,	params	: {
-				nis	: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_nis
+				id_siswa	: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_id_siswa
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
 		,	failure	: function(response) {
@@ -609,7 +525,7 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 
 	this.is_valid = function()
 	{
-		if (!this.form_no_induk.isValid()) {
+		if (!this.form_nis.isValid()) {
 			return false;
 		}
 
@@ -637,18 +553,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 			return false;
 		}
 
-		if (!this.form_hubungi.isValid()) {
-			return false;
-		}
-		
-		if (!this.form_tanggung_biaya.isValid()) {
-			return false;
-		}
-		
-		if (!this.form_kesejahteraan_keluarga.isValid()) {
-			return false;
-		}
-		
 		if (!this.form_alamat.isValid()) {
 			return false;
 		}
@@ -684,18 +588,14 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_d +'submit.jsp'
 			,	params  : {
-						nis							: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_nis
-					,	no_induk					: this.form_no_induk.getValue()
-					,	nisn						: this.form_nisn.getValue()
+						id_siswa							: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_id_siswa
+					,	nis					: this.form_nis.getValue()
 					,	nm_siswa					: this.form_nm_siswa.getValue()
 					,	nm_panggilan				: this.form_nm_panggilan.getValue()
 					,	kota_lahir					: this.form_kota_lahir.getValue()
 					,	tanggal_lahir				: this.form_tanggal_lahir.getValue()
 					,	kd_jenis_kelamin			: this.form_jenis_kelamin.getValue()
 					,	kd_agama					: this.form_agama.getValue()
-					,	hubungi						: this.form_hubungi.getValue()
-					,	tanggung_biaya				: this.form_tanggung_biaya.getValue()
-					,	kd_kesejahteraan_keluarga	: this.form_kesejahteraan_keluarga.getValue()
 					,	alamat						: this.form_alamat.getValue()
 					,	rt							: this.form_rt.getValue()
 					,	rw							: this.form_rw.getValue()
@@ -703,12 +603,10 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 					,	no_telp						: this.form_no_telp.getValue()
 					,	no_hp						: this.form_no_hp.getValue()
 					,	kd_gol_darah				: this.form_gol_darah.getValue()
-					,	kelainan_jasmani			: this.form_kelainan_jasmani.getValue()
 					,	asal_smp					: this.form_asal_smp.getValue()
 					,	pindah_alasan				: this.form_pindah_alasan.getValue()
 					,	kd_tingkat_kelas			: this.form_tingkat_kelas.getValue()
 					,	diterima_tanggal			: this.form_diterima_tanggal.getValue()
-					,	dir_foto					: '1'
 					,	dml_type					: this.dml_type
 				}
 			,	waitMsg	: 'Mohon Tunggu ...'
@@ -752,9 +650,8 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanList()
 	this.pageSize	= 50;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nis' }
-		,	{ name	: 'no_induk' }
-		,	{ name	: 'nisn' }
+			{ name	: 'id_siswa' }
+		,	{ name	: 'nis' }
 		,	{ name	: 'nm_siswa' }
 		,	{ name	: 'asal_smp' }
 		,	{ name	: 'alamat' }
@@ -796,13 +693,7 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanList()
 		columns	: [
 			new Ext.grid.RowNumberer()
 		,	{ header		: 'Nomor Induk'
-			, dataIndex		: 'no_induk'
-			, align			: 'center'
-			, width			: 100
-			, filterable	: true
-			}
-		,	{ header		: 'NISN'
-			, dataIndex		: 'nisn'
+			, dataIndex		: 'nis'
 			, align			: 'center'
 			, width			: 100
 			, filterable	: true
@@ -843,9 +734,9 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanList()
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
 					if (data.length){
-						m_adm_siswa_pembentukan_data_awal_siswa_pindahan_nis = data[0].data['nis'];						
+						m_adm_siswa_pembentukan_data_awal_siswa_pindahan_id_siswa = data[0].data['id_siswa'];						
 					} else {
-						m_adm_siswa_pembentukan_data_awal_siswa_pindahan_nis = '';
+						m_adm_siswa_pembentukan_data_awal_siswa_pindahan_id_siswa = '';
 					}
 				}
 			}
@@ -921,7 +812,7 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanList()
 		}
 
 		m_adm_siswa_pembentukan_data_awal_siswa_pindahan_detail.do_refresh();
-		m_adm_siswa_pembentukan_data_awal_siswa_pindahan_detail.do_edit(data.get('nis'));
+		m_adm_siswa_pembentukan_data_awal_siswa_pindahan_detail.do_edit(data.get('id_siswa'));
 		m_adm_siswa_pembentukan_data_awal_siswa_pindahan.panel.layout.setActiveItem(1);
 	}
 

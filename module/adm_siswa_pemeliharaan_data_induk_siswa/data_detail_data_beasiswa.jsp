@@ -18,9 +18,9 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 	
 	String 		kd_tahun_ajaran	= (String) session.getAttribute("kd.tahun_pelajaran");
-	String 		nis				= request.getParameter("nis");
+	String 		id_siswa				= request.getParameter("id_siswa");
 
-	String q=" select	nis"
+	String q=" select	id_siswa"
 			+" ,		kd_beasiswa"
 			+" ,		kd_beasiswa as kd_beasiswa_old"
 			+" ,		tahun_masuk"
@@ -28,7 +28,7 @@ try{
 			+" ,		jumlah_beasiswa_per_bulan"
 			+" ,		keterangan"
 			+" from		t_siswa_beasiswa"
-			+" where	nis				= '" + nis + "'"
+			+" where	id_siswa				= '" + id_siswa + "'"
 			+" and		kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
 			+" order by	tanggal_akses";
 	
@@ -42,7 +42,7 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="['"+ rs.getString("nis") + "'"
+		data 	+="['"+ rs.getString("id_siswa") + "'"
 				+ ",'"+ rs.getString("kd_beasiswa") + "'"
 				+ ",'"+ rs.getString("kd_beasiswa_old") + "'"
 				+ ","+ rs.getString("tahun_masuk")

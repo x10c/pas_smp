@@ -18,7 +18,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 					= Integer.parseInt(request.getParameter("dml_type"));
-	String nis					= request.getParameter("nis");
+	String id_siswa					= request.getParameter("id_siswa");
 	String kd_matpel_before		= request.getParameter("kd_matpel_before");
 	String kd_matpel_before_old	= request.getParameter("kd_matpel_before_old");
 	String nilai				= request.getParameter("nilai");
@@ -28,12 +28,12 @@ try{
 	switch (dml) {
 	case 2:
 		q	="  insert into t_siswa_sttb_before"
-			+"( nis"
+			+"( id_siswa"
 			+", kd_matpel_before"
 			+", nilai"
 			+", username)"
 			+"  values("
-			+"  '"+ nis + "'"
+			+"  '"+ id_siswa + "'"
 			+", '"+ kd_matpel_before + "'"
 			+",  "+ nilai
 			+", '"+ username +"')";
@@ -43,12 +43,12 @@ try{
 			+" set		kd_matpel_before	= '"+ kd_matpel_before + "'"
 			+" ,		nilai				=  "+ nilai
 			+" ,		username			= '"+ username +"'"
-			+" where	nis					= '"+ nis + "'"
+			+" where	id_siswa					= '"+ id_siswa + "'"
 			+" and		kd_matpel_before	= '"+ kd_matpel_before_old + "'";
 		break;
 	case 4:
 		q 	= " delete	from t_siswa_sttb_before"
-			+" where	nis					= '"+ nis + "'"
+			+" where	id_siswa					= '"+ id_siswa + "'"
 			+" and		kd_matpel_before	= '"+ kd_matpel_before + "'";
 		break;
 	default:

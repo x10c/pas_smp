@@ -19,7 +19,7 @@ var m_adm_siswa_pemeliharaan_data_induk_siswa_detail_data_pindah_sekolah;
 var m_adm_siswa_pemeliharaan_data_induk_siswa_detail_data_putus_sekolah;
 var m_adm_siswa_pemeliharaan_data_induk_siswa_detail_riwayat_sakit;
 var m_adm_siswa_pemeliharaan_data_induk_siswa_detail_beasiswa;
-var m_adm_siswa_pemeliharaan_data_induk_siswa_nis = '';
+var m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa = '';
 var m_adm_siswa_pemeliharaan_data_induk_siswa_d = _g_root +'/module/adm_siswa_pemeliharaan_data_induk_siswa/';
 var m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level = 0;
 
@@ -36,7 +36,7 @@ function m_adm_siswa_pemeliharaan_data_induk_siswa_master_on_select_load_detail(
 	||  typeof m_adm_siswa_pemeliharaan_data_induk_siswa_detail_data_putus_sekolah == 'undefined'
 	||  typeof m_adm_siswa_pemeliharaan_data_induk_siswa_detail_riwayat_sakit == 'undefined'
 	||  typeof m_adm_siswa_pemeliharaan_data_induk_siswa_detail_beasiswa == 'undefined'
-	||	m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+	||	m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 		return;
 	}
 
@@ -405,7 +405,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailInfoSiswa(title)
 	
 	this.do_save = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -417,7 +417,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailInfoSiswa(title)
 
 		Ext.Ajax.request({
 				params  : {
-						nis					: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa					: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					,	kewarganegaraan		: this.form_kewarganegaraan.getValue()
 					,	anak_ke				: this.form_anak_ke.getValue()
 					,	jumlah_kandung		: this.form_jumlah_kandung.getValue()
@@ -462,7 +462,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailInfoSiswa(title)
 		Ext.Ajax.request({
 			url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'data_detail_info_siswa.jsp'
 		,	params	: {
-				nis	: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+				id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 			}
 		,	waitMsg	: 'Pemuatan ...'
 		,	failure	: function(response) {
@@ -1012,7 +1012,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataAyah(title)
 	
 	this.do_save = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -1024,7 +1024,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataAyah(title)
 
 		Ext.Ajax.request({
 				params  : {
-						nis						: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa						: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					,	nm_ortu					: this.form_nm_ortu.getValue()
 					,	kota_lahir				: this.form_kota_lahir.getValue()
 					,	tanggal_lahir			: this.form_tanggal_lahir.getValue()
@@ -1072,7 +1072,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataAyah(title)
 		Ext.Ajax.request({
 			url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'data_detail_data_ayah.jsp'
 		,	params	: {
-				nis	: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+				id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 			}
 		,	waitMsg	: 'Pemuatan ...'
 		,	failure	: function(response) {
@@ -1624,7 +1624,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataIbu(title)
 	
 	this.do_save = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -1636,7 +1636,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataIbu(title)
 
 		Ext.Ajax.request({
 				params  : {
-						nis						: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa						: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					,	nm_ortu					: this.form_nm_ortu.getValue()
 					,	kota_lahir				: this.form_kota_lahir.getValue()
 					,	tanggal_lahir			: this.form_tanggal_lahir.getValue()
@@ -1684,7 +1684,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataIbu(title)
 		Ext.Ajax.request({
 			url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'data_detail_data_ibu.jsp'
 		,	params	: {
-				nis	: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+				id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 			}
 		,	waitMsg	: 'Pemuatan ...'
 		,	failure	: function(response) {
@@ -2269,7 +2269,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataWali(title)
 	
 	this.do_save = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -2281,7 +2281,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataWali(title)
 
 		Ext.Ajax.request({
 				params  : {
-						nis						: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa						: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					,	nm_ortu					: this.form_nm_ortu.getValue()
 					,	kota_lahir				: this.form_kota_lahir.getValue()
 					,	tanggal_lahir			: this.form_tanggal_lahir.getValue()
@@ -2330,7 +2330,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataWali(title)
 		Ext.Ajax.request({
 			url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'data_detail_data_wali.jsp'
 		,	params	: {
-				nis	: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+				id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 			}
 		,	waitMsg	: 'Pemuatan ...'
 		,	failure	: function(response) {
@@ -2382,7 +2382,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataSTTB(title)
 
 	/* record */
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nis' }
+			{ name	: 'id_siswa' }
 		,	{ name	: 'kd_matpel_before' }
 		,	{ name	: 'kd_matpel_before_old' }
 		,	{ name	: 'nilai' }
@@ -2531,13 +2531,13 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataSTTB(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nis					: ''
+				id_siswa					: ''
 			,	kd_matpel_before	: ''
 			,	nilai				: ''
 			});
@@ -2552,7 +2552,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataSTTB(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -2579,7 +2579,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataSTTB(title)
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_sttb.jsp'
 			,	params  : {
-						nis						: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa						: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					,	kd_matpel_before		: record.data['kd_matpel_before']
 					,	kd_matpel_before_old	: record.data['kd_matpel_before_old']
 					,	nilai					: record.data['nilai']
@@ -2603,7 +2603,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataSTTB(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -2621,7 +2621,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataSTTB(title)
 			callback	: function(){
 				this.store.load({
 					params	: {
-						nis	: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					}
 				});
 			}
@@ -2661,7 +2661,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 
 	/* record */
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nis' }
+			{ name	: 'id_siswa' }
 		,	{ name	: 'id_hobi' }
 		,	{ name	: 'id_hobi_old' }
 		,	{ name	: 'keterangan' }
@@ -2807,13 +2807,13 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nis			: ''
+				id_siswa			: ''
 			,	id_hobi		: ''
 			,	keterangan	: ''
 			});
@@ -2828,7 +2828,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -2855,7 +2855,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_hobi.jsp'
 			,	params  : {
-						nis			: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa			: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					,	id_hobi		: record.data['id_hobi']
 					,	id_hobi_old	: record.data['id_hobi_old']
 					,	keterangan	: record.data['keterangan']
@@ -2879,7 +2879,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -2897,7 +2897,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 			callback	: function(){
 				this.store.load({
 					params	: {
-						nis	: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					}
 				});
 			}
@@ -2937,7 +2937,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 
 	/* record */
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nis' }
+			{ name	: 'id_siswa' }
 		,	{ name	: 'tanggal' }
 		,	{ name	: 'tanggal_old' }
 		,	{ name	: 'tanggal_masuk' }
@@ -3083,13 +3083,13 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nis				: ''
+				id_siswa				: ''
 			,	tanggal			: ''
 			,	tanggal_masuk	: ''
 			,	keterangan		: ''
@@ -3105,7 +3105,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -3132,7 +3132,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_cuti.jsp'
 			,	params  : {
-						nis				: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa				: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					,	tanggal			: record.data['tanggal']
 					,	tanggal_old		: record.data['tanggal_old']
 					,	tanggal_masuk	: record.data['tanggal_masuk']
@@ -3157,7 +3157,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -3173,7 +3173,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 	{
 		this.store.load({
 			params	: {
-				nis	: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+				id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 			}
 		});
 	}
@@ -3326,7 +3326,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataPindahSekolah(title)
 	
 	this.do_save = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -3338,7 +3338,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataPindahSekolah(title)
 
 		Ext.Ajax.request({
 				params  : {
-						nis				: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa				: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					,	asal_smp		: this.form_asal_smp.getValue()
 					,	pindah_alasan	: this.form_pindah_alasan.getValue()
 					,	dml_type		: this.dml_type
@@ -3370,7 +3370,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataPindahSekolah(title)
 		Ext.Ajax.request({
 			url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'data_detail_data_pindah_sekolah.jsp'
 		,	params	: {
-				nis	: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+				id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 			}
 		,	waitMsg	: 'Pemuatan ...'
 		,	failure	: function(response) {
@@ -3524,7 +3524,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataPutusSekolah(title)
 	
 	this.do_save = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -3536,7 +3536,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataPutusSekolah(title)
 
 		Ext.Ajax.request({
 				params  : {
-						nis				: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa				: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					,	tanggal_keluar	: this.form_tanggal_keluar.getValue()
 					,	alasan_keluar	: this.form_alasan_keluar.getValue()
 					,	dml_type		: this.dml_type
@@ -3568,7 +3568,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataPutusSekolah(title)
 		Ext.Ajax.request({
 			url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'data_detail_data_putus_sekolah.jsp'
 		,	params	: {
-				nis	: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+				id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 			}
 		,	waitMsg	: 'Pemuatan ...'
 		,	failure	: function(response) {
@@ -3616,7 +3616,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 
 	/* record */
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nis' }
+			{ name	: 'id_siswa' }
 		,	{ name	: 'no_urut' }
 		,	{ name	: 'no_urut_old' }
 		,	{ name	: 'id_penyakit' }
@@ -3819,13 +3819,13 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nis			: ''
+				id_siswa			: ''
 			,	no_urut		: ''
 			,	id_penyakit	: ''
 			,	tahun_sakit	: ''
@@ -3843,7 +3843,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -3870,7 +3870,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_riwayat_sakit.jsp'
 			,	params  : {
-						nis			: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa			: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					,	no_urut		: record.data['no_urut']
 					,	no_urut_old	: record.data['no_urut_old']
 					,	id_penyakit	: record.data['id_penyakit']
@@ -3897,7 +3897,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -3915,7 +3915,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 			callback	: function(){
 				this.store.load({
 					params	: {
-						nis	: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					}
 				});
 			}
@@ -3955,7 +3955,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 
 	/* record */
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nis' }
+			{ name	: 'id_siswa' }
 		,	{ name	: 'kd_beasiswa' }
 		,	{ name	: 'kd_beasiswa_old' }
 		,	{ name	: 'tahun_masuk' }
@@ -4139,13 +4139,13 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				nis							: ''
+				id_siswa							: ''
 			,	kd_beasiswa					: ''
 			,	tahun_masuk					: ''
 			,	jumlah_beasiswa_per_bulan	: ''
@@ -4162,7 +4162,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -4189,7 +4189,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_beasiswa.jsp'
 			,	params  : {
-						nis							: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa							: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					,	kd_beasiswa					: record.data['kd_beasiswa']
 					,	kd_beasiswa_old				: record.data['kd_beasiswa_old']
 					,	tahun_masuk					: record.data['tahun_masuk']
@@ -4216,7 +4216,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_nis == '') {
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
 			return;
 		}
@@ -4234,7 +4234,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 			callback	: function(){
 				this.store.load({
 					params	: {
-						nis	: m_adm_siswa_pemeliharaan_data_induk_siswa_nis
+						id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
 					}
 				});
 			}
@@ -4273,9 +4273,8 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaMaster(title)
 	this.pageSize	= 30;
 
 	this.record = new Ext.data.Record.create([
-			{ name	: 'nis' }
-		,	{ name	: 'no_induk' }
-		,	{ name	: 'nisn' }
+			{ name	: 'id_siswa' }
+		,	{ name	: 'nis' }
 		,	{ name	: 'nm_siswa' }
 		,	{ name	: 'alamat' }
 	]);
@@ -4297,14 +4296,8 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaMaster(title)
 	this.cm = new Ext.grid.ColumnModel({
 		columns	: [
 			new Ext.grid.RowNumberer()
-		,	{ header		: 'Nomor Induk'
-			, dataIndex		: 'no_induk'
-			, align			: 'center'
-			, width			: 100
-			, filterable	: true
-			}
-		,	{ header		: 'NISN'
-			, dataIndex		: 'nisn'
+		,	{ header		: 'NIS'
+			, dataIndex		: 'nis'
 			, align			: 'center'
 			, width			: 100
 			, filterable	: true
@@ -4333,9 +4326,9 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaMaster(title)
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
 					if (data.length){
-						m_adm_siswa_pemeliharaan_data_induk_siswa_nis = data[0].data['nis'];						
+						m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa = data[0].data['id_siswa'];						
 					} else {
-						m_adm_siswa_pemeliharaan_data_induk_siswa_nis = '';
+						m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa = '';
 					}
 					
 					m_adm_siswa_pemeliharaan_data_induk_siswa_master_on_select_load_detail();

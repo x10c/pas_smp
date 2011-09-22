@@ -17,9 +17,9 @@ try{
 
 	Statement	db_stmt = db_con.createStatement();
 	
-	String 		nis		= request.getParameter("nis");
+	String 		id_siswa		= request.getParameter("id_siswa");
 
-	String q=" select	nis"
+	String q=" select	id_siswa"
 			+" ,		no_urut"
 			+" ,		no_urut as no_urut_old"
 			+" ,		id_penyakit"
@@ -27,7 +27,7 @@ try{
 			+" ,		lama_sakit"
 			+" ,		keterangan"
 			+" from		t_siswa_rwyt_sakit"
-			+" where	nis	= '" + nis + "'"
+			+" where	id_siswa	= '" + id_siswa + "'"
 			+" order by	no_urut";
 	
 	ResultSet	rs		= db_stmt.executeQuery(q);
@@ -40,7 +40,7 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="['"+ rs.getString("nis") + "'"
+		data 	+="['"+ rs.getString("id_siswa") + "'"
 				+ ","+ rs.getString("no_urut")
 				+ ","+ rs.getString("no_urut_old")
 				+ ","+ rs.getString("id_penyakit")

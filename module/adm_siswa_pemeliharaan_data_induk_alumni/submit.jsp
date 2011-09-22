@@ -18,7 +18,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 				= Integer.parseInt(request.getParameter("dml_type"));
-	String nis				= request.getParameter("nis");
+	String id_siswa				= request.getParameter("id_siswa");
 	String lanjut_di		= request.getParameter("lanjut_di");
 	String tanggal_bekerja	= request.getParameter("tanggal_bekerja");
 	String nm_perusahaan	= request.getParameter("nm_perusahaan");
@@ -38,7 +38,7 @@ try{
 			+" ,		tanggal_bekerja	=  "+ tanggal_bekerja
 			+" ,		nm_perusahaan	= '"+ nm_perusahaan +"'"
 			+" ,		username		= '"+ username +"'"
-			+" where	nis				= '"+ nis + "'";
+			+" where	id_siswa				= '"+ id_siswa + "'";
 		break;
 	default:
 		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");

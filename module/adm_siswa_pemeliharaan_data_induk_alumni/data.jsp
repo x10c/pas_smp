@@ -17,8 +17,8 @@ try{
 
 	Statement	db_stmt = db_con.createStatement();
 
-	String q=" select	a.nis"
-			+" ,		b.no_induk"
+	String q=" select	a.id_siswa"
+			+" ,		b.id_siswa"
 			+" ,		b.nm_siswa"
 			+" ,		a.no_stl_lulus"
 			+" ,		a.tahun_lulus"
@@ -27,7 +27,7 @@ try{
 			+" ,		a.nm_perusahaan"
 			+" from		t_siswa_alumni	as a"
 			+" ,		t_siswa			as b"
-			+" where	a.nis	= b.nis"
+			+" where	a.id_siswa	= b.id_siswa"
 			+" order by	a.tahun_lulus desc, b.nm_siswa";
 	
 	ResultSet	rs	= db_stmt.executeQuery(q);
@@ -40,8 +40,8 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="['"+ rs.getString("nis") + "'"
-				+ ",'"+ rs.getString("no_induk") +"'"
+		data 	+="['"+ rs.getString("id_siswa") + "'"
+				+ ",'"+ rs.getString("id_siswa") +"'"
 				+ ",'"+ rs.getString("nm_siswa") +"'"
 				+ ",'"+ rs.getString("no_stl_lulus") +"'"
 				+ ","+ rs.getString("tahun_lulus")
