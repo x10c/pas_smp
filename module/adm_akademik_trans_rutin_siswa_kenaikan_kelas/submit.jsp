@@ -82,7 +82,8 @@ try{
 			+" where	kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'"
 			+" and		kd_tingkat_kelas	= '" + kd_tingkat_kelas + "'"
 			+" and		kd_rombel			= '" + kd_rombel + "'";
-			
+		
+		break;
 	default:
 		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");
 		return;
