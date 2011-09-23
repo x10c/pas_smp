@@ -18,7 +18,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 	
 	String 		kd_tahun_ajaran	= (String) session.getAttribute("kd.tahun_pelajaran");
-	String 		id_pegawai				= request.getParameter("id_pegawai");
+	String 		id_pegawai		= request.getParameter("id_pegawai");
 
 	ResultSet	rs;
 	String		q;

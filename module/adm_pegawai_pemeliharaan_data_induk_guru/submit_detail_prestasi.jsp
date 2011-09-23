@@ -7,6 +7,9 @@
 --%>
 
 <%@ page import = "java.sql.*" %>
+<%@ page import	= "java.util.Properties" %>
+<%@ page import	= "java.io.FileInputStream" %>
+<%@ page import	= "java.io.File" %>
 <%
 try{
 	Connection	db_con	= (Connection) session.getAttribute("db.con");
@@ -18,7 +21,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 						= Integer.parseInt(request.getParameter("dml_type"));
-	String id_pegawai						= request.getParameter("id_pegawai");
+	String id_pegawai				= request.getParameter("id_pegawai");
 	String id_jenis_lomba			= request.getParameter("id_jenis_lomba");
 	String id_jenis_lomba_old		= request.getParameter("id_jenis_lomba_old");
 	String kd_tingkat_prestasi		= request.getParameter("kd_tingkat_prestasi");
@@ -64,7 +67,7 @@ try{
 		break;
 	case 4:
 		q 	= " delete	from t_pegawai_prestasi"
-			+ " where	id_pegawai					= "+ id_pegawai
+			+ " where	id_pegawai			= "+ id_pegawai
 			+ " and		id_jenis_lomba		=  "+ id_jenis_lomba
 			+ " and		kd_tingkat_prestasi	= '"+ kd_tingkat_prestasi + "'"
 			+ " and		tanggal_prestasi	= cast('"+ tanggal_prestasi +"' as date)";
@@ -78,6 +81,16 @@ try{
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
 } catch (Exception e){
-	out.print("{success:false,info:'"+ e.toString().replace("'", "\\'") +"'}");
+	Properties	props	= new Properties();
+	
+	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));
+
+	String		err_msg	= props.getProperty("" + e.getErrorCode() + "");
+	
+	if (err_msg == null){
+		out.print("{success:false,info:'" + e.getErrorCode() + " = Kesalahan operasi, silahkan hubungi direktorat.'}");
+	} else {
+		out.print("{success:false,info:'" + e.getErrorCode() + " = " + err_msg + "'}");
+	}
 }
 %>

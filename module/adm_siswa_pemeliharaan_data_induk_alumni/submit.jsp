@@ -7,6 +7,9 @@
 --%>
 
 <%@ page import = "java.sql.*" %>
+<%@ page import = "java.util.Properties" %>
+<%@ page import = "java.io.FileInputStream" %>
+<%@ page import = "java.io.File" %>
 <%
 try{
 	Connection	db_con	= (Connection) session.getAttribute("db.con");
@@ -18,7 +21,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 				= Integer.parseInt(request.getParameter("dml_type"));
-	String id_siswa				= request.getParameter("id_siswa");
+	String id_siswa			= request.getParameter("id_siswa");
 	String lanjut_di		= request.getParameter("lanjut_di");
 	String tanggal_bekerja	= request.getParameter("tanggal_bekerja");
 	String nm_perusahaan	= request.getParameter("nm_perusahaan");
@@ -38,7 +41,7 @@ try{
 			+" ,		tanggal_bekerja	=  "+ tanggal_bekerja
 			+" ,		nm_perusahaan	= '"+ nm_perusahaan +"'"
 			+" ,		username		= '"+ username +"'"
-			+" where	id_siswa				= '"+ id_siswa + "'";
+			+" where	id_siswa		=  "+ id_siswa;
 		break;
 	default:
 		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");
@@ -49,6 +52,16 @@ try{
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
 } catch (Exception e){
-	out.print("{success:false,info:'"+ e.toString().replace("'", "\\'") +"'}");
+	Properties	props	= new Properties();
+	
+	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));
+	
+	String		err_msg = props.getProperty("" + e.getErrorCode() + "");
+	
+	if (err_msg == null){
+		out.print("{success:false,info:'" + e.getErrorCode() + " = Kesalahan operasi, silahkan hubungi direktorat.'}");
+	} else {
+		out.print("{success:false,info:'" + e.getErrorCode() + " = " + err_msg + "'}");
+	}
 }
 %>

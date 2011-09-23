@@ -7,9 +7,9 @@
 --%>
 
 <%@ page import = "java.sql.*" %>
-<%@ page import = "java.util.Date" %>
-<%@ page import = "java.text.DateFormat" %>
-<%@ page import = "java.text.SimpleDateFormat" %>
+<%@ page import = "java.util.Properties" %>
+<%@ page import = "java.io.FileInputStream" %>
+<%@ page import = "java.io.File" %>
 <%
 try{
 	Connection	db_con	= (Connection) session.getAttribute("db.con");
@@ -21,8 +21,8 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 							= Integer.parseInt(request.getParameter("dml_type"));
-	String id_siswa							= request.getParameter("id_siswa");
-	String nis						= request.getParameter("nis");
+	String id_siswa						= request.getParameter("id_siswa");
+	String nis							= request.getParameter("nis");
 	String nm_siswa						= request.getParameter("nm_siswa");
 	String nm_panggilan					= request.getParameter("nm_panggilan");
 	String kota_lahir					= request.getParameter("kota_lahir");
@@ -42,9 +42,6 @@ try{
 	String username						= (String) session.getAttribute("user.id");
 	String q;
 	
-	DateFormat df 						= new SimpleDateFormat ("yyMMddhhmmss");
-	String formattedDate 				= df.format(new Date());
-
 	if (asal_sd.equals("")){
 		asal_sd = null;
 	}
@@ -55,11 +52,8 @@ try{
 
 	switch (dml) {
 	case 2:
-		id_siswa	= formattedDate;
-		
 		q	="  insert into t_siswa"
-			+"( id_siswa"
-			+", nis"
+			+"( nis"
 			+", nm_siswa"
 			+", nm_panggilan"
 			+", kota_lahir"
@@ -81,8 +75,7 @@ try{
 			+", kd_tingkat_kelas"
 			+", username)"
 			+"  values("
-			+"  '"+ id_siswa + "'"
-			+", '"+ nis + "'"
+			+"  '"+ nis + "'"
 			+", '"+ nm_siswa + "'"
 			+", '"+ nm_panggilan + "'"
 			+", '"+ kota_lahir + "'"
@@ -106,7 +99,7 @@ try{
 		break;
 	case 3:
 		q	=" update	t_siswa"
-			+" set		nis					= '"+ nis +"'"
+			+" set		nis							= '"+ nis +"'"
 			+" ,		nm_siswa					= '"+ nm_siswa + "'"
 			+" ,		nm_panggilan				= '"+ nm_panggilan + "'"
 			+" ,		kota_lahir					= '"+ kota_lahir + "'"
@@ -124,11 +117,11 @@ try{
 			+" ,		asal_sd						=  "+ asal_sd
 			+" ,		nilai						=  "+ nilai
 			+" ,		username					= '"+ username +"'"
-			+" where	id_siswa	= '" + id_siswa + "'";
+			+" where	id_siswa					=  " + id_siswa;
 		break;
 	case 4:
 		q 	= " delete	from t_siswa"
-			+ " where	id_siswa	= '" + id_siswa + "'";
+			+ " where	id_siswa	= " + id_siswa;
 		break;
 	default:
 		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");
@@ -139,6 +132,16 @@ try{
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
 } catch (Exception e){
-	out.print("{success:false,info:'"+ e.toString().replace("'", "\\'") +"'}");
+	Properties	props	= new Properties();
+	
+	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));
+	
+	String		err_msg = props.getProperty("" + e.getErrorCode() + "");
+	
+	if (err_msg == null){
+		out.print("{success:false,info:'" + e.getErrorCode() + " = Kesalahan operasi, silahkan hubungi direktorat.'}");
+	} else {
+		out.print("{success:false,info:'" + e.getErrorCode() + " = " + err_msg + "'}");
+	}
 }
 %>

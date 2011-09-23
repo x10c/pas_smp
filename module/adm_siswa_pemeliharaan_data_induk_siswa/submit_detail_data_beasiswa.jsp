@@ -7,6 +7,9 @@
 --%>
 
 <%@ page import = "java.sql.*" %>
+<%@ page import = "java.util.Properties" %>
+<%@ page import = "java.io.FileInputStream" %>
+<%@ page import = "java.io.File" %>
 <%
 try{
 	Connection	db_con	= (Connection) session.getAttribute("db.con");
@@ -20,7 +23,7 @@ try{
 	String 		kd_tahun_ajaran			= (String) session.getAttribute("kd.tahun_pelajaran");
 	
 	int	dml 							= Integer.parseInt(request.getParameter("dml_type"));
-	String id_siswa							= request.getParameter("id_siswa");
+	String id_siswa						= request.getParameter("id_siswa");
 	String kd_beasiswa					= request.getParameter("kd_beasiswa");
 	String kd_beasiswa_old				= request.getParameter("kd_beasiswa_old");
 	String tahun_masuk					= request.getParameter("tahun_masuk");
@@ -41,7 +44,7 @@ try{
 			+", keterangan"
 			+", username)"
 			+"  values("
-			+"  '"+ id_siswa + "'"
+			+"   "+ id_siswa
 			+", '"+ kd_tahun_ajaran + "'"
 			+", '"+ kd_beasiswa + "'"
 			+",  "+ tahun_masuk
@@ -56,14 +59,14 @@ try{
 			+" ,		jumlah_beasiswa_per_bulan	=  "+ jumlah_beasiswa_per_bulan
 			+" ,		keterangan					= '"+ keterangan + "'"
 			+" ,		username					= '"+ username +"'"
-			+" where	id_siswa					= '"+ id_siswa + "'"
-			+" and		kd_tahun_ajaran		= '"+ kd_tahun_ajaran + "'"
-			+" and		kd_beasiswa			=  "+ kd_beasiswa_old
-			+" and		tahun_masuk			=  "+ tahun_masuk_old;
+			+" where	id_siswa					=  "+ id_siswa
+			+" and		kd_tahun_ajaran				= '"+ kd_tahun_ajaran + "'"
+			+" and		kd_beasiswa					=  "+ kd_beasiswa_old
+			+" and		tahun_masuk					=  "+ tahun_masuk_old;
 		break;
 	case 4:
 		q 	= " delete	from t_siswa_beasiswa"
-			+ " where	id_siswa					= '"+ id_siswa + "'"
+			+ " where	id_siswa			=  "+ id_siswa
 			+ " and		kd_tahun_ajaran		= '"+ kd_tahun_ajaran + "'"
 			+ " and		kd_beasiswa			=  "+ kd_beasiswa
 			+ " and		tahun_masuk			=  "+ tahun_masuk;
@@ -77,6 +80,16 @@ try{
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
 } catch (Exception e){
-	out.print("{success:false,info:'"+ e.toString().replace("'", "\\'") +"'}");
+	Properties	props	= new Properties();
+	
+	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));
+	
+	String		err_msg = props.getProperty("" + e.getErrorCode() + "");
+	
+	if (err_msg == null){
+		out.print("{success:false,info:'" + e.getErrorCode() + " = Kesalahan operasi, silahkan hubungi direktorat.'}");
+	} else {
+		out.print("{success:false,info:'" + e.getErrorCode() + " = " + err_msg + "'}");
+	}
 }
 %>

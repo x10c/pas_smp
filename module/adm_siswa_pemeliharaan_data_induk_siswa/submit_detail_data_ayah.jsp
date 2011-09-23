@@ -7,6 +7,9 @@
 --%>
 
 <%@ page import = "java.sql.*" %>
+<%@ page import = "java.util.Properties" %>
+<%@ page import = "java.io.FileInputStream" %>
+<%@ page import = "java.io.File" %>
 <%
 String q = "";
 try{
@@ -19,7 +22,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 						= Integer.parseInt(request.getParameter("dml_type"));
-	String id_siswa						= request.getParameter("id_siswa");
+	String id_siswa					= request.getParameter("id_siswa");
 	String nm_ortu					= request.getParameter("nm_ortu");
 	String kota_lahir				= request.getParameter("kota_lahir");
 	String tanggal_lahir			= request.getParameter("tanggal_lahir");
@@ -70,7 +73,7 @@ try{
 			+", kd_jenis_kelamin"
 			+", username)"
 			+"  values ("
-			+"  '"+ id_siswa +"'"
+			+"   "+ id_siswa
 			+", '1'"
 			+", '"+ nm_ortu + "'"
 			+", '"+ kota_lahir + "'"
@@ -114,12 +117,12 @@ try{
 			+" ,		status_hidup			= '"+ status_hidup +"'"
 			+" ,		tahun_meninggal			= "+ tahun_meninggal
 			+" ,		username				= '"+ username +"'"
-			+" where	id_siswa				= '"+ id_siswa +"'"
-			+" and		kd_jenis_ortu 	= '1'";
+			+" where	id_siswa				=  "+ id_siswa
+			+" and		kd_jenis_ortu 			= '1'";
 		break;
 	case 4:
 		q	= " delete	from t_siswa_ortu"
-			+ " where	id_siswa 			= '"+ id_siswa + "'"
+			+ " where	id_siswa 		=  "+ id_siswa
 			+ " and		kd_jenis_ortu 	= '1'";
 		break;
 	default:
@@ -131,6 +134,16 @@ try{
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
 } catch (Exception e){
-	out.print("{success:false,info:'"+ e.toString().replace("'", "\\'") +"'}");
+	Properties	props	= new Properties();
+	
+	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));
+	
+	String		err_msg = props.getProperty("" + e.getErrorCode() + "");
+	
+	if (err_msg == null){
+		out.print("{success:false,info:'" + e.getErrorCode() + " = Kesalahan operasi, silahkan hubungi direktorat.'}");
+	} else {
+		out.print("{success:false,info:'" + e.getErrorCode() + " = " + err_msg + "'}");
+	}
 }
 %>

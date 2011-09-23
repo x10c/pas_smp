@@ -7,6 +7,9 @@
 --%>
 
 <%@ page import = "java.sql.*" %>
+<%@ page import	= "java.util.Properties" %>
+<%@ page import	= "java.io.FileInputStream" %>
+<%@ page import	= "java.io.File" %>
 <%@ page import = "org.json.*" %>
 <%
 String q = "";
@@ -29,7 +32,7 @@ try{
 	j = rows.length();
 	for (i = 0; i < j; i++) {
 		row				= rows.getJSONObject(i);
-		id_pegawai				= row.getString("id_pegawai");
+		id_pegawai		= row.getString("id_pegawai");
 		status_aktif	= row.getString("status_aktif");
 		
 		if (status_aktif.equals("false")){
@@ -42,13 +45,23 @@ try{
 			+" set		status_aktif	= '" + status_aktif + "'"
 			+" ,		username		= '" + username + "'"
 			+" where	kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
-			+" and		id_pegawai				=  " + id_pegawai;
+			+" and		id_pegawai		=  " + id_pegawai;
 		
 		db_stmt.executeUpdate(q);
 	}
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
 } catch (Exception e){
-	out.print("{success:false,info:'"+ e.toString().replace("'", "\\'") +"'}");
+	Properties	props	= new Properties();
+	
+	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));
+
+	String		err_msg	= props.getProperty("" + e.getErrorCode() + "");
+	
+	if (err_msg == null){
+		out.print("{success:false,info:'" + e.getErrorCode() + " = Kesalahan operasi, silahkan hubungi direktorat.'}");
+	} else {
+		out.print("{success:false,info:'" + e.getErrorCode() + " = " + err_msg + "'}");
+	}
 }
 %>

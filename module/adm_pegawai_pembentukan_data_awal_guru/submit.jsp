@@ -7,6 +7,9 @@
 --%>
 
 <%@ page import = "java.sql.*" %>
+<%@ page import	= "java.util.Properties" %>
+<%@ page import	= "java.io.FileInputStream" %>
+<%@ page import	= "java.io.File" %>
 <%
 try{
 	Connection	db_con	= (Connection) session.getAttribute("db.con");
@@ -19,8 +22,8 @@ try{
 
 	int dml 					= Integer.parseInt(request.getParameter("dml_type"));
 	String kd_tahun_ajaran		= (String) session.getAttribute("kd.tahun_pelajaran");
-	String id_pegawai					= request.getParameter("id_pegawai");
-	String nip				= request.getParameter("nip");
+	String id_pegawai			= request.getParameter("id_pegawai");
+	String nip					= request.getParameter("nip");
 	String nuptk				= request.getParameter("nuptk");
 	String nm_pegawai			= request.getParameter("nm_pegawai");
 	String inisial				= request.getParameter("inisial");
@@ -87,7 +90,7 @@ try{
 		break;
 	case 3:
 		q	=" update	t_pegawai"
-			+" set		nip			= '"+ nip +"'"
+			+" set		nip					= '"+ nip +"'"
 			+" ,		nuptk				= '"+ nuptk + "'"
 			+" ,		nm_pegawai			= '"+ nm_pegawai + "'"
 			+" ,		inisial				= '"+ inisial + "'"
@@ -106,7 +109,7 @@ try{
 			+" ,		kursus_komputer		= '"+ kursus_komputer +"'"
 			+" ,		sertifikasi			= '"+ sertifikasi +"'"
 			+" ,		username			= '"+ username +"'"
-			+" where	id_pegawai	= "+ id_pegawai;
+			+" where	id_pegawai			= "+ id_pegawai;
 		break;
 	case 4:
 		q 	= " delete	from t_pegawai"
@@ -120,7 +123,17 @@ try{
 	db_stmt.executeUpdate(q);
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
-} catch (Exception e){
-	out.print("{success:false,info:'"+ e.toString().replace("'", "\\'") +"'}");
+} catch (SQLException e){
+	Properties	props	= new Properties();
+	
+	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));
+
+	String		err_msg	= props.getProperty("" + e.getErrorCode() + "");
+	
+	if (err_msg == null){
+		out.print("{success:false,info:'" + e.getErrorCode() + " = Kesalahan operasi, silahkan hubungi direktorat.'}");
+	} else {
+		out.print("{success:false,info:'" + e.getErrorCode() + " = " + err_msg + "'}");
+	}
 }
 %>

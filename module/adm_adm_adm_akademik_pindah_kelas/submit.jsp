@@ -7,11 +7,10 @@
 --%>
 
 <%@ page import = "java.sql.*" %>
-<%@ page import = "java.util.Properties" %>
-<%@ page import = "java.io.FileInputStream" %>
-<%@ page import = "java.io.File" %>
+<%@ page import	= "java.util.Properties" %>
+<%@ page import	= "java.io.FileInputStream" %>
+<%@ page import	= "java.io.File" %>
 <%
-String q = "";
 try{
 	Connection	db_con	= (Connection) session.getAttribute("db.con");
 	if (db_con == null || (db_con != null && db_con.isClosed())) {
@@ -22,34 +21,21 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 				= Integer.parseInt(request.getParameter("dml_type"));
+	String kd_tahun_ajaran	= request.getParameter("kd_tahun_ajaran");
+	String kd_tingkat_kelas	= request.getParameter("kd_tingkat_kelas");
+	String kd_rombel		= request.getParameter("kd_rombel");
 	String id_siswa			= request.getParameter("id_siswa");
-	String tanggal_keluar	= request.getParameter("tanggal_keluar");
-	String alasan_keluar	= request.getParameter("alasan_keluar");
 	String username			= (String) session.getAttribute("user.id");
+	String q				= "";
 
 	switch (dml) {
-	case 2:
-		q	="  insert into t_siswa_putus"
-			+"( id_siswa"
-			+", tanggal_keluar"
-			+", alasan_keluar"
-			+", username)"
-			+"  values ("
-			+"   "+ id_siswa
-			+", cast('"+ tanggal_keluar +"' as date)"
-			+", '"+ alasan_keluar + "'"
-			+", '"+ username +"')";
-		break;
 	case 3:
-		q	=" update	t_siswa_putus"
-			+" set		tanggal_keluar	= cast('"+ tanggal_keluar +"' as date)"
-			+" ,		alasan_keluar	= '"+ alasan_keluar + "'"
-			+" ,		username		= '"+ username +"'"
-			+" where	id_siswa		=  "+ id_siswa;
-		break;
-	case 4:
-		q	= " delete	from t_siswa_putus"
-			+ " where	id_siswa = "+ id_siswa;
+		q	=" update	t_siswa_tingkat"
+			+" set		kd_rombel	= '"+ kd_rombel +"'"
+			+" ,		username	= '"+ username +"'"
+			+" where	kd_tahun_ajaran		= '"+ kd_tahun_ajaran + "'"
+			+" and		kd_tingkat_kelas	= '"+ kd_tingkat_kelas + "'"
+			+" and		id_siswa			=  "+ id_siswa;
 		break;
 	default:
 		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");
@@ -57,14 +43,14 @@ try{
 	}
 
 	db_stmt.executeUpdate(q);
-
+	
 	out.print("{success:true,info:'Data telah tersimpan.'}");
 } catch (Exception e){
 	Properties	props	= new Properties();
 	
 	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));
-	
-	String		err_msg = props.getProperty("" + e.getErrorCode() + "");
+
+	String		err_msg	= props.getProperty("" + e.getErrorCode() + "");
 	
 	if (err_msg == null){
 		out.print("{success:false,info:'" + e.getErrorCode() + " = Kesalahan operasi, silahkan hubungi direktorat.'}");

@@ -7,6 +7,9 @@
 --%>
 
 <%@ page import = "java.sql.*" %>
+<%@ page import	= "java.util.Properties" %>
+<%@ page import	= "java.io.FileInputStream" %>
+<%@ page import	= "java.io.File" %>
 <%
 try{
 	Connection	db_con	= (Connection) session.getAttribute("db.con");
@@ -18,7 +21,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 					= Integer.parseInt(request.getParameter("dml_type"));
-	String id_pegawai					= request.getParameter("id_pegawai");
+	String id_pegawai			= request.getParameter("id_pegawai");
 	String no_urut				= request.getParameter("no_urut");
 	String kd_tingkat_ijazah	= request.getParameter("kd_tingkat_ijazah");
 	String nm_instansi_penddkn	= request.getParameter("nm_instansi_penddkn");
@@ -83,13 +86,13 @@ try{
 			+" ,		no_ijazah			= '"+ no_ijazah + "'"
 			+" ,		tanggal_ijazah		=  "+ tanggal_ijazah
 			+" ,		username			= '"+ username +"'"
-			+" where	id_pegawai		= "+ id_pegawai
-			+" and		no_urut	= "+ no_urut;
+			+" where	id_pegawai			= "+ id_pegawai
+			+" and		no_urut				= "+ no_urut;
 		break;
 	case 4:
 		q 	= " delete	from t_pegawai_didik_formal"
-			+ " where	id_pegawai		= "+ id_pegawai
-			+ " and		no_urut	= "+ no_urut;
+			+ " where	id_pegawai	= "+ id_pegawai
+			+ " and		no_urut		= "+ no_urut;
 		break;
 	default:
 		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");
@@ -100,6 +103,16 @@ try{
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
 } catch (Exception e){
-	out.print("{success:false,info:'"+ e.toString().replace("'", "\\'") +"'}");
+	Properties	props	= new Properties();
+	
+	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));
+
+	String		err_msg	= props.getProperty("" + e.getErrorCode() + "");
+	
+	if (err_msg == null){
+		out.print("{success:false,info:'" + e.getErrorCode() + " = Kesalahan operasi, silahkan hubungi direktorat.'}");
+	} else {
+		out.print("{success:false,info:'" + e.getErrorCode() + " = " + err_msg + "'}");
+	}
 }
 %>

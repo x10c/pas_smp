@@ -7,6 +7,9 @@
 --%>
 
 <%@ page import = "java.sql.*" %>
+<%@ page import = "java.util.Properties" %>
+<%@ page import = "java.io.FileInputStream" %>
+<%@ page import = "java.io.File" %>
 <%
 try{
 	Connection	db_con	= (Connection) session.getAttribute("db.con");
@@ -18,7 +21,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 
 	int dml 				= Integer.parseInt(request.getParameter("dml_type"));
-	String id_siswa				= request.getParameter("id_siswa");
+	String id_siswa			= request.getParameter("id_siswa");
 	String tanggal			= request.getParameter("tanggal");
 	String tanggal_old		= request.getParameter("tanggal_old");
 	String tanggal_masuk	= request.getParameter("tanggal_masuk");
@@ -41,7 +44,7 @@ try{
 			+", keterangan"
 			+", username)"
 			+"  values("
-			+"  '"+ id_siswa + "'"
+			+"   "+ id_siswa
 			+", cast('"+ tanggal +"' as date)"
 			+",  "+ tanggal_masuk
 			+", '"+ keterangan + "'"
@@ -53,13 +56,13 @@ try{
 			+" ,		tanggal_masuk	= "+ tanggal_masuk
 			+" ,		keterangan		= '"+ keterangan + "'"
 			+" ,		username		= '"+ username +"'"
-			+" where	id_siswa				= '"+ id_siswa + "'"
+			+" where	id_siswa		=  "+ id_siswa
 			+" and		tanggal			= '"+ tanggal_old + "'";
 		break;
 	case 4:
 		q 	= " delete	from t_siswa_cuti"
-			+ " where	id_siswa				= '"+ id_siswa + "'"
-			+ " and		tanggal			= '"+ tanggal + "'";
+			+ " where	id_siswa	=  "+ id_siswa
+			+ " and		tanggal		= '"+ tanggal + "'";
 		break;
 	default:
 		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");
@@ -70,6 +73,16 @@ try{
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
 } catch (Exception e){
-	out.print("{success:false,info:'"+ e.toString().replace("'", "\\'") +"'}");
+	Properties	props	= new Properties();
+	
+	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));
+	
+	String		err_msg = props.getProperty("" + e.getErrorCode() + "");
+	
+	if (err_msg == null){
+		out.print("{success:false,info:'" + e.getErrorCode() + " = Kesalahan operasi, silahkan hubungi direktorat.'}");
+	} else {
+		out.print("{success:false,info:'" + e.getErrorCode() + " = " + err_msg + "'}");
+	}
 }
 %>
