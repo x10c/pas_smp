@@ -41,7 +41,7 @@ try{
 		q	=" update	t_pegawai_rombel"
 			+" set		kd_rombel		= '"+ kd_rombel +"'"
 			+" ,		id_ruang_kelas	= "+ id_ruang_kelas
-			+" ,		id_pegawai		= "+ nip
+			+" ,		id_pegawai		= "+ id_pegawai
 			+" ,		id_pegawai_bk	= "+ id_pegawai_bk
 			+" ,		keterangan		= '"+ keterangan + "'"
 			+" ,		username		= '"+ username +"'"
@@ -63,7 +63,7 @@ try{
 	db_stmt.executeUpdate(q);
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
-} catch (Exception e){
+} catch (SQLException e){
 	Properties	props	= new Properties();
 	
 	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));

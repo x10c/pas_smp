@@ -11,6 +11,7 @@
 <%@ page import = "java.io.FileInputStream" %>
 <%@ page import = "java.io.File" %>
 <%
+String q = "";
 try{
 	Connection	db_con	= (Connection) session.getAttribute("db.con");
 	if (db_con == null || (db_con != null && db_con.isClosed())) {
@@ -25,11 +26,9 @@ try{
 	String no_urut		= request.getParameter("no_urut");
 	String no_urut_old	= request.getParameter("no_urut_old");
 	String id_penyakit	= request.getParameter("id_penyakit");
-	String tahun_sakit	= request.getParameter("tahun_sakit");
 	String lama_sakit	= request.getParameter("lama_sakit");
 	String keterangan	= request.getParameter("keterangan");
 	String username		= (String) session.getAttribute("user.id");
-	String q;
 
 	switch (dml) {
 	case 2:
@@ -37,7 +36,6 @@ try{
 			+"( id_siswa"
 			+", no_urut"
 			+", id_penyakit"
-			+", tahun_sakit"
 			+", lama_sakit"
 			+", keterangan"
 			+", username)"
@@ -45,7 +43,6 @@ try{
 			+"   "+ id_siswa
 			+",  "+ no_urut
 			+",  "+ id_penyakit
-			+",  "+ tahun_sakit
 			+",  "+ lama_sakit
 			+", '"+ keterangan + "'"
 			+", '"+ username +"')";
@@ -54,7 +51,6 @@ try{
 		q	=" update	t_siswa_rwyt_sakit"
 			+" set		no_urut		=  "+ no_urut
 			+" ,		id_penyakit	=  "+ id_penyakit
-			+" ,		tahun_sakit	=  "+ tahun_sakit
 			+" ,		lama_sakit	=  "+ lama_sakit
 			+" ,		keterangan	= '"+ keterangan + "'"
 			+" ,		username	= '"+ username +"'"
@@ -74,7 +70,7 @@ try{
 	db_stmt.executeUpdate(q);
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
-} catch (Exception e){
+} catch (SQLException e){
 	Properties	props	= new Properties();
 	
 	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));

@@ -68,11 +68,9 @@ function M_AdmSiswaPembentukanDataAwalSiswaBaruDetail()
 		,	autoLoad	: false
 	});
 
-	this.form_nis = new Ext.form.NumberField({
+	this.form_nis = new Ext.form.TextField({
 			fieldLabel		: 'Nomor Induk'
 		,	allowBlank		: false
-		,	allowDecimals	: false
-		,	allowNegative	: false
 		,	maxLength		: 12
 		,	maxLengthText	: 'Maksimal panjang kolom adalah 12'
 		,	width			: 130
@@ -224,13 +222,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaBaruDetail()
 		,	msgTarget		: 'side'
 	});
 
-	this.form_kelainan_jasmani = new Ext.form.TextArea({
-			fieldLabel		: 'Kelainan Jasmani'
-		,	allowBlank		: true
-		,	width			: 400
-		,	msgTarget		: 'side'
-	});
-
 	this.form_diterima_tanggal = new Ext.form.DateField({
 			fieldLabel		: 'Tanggal Diterima'
 		,	emptyText		: 'Tahun-Bulan-Tanggal'
@@ -355,7 +346,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaBaruDetail()
 					,	collapsible	: true
 					,	items		: [
 							this.form_gol_darah
-						,	this.form_kelainan_jasmani
 						]
 					}
 				,	{
@@ -435,7 +425,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaBaruDetail()
 		this.form_no_telp.setValue('');
 		this.form_no_hp.setValue('');
 		this.form_gol_darah.setValue('');
-		this.form_kelainan_jasmani.setValue('');
 		this.form_diterima_tanggal.setValue('');
 		this.form_asal_sd.setValue('');
 		this.form_nilai.setValue('');
@@ -459,7 +448,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaBaruDetail()
 		this.form_no_telp.setValue(data.no_telp);
 		this.form_no_hp.setValue(data.no_hp);
 		this.form_gol_darah.setValue(data.kd_gol_darah);
-		this.form_kelainan_jasmani.setValue(data.kelainan_jasmani);
 		this.form_diterima_tanggal.setValue(data.diterima_tanggal);
 		this.form_asal_sd.setValue(data.asal_sd);
 		this.form_nilai.setValue(data.nilai);
@@ -562,8 +550,8 @@ function M_AdmSiswaPembentukanDataAwalSiswaBaruDetail()
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pembentukan_data_awal_siswa_baru_d +'submit.jsp'
 			,	params  : {
-						id_siswa							: m_adm_siswa_pembentukan_data_awal_siswa_baru_id_siswa
-					,	nis					: this.form_nis.getValue()
+						id_siswa					: m_adm_siswa_pembentukan_data_awal_siswa_baru_id_siswa
+					,	nis							: this.form_nis.getValue()
 					,	nm_siswa					: this.form_nm_siswa.getValue()
 					,	nm_panggilan				: this.form_nm_panggilan.getValue()
 					,	kota_lahir					: this.form_kota_lahir.getValue()
@@ -600,7 +588,7 @@ function M_AdmSiswaPembentukanDataAwalSiswaBaruDetail()
 						
 						Ext.MessageBox.alert('Informasi', msg.info);
 
-						m_adm_siswa_pembentukan_data_awal_siswa_baru_list.store.reload();
+						m_adm_siswa_pembentukan_data_awal_siswa_baru_list.do_load();
 						m_adm_siswa_pembentukan_data_awal_siswa_baru.panel.layout.setActiveItem(0);
 					}
 			,	scope	: this
@@ -610,7 +598,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaBaruDetail()
 	this.do_refresh = function()
 	{
 		this.store_agama.load();
-		this.store_kesejahteraan_keluarga.load();
 		this.store_gol_darah.load();
 		this.store_asal_sd.load();
 	}
@@ -632,6 +619,7 @@ function M_AdmSiswaPembentukanDataAwalSiswaBaruList()
 			fields		: this.record
 		,	url			: m_adm_siswa_pembentukan_data_awal_siswa_baru_d +'data_list.jsp'
 		,	autoLoad	: false
+		,	idIndex		: 0
 	});
 
 	/* plugins */
@@ -765,6 +753,8 @@ function M_AdmSiswaPembentukanDataAwalSiswaBaruList()
 	
 	this.do_load = function()
 	{
+		delete this.store.lastParams;
+		
 		this.store.load({
 			params	: {
 				start	: 0

@@ -15,9 +15,9 @@ try {
 		return;
 	}
 
-	Statement	db_stmt = db_con.createStatement();
+	Statement	db_stmt 	= db_con.createStatement();
 
-	String 		nis		= request.getParameter("nis");
+	String 		id_siswa	= request.getParameter("id_siswa");
 	
 	ResultSet	rs;
 	String		q;
@@ -25,7 +25,7 @@ try {
 
 	q=" select	*"
 	 +" from	t_siswa_info "
-	 +" where	nis	= '" + nis + "'";
+	 +" where	id_siswa	= " + id_siswa;
 
 	rs = db_stmt.executeQuery(q);
 
@@ -35,17 +35,22 @@ try {
 		return;
 	}
 
-	data	="{ nis	: '"+ rs.getString("nis") + "'"
-			+", kewarganegaraan : '"+ rs.getString("kewarganegaraan") + "'"
+	data	="{ id_siswa : "+ rs.getString("id_siswa")
+			+", nis : '"+ rs.getString("nis") + "'"
+			+", hubungi : '"+ rs.getString("hubungi") + "'"
+			+", tanggung_biaya : "+ rs.getString("tanggung_biaya")
+			+", status_yatim_piatu : '"+ rs.getString("status_yatim_piatu") + "'"
+			+", kd_kesejahteraan_keluarga : '"+ rs.getString("kd_kesejahteraan_keluarga") + "'"
 			+", anak_ke : "+ rs.getString("anak_ke")
 			+", jumlah_kandung : "+ rs.getString("jumlah_kandung")
 			+", jumlah_tiri : "+ rs.getString("jumlah_tiri")
 			+", jumlah_angkat : "+ rs.getString("jumlah_angkat")
-			+", status_yatim_piatu : '"+ rs.getString("status_yatim_piatu") + "'"
+			+", kewarganegaraan : '"+ rs.getString("kewarganegaraan") + "'"			
 			+", bahasa : '"+ rs.getString("bahasa") + "'"
 			+", tinggal_di : '"+ rs.getString("tinggal_di") + "'"
 			+", jarak_sek : "+ rs.getString("jarak_sek")
 			+", kd_ketunaan : '"+ rs.getString("kd_ketunaan") + "'"
+			+", kelainan_jasmani : '"+ rs.getString("kd_ketunaan") + "'"
 			+", berat_badan : "+ rs.getString("berat_badan")
 			+", tinggi_badan : "+ rs.getString("tinggi_badan")
 			+", no_stl_sd : '"+ rs.getString("no_stl_sd") + "'"

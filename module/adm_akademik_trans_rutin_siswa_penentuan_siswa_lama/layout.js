@@ -306,7 +306,7 @@ function M_AdmAkademikTransRutinSiswaPenentuanSiswaLamaDetail(title)
 		}
 
 		Ext.MessageBox.confirm('Konfirmasi', 'Penentuan Kelas Selesai?', function(btn, text){
-			if (btn == 'ok'){
+			if (btn == 'yes'){
 				this.dml_type = 5;
 				Ext.Ajax.request({
 						params  : {
@@ -327,7 +327,7 @@ function M_AdmAkademikTransRutinSiswaPenentuanSiswaLamaDetail(title)
 									Ext.MessageBox.alert('Pesan', msg.info);
 								}
 
-								this.do_load();
+								m_adm_akademik_trans_rutin_siswa_penentuan_siswa_lama_detail.do_load();
 							}
 					,	scope	: this
 				});	
@@ -370,6 +370,35 @@ function M_AdmAkademikTransRutinSiswaPenentuanSiswaLamaDetail(title)
 		});
 	}
 
+	this.do_check = function()
+	{
+		Ext.Ajax.request({
+			url		: m_adm_akademik_trans_rutin_siswa_penentuan_siswa_lama_d +'data_check.jsp'
+		,	params	: {
+					kd_tahun_ajaran		: m_adm_akademik_trans_rutin_siswa_penentuan_siswa_lama_kd_tahun_ajaran
+				,	kd_tingkat_kelas	: m_adm_akademik_trans_rutin_siswa_penentuan_siswa_lama_kd_tingkat_kelas
+			}
+		,	waitMsg	: 'Mohon Tunggu ...'
+		,	failure	: function(response) {
+				Ext.MessageBox.alert('Gagal', response.responseText);
+			}
+		,	success : function (response) {
+				var msg = Ext.util.JSON.decode(response.responseText);
+
+				if (msg.success == false) {
+					return;
+				}
+
+				if (msg.jumlah < 1){
+					this.btn_process.setDisabled(true);
+				} else {
+					this.btn_process.setDisabled(false);
+				}
+			}
+		,	scope	: this
+		});
+	}
+	
 	this.do_load = function()
 	{
 		this.store_rombel.load({
@@ -388,11 +417,7 @@ function M_AdmAkademikTransRutinSiswaPenentuanSiswaLamaDetail(title)
 			,	scope		: this
 		});	
 
-		if (this.store.getTotalCount() < 1){
-			this.btn_process.setDisabled(true);
-		} else {
-			this.btn_process.setDisabled(false);
-		}
+		this.do_check();
 	}
 
 	this.do_refresh = function()

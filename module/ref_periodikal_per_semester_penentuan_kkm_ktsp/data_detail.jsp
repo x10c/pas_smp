@@ -57,7 +57,8 @@ try{
 				+ ",'"+ rs.getString("kd_periode_belajar") +"'"
 				+ ",'"+ rs.getString("kd_mata_pelajaran_diajarkan") +"'"
 				+ ","+ rs.getString("kkm")
-				+ ",'"+ rs.getString("nm_mata_pelajaran_diajarkan") +"']";
+				+ ",\""+ rs.getString("nm_mata_pelajaran_diajarkan") +"\""
+				+ "]";
 	}	
 	data += "]";
 	

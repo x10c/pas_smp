@@ -41,7 +41,6 @@ try{
 	String operasi_komputer		= request.getParameter("operasi_komputer");
 	String kursus_komputer		= request.getParameter("kursus_komputer");
 	String sertifikasi			= request.getParameter("sertifikasi");
-	String dir_foto				= request.getParameter("dir_foto");
 	String username				= (String) session.getAttribute("user.id");
 	String q;
 
@@ -66,7 +65,6 @@ try{
 			+", operasi_komputer"
 			+", kursus_komputer"
 			+", sertifikasi"
-			+", dir_foto"
 			+", username)"
 			+"  values("
 			+"  '"+ nip + "'"
@@ -87,7 +85,6 @@ try{
 			+", '"+ operasi_komputer +"'"
 			+", '"+ kursus_komputer +"'"
 			+", '"+ sertifikasi +"'"
-			+", '"+ dir_foto +"'"
 			+", '" + username +"')";
 		break;
 	case 3:
@@ -125,7 +122,7 @@ try{
 	db_stmt.executeUpdate(q);
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
-} catch (Exception e){
+} catch (SQLException e){
 	Properties	props	= new Properties();
 	
 	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));

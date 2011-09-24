@@ -18,7 +18,7 @@ function M_AdmSiswaPemeliharaanDataIndukAlumni(title)
 
 	this.record = new Ext.data.Record.create([
 			{ name	: 'id_siswa' }
-		,	{ name	: 'id_siswa' }
+		,	{ name	: 'nis' }
 		,	{ name	: 'nm_siswa' }
 		,	{ name	: 'no_stl_lulus' }
 		,	{ name	: 'tahun_lulus' }
@@ -55,8 +55,8 @@ function M_AdmSiswaPemeliharaanDataIndukAlumni(title)
 
 	this.columns = [
 			new Ext.grid.RowNumberer()
-		,	{ header		: 'id_siswa'
-			, dataIndex		: 'id_siswa'
+		,	{ header		: 'NIS'
+			, dataIndex		: 'nis'
 			, sortable		: true
 			, align			: 'center'
 			, width			: 100
@@ -174,7 +174,7 @@ function M_AdmSiswaPemeliharaanDataIndukAlumni(title)
 	{
 		Ext.Ajax.request({
 				params  : {
-						id_siswa				: record.data['id_siswa']
+						id_siswa		: record.data['id_siswa']
 					,	lanjut_di		: record.data['lanjut_di']
 					,	tanggal_bekerja	: record.data['tanggal_bekerja']
 					,	nm_perusahaan	: record.data['nm_perusahaan']
@@ -208,6 +208,8 @@ function M_AdmSiswaPemeliharaanDataIndukAlumni(title)
 
 	this.do_load = function()
 	{
+		delete this.store.lastParams;
+		
 		this.store.load({
 			params	: {
 				start	: 0

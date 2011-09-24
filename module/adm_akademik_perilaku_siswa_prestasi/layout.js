@@ -216,8 +216,8 @@ function M_AdmAkademikPerilakuSiswaPrestasiDetail(title)
 
 	this.form_siswa = new Ext.form.ComboBox({
 			store			: this.store_ref_siswa
-		,	valueField		: 'id_siswa'
-		,	displayField	: 'list'
+		,	valueField		: 'id'
+		,	displayField	: 'name'
 		,	mode			: 'local'
 		,	allowBlank		: false
 		,	forceSelection	: true

@@ -25,7 +25,7 @@ try{
 			+" ,		a.kd_rombel"
 			+" ,		c.kd_kurikulum"
 			+" ,		b.kd_periode_belajar"
-			+" ,		a.nip"
+			+" ,		a.id_pegawai"
 			+" ,		a.id_ruang_kelas"
 			+" ,		a.keterangan"
 			+" ,		d.nm_tingkat_kelas"
@@ -41,7 +41,7 @@ try{
 			+" and		c.kd_tingkat_kelas		= a.kd_tingkat_kelas"
 			+" and		c.kd_kurikulum			= '02'"
 			+" and		d.kd_tingkat_kelas		= a.kd_tingkat_kelas"
-			+" and		e.nip					= a.nip"
+			+" and		e.id_pegawai			= a.id_pegawai"
 			+" and		f.id_ruang_kelas		= a.id_ruang_kelas"
 			+" and		a.kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'"
 			+" and		b.kd_periode_belajar	= '" + kd_periode_belajar + "'"
@@ -62,12 +62,13 @@ try{
 				+ ",'"+ rs.getString("kd_rombel") + "'"
 				+ ",'"+ rs.getString("kd_kurikulum") + "'"
 				+ ",'"+ rs.getString("kd_periode_belajar") + "'"
-				+ ","+ rs.getString("nip")
+				+ ","+ rs.getString("id_pegawai")
 				+ ","+ rs.getString("id_ruang_kelas")
-				+ ",'"+ rs.getString("keterangan") + "'"
+				+ ",\""+ rs.getString("keterangan") +"\""
 				+ ",'"+ rs.getString("nm_tingkat_kelas") + "'"
-				+ ",'"+ rs.getString("nm_pegawai") + "'"
-				+ ",'"+ rs.getString("nm_ruang_kelas") +"']";
+				+ ",\""+ rs.getString("nm_pegawai") +"\""
+				+ ",\""+ rs.getString("nm_ruang_kelas") +"\""
+				+ "]";
 	}	
 	data += "]";
 	

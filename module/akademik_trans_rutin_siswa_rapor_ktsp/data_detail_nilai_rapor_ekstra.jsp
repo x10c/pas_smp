@@ -26,7 +26,7 @@ try{
 			+" ,		a.id_siswa as id_siswa_old"
 			+" ,		a.id_ekstrakurikuler"
 			+" ,		a.id_ekstrakurikuler as id_ekstrakurikuler_old"
-			+" ,		a.nilai"
+			+" ,		a.id_nilai_afektif"
 			+" ,		a.keterangan"
 			+" ,		b.nis"
 			+" from		t_nilai_rapor_ekstra	as a"
@@ -52,7 +52,7 @@ try{
 				+ ","+ rs.getString("id_siswa_old")
 				+ ","+ rs.getString("id_ekstrakurikuler")
 				+ ","+ rs.getString("id_ekstrakurikuler_old")
-				+ ","+ rs.getString("nilai")
+				+ ","+ rs.getString("id_nilai_afektif")
 				+  ",\""+ rs.getString("keterangan") +"\""
 				+ ",'"+ rs.getString("nis") + "'"
 				+ "]";

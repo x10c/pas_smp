@@ -578,12 +578,6 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporNilai(title, 
 			this.panel.setDisabled(false);
 		}
 
-		if (m_akademik_trans_rutin_siswa_rapor_ktsp_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
-		}
-
 		this.do_load();
 	}
 }
@@ -598,7 +592,7 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 		,	{ name	: 'id_siswa_old' }
 		,	{ name	: 'id_ekstrakurikuler' }
 		,	{ name	: 'id_ekstrakurikuler_old' }
-		,	{ name	: 'nilai' }
+		,	{ name	: 'id_nilai_afektif' }
 		,	{ name	: 'keterangan' }
 		,	{ name	: 'nis' }
 	]);
@@ -623,12 +617,19 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 		,	autoLoad	: false
 	});
 
+	this.store_nilai_afektif = new Ext.data.ArrayStore({
+			fields		: ['id','name']
+		,	url			: m_akademik_trans_rutin_siswa_rapor_ktsp_d +'data_ref_nilai_afektif.jsp'
+		,	idIndex		: 0
+		,	autoLoad	: false
+	});
+
 	this.form_nis = new Ext.form.ComboBox({
 			store			: this.store_siswa
 		,	valueField		: 'id_siswa'
 		,	displayField	: 'list'
 		,	mode			: 'local'
-		,	allowBlank		: true
+		,	allowBlank		: false
 		,	forceSelection	: true
 		,	typeAhead		: true
 		,	triggerAction	: 'all'
@@ -647,12 +648,16 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 		,	selectOnFocus	: true
 	});
 
-	this.form_nilai = new Ext.form.NumberField({
-			allowBlank		: false
-		,	allowDecimals	: false
-		,	allowNegative	: false
-		,	maxValue		: 100
-		,	maxText			: 'Nilai Maksimal adalah 100'
+	this.form_nilai_afektif = new Ext.form.ComboBox({
+			store			: this.store_nilai_afektif
+		,	valueField		: 'id'
+		,	displayField	: 'name'
+		,	mode			: 'local'
+		,	allowBlank		: false
+		,	forceSelection	: true
+		,	typeAhead		: true
+		,	triggerAction	: 'all'
+		,	selectOnFocus	: true
 	});
 
 	this.form_keterangan = new Ext.form.TextArea({
@@ -688,15 +693,18 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 				,	phpMode		: false
 				}
 			}
-		,	{ header		: 'Nilai'
-			, dataIndex		: 'nilai'
+		,	{ header		: 'Nilai Afektif'
+			, dataIndex		: 'id_nilai_afektif'
 			, sortable		: true
-			, editor		: this.form_nilai
-			, align			: 'center'
-			, width			: 50
+			, editor		: this.form_nilai_afektif
+			, renderer		: combo_renderer(this.form_nilai_afektif)
+			, width			: 100
 			, filter		: 
 				{
-					type	: 'numeric'
+					type		: 'list'
+				,	store		: this.store_nilai_afektif
+				,	labelField	: 'name'
+				,	phpMode		: false
 				}
 			}
 		,	{ id			: 'keterangan'
@@ -815,7 +823,7 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 		this.record_new = new this.record({
 				id_siswa			: ''
 			,	id_ekstrakurikuler	: ''
-			,	nilai				: ''
+			,	id_nilai_afektif	: ''
 			,	keterangan			: ''
 			});
 
@@ -865,7 +873,7 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 					,	kd_periode_belajar		: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_periode_belajar
 					,	id_ekstrakurikuler		: record.data['id_ekstrakurikuler']
 					,	id_ekstrakurikuler_old	: record.data['id_ekstrakurikuler_old']
-					,	nilai					: record.data['nilai']
+					,	id_nilai_afektif		: record.data['id_nilai_afektif']
 					,	keterangan				: record.data['keterangan']
 					,	dml_type				: this.dml_type
 				}
@@ -899,13 +907,18 @@ function M_AkademikTransaksiRutinKesiswaanRaporKTSPDetailNilaiRaporEkstra(title)
 		,	callback	: function(){
 				this.store_ekstrakurikuler.load({
 					callback	: function(){
-						this.store.load({
-							params	: {
-								kd_tahun_ajaran		: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tahun_ajaran
-							,	kd_tingkat_kelas	: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tingkat_kelas
-							,	kd_rombel			: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_rombel
-							,	kd_periode_belajar	: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_periode_belajar
+						this.store_nilai_afektif.load({
+							callback	: function(){
+								this.store.load({
+									params	: {
+										kd_tahun_ajaran		: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tahun_ajaran
+									,	kd_tingkat_kelas	: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_tingkat_kelas
+									,	kd_rombel			: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_rombel
+									,	kd_periode_belajar	: m_akademik_trans_rutin_siswa_rapor_ktsp_kd_periode_belajar
+									}
+								});
 							}
+						,	scope		: this
 						});
 					}
 				,	scope		: this

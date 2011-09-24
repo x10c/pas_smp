@@ -13,10 +13,10 @@ begin
 	select	count(*)
 	into 	v__do
 	from 	t_sekolah_saldo_awal
-	where   kd_tahun_ajaran = new.kd_tahun_ajaran;
+    where   kd_tahun_ajaran = new.kd_tahun_ajaran;
 	
 	if v__do = 0 then
-		insert into t_sekolah_saldo_awal values(new.kd_tahun_ajaran, new.saldo_awal, 0, new.username, now());
+        insert into t_sekolah_saldo_awal values(new.kd_tahun_ajaran, new.saldo_awal, 0, new.username, now());
     else
         update  t_sekolah_saldo_awal
         set     saldo_awal      = new.saldo_awal
@@ -26,6 +26,7 @@ end
 $$
 
 delimiter ;
+
 
 drop trigger if exists K_SEKOLAH_KEUANGAN_AUR;
 
@@ -50,6 +51,7 @@ end
 $$
 
 delimiter ;
+
 
 drop trigger if exists K_SEKOLAH_KEUANGAN_BDR;
 
@@ -254,12 +256,12 @@ delimiter $$
 create trigger R_PENATARAN_BUR before update
 on R_PENATARAN for each row
 begin
-	set new.ID_PENATARAN = old.ID_PENATARAN;
+    set new.ID_PENATARAN = old.ID_PENATARAN;
 
-	if new.NM_PENATARAN is null or TRIM(new.NM_PENATARAN) = '' then
-	  set new.NM_PENATARAN = old.NM_PENATARAN;
-	end if;
-end
+    if new.NM_PENATARAN is null or TRIM(new.NM_PENATARAN) = '' then
+        set new.NM_PENATARAN = old.NM_PENATARAN;
+    end if;
+    end
 $$
 
 delimiter ;
@@ -1120,30 +1122,9 @@ begin
 					,	new.STATUS_NAIK_KELAS
 					,	1
 					,	1
-					,	( 
-							SELECT	COUNT(*)
-							FROM	T_SISWA_ABSENSI B
-							WHERE	(B.ID_SISWA 			= A.ID_SISWA)
-							AND		(B.STATUS_ABSEN 		= '1')
-							AND		(B.KD_PERIODE_BELAJAR 	= new.STATUS_NAIK_KELAS)
-							AND		(B.KD_TAHUN_AJARAN 		= old.KD_TAHUN_AJARAN) 
-						)
-					,	( 
-							SELECT	COUNT(*)
-							FROM	T_SISWA_ABSENSI B
-							WHERE	(B.ID_SISWA 			= A.ID_SISWA)
-							AND		(B.STATUS_ABSEN 		= '2')
-							AND		(B.KD_PERIODE_BELAJAR 	= new.STATUS_NAIK_KELAS)
-							AND		(B.KD_TAHUN_AJARAN 		= old.KD_TAHUN_AJARAN) 
-						)
-					,	(
-							SELECT	COUNT(*)
-							FROM	T_SISWA_ABSENSI B
-							WHERE	(B.ID_SISWA 			= A.ID_SISWA)
-							AND		(B.STATUS_ABSEN 		= '3')
-							AND		(B.KD_PERIODE_BELAJAR 	= new.STATUS_NAIK_KELAS)
-							AND		(B.KD_TAHUN_AJARAN 		= old.KD_TAHUN_AJARAN) 
-						)
+					,	0
+					,	0
+					,	0
 					,	new.TANGGAL_SEMESTER_1
 					,	new.USERNAME
 					FROM	T_SISWA_TINGKAT A
@@ -1183,30 +1164,9 @@ begin
 					,	new.STATUS_NAIK_KELAS
 					,	1
 					,	1
-					,	( 
-							SELECT	COUNT(*)
-							FROM	T_SISWA_ABSENSI B
-							WHERE	(B.ID_SISWA 			= A.ID_SISWA)
-							AND		(B.STATUS_ABSEN 		= '1')
-							AND		(B.KD_PERIODE_BELAJAR 	= new.STATUS_NAIK_KELAS)
-							AND		(B.KD_TAHUN_AJARAN 		= old.KD_TAHUN_AJARAN) 
-						)
-					,	( 
-							SELECT	COUNT(*)
-							FROM	T_SISWA_ABSENSI B
-							WHERE	(B.ID_SISWA 			= A.ID_SISWA)
-							AND		(B.STATUS_ABSEN 		= '2')
-							AND		(B.KD_PERIODE_BELAJAR 	= new.STATUS_NAIK_KELAS)
-							AND		(B.KD_TAHUN_AJARAN 		= old.KD_TAHUN_AJARAN) 
-						)
-					,	(
-							SELECT	COUNT(*)
-							FROM	T_SISWA_ABSENSI B
-							WHERE	(B.ID_SISWA 			= A.ID_SISWA)
-							AND		(B.STATUS_ABSEN 		= '3')
-							AND		(B.KD_PERIODE_BELAJAR 	= new.STATUS_NAIK_KELAS)
-							AND		(B.KD_TAHUN_AJARAN 		= old.KD_TAHUN_AJARAN) 
-						)
+					,	0
+					,	0
+					,	0
 					,	new.TANGGAL_SEMESTER_2
 					,	new.USERNAME
 					FROM	T_SISWA_TINGKAT A
@@ -2199,6 +2159,7 @@ $$
 
 delimiter ;
 
+
 drop trigger if exists T_SEKOLAH_SALDO_AWAL_BIR;
 
 delimiter $$
@@ -2701,7 +2662,7 @@ begin
 		
 		SET new.NIS = v_nis;
 	END IF;
-	
+
     SET new.TAHUN_LULUS = YEAR(NOW());
 end
 $$
@@ -2796,7 +2757,7 @@ begin
 		
 		SET new.NIS = v_nis;
 	END IF;
-	
+    
     SELECT  STATUS_SISWA
     INTO    v_sts
     FROM    T_SISWA
@@ -2962,7 +2923,7 @@ begin
 		
 		SET new.NIS = v_nis;
 	END IF;
-	
+    
     SELECT  STATUS_SISWA
     INTO    v_sts
     FROM    T_SISWA
@@ -3048,7 +3009,7 @@ begin
 		
 		SET new.NIS = v_nis;
 	END IF;
-	
+    
     SELECT  STATUS_SISWA
     INTO    v_sts
     FROM    T_SISWA

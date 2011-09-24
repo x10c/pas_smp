@@ -29,7 +29,7 @@ try{
 	String 	kd_periode_belajar		= request.getParameter("kd_periode_belajar");
 	String 	id_ekstrakurikuler		= request.getParameter("id_ekstrakurikuler");
 	String 	id_ekstrakurikuler_old	= request.getParameter("id_ekstrakurikuler_old");
-	String 	nilai					= request.getParameter("nilai");
+	String 	id_nilai_afektif		= request.getParameter("id_nilai_afektif");
 	String 	keterangan				= request.getParameter("keterangan");
 	String 	username				= (String) session.getAttribute("user.id");
 	String 	q;
@@ -43,28 +43,27 @@ try{
 			+", kd_rombel"
 			+", kd_periode_belajar"
 			+", id_ekstrakurikuler"
-			+", nilai"
+			+", id_nilai_afektif"
 			+", keterangan"
 			+", username)"
 			+"  values("
-			+"  '"+ nis + "'"
+			+"   "+ id_siswa
 			+", '"+ kd_tahun_ajaran + "'"
 			+", '"+ kd_tingkat_kelas + "'"
 			+", '"+ kd_rombel + "'"
 			+", '"+ kd_periode_belajar + "'"
 			+",  "+ id_ekstrakurikuler
-			+",  "+ nilai
+			+",  "+ id_nilai_afektif
 			+", '"+ keterangan + "'"
 			+", '"+ username +"')";
 		break;
 	case 3:
 		q	=" update	t_nilai_rapor_ekstra"
-			+" set		nis					= '"+ nis + "'"
-			+" ,		id_ekstrakurikuler	=  "+ id_ekstrakurikuler
-			+" ,		nilai				=  "+ nilai
+			+" set		id_ekstrakurikuler	=  "+ id_ekstrakurikuler
+			+" ,		id_nilai_afektif	=  "+ id_nilai_afektif
 			+" ,		keterangan			= '"+ keterangan +"'"
 			+" ,		username			= '"+ username +"'"
-			+" where	nis					= '"+ nis_old + "'"
+			+" where	id_siswa			=  "+ id_siswa_old
 			+" and		kd_tahun_ajaran		= '"+ kd_tahun_ajaran + "'"
 			+" and		kd_tingkat_kelas	= '"+ kd_tingkat_kelas + "'"
 			+" and		kd_rombel			= '"+ kd_rombel + "'"
@@ -73,7 +72,7 @@ try{
 		break;
 	case 4:
 		q	= " delete	from t_nilai_rapor_ekstra"
-			+ " where	nis					= '"+ nis + "'"
+			+ " where	id_siswa			=  "+ id_siswa
 			+ " and		kd_tahun_ajaran		= '"+ kd_tahun_ajaran + "'"
 			+ " and		kd_tingkat_kelas	= '"+ kd_tingkat_kelas + "'"
 			+ " and		kd_rombel			= '"+ kd_rombel + "'"
@@ -88,7 +87,7 @@ try{
 	db_stmt.executeUpdate(q);
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
-} catch (Exception e){
+} catch (SQLException e){
 	Properties	props	= new Properties();
 	
 	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));

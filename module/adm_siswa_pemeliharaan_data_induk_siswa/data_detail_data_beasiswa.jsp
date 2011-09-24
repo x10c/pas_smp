@@ -18,7 +18,7 @@ try{
 	Statement	db_stmt = db_con.createStatement();
 	
 	String 		kd_tahun_ajaran	= (String) session.getAttribute("kd.tahun_pelajaran");
-	String 		id_siswa				= request.getParameter("id_siswa");
+	String 		id_siswa		= request.getParameter("id_siswa");
 
 	String q=" select	id_siswa"
 			+" ,		kd_beasiswa"
@@ -28,7 +28,7 @@ try{
 			+" ,		jumlah_beasiswa_per_bulan"
 			+" ,		keterangan"
 			+" from		t_siswa_beasiswa"
-			+" where	id_siswa				= '" + id_siswa + "'"
+			+" where	id_siswa		= '" + id_siswa + "'"
 			+" and		kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
 			+" order by	tanggal_akses";
 	

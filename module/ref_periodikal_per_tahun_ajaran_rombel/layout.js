@@ -236,14 +236,14 @@ function M_RefPeriodikalPerTahunAjaranRombelDetail(title)
 			 }
 			}
 		,	{ header		: 'Nama Wali Kelas'
-			, dataIndex		: 'nip'
+			, dataIndex		: 'id_pegawai'
 			, sortable		: true
 			, editor		: this.form_wali_kelas
 			, renderer		: combo_renderer(this.form_wali_kelas)
 			, width			: 200
 			}
 		,	{ header		: 'Nama Guru BK'
-			, dataIndex		: 'nip_bk'
+			, dataIndex		: 'id_pegawai_bk'
 			, sortable		: true
 			, editor		: this.form_guru_bk
 			, renderer		: combo_renderer(this.form_guru_bk)

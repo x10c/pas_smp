@@ -75,11 +75,9 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 		,	autoLoad	: false
 	});
 
-	this.form_nis = new Ext.form.NumberField({
+	this.form_nis = new Ext.form.TextField({
 			fieldLabel		: 'Nomor Induk'
 		,	allowBlank		: false
-		,	allowDecimals	: false
-		,	allowNegative	: false
 		,	maxLength		: 12
 		,	maxLengthText	: 'Maksimal panjang kolom adalah 12'
 		,	width			: 130
@@ -124,7 +122,7 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 	});
 
 	this.form_jenis_kelamin = new Ext.form.ComboBox({
-			fieldLabel		: 'Jeid_siswa Kelamin'
+			fieldLabel		: 'Jenis Kelamin'
 		,	store			: this.store_jenis_kelamin
 		,	valueField		: 'id'
 		,	displayField	: 'name'
@@ -588,8 +586,8 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_d +'submit.jsp'
 			,	params  : {
-						id_siswa							: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_id_siswa
-					,	nis					: this.form_nis.getValue()
+						id_siswa					: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_id_siswa
+					,	nis							: this.form_nis.getValue()
 					,	nm_siswa					: this.form_nm_siswa.getValue()
 					,	nm_panggilan				: this.form_nm_panggilan.getValue()
 					,	kota_lahir					: this.form_kota_lahir.getValue()
@@ -627,7 +625,7 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 						
 						Ext.MessageBox.alert('Informasi', msg.info);
 
-						m_adm_siswa_pembentukan_data_awal_siswa_pindahan_list.store.reload();
+						m_adm_siswa_pembentukan_data_awal_siswa_pindahan_list.do_load();
 						m_adm_siswa_pembentukan_data_awal_siswa_pindahan.panel.layout.setActiveItem(0);
 					}
 			,	scope	: this
@@ -637,7 +635,6 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanDetail()
 	this.do_refresh = function()
 	{
 		this.store_agama.load();
-		this.store_kesejahteraan_keluarga.load();
 		this.store_gol_darah.load();
 		this.store_asal_smp.load();
 		this.store_tingkat_kelas.load();
@@ -661,6 +658,7 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanList()
 			fields		: this.record
 		,	url			: m_adm_siswa_pembentukan_data_awal_siswa_pindahan_d +'data_list.jsp'
 		,	autoLoad	: false
+		,	idIndex		: 0
 	});
 
 	this.store_asal_smp = new Ext.data.ArrayStore({
@@ -825,6 +823,8 @@ function M_AdmSiswaPembentukanDataAwalSiswaPindahanList()
 	
 	this.do_load = function()
 	{
+		delete this.store.lastParams;
+		
 		this.store_asal_smp.load({
 			callback	: function(){
 				this.store.load({

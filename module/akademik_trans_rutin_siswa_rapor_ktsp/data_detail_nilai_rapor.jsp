@@ -28,7 +28,7 @@ try{
 			+" ,		a.sakit"
 			+" ,		a.ijin"
 			+" ,		a.absen"
-			+" ,		a.catatan"
+			+" ,		ifnull(a.catatan,'') as catatan"
 			+" ,		b.nis"
 			+" ,		b.nm_siswa"
 			+" from		t_nilai_rapor	as a"

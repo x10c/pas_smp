@@ -21,24 +21,28 @@ try{
 
 	Statement	db_stmt = db_con.createStatement();
 
-	int dml 					= Integer.parseInt(request.getParameter("dml_type"));
-	String id_siswa				= request.getParameter("id_siswa");
-	String kewarganegaraan		= request.getParameter("kewarganegaraan");
-	String anak_ke				= request.getParameter("anak_ke");
-	String jumlah_kandung		= request.getParameter("jumlah_kandung");
-	String jumlah_tiri			= request.getParameter("jumlah_tiri");
-	String jumlah_angkat		= request.getParameter("jumlah_angkat");
-	String status_yatim_piatu	= request.getParameter("status_yatim_piatu");
-	String bahasa				= request.getParameter("bahasa");
-	String tinggal_di			= request.getParameter("tinggal_di");
-	String jarak_sek			= request.getParameter("jarak_sek");
-	String kd_ketunaan			= request.getParameter("kd_ketunaan");
-	String berat_badan			= request.getParameter("berat_badan");
-	String tinggi_badan			= request.getParameter("tinggi_badan");
-	String no_stl_sd			= request.getParameter("no_stl_sd");
-	String tanggal_stl_sd		= request.getParameter("tanggal_stl_sd");
-	String lama_belajar_sd		= request.getParameter("lama_belajar_sd");
-	String username				= (String) session.getAttribute("user.id");
+	int dml 							= Integer.parseInt(request.getParameter("dml_type"));
+	String id_siswa						= request.getParameter("id_siswa");
+	String hubungi						= request.getParameter("hubungi");
+	String tanggung_biaya				= request.getParameter("tanggung_biaya");
+	String status_yatim_piatu			= request.getParameter("status_yatim_piatu");
+	String kd_kesejahteraan_keluarga	= request.getParameter("kd_kesejahteraan_keluarga");
+	String anak_ke						= request.getParameter("anak_ke");
+	String jumlah_kandung				= request.getParameter("jumlah_kandung");
+	String jumlah_tiri					= request.getParameter("jumlah_tiri");
+	String jumlah_angkat				= request.getParameter("jumlah_angkat");
+	String kewarganegaraan				= request.getParameter("kewarganegaraan");
+	String bahasa						= request.getParameter("bahasa");
+	String tinggal_di					= request.getParameter("tinggal_di");
+	String jarak_sek					= request.getParameter("jarak_sek");
+	String kd_ketunaan					= request.getParameter("kd_ketunaan");
+	String kelainan_jasmani				= request.getParameter("kelainan_jasmani");
+	String berat_badan					= request.getParameter("berat_badan");
+	String tinggi_badan					= request.getParameter("tinggi_badan");
+	String no_stl_sd					= request.getParameter("no_stl_sd");
+	String tanggal_stl_sd				= request.getParameter("tanggal_stl_sd");
+	String lama_belajar_sd				= request.getParameter("lama_belajar_sd");
+	String username						= (String) session.getAttribute("user.id");
 
 	if (anak_ke.equals("")){
 		anak_ke = null;
@@ -81,42 +85,73 @@ try{
 	switch (dml) {
 	case 2:
 		q	="  insert into t_siswa_info"
+			+" (id_siswa"
+			+", hubungi"
+			+", tanggung_biaya"
+			+", status_yatim_piatu"
+			+", kd_kesejahteraan_keluarga"
+			+", anak_ke"
+			+", jumlah_kandung"
+			+", jumlah_tiri"
+			+", jumlah_angkat"
+			+", kewarganegaraan"
+			+", bahasa"
+			+", tinggal_di"
+			+", jarak_sek"
+			+", kd_ketunaan"
+			+", kelainan_jasmani"
+			+", berat_badan"
+			+", tinggi_badan"
+			+", no_stl_sd"
+			+", tanggal_stl_sd"
+			+", lama_belajar_sd"
+			+", username)"
 			+"  values ("
 			+"   "+ id_siswa
-			+", '"+ kewarganegaraan +"'"
+			+", '"+ hubungi +"'"
+			+",  "+ tanggung_biaya
+			+", '"+ status_yatim_piatu +"'"
+			+", '"+ kd_kesejahteraan_keluarga +"'"
 			+",  "+ anak_ke
 			+",  "+ jumlah_kandung
 			+",  "+ jumlah_tiri
 			+",  "+ jumlah_angkat
-			+", '"+ status_yatim_piatu +"'"
+			+", '"+ kewarganegaraan +"'"
 			+", '"+ bahasa +"'"
 			+", '"+ tinggal_di +"'"
 			+",  "+ jarak_sek
 			+", '"+ kd_ketunaan +"'"
+			+", '"+ kelainan_jasmani +"'"
 			+",  "+ berat_badan
 			+",  "+ tinggi_badan
 			+", '"+ no_stl_sd +"'"
 			+",  "+ tanggal_stl_sd
-			+",  "+ lama_belajar_sd +")";
+			+",  "+ lama_belajar_sd
+			+", '"+ username +"')";
 		break;
 	case 3:
 		q	=" update	t_siswa_info"
-			+" set		kewarganegaraan		= '"+ kewarganegaraan +"'"
-			+" ,		anak_ke				= "+ anak_ke
-			+" ,		jumlah_kandung		= "+ jumlah_kandung
-			+" ,		jumlah_tiri			= "+ jumlah_tiri
-			+" ,		jumlah_angkat		= "+ jumlah_angkat
-			+" ,		status_yatim_piatu	= '"+ status_yatim_piatu +"'"
-			+" ,		bahasa				= '"+ bahasa +"'"
-			+" ,		tinggal_di			= '"+ tinggal_di +"'"
-			+" ,		jarak_sek			= "+ jarak_sek
-			+" ,		kd_ketunaan			= '"+ kd_ketunaan +"'"
-			+" ,		berat_badan			= "+ berat_badan
-			+" ,		tinggi_badan		= "+ tinggi_badan
-			+" ,		no_stl_sd			= '"+ no_stl_sd +"'"
-			+" ,		tanggal_stl_sd		= "+ tanggal_stl_sd
-			+" ,		lama_belajar_sd		= "+ lama_belajar_sd
-			+" where	id_siswa			= "+ id_siswa;
+			+" set		hubungi						= '"+ hubungi +"'"
+			+" ,		tanggung_biaya				= "+ tanggung_biaya
+			+" ,		status_yatim_piatu			= '"+ status_yatim_piatu +"'"
+			+" ,		kd_kesejahteraan_keluarga	= '"+ kd_kesejahteraan_keluarga +"'"
+			+" ,		anak_ke						= "+ anak_ke
+			+" ,		jumlah_kandung				= "+ jumlah_kandung
+			+" ,		jumlah_tiri					= "+ jumlah_tiri
+			+" ,		jumlah_angkat				= "+ jumlah_angkat
+			+" ,		kewarganegaraan				= '"+ bahasa +"'"
+			+" ,		bahasa						= '"+ bahasa +"'"
+			+" ,		tinggal_di					= '"+ tinggal_di +"'"
+			+" ,		jarak_sek					= "+ jarak_sek
+			+" ,		kd_ketunaan					= '"+ kd_ketunaan +"'"
+			+" ,		kelainan_jasmani			= '"+ kelainan_jasmani +"'"
+			+" ,		berat_badan					= "+ berat_badan
+			+" ,		tinggi_badan				= "+ tinggi_badan
+			+" ,		no_stl_sd					= '"+ no_stl_sd +"'"
+			+" ,		tanggal_stl_sd				= "+ tanggal_stl_sd
+			+" ,		lama_belajar_sd				= "+ lama_belajar_sd
+			+" ,		username					= '"+ username + "'"
+			+" where	id_siswa					= "+ id_siswa;
 		break;
 	case 4:
 		q	= " delete	from t_siswa_info"
@@ -130,7 +165,7 @@ try{
 	db_stmt.executeUpdate(q);
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
-} catch (Exception e){
+} catch (SQLException e){
 	Properties	props	= new Properties();
 	
 	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));

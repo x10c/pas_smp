@@ -17,10 +17,10 @@ try{
 
 	Statement	db_stmt = db_con.createStatement();
 
-	String q=" select	kd_kesejahteraan_keluarga"
-			+" ,		nm_kesejahteraan_keluarga"
-			+" from		r_kesejahteraan_keluarga"
-			+" order by	kd_kesejahteraan_keluarga";
+	String q=" select	id_nilai_afektif"
+			+" ,		nm_nilai_afektif"
+			+" from		r_nilai_afektif"
+			+" order by	id_nilai_afektif";
 	
 	ResultSet	rs	= db_stmt.executeQuery(q);
 	int		i	= 0;
@@ -32,8 +32,8 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="['"+ rs.getString("kd_kesejahteraan_keluarga") + "'"
-				+  ",\""+ rs.getString("nm_kesejahteraan_keluarga") +"\""
+		data 	+="["+ rs.getString("id_nilai_afektif")
+				+  ",\""+ rs.getString("nm_nilai_afektif") +"\""
 				+ "]";
 	}	
 	data += "]";

@@ -17,7 +17,7 @@ try{
 
 	Statement	db_stmt = db_con.createStatement();
 	
-	String 		id_siswa		= request.getParameter("id_siswa");
+	String 		id_siswa	= request.getParameter("id_siswa");
 
 	ResultSet	rs;
 	String		q;
@@ -49,7 +49,7 @@ try{
 			+ ", kd_agama : '"+ rs.getString("kd_agama") + "'"
 			+ ", no_telp : '"+ rs.getString("no_telp") + "'"
 			+ ", no_hp : '"+ rs.getString("no_hp") + "'"
-			+ ", status_siswa : '"+ rs.getString("status_siswa") + "'
+			+ ", status_siswa : '"+ rs.getString("status_siswa") + "'"
 			+ ", asal_sd : "+ rs.getString("asal_sd")
 			+ ", asal_smp : "+ rs.getString("asal_smp")
 			+ ", kd_tingkat_kelas : '"+ rs.getString("kd_tingkat_kelas") + "'"

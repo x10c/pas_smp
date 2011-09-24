@@ -528,7 +528,6 @@ function M_AdmPegawaiPembentukanDataAwalTenagaAdministrasiDetail()
 					,	operasi_komputer		: this.form_operasi_komputer.getValue()
 					,	kursus_komputer			: this.form_kursus_komputer.getValue()
 					,	sertifikasi				: this.form_sertifikasi.getValue()
-					,	dir_foto				: '1'
 					,	dml_type				: this.dml_type
 				}
 			,	waitMsg	: 'Mohon Tunggu ...'

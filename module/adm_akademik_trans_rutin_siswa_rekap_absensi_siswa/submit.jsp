@@ -11,6 +11,7 @@
 <%@ page import	= "java.io.FileInputStream" %>
 <%@ page import	= "java.io.File" %>
 <%
+String q = "";
 try{
 	Connection	db_con	= (Connection) session.getAttribute("db.con");
 	if (db_con == null || (db_con != null && db_con.isClosed())) {
@@ -25,8 +26,6 @@ try{
 	String kd_periode_belajar	= (String) session.getAttribute("kd.periode_belajar");
 	String tanggal_rapor		= request.getParameter("tanggal_rapor");
 	String username				= (String) session.getAttribute("user.id");
-	String q					= "";
-	String q2					= "";
 
 	switch (dml) {
 	case 5:
@@ -34,16 +33,12 @@ try{
 			+" set		status_naik_kelas	= '" + kd_periode_belajar + "'"
 			+" ,		username			= 'ditpsmp'";
 		if (kd_periode_belajar.equals("1")){
-			q	+=",	tanggal_semester_1	= cast('"+ tanggal_rapor +"' as date)"
+			q	+=",	tanggal_semester_1	= cast('"+ tanggal_rapor +"' as date)";
 		} else {
-			q	+=",	tanggal_semester_2	= cast('"+ tanggal_rapor +"' as date)"
+			q	+=",	tanggal_semester_2	= cast('"+ tanggal_rapor +"' as date)";
 		}
-			+" where	kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'";
+		q	+=" where	kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'";
 
-		q2	=" update	t_nilai_rapor"
-			+" set		tanggal_diberikan	= cast('"+ tanggal_rapor +"' as date)"
-			+" where	kd_tahun_ajaran		= '"+ kd_tahun_ajaran + "'"
-			+" and		kd_periode_belajar	= '"+ kd_periode_belajar + "'";
 		break;
 	default:
 		out.print("{success:false,info:'DML tipe tidak diketahui ("+dml+")!'}");
@@ -52,12 +47,9 @@ try{
 
 	db_stmt.executeUpdate(q);
 	
-	if (q2 != ""){
-		db_stmt.executeUpdate(q2);
-	}
-
 	out.print("{success:true,info:'Data telah tersimpan.'}");
-} catch (Exception e){
+} catch (SQLException e){
+	out.print(q);
 	Properties	props	= new Properties();
 	
 	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));

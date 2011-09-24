@@ -60,8 +60,7 @@ try {
 			+", status_hidup : '"+ rs.getString("status_hidup") + "'"
 			+", tahun_meninggal : "+ rs.getString("tahun_meninggal")
 			+", username : '"+ rs.getString("username") + "'"
-			+", tanggal_akses : '"+ rs.getString("tanggal_akses") + "'"
-			+", nis : '"+ rs.getString("nis") + "'";
+			+", tanggal_akses : '"+ rs.getString("tanggal_akses") + "'";
 
 	data += "}";
 

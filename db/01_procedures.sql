@@ -1,7 +1,7 @@
-USE PAS_SMP;
+use PAS_SMP;
 
 
-DELIMITER $$
+delimiter $$
 
 CREATE FUNCTION F_GAJI_ORTU (
     picC_ids    BIGINT
@@ -374,8 +374,8 @@ BEGIN
 					,	pic2_thn
 					, 	pic2_kls
 					, 	picF_rbl
-					,	v_kur
 					,	pic1_prd
+                    ,	v_kur
 					,	v_mtp
 					,	v_kkm
 					,	0

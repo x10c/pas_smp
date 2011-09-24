@@ -23,11 +23,10 @@ try{
 			+" ,		no_urut"
 			+" ,		no_urut as no_urut_old"
 			+" ,		id_penyakit"
-			+" ,		tahun_sakit"
 			+" ,		lama_sakit"
 			+" ,		keterangan"
 			+" from		t_siswa_rwyt_sakit"
-			+" where	id_siswa	= '" + id_siswa + "'"
+			+" where	id_siswa	= " + id_siswa
 			+" order by	no_urut";
 	
 	ResultSet	rs		= db_stmt.executeQuery(q);
@@ -44,7 +43,6 @@ try{
 				+ ","+ rs.getString("no_urut")
 				+ ","+ rs.getString("no_urut_old")
 				+ ","+ rs.getString("id_penyakit")
-				+ ","+ rs.getString("tahun_sakit")
 				+ ","+ rs.getString("lama_sakit")
 				+ ",'"+ rs.getString("keterangan") + "']";
 	}	

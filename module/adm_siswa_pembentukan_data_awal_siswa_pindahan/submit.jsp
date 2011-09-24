@@ -97,7 +97,7 @@ try{
 			+" ,		nm_panggilan				= '"+ nm_panggilan + "'"
 			+" ,		kota_lahir					= '"+ kota_lahir + "'"
 			+" ,		tanggal_lahir				= cast('"+ tanggal_lahir +"' as date)"
-			+" ,		kd_jeid_siswa_kelamin			= '"+ kd_jeid_siswa_kelamin +"'"
+			+" ,		kd_jenis_kelamin			= '"+ kd_jenis_kelamin +"'"
 			+" ,		kd_agama					= '"+ kd_agama +"'"
 			+" ,		alamat						= '"+ alamat + "'"
 			+" ,		rt							= '"+ rt + "'"
@@ -125,7 +125,7 @@ try{
 	db_stmt.executeUpdate(q);
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
-} catch (Exception e){
+} catch (SQLException e){
 	Properties	props	= new Properties();
 	
 	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));

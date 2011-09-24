@@ -81,7 +81,7 @@ try {
 
 	out.print("{success:true,info:'Tahun Pelajaran dan Periode Belajar telah di pilih!'}");
 }
-catch (Exception e) {
+catch (SQLException e) {
 	Properties	props	= new Properties();
 	
 	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));

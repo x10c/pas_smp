@@ -26,10 +26,10 @@ try{
 			+" ,		a.alamat"
 			+" from		t_pegawai		as a"
 			+" ,		t_pegawai_aktif	as b"
-			+" where	a.kd_jenis_ketenagaan in ('1','6')"
-			+" and		a.id_pegawai 				= b.id_pegawai"
-			+" and		b.status_aktif				= '1'"
-			+" and		b.kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
+			+" where	a.kd_jenis_ketenagaan	in ('1','6')"
+			+" and		a.id_pegawai 			= b.id_pegawai"
+			+" and		b.status_aktif			= '1'"
+			+" and		b.kd_tahun_ajaran		= '" + kd_tahun_ajaran + "'"
 			+" order by	a.kd_jenis_ketenagaan, a.nm_pegawai";
 	
 	ResultSet	rs		= db_stmt.executeQuery(q);

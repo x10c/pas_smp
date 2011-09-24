@@ -43,7 +43,6 @@ try{
 	+" ,		operasi_komputer"
 	+" ,		kursus_komputer"
 	+" ,		sertifikasi"
-	+" ,		dir_foto"
 	+" from		t_pegawai"
 	+" where	id_pegawai			= " + id_pegawai;
 	
@@ -73,8 +72,7 @@ try{
 			+ ", kd_jenis_ketenagaan : '"+ rs.getString("kd_jenis_ketenagaan") + "'"
 			+ ", operasi_komputer : '"+ rs.getString("operasi_komputer") + "'"
 			+ ", kursus_komputer : '"+ rs.getString("kursus_komputer") + "'"
-			+ ", sertifikasi : '"+ rs.getString("sertifikasi") + "'"
-			+ ", dir_foto : '"+ rs.getString("dir_foto") +"'}";
+			+ ", sertifikasi : '"+ rs.getString("sertifikasi") + "'}";
 	
 	rs.close();
 	

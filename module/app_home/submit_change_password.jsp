@@ -6,7 +6,7 @@
  %   - m.shulhan (ms@kilabit.org)
 --%>
 
-<%@ page import="java.sql.*" %>
+<%@ page import = "java.sql.*" %>
 <%@ page import = "java.util.Properties" %>
 <%@ page import = "java.io.FileInputStream" %>
 <%@ page import = "java.io.File" %>
@@ -47,7 +47,7 @@ try {
 	db_stmt.executeUpdate(q);
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
-} catch (Exception e) {
+} catch (SQLException e) {
 	Properties	props	= new Properties();
 	
 	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));

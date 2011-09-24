@@ -538,8 +538,8 @@ function M_AdmPegawaiPembentukanDataAwalGuruDetail()
 		Ext.Ajax.request({
 				url		: m_adm_pegawai_pembentukan_data_awal_guru_d +'submit.jsp'
 			,	params  : {
-						id_pegawai						: m_adm_pegawai_pembentukan_data_awal_guru_id_pegawai
-					,	nip				: this.form_nip.getValue()
+						id_pegawai				: m_adm_pegawai_pembentukan_data_awal_guru_id_pegawai
+					,	nip						: this.form_nip.getValue()
 					,	nomor_induk				: '1'
 					,	nuptk					: this.form_nuptk.getValue()
 					,	nm_pegawai				: this.form_nm_pegawai.getValue()
@@ -558,7 +558,6 @@ function M_AdmPegawaiPembentukanDataAwalGuruDetail()
 					,	operasi_komputer		: this.form_operasi_komputer.getValue()
 					,	kursus_komputer			: this.form_kursus_komputer.getValue()
 					,	sertifikasi				: this.form_sertifikasi.getValue()
-					,	dir_foto				: '1'
 					,	dml_type				: this.dml_type
 				}
 			,	waitMsg	: 'Mohon Tunggu ...'
@@ -769,8 +768,8 @@ function M_AdmPegawaiPembentukanDataAwalGuruList()
 		Ext.Ajax.request({
 			url		: m_adm_pegawai_pembentukan_data_awal_guru_d +'submit.jsp'
 		,	params	: {
-				dml_type				: 4
-			,	id_pegawai						: data.get('id_pegawai')
+				dml_type	: 4
+			,	id_pegawai	: data.get('id_pegawai')
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
 		,	failure	: function(response) {

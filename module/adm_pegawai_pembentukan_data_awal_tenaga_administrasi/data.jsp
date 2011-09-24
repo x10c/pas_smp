@@ -42,7 +42,6 @@ try{
 	+" ,		operasi_komputer"
 	+" ,		kursus_komputer"
 	+" ,		sertifikasi"
-	+" ,		dir_foto"
 	+" from		t_pegawai"
 	+" where	id_pegawai			= " + id_pegawai;
 	
@@ -54,7 +53,7 @@ try{
 		return;
 	}
 	
-	data 	="{ id_pegawai : "+ rs.getString("id_pegawai")
+	data 	= "{ id_pegawai : "+ rs.getString("id_pegawai")
 			+ ", nip : '"+ rs.getString("nip") + "'"
 			+ ", nuptk : '"+ rs.getString("nuptk") + "'"
 			+ ", nm_pegawai : '"+ rs.getString("nm_pegawai") + "'"
@@ -71,8 +70,7 @@ try{
 			+ ", kd_status_nikah : '"+ rs.getString("kd_status_nikah") + "'"
 			+ ", operasi_komputer : '"+ rs.getString("operasi_komputer") + "'"
 			+ ", kursus_komputer : '"+ rs.getString("kursus_komputer") + "'"
-			+ ", sertifikasi : '"+ rs.getString("sertifikasi") + "'"
-			+ ", dir_foto : '"+ rs.getString("dir_foto") +"'}";
+			+ ", sertifikasi : '"+ rs.getString("sertifikasi") + "'}";
 	
 	rs.close();
 	

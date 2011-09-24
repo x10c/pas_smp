@@ -138,7 +138,7 @@ function M_AdmAkademikTransRutinSiswaRekapAbsensiSiswa(title)
 	,	resizable	: false
 	,	plain		: true
 	,	autoHeight	: true
-	,	width		: 340
+	,	width		: 290
 	,	items		:[
 			this.form_tanggal_rapor
 		]
@@ -151,9 +151,35 @@ function M_AdmAkademikTransRutinSiswaRekapAbsensiSiswa(title)
 	this.do_process = function()
 	{
 		Ext.MessageBox.confirm('Konfirmasi', 'Rekap Absensi Siswa?', function(btn, text){
-			if (btn == 'ok'){
-				this.win.show();
+			if (btn == 'yes'){
+				m_adm_akademik_trans_rutin_siswa_rekap_absensi_siswa.win.show();
 			}
+		});
+	}
+
+	this.do_insert_rapor = function()
+	{
+		this.dml_type = 5;
+		Ext.Ajax.request({
+				params  : {
+						tanggal_rapor	: this.form_tanggal_rapor.getValue()
+					,	dml_type		: this.dml_type
+				}
+			,	url		: m_adm_akademik_trans_rutin_siswa_rekap_absensi_siswa_d +'submit_rapor.jsp'
+			,	waitMsg	: 'Mohon Tunggu ...'
+			,	success :
+					function (response)
+					{
+						var msg = Ext.util.JSON.decode(response.responseText);
+
+						if (msg.success == false) {
+							Ext.MessageBox.alert('Pesan', msg.info);
+						}
+
+						m_adm_akademik_trans_rutin_siswa_rekap_absensi_siswa.win.hide();
+						m_adm_akademik_trans_rutin_siswa_rekap_absensi_siswa.do_load();
+					}
+			,	scope	: this
 		});
 	}
 
@@ -176,7 +202,7 @@ function M_AdmAkademikTransRutinSiswaRekapAbsensiSiswa(title)
 							Ext.MessageBox.alert('Pesan', msg.info);
 						}
 
-						this.do_load();
+						m_adm_akademik_trans_rutin_siswa_rekap_absensi_siswa.do_insert_rapor();
 					}
 			,	scope	: this
 		});
@@ -190,7 +216,7 @@ function M_AdmAkademikTransRutinSiswaRekapAbsensiSiswa(title)
 	this.do_check = function()
 	{
 		Ext.Ajax.request({
-			url		: m_adm_akademik_trans_rutin_siswa_rekap_absensi_siswa_d +'data_status_naik_kelas.jsp'
+			url		: m_adm_akademik_trans_rutin_siswa_rekap_absensi_siswa_d +'data_check.jsp'
 		,	waitMsg	: 'Mohon Tunggu ...'
 		,	failure	: function(response) {
 				Ext.MessageBox.alert('Gagal', response.responseText);
@@ -202,7 +228,7 @@ function M_AdmAkademikTransRutinSiswaRekapAbsensiSiswa(title)
 					return;
 				}
 
-				if (msg.status_naik_kelas >= msg.kd_periode_belajar){
+				if (msg.jumlah < 1 || msg.status_naik_kelas >= msg.kd_periode_belajar){
 					this.btn_process.setDisabled(true);
 				} else {
 					this.btn_process.setDisabled(false);
@@ -215,12 +241,6 @@ function M_AdmAkademikTransRutinSiswaRekapAbsensiSiswa(title)
 	this.do_load = function()
 	{
 		this.store.load();
-
-		if (this.store.getTotalCount() < 1){
-			this.btn_process.setDisabled(true);
-		} else {
-			this.btn_process.setDisabled(false);
-		}
 
 		this.do_check();
 	}

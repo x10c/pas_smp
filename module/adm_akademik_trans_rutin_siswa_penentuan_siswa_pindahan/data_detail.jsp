@@ -22,7 +22,7 @@ try{
 	
 	String q=" select	a.kd_tahun_ajaran"
 			+" ,		a.kd_tingkat_kelas"
-			+" ,		a.kd_rombel"
+			+" ,		ifnull(a.kd_rombel, '') as kd_rombel"
 			+" ,		a.id_siswa"
 			+" ,		b.nm_tingkat_kelas"
 			+" ,		c.nis"
@@ -35,7 +35,7 @@ try{
 			+" and		a.kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
 			+" and		a.kd_tingkat_kelas	= '" + kd_tingkat_kelas + "'"
 			+" and		a.kd_tingkat_kelas	is not null"
-			+" and		a.id_siswa			in (select id_siswa from t_siswa_tingkat)"
+			+" and		a.id_siswa			not in (select id_siswa from t_siswa_tingkat)"
 			+" order by	c.nm_siswa desc";
 	
 	ResultSet	rs	= db_stmt.executeQuery(q);

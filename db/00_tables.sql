@@ -1,7 +1,7 @@
 /*==============================================================*/
 /* Database name:  PAS_SMP                                      */
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     9/13/2011 12:42:35 AM                        */
+/* Created on:     9/24/2011 9:25:04 PM                         */
 /*==============================================================*/
 
 
@@ -2080,13 +2080,13 @@ create table T_SISWA_RWYT_SAKIT
 (
    ID_SISWA             bigint unsigned not null,
    NIS                  varchar(25) default NULL,
+   NO_URUT              tinyint unsigned not null,
    ID_PENYAKIT          smallint unsigned not null,
-   TINGKAT_KELAS        tinyint unsigned not null,
    LAMA_SAKIT           tinyint unsigned not null,
    KETERANGAN           varchar(255) default NULL,
    USERNAME             varchar(20) not null,
    TANGGAL_AKSES        timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-   primary key (ID_SISWA, ID_PENYAKIT)
+   primary key (ID_SISWA, NO_URUT)
 );
 
 /*==============================================================*/

@@ -45,6 +45,7 @@ try{
 			+", no_sk"
 			+", tanggal_sk"
 			+", tmt_sk"
+			+", status_jabatan"
 			+", kd_jenis_pegawai"
 			+", tahun_berhenti"
 			+", keterangan"
@@ -55,6 +56,7 @@ try{
 			+", '"+ no_sk + "'"
 			+", cast('"+ tanggal_sk +"' as date)"
 			+", cast('"+ tmt_sk +"' as date)"
+			+", '0'"
 			+", '"+ kd_jenis_pegawai + "'"
 			+",  "+ tahun_berhenti
 			+", '"+ keterangan + "'"
@@ -86,7 +88,7 @@ try{
 	db_stmt.executeUpdate(q);
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");
-} catch (Exception e){
+} catch (SQLException e){
 	Properties	props	= new Properties();
 	
 	props.load(new FileInputStream(application.getRealPath("WEB-INF"+File.separator+"error.properties")));

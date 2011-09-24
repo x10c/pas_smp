@@ -21,7 +21,7 @@ try{
 	
 	String q=" select	a.kd_tahun_ajaran"
 			+" ,		a.kd_tingkat_kelas"
-			+" ,		a.kd_rombel"
+			+" ,		ifnull(a.kd_rombel,'') as kd_rombel"
 			+" ,		a.id_siswa"
 			+" ,		b.nm_tingkat_kelas"
 			+" ,		c.nis"

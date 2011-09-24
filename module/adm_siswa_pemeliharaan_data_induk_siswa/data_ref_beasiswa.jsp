@@ -21,7 +21,6 @@ try{
 			+" ,		nm_beasiswa"
 			+" from		r_beasiswa"
 			+" where	(kd_beasiswa not in ('00','99'))"
-			+" and		(sltp <> null or sltp <> '')"
 			+" order by	kd_beasiswa";
 	
 	ResultSet	rs	= db_stmt.executeQuery(q);
