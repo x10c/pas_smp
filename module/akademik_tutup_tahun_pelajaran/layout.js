@@ -14,6 +14,7 @@ function M_AkademikTutupTahunPelajaran(title)
 	this.title		= title;
 	this.dml_type	= 0;
 	this.ha_level	= 0;
+	this.saldo_awal = 0;
 
 	this.record = new Ext.data.Record.create([
 			{ name	: 'kd_tahun_ajaran' }
@@ -100,11 +101,11 @@ function M_AkademikTutupTahunPelajaran(title)
 	this.do_process = function()
 	{
 		Ext.MessageBox.confirm('Konfirmasi', 'Tutup Tahun Pelajaran?', function(btn, text){
-			if (btn == 'ok'){
+			if (btn == 'yes'){
 				this.dml_type = 5;
 				Ext.Ajax.request({
 						params  : {
-								saldo_awal	: this.form_saldo_awal.getValue()
+								saldo_awal	: m_akademik_tutup_tahun_pelajaran.saldo_awal
 							,	dml_type	: this.dml_type
 						}
 					,	url		: m_akademik_tutup_tahun_pelajaran_d +'submit.jsp'
@@ -116,9 +117,11 @@ function M_AkademikTutupTahunPelajaran(title)
 
 								if (msg.success == false) {
 									Ext.MessageBox.alert('Pesan', msg.info);
+								} else {
+									Ext.MessageBox.alert('Informasi', 'Tutup Tahun Pelajaran berhasil dilakukan.');
 								}
 
-								this.do_load();
+								m_akademik_tutup_tahun_pelajaran.do_load();
 							}
 					,	scope	: this
 				});
@@ -139,9 +142,11 @@ function M_AkademikTutupTahunPelajaran(title)
 
 				if (msg.success == false) {
 					return;
+				} else {
+					this.saldo_awal = msg.saldo_awal;
 				}
 
-				if (msg.jumlah > 0 || msg.kd_periode_belajar != '2'){
+				if (msg.jumlah > 0 || msg.kd_periode_belajar != '2' || msg.jumlah_data < 1){
 					this.btn_process.setDisabled(true);
 				} else {
 					this.btn_process.setDisabled(false);
@@ -155,13 +160,7 @@ function M_AkademikTutupTahunPelajaran(title)
 	{
 		this.store.load();
 
-		this.do_check();
-		
-		if (this.store.getTotalCount() < 1){
-			this.btn_process.setDisabled(true);
-		} else {
-			this.btn_process.setDisabled(false);
-		}
+		this.do_check();		
 	}
 
 	this.do_refresh = function(ha_level)

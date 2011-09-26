@@ -1575,7 +1575,7 @@ begin
 		SELECT	kd_kel_mata_pelajaran
 		FROM	r_kel_mata_pelajaran
 		WHERE	kd_kel_mata_pelajaran IN ('01', '02', '03', '04', '11', '13', '15', '16', '19', '21', '22', '29', '30');
-
+	
 	DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET v_don = 1;
 	
 	SELECT	IFNULL(MAX(KD_TAHUN_AJARAN),'XX')
@@ -1594,8 +1594,10 @@ begin
 				NO_SK_PENDIRIAN
 			,	TANGGAL_SK_PENDIRIAN
 			,	KD_KETERANGAN_SK
-			,	NO_AKHIR_SK_STATUS
-			,	TANGGAL_AKHIR_SK_STATUS
+			,	NO_SK_AKHIR_STATUS
+			,	TANGGAL_SK_AKHIR_STATUS
+			,	NO_SK_AKREDITASI
+			,	TANGGAL_SK_AKREDITASI
 			,	NO_SK_AKREDITASI_AKHIR
 			,	TANGGAL_SK_AKREDITASI_AKHIR
 			,	KD_AKREDITASI
@@ -1947,9 +1949,7 @@ begin
 			END IF;
 		UNTIL v_don END REPEAT;
 		
-		CLOSE c_mpl;
-		
-		INSERT INTO t_sekolah_pemakaian_listrik VALUES (new.kd_tahun_ajaran, '1', '1', '1', 'pas', NOW());
+		CLOSE c_mpl;		
 	END IF;
 end
 $$
@@ -2154,68 +2154,6 @@ begin
     IF new.LUAS IS NULL THEN
         SET new.LUAS = old.LUAS;
     END IF;
-end
-$$
-
-delimiter ;
-
-
-drop trigger if exists T_SEKOLAH_SALDO_AWAL_BIR;
-
-delimiter $$
-
-create trigger T_SEKOLAH_SALDO_AWAL_BIR before insert
-on T_SEKOLAH_SALDO_AWAL for each row
-begin
-	DECLARE v__do INT DEFAULT 0;
-	DECLARE v_sal DECIMAL(18,2);
-	DECLARE v_trm DECIMAL(18,2);
-	DECLARE v_klr DECIMAL(18,2);
-	DECLARE v_sld DECIMAL(18,2);
-	
-	DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET v__do = 1;
-
-	SELECT	COUNT(*)
-	INTO	v__do
-	FROM	T_SEKOLAH_IDENTITAS
-	WHERE	KD_TAHUN_AJARAN = new.KD_TAHUN_AJARAN;
-
-	IF v__do = 0 THEN
-		INSERT INTO T_SEKOLAH_IDENTITAS
-		SELECT
-			new.KD_TAHUN_AJARAN
-		,	NPSN
-		,	KD_STATUS_SEKOLAH
-		,	KD_BENTUK_SEKOLAH
-		,	KD_JENIS_SEKOLAH
-		,	NM_SEKOLAH
-		,	JALAN
-		,	KD_POS
-		,	KD_DAERAH
-		,	ID_PROPINSI
-		,	ID_KABUPATEN
-		,	ID_KECAMATAN
-		,	KD_DESA
-		,	KD_AREA
-		,	NO_TELP
-		,	NO_FAX
-		,	JARAK_SKL_SJNS
-		,	KD_WAKTU_PENYELENGGARAAN
-		,	KD_TYPE_SEKOLAH
-		,	KD_KLASIFIKASI_SEKOLAH
-		,	KATEGORI
-		,	KD_KLASIFIKASI_GEOGRAFIS
-		,	new.USERNAME
-		,	new.TANGGAL_AKSES
-		FROM
-			T_SEKOLAH_IDENTITAS
-		WHERE
-			KD_TAHUN_AJARAN	=	(
-								SELECT	MAX(KD_TAHUN_AJARAN)
-								FROM	T_SEKOLAH_IDENTITAS
-								WHERE	KD_TAHUN_AJARAN < new.KD_TAHUN_AJARAN
-								);
-	END IF;
 end
 $$
 

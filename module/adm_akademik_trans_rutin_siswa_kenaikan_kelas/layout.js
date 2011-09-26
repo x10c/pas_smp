@@ -186,7 +186,7 @@ function M_AdmAkademikTransRutinSiswaKenaikanKelasDetailKenaikanKelas(title)
 	this.do_process = function()
 	{
 		Ext.MessageBox.confirm('Konfirmasi', 'Kenaikan Kelas?', function(btn, text){
-			if (btn == 'ok'){
+			if (btn == 'yes'){
 				this.dml_type = 5;
 				Ext.Ajax.request({
 						params  : {
@@ -204,11 +204,13 @@ function M_AdmAkademikTransRutinSiswaKenaikanKelasDetailKenaikanKelas(title)
 
 								if (msg.success == false) {
 									Ext.MessageBox.alert('Pesan', msg.info);
+								} else {
+									Ext.Msg.alert('Informasi', msg.info);
+									
+									m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_detail_kenaikan_siswa.btn_process.setDisabled(true);
+									m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_detail_kenaikan_siswa.btn_mark.setDisabled(true);
+									m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_detail_kenaikan_siswa.btn_save.setDisabled(true);
 								}
-
-								this.btn_process.setDisabled(true);
-								this.btn_mark.setDisabled(true);
-								this.btn_save.setDisabled(true);
 							}
 					,	scope	: this
 				});	
@@ -414,7 +416,8 @@ function M_AdmAkademikTransRutinSiswaKenaikanKelasDetailPesertaUN(title)
 	});
 
 	this.panel = new Ext.grid.EditorGridPanel({
-			title				: this.title
+			id					: 'm_adm_akademik_trans_rutin_siswa_kenaikan_kelas_penentuan_un_panel'
+		,	title				: this.title
 		,	store				: this.store
 		,	cm					: this.cm
 		,	stripeRows			: true
@@ -593,19 +596,29 @@ function M_AdmAkademikTransRutinSiswaKenaikanKelasMaster(title)
 						m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_kd_rombel 			= data[0].data['kd_rombel'];
 						
 						if (m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_kd_periode_belajar == '2'){
-							m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.items.getAt(0).setDisabled(false);
+							m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.setDisabled(false);
+							m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.unhideTabStripItem(0);
+							m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.setActiveTab(0);
 							if (m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_kd_tingkat_kelas != '03'){
-								m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.items.getAt(1).setDisabled(true);
+								m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.setActiveTab(0);
+								m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.hideTabStripItem(1);
+								m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_detail_kenaikan_siswa.panel.getColumnModel().setHidden(4, true);
 							} else {
-								m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.items.getAt(1).setDisabled(false);
+								m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.setActiveTab(0);
+								m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.unhideTabStripItem(1);
+								m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_detail_kenaikan_siswa.panel.getColumnModel().setHidden(4, false);
 							}
 						} else {
-							m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.items.getAt(0).setDisabled(true);
-							m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.items.getAt(1).setDisabled(true);
+							m_adm_akademik_trans_rutin_siswa_kenaikan_kelas.panel_detail.setDisabled(true);
 						}
 
 						Ext.Ajax.request({
 							url		: m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_d +'data_status_naik_kelas.jsp'
+						,	params	: {
+									kd_tahun_ajaran		: m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_kd_tahun_ajaran
+								,	kd_tingkat_kelas	: m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_kd_tingkat_kelas
+								,	kd_rombel			: m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_kd_rombel
+							}
 						,	waitMsg	: 'Mohon Tunggu ...'
 						,	failure	: function(response) {
 								Ext.MessageBox.alert('Gagal', response.responseText);
@@ -617,7 +630,7 @@ function M_AdmAkademikTransRutinSiswaKenaikanKelasMaster(title)
 									return;
 								}
 
-								if (msg.status_naik_kelas >= '2'){
+								if (msg.status_naik_kelas > '2'){
 									m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_detail_kenaikan_siswa.btn_process.setDisabled(true);
 									m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_detail_kenaikan_siswa.btn_mark.setDisabled(true);
 									m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_detail_kenaikan_siswa.btn_save.setDisabled(true);
@@ -700,8 +713,7 @@ function M_AdmAkademikTransRutinSiswaKenaikanKelas()
 	m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_detail_peserta_un		= new M_AdmAkademikTransRutinSiswaKenaikanKelasDetailPesertaUN('Penentuan Peserta UN');
 
 	this.panel_detail = new Ext.TabPanel({
-			autoScroll		: true
-		,	enableTabScroll	: true
+			enableTabScroll	: true
 		,	region			: 'center'
         ,	activeTab		: 0
 		,	defaults		: {

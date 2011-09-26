@@ -18,24 +18,59 @@ try{
 		return;
 	}
 
-	Statement	db_stmt = db_con.createStatement();
-
+	Statement	db_stmt		= db_con.createStatement();
+	Statement	db_stmt2	= db_con.createStatement();
+	ResultSet	rs			= null;
+	
 	int dml 					= Integer.parseInt(request.getParameter("dml_type"));
 	String kd_tahun_ajaran		= (String) session.getAttribute("kd.tahun_pelajaran");
-	String saldo_awal			= request.getParameter("saldo_awal");
 	String username				= (String) session.getAttribute("user.id");
 	String q					= "";
 	String q2					= "";
 	int kd_tahun_tambah			= 0;
 	String kd_tahun_pelajaran	= "";
+	int jumlah					= 0;
 	
 	kd_tahun_tambah = Integer.parseInt(kd_tahun_ajaran) + 1;
 	kd_tahun_pelajaran = kd_tahun_tambah + "";
 	
 	switch (dml) {
 	case 5:
-		q	=" insert	into t_sekolah_saldo_awal (kd_tahun_ajaran, saldo_awal, status, username)"
-			+" values	('" + kd_tahun_pelajaran + "'," + saldo_awal + ",'0','" + username +"')";
+		q	=" select	count(*) as jumlah"
+			+" from		t_sekolah_identitas"
+			+" where	kd_tahun_ajaran = '" + kd_tahun_pelajaran + "'";
+		
+		q2	=" insert	into t_sekolah_identitas"
+			+" select	'" + kd_tahun_pelajaran + "'"
+			+" ,		npsn"
+			+" ,		kd_status_sekolah"
+			+" ,		kd_bentuk_sekolah"
+			+" ,		kd_jenis_sekolah"
+			+" ,		nm_sekolah"
+			+" ,		jalan"
+			+" ,		kd_pos"
+			+" ,		kd_daerah"
+			+" ,		id_propinsi"
+			+" ,		id_kabupaten"
+			+" ,		id_kecamatan"
+			+" ,		kd_desa"
+			+" ,		kd_area"
+			+" ,		no_telp"
+			+" ,		no_fax"
+			+" ,		jarak_skl_sjns"
+			+" ,		kd_waktu_penyelenggaraan"
+			+" ,		kd_type_sekolah"
+			+" ,		kd_klasifikasi_sekolah"
+			+" ,		kategori"
+			+" ,		kd_klasifikasi_geografis"
+			+" ,		'" + username + "'"
+			+" ,		now()"
+			+" from		t_sekolah_identitas"
+			+" where	kd_tahun_ajaran =	("
+			+"								select	max(kd_tahun_ajaran)"
+			+"								from	t_sekolah_identitas"
+			+"								where	kd_tahun_ajaran < '" + kd_tahun_pelajaran + "'"
+			+"								)";
 
 		break;
 	default:
@@ -43,7 +78,19 @@ try{
 		return;
 	}
 
-	db_stmt.executeUpdate(q);
+	rs	= db_stmt.executeQuery(q);
+
+	if (!rs.next()) {
+		out.print("{ success: false"
+		+", info:'Data Identitas Sekolah tidak ditemukan!'}");
+		return;
+	}
+
+	jumlah	= Integer.parseInt(rs.getString("jumlah"));
+	
+	if (jumlah == 0){
+		db_stmt2.executeUpdate(q2);
+	}
 	
 	out.print("{success:true,info:'Data telah tersimpan.'}");
 } catch (SQLException e){
@@ -54,9 +101,9 @@ try{
 	String		err_msg = props.getProperty("" + e.getErrorCode() + "");
 	
 	if (err_msg == null){
-		out.print("{success:false,info:'" + e.getErrorCode() + " = Kesalahan operasi, silahkan hubungi direktorat.'}");
+		out.print("{success:false,info:'" + e.getErrorCode() + " = " + e.toString() + "'}");
 	} else {
-		out.print("{success:false,info:'" + e.getErrorCode() + " = " + err_msg + "'}");
+		out.print("{success:false,info:'" + e.getErrorCode() + " = " + e.toString() + "'}");
 	}
 }
 %>

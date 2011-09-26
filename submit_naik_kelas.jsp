@@ -18,9 +18,7 @@ try{
 		return;
 	}
 
-	Statement	db_stmt 	= db_con.createStatement();
-	Statement	db_stmt2 	= db_con.createStatement();
-	Statement	db_stmt3 	= db_con.createStatement();
+	Statement	db_stmt = db_con.createStatement();
 
 	int dml 					= Integer.parseInt(request.getParameter("dml_type"));
 	String kd_tahun_ajaran		= request.getParameter("kd_tahun_ajaran");
@@ -33,7 +31,8 @@ try{
 
 	switch (dml) {
 	case 5:
-		if (kd_tingkat_kelas.equals("01")){
+		switch (kd_tingkat_kelas){
+		case "01":
 			q	=" insert into t_siswa_tingkat_thn(id_siswa, kd_tahun_ajaran, kd_tingkat_kelas, kd_status_siswa, username)"
 				+" select	id_siswa, kd_tahun_ajaran + 1, '02', '0', 'ditpsmp'"
 				+" from		t_siswa_tingkat"
@@ -41,7 +40,9 @@ try{
 				+" and		kd_tingkat_kelas	= '01'"
 				+" and		kd_rombel			= '" + kd_rombel + "'"
 				+" and		kd_lulus			= '1'";
-		} else if (kd_tingkat_kelas.equals("02")){
+			
+			break;
+		case "02":
 			q	=" insert into t_siswa_tingkat_thn(id_siswa, kd_tahun_ajaran, kd_tingkat_kelas, kd_status_siswa, username)"
 				+" select	id_siswa, kd_tahun_ajaran + 1, '03', '0', 'ditpsmp'"
 				+" from		t_siswa_tingkat"
@@ -49,7 +50,9 @@ try{
 				+" and		kd_tingkat_kelas	= '02'"
 				+" and		kd_rombel			= '" + kd_rombel + "'"
 				+" and		kd_lulus			= '1'";
-		} else {
+
+			break;
+		case "03"
 			q	=" insert into t_siswa_alumni(id_siswa, tahun_lulus, no_stl_lulus, username)"
 				+" select	a.id_siswa, right(b.nm_tahun_ajaran,4), a.no_ijazah, 'ditpsmp'"
 				+" from		t_siswa_tingkat	as a"
@@ -60,6 +63,10 @@ try{
 				+" and		a.kd_rombel			= '" + kd_rombel + "'"
 				+" and		a.kd_lulus			= '1'"
 				+" and		a.id_siswa			not in (select id_siswa from t_siswa_alumni)";
+
+			break;
+		default:
+			return;
 		}
 		
 		q2	=" insert into t_siswa_tingkat_thn(id_siswa, kd_tahun_ajaran, kd_tingkat_kelas, kd_status_siswa, username)"
@@ -88,11 +95,11 @@ try{
 	db_stmt.executeUpdate(q);
 	
 	if (q2 != ""){
-		db_stmt2.executeUpdate(q2);
+		db_stmt.executeUpdate(q2);
 	}
 
 	if (q3 != ""){
-		db_stmt3.executeUpdate(q3);
+		db_stmt.executeUpdate(q3);
 	}
 
 	out.print("{success:true,info:'Data telah tersimpan.'}");

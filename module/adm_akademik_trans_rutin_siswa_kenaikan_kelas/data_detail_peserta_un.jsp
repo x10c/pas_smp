@@ -8,6 +8,7 @@
 
 <%@ page import="java.sql.*" %>
 <%
+String q = "";
 try{
 	Connection	db_con	= (Connection) session.getAttribute("db.con");
 	if (db_con == null || (db_con != null && db_con.isClosed())) {
@@ -21,26 +22,28 @@ try{
 	String 		kd_tingkat_kelas	= request.getParameter("kd_tingkat_kelas");
 	String 		kd_rombel			= request.getParameter("kd_rombel");
 
-	String q=" select	a.kd_tahun_ajaran"
-			+" ,		a.kd_tingkat_kelas"
-			+" ,		a.kd_rombel"
-			+" ,		a.id_siswa"
-			+" ,		b.nis"
-			+" ,		b.nm_siswa"
-			+" ,		a.kd_ebta"
-			+" ,		a.no_uan"
-			+" from		t_siswa_tingkat	as a"
-			+" ,		t_siswa			as b"
-			+" where	a.id_siswa			= b.id_siswa"
-			+" and		a.kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
-			+" and		a.kd_tingkat_kelas	= '" + kd_tingkat_kelas + "'"
-			+" and		a.kd_rombel			= '" + kd_rombel + "'"
-			+" and		a.kd_status_siswa	in ('0','1','3','4')"
-			+" order by	b.nm_siswa";
+	String		data			= "{rows:[";
+	ResultSet	rs				= null;
+	int			i				= 0;
+
+	q	=" select	a.kd_tahun_ajaran"
+		+" ,		a.kd_tingkat_kelas"
+		+" ,		a.kd_rombel"
+		+" ,		a.id_siswa"
+		+" ,		b.nis"
+		+" ,		b.nm_siswa"
+		+" ,		a.kd_ebta"
+		+" ,		a.no_uan"
+		+" from		t_siswa_tingkat	as a"
+		+" ,		t_siswa			as b"
+		+" where	a.id_siswa			= b.id_siswa"
+		+" and		a.kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
+		+" and		a.kd_tingkat_kelas	= '" + kd_tingkat_kelas + "'"
+		+" and		a.kd_rombel			= '" + kd_rombel + "'"
+		+" and		a.kd_status_siswa	in ('0','1','3','4')"
+		+" order by	b.nm_siswa";
 	
-	ResultSet	rs		= db_stmt.executeQuery(q);
-	int			i		= 0;
-	String		data	= "[";
+	rs	= db_stmt.executeQuery(q);
 
 	while (rs.next()){
 		if (i > 0) {
@@ -48,16 +51,18 @@ try{
 		} else {
 			i++;
 		}
-		data 	+="['"+ rs.getString("kd_tahun_ajaran") + "'"
-				+ ",'"+ rs.getString("kd_tingkat_kelas") + "'"
-				+ ",'"+ rs.getString("kd_rombel") + "'"
-				+ ","+ rs.getString("id_siswa")
-				+ ",'"+ rs.getString("nis") + "'"
-				+ ",'"+ rs.getString("nm_siswa") + "'"
-				+ ",'"+ rs.getString("kd_ebta") + "'"
-				+ ",'"+ rs.getString("no_uan") + "']";
+
+		data 	+="{ kd_tahun_ajaran : '"+ rs.getString("kd_tahun_ajaran") + "'"
+				+ ", kd_tingkat_kelas : '"+ rs.getString("kd_tingkat_kelas") + "'"
+				+ ", kd_rombel : '"+ rs.getString("kd_rombel") + "'"
+				+ ", id_siswa : "+ rs.getString("id_siswa")
+				+ ", nis : '"+ rs.getString("nis") + "'"
+				+ ", nm_siswa :\""+ rs.getString("nm_siswa") +"\""
+				+ ", kd_ebta : '"+ rs.getString("kd_ebta") + "'"
+				+ ", no_uan : '"+ rs.getString("no_uan") +"'"
+				+ "}";
 	}	
-	data += "]";
+	data += "]}";
 	
 	out.print(data);
 }catch (Exception e){

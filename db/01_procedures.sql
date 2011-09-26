@@ -403,61 +403,92 @@ CREATE PROCEDURE SP_INSERT_SEKOLAH (
 )
 BEGIN
 	DECLARE v__do INT DEFAULT 0;
-	DECLARE v_urt TINYINT UNSIGNED;
-	DECLARE v_nma VARCHAR(50);
-	DECLARE v_nrk VARCHAR(20);
-	DECLARE v_bnk VARCHAR(50);
-	DECLARE v_cbg VARCHAR(50);
-	DECLARE v_gun CHAR(1);
-	DECLARE v_mlk CHAR(1);
-	DECLARE v_srt CHAR(1);
-	DECLARE v_pjg DECIMAL(5,2);
-	DECLARE v_lbr DECIMAL(5,2);
-	DECLARE v_lua DECIMAL(9,2);
-	DECLARE v_ktr VARCHAR(255);
-	DECLARE v_lkp CHAR(2);
-	DECLARE v_jml INTEGER;
-	DECLARE v_nmr VARCHAR(50);
-	DECLARE v_rng CHAR(2);
-	DECLARE v_kon CHAR(1);
-	DECLARE v_kap SMALLINT UNSIGNED;
-	DECLARE v_mtp CHAR(5);
-	DECLARE v_jgr TINYINT;
-	DECLARE v_egr TINYINT;
-	DECLARE v_jsw TINYINT;
-	DECLARE v_esw TINYINT;
-	DECLARE v_jpg TINYINT;
-	DECLARE v_epg TINYINT;
-	DECLARE v_pro DECIMAL(6,2);
-	DECLARE v_pkk SMALLINT;
-	DECLARE v_mmd SMALLINT;
-	DECLARE v_nip SMALLINT UNSIGNED;
-	DECLARE v_tng CHAR(1);
-	DECLARE v_nmp VARCHAR(50);
-	DECLARE v_tmp VARCHAR(50);
-	DECLARE v_tgl DATE;
-	DECLARE v_kel CHAR(1);
-	DECLARE v_umr SMALLINT UNSIGNED;
-	DECLARE v_usa CHAR(2);
-	DECLARE v_ddk TINYINT UNSIGNED;
-	DECLARE v_pkt TINYINT UNSIGNED;
-	DECLARE v_ajb TINYINT UNSIGNED;
-	DECLARE v_ujb TINYINT UNSIGNED;
-	DECLARE v_ttr TINYINT UNSIGNED;
-	DECLARE v_sts CHAR(1);
-	DECLARE v_jpk TINYINT UNSIGNED;
-	DECLARE v_taw SMALLINT UNSIGNED;
-	DECLARE v_pjm SMALLINT UNSIGNED;
-	DECLARE v_hev CHAR(1);
-	DECLARE v_jba SMALLINT UNSIGNED;
-	DECLARE v_jri SMALLINT UNSIGNED;
-	DECLARE v_jse SMALLINT UNSIGNED;
-	DECLARE v_jbe SMALLINT UNSIGNED;
-	DECLARE v_ijz CHAR(2);
-	DECLARE v_prd CHAR(4);
-	DECLARE v_krj TINYINT UNSIGNED;
-	DECLARE v_bid VARCHAR(50);
-	DECLARE v_wkt TINYINT UNSIGNED;
+	/* t_sekolah_rekening */
+	DECLARE v_rekening_no_urut TINYINT(3) UNSIGNED;
+	DECLARE v_rekening_nm_rek VARCHAR(50);
+	DECLARE v_rekening_no_rek_sekolah VARCHAR(20);
+	DECLARE v_rekening_nm_bank VARCHAR(50);
+	DECLARE v_rekening_cabang_bank VARCHAR(50);
+	/* t_sekolah_properti */
+	DECLARE v_properti_kd_penggunaan_tanah CHAR(1);
+	DECLARE v_properti_kd_kepemilikan CHAR(1);
+	DECLARE v_properti_kd_sertifikat CHAR(1);
+	DECLARE v_properti_luas DECIMAL(9,2);
+	DECLARE v_properti_keterangan VARCHAR(255);
+	/* t_sekolah_ruang */
+	DECLARE v_ruang_nm_ruang_kelas VARCHAR(50);
+	DECLARE v_ruang_kd_ruang CHAR(2);
+	DECLARE v_ruang_kd_kepemilikan CHAR(1);
+	DECLARE v_ruang_kd_kondisi_ruangan CHAR(1);
+	DECLARE v_ruang_kapasitas SMALLINT(5) UNSIGNED;
+	DECLARE v_ruang_panjang DECIMAL(5,2);
+	DECLARE v_ruang_lebar DECIMAL(5,2);
+	DECLARE v_ruang_luas DECIMAL(9,2);
+	DECLARE v_ruang_keterangan VARCHAR(255);
+	/* t_sekolah_perlengkapan */
+	DECLARE v_perlengkapan_kd_perlengkapan_sekolah CHAR(2);
+	DECLARE v_perlengkapan_jumlah SMALLINT(5) UNSIGNED;
+	/* t_sekolah_perlengkapan_kbm */
+	DECLARE v_perlengkapan_kbm_kd_perlengkapan_sekolah CHAR(2);
+	DECLARE v_perlengkapan_kbm_jumlah SMALLINT(5) UNSIGNED;
+	/* t_sekolah_bualpen */
+	DECLARE v_bualpen_kd_mata_pelajaran_diajarkan CHAR(5);
+	DECLARE v_bualpen_jml_jdl_guru TINYINT(3) UNSIGNED;
+	DECLARE v_bualpen_jml_eks_guru TINYINT(3) UNSIGNED;
+	DECLARE v_bualpen_jml_jdl_siswa TINYINT(3) UNSIGNED;
+	DECLARE v_bualpen_jml_eks_siswa SMALLINT(5) UNSIGNED;
+	DECLARE v_bualpen_jml_jdl_pegang SMALLINT(5) UNSIGNED;
+	DECLARE v_bualpen_jml_eks_pegang SMALLINT(5) UNSIGNED;
+	DECLARE v_bualpen_prosen_peraga DECIMAL(3,2);
+	DECLARE v_bualpen_paktek SMALLINT(5) UNSIGNED;
+	DECLARE v_bualpen_mulmed SMALLINT(5) UNSIGNED;
+	/* t_pegawai_aktif */
+	DECLARE v_pegawai_id_pegawai SMALLINT(5) UNSIGNED;
+	DECLARE v_pegawai_nip VARCHAR(18);
+	DECLARE v_pegawai_kd_jenis_ketenagaan CHAR(1);
+	DECLARE v_pegawai_nm_pegawai VARCHAR(50);
+	DECLARE v_pegawai_kota_lahir VARCHAR(50);
+	DECLARE v_pegawai_tanggal_lahir DATE;
+	DECLARE v_pegawai_kd_jenis_kelamin CHAR(1);
+	DECLARE v_pegawai_umur SMALLINT(5) UNSIGNED;
+	DECLARE v_pegawai_kd_usia_pegawai CHAR(2);
+	DECLARE v_pegawai_urut_didik TINYINT(3) UNSIGNED;
+	DECLARE v_pegawai_urut_pangkat TINYINT(3) UNSIGNED;
+	DECLARE v_pegawai_awal_jabatan TINYINT(3) UNSIGNED;
+	DECLARE v_pegawai_urut_jabatan TINYINT(3) UNSIGNED;
+	DECLARE v_pegawai_urut_tatar TINYINT(3) UNSIGNED;
+	DECLARE v_pegawai_status_aktif CHAR(1);
+	/* t_sekolah_pkh_kegiatan */
+	DECLARE v_pkh_kegiatan_no_urut TINYINT(3) UNSIGNED;
+	DECLARE v_pkh_kegiatan_id_jenis_pkh TINYINT(3) UNSIGNED;
+	DECLARE v_pkh_kegiatan_tahun_awal SMALLINT(5) UNSIGNED;
+	DECLARE v_pkh_kegiatan_jumlah SMALLINT(5) UNSIGNED;
+	DECLARE v_pkh_kegiatan_kd_hasil_evaluasi CHAR(1);
+	DECLARE v_pkh_kegiatan_keterangan VARCHAR(255);
+	/* t_sekolah_pkh_alat */
+	DECLARE v_pkh_alat_no_urut TINYINT(3) UNSIGNED;
+	DECLARE v_pkh_alat_nm_alat VARCHAR(50);
+	DECLARE v_pkh_alat_jumlah_baik SMALLINT(5) UNSIGNED;
+	DECLARE v_pkh_alat_jumlah_ringan SMALLINT(5) UNSIGNED;
+	DECLARE v_pkh_alat_jumlah_sedang SMALLINT(5) UNSIGNED;
+	DECLARE v_pkh_alat_jumlah_berat SMALLINT(5) UNSIGNED;
+	/* t_sekolah_pkh_mitra */
+	DECLARE v_pkh_mitra_no_urut TINYINT(3) UNSIGNED;
+	DECLARE v_pkh_mitra_nm_mitra VARCHAR(50);
+	DECLARE v_pkh_mitra_keterangan VARCHAR(255);
+	/* t_sekolah_pkh_guru */
+	DECLARE v_pkh_guru_id_pegawai SMALLINT(5) UNSIGNED;
+	DECLARE v_pkh_guru_keterangan VARCHAR(255);
+	/* t_sekolah_pkh_narasumber */
+	DECLARE v_pkh_narasumber_no_urut TINYINT(3) UNSIGNED;
+	DECLARE v_pkh_narasumber_nm_narasumber VARCHAR(50);
+	DECLARE v_pkh_narasumber_tanggal_lahir DATE;
+	DECLARE v_pkh_narasumber_kd_tingkat_ijazah CHAR(2);
+	DECLARE v_pkh_narasumber_kd_program_studi CHAR(4);
+	DECLARE v_pkh_narasumber_id_gol_pekerjaan_ortu TINYINT(3) UNSIGNED;
+	DECLARE v_pkh_narasumber_bidang_keahlian VARCHAR(50);
+	DECLARE v_pkh_narasumber_sedia_waktu TINYINT(3) UNSIGNED;
+	DECLARE v_pkh_narasumber_keterangan VARCHAR(255);
 
 	DECLARE C_REKENING CURSOR FOR
 		SELECT	NO_URUT
@@ -483,9 +514,10 @@ BEGIN
 		, 		KD_KEPEMILIKAN
 		, 		KD_KONDISI_RUANGAN
 		, 		KAPASITAS
-		,		KETERANGAN
 		, 		PANJANG
 		, 		LEBAR
+		,		LUAS
+		,		KETERANGAN
 		FROM 	T_SEKOLAH_RUANG
 		WHERE 	KD_TAHUN_AJARAN = pic2_thn;
 
@@ -502,7 +534,7 @@ BEGIN
 		WHERE 	KD_TAHUN_AJARAN = pic2_thn;
 		
 	DECLARE C_BUALPEN CURSOR FOR
-		SELECT	KD_MATA_PELAJARAN
+		SELECT	KD_MATA_PELAJARAN_DIAJARKAN
 		, 		JML_JDL_GURU
 		, 		JML_EKS_GURU
 		,		JML_JDL_SISWA
@@ -513,6 +545,25 @@ BEGIN
 		, 		PAKTEK
 		, 		MULMED
 		FROM 	T_SEKOLAH_BUALPEN
+		WHERE 	KD_TAHUN_AJARAN = pic2_thn;
+
+	DECLARE C_GURU CURSOR FOR
+		SELECT	ID_PEGAWAI
+		, 		NIP
+		, 		KD_JENIS_KETENAGAAN
+		, 		NM_PEGAWAI
+		, 		KOTA_LAHIR
+		, 		TANGGAL_LAHIR
+		,		KD_JENIS_KELAMIN
+		, 		UMUR
+		, 		KD_USIA_PEGAWAI
+		, 		URUT_DIDIK
+		, 		URUT_PANGKAT
+		, 		AWAL_JABATAN
+		,		URUT_JABATAN
+		, 		URUT_TATAR
+		, 		STATUS_AKTIF
+		FROM 	T_PEGAWAI_AKTIF
 		WHERE 	KD_TAHUN_AJARAN = pic2_thn;
 
 	DECLARE C_GIAT_PKH CURSOR FOR
@@ -539,30 +590,12 @@ BEGIN
 		SELECT	NO_URUT
 		, 		NM_MITRA
 		, 		KETERANGAN
-		FROM 	T_SEKOLAH_MITRA_PKH
-		WHERE 	KD_TAHUN_AJARAN = pic2_thn;
-
-	DECLARE C_GURU CURSOR FOR
-		SELECT	ID_PEGAWAI
-		, 		NIP
-		, 		KD_JENIS_KETENAGAAN
-		, 		NM_PEGAWAI
-		, 		KOTA_LAHIR
-		, 		TANGGAL_LAHIR
-		,		KD_JENIS_KELAMIN
-		, 		UMUR
-		, 		KD_USIA_PEGAWAI
-		, 		URUT_DIDIK
-		, 		URUT_PANGKAT
-		, 		AWAL_JABATAN
-		,		URUT_JABATAN
-		, 		URUT_TATAR
-		, 		STATUS_AKTIF
-		FROM 	T_PEGAWAI_AKTIF
+		FROM 	T_SEKOLAH_PKH_MITRA
 		WHERE 	KD_TAHUN_AJARAN = pic2_thn;
 
 	DECLARE C_GURU_PKH CURSOR FOR
-		SELECT	NIP
+		SELECT	ID_PEGAWAI
+		,		KETERANGAN
 		FROM 	T_SEKOLAH_PKH_GURU
 		WHERE 	KD_TAHUN_AJARAN = pic2_thn;
 
@@ -581,171 +614,302 @@ BEGIN
 
 	DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET v__do = 1;
 
+	/* begin insert into t_sekolah_rekening */
 	OPEN C_REKENING;
 
 	REPEAT
-		FETCH C_REKENING INTO v_urt, v_nma, v_nrk, v_bnk, v_cbg;
-
+		FETCH	C_REKENING
+		INTO	v_rekening_no_urut
+		,		v_rekening_nm_rek
+		,		v_rekening_no_rek_sekolah
+		,		v_rekening_nm_bank
+		,		v_rekening_cabang_bank;
+		
 		IF NOT v__do THEN
-			INSERT INTO T_SEKOLAH_REKENING
+			INSERT INTO T_SEKOLAH_REKENING(
+				KD_TAHUN_AJARAN
+			,	NO_URUT
+			,	NM_REK
+			,	NO_REK_SEKOLAH
+			,	NM_BANK
+			,	CABANG_BANK
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES (
 				pic2_new
-			, 	v_urt
-			, 	v_nma
-			, 	v_nrk
-			, 	v_bnk
-			, 	v_cbg
+			, 	v_rekening_no_urut
+			, 	v_rekening_nm_rek
+			, 	v_rekening_no_rek_sekolah
+			, 	v_rekening_nm_bank
+			, 	v_rekening_cabang_bank
 			, 	pivx_usr
 			, 	pits_tgl);
 		END IF;
 	UNTIL v__do END REPEAT;
 	
 	CLOSE C_REKENING;
-
+	/* end insert into t_sekolah_rekening */
+	
 	SET v__do = 0;
 
+	/* begin insert into t_sekolah_properti */
 	OPEN C_PROPERTI;
 
 	REPEAT
-		FETCH C_PROPERTI INTO v_gun, v_mlk, v_srt, v_lua, v_ktr;
+		FETCH	C_PROPERTI
+		INTO	v_properti_kd_penggunaan_tanah
+		, 		v_properti_kd_kepemilikan
+		, 		v_properti_kd_sertifikat
+		, 		v_properti_luas
+		, 		v_properti_keterangan;
 
 		IF NOT v__do THEN
-			INSERT INTO T_SEKOLAH_PROPERTI
+			INSERT INTO T_SEKOLAH_PROPERTI(
+				KD_TAHUN_AJARAN
+			,	KD_PENGGUNAAN_TANAH
+			,	KD_KEPEMILIKAN
+			,	KD_SERTIFIKAT
+			,	LUAS
+			,	KETERANGAN
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES (
 				pic2_new
-			, 	v_gun
-			, 	v_mlk
-			, 	v_srt
-			, 	v_lua
-			, 	v_ktr
+			, 	v_properti_kd_penggunaan_tanah
+			, 	v_properti_kd_kepemilikan
+			, 	v_properti_kd_sertifikat
+			, 	v_properti_luas
+			, 	v_properti_keterangan
 			, 	pivx_usr
 			, 	pits_tgl);
 		END IF;
 	UNTIL v__do END REPEAT;
 	
 	CLOSE C_PROPERTI;
-
+	/* end insert into t_sekolah_properti */
+	
 	SET v__do = 0;
 
+	/* begin insert into t_sekolah_ruang */
 	OPEN C_RUANG;
 
 	REPEAT
-		FETCH C_RUANG INTO v_nmr, v_rng, v_mlk, v_kon, v_kap, v_ktr, v_pjg, v_lbr;
+		FETCH	C_RUANG
+		INTO	v_ruang_nm_ruang_kelas
+		, 		v_ruang_kd_ruang
+		, 		v_ruang_kd_kepemilikan
+		, 		v_ruang_kd_kondisi_ruangan
+		, 		v_ruang_kapasitas
+		, 		v_ruang_panjang
+		, 		v_ruang_lebar
+		, 		v_ruang_luas
+		, 		v_ruang_keterangan;
 	  
 		IF NOT v__do THEN
-			INSERT INTO T_SEKOLAH_RUANG
+			INSERT INTO T_SEKOLAH_RUANG(
+				KD_TAHUN_AJARAN
+			,	NM_RUANG_KELAS
+			,	KD_RUANG
+			,	KD_KEPEMILIKAN
+			,	KD_KONDISI_RUANGAN
+			,	KAPASITAS
+			,	PANJANG
+			,	LEBAR
+			,	LUAS
+			,	KETERANGAN
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES (
-				NULL
-			, 	pic2_new
-			, 	v_nmr
-			, 	v_rng
-			, 	v_mlk
-			, 	v_kon
-			, 	v_kap
-			, 	v_pjg
-			, 	v_lbr
-			,	v_pjg * v_lbr
-			, 	v_ktr
+			 	pic2_new
+			, 	v_ruang_nm_ruang_kelas
+			, 	v_ruang_kd_ruang
+			, 	v_ruang_kd_kepemilikan
+			, 	v_ruang_kd_kondisi_ruangan
+			, 	v_ruang_kapasitas
+			, 	v_ruang_panjang
+			, 	v_ruang_lebar
+			,	v_ruang_luas
+			, 	v_ruang_keterangan
 			, 	pivx_usr
 			, 	pits_tgl);
 		END IF;
 	UNTIL v__do END REPEAT;
 
 	CLOSE C_RUANG;
-
+	/* end insert into t_sekolah_ruang */
+	
 	SET v__do = 0;
 
+	/* begin insert into t_sekolah_perlengkapan */
 	OPEN C_PERLENGKAPAN;
 
 	REPEAT
-		FETCH C_PERLENGKAPAN INTO v_lkp, v_jml;
+		FETCH	C_PERLENGKAPAN
+		INTO 	v_perlengkapan_kd_perlengkapan_sekolah
+		,		v_perlengkapan_jumlah;
 
 		IF NOT v__do THEN
-			INSERT INTO T_SEKOLAH_PERLENGKAPAN
+			INSERT INTO T_SEKOLAH_PERLENGKAPAN(
+				KD_TAHUN_AJARAN
+			,	KD_PERLENGKAPAN_SEKOLAH
+			,	JUMLAH
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES (
 				pic2_new
-			, 	v_lkp
-			, 	v_jml
+			, 	v_perlengkapan_kd_perlengkapan_sekolah
+			, 	v_perlengkapan_jumlah
 			, 	pivx_usr
 			, 	pits_tgl);
 		END IF;
 	UNTIL v__do END REPEAT;
 
 	CLOSE C_PERLENGKAPAN;
-
+	/* end insert into t_sekolah_perlengkapan */
+	
 	SET v__do = 0;
 
+	/* begin insert into t_sekolah_perlengkapan_kbm */
 	OPEN C_PERLENGKAPAN_KBM;
 
 	REPEAT
-		FETCH C_PERLENGKAPAN_KBM INTO v_lkp, v_jml;
+		FETCH	C_PERLENGKAPAN_KBM
+		INTO 	v_perlengkapan_kbm_kd_perlengkapan_sekolah
+		, 		v_perlengkapan_kbm_jumlah;
 	  
 		IF NOT v__do THEN
-			INSERT INTO T_SEKOLAH_PERLENGKAPAN_KBM
+			INSERT INTO T_SEKOLAH_PERLENGKAPAN_KBM(
+				KD_TAHUN_AJARAN
+			,	KD_PERLENGKAPAN_SEKOLAH
+			,	JUMLAH
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES(
 				pic2_new
-			, 	v_lkp
-			, 	v_jml
+			, 	v_perlengkapan_kbm_kd_perlengkapan_sekolah
+			, 	v_perlengkapan_kbm_jumlah
 			, 	pivx_usr
 			, 	pits_tgl);
 		END IF;
 	UNTIL v__do END REPEAT;
 
 	CLOSE C_PERLENGKAPAN_KBM;
-
+	/* end insert into t_sekolah_perlengkapan_kbm */
+	
 	SET v__do = 0;
 
+	/* begin insert into t_sekolah_bualpen */
 	OPEN C_BUALPEN;
 
 	REPEAT
-		FETCH C_BUALPEN INTO v_mtp, v_jgr, v_egr, v_jsw, v_esw, v_jpg, v_epg, v_pro, v_pkk, v_mmd;
+		FETCH	C_BUALPEN
+		INTO 	v_bualpen_kd_mata_pelajaran_diajarkan
+		, 		v_bualpen_jml_jdl_guru
+		, 		v_bualpen_jml_eks_guru
+		, 		v_bualpen_jml_jdl_siswa
+		, 		v_bualpen_jml_eks_siswa
+		, 		v_bualpen_jml_jdl_pegang
+		, 		v_bualpen_jml_eks_pegang
+		, 		v_bualpen_prosen_peraga
+		, 		v_bualpen_paktek
+		, 		v_bualpen_mulmed;
 
 		IF NOT v__do THEN
-			INSERT INTO T_SEKOLAH_BUALPEN
+			INSERT INTO T_SEKOLAH_BUALPEN(
+				KD_TAHUN_AJARAN
+			,	KD_MATA_PELAJARAN_DIAJARKAN
+			,	JML_JDL_GURU
+			,	JML_EKS_GURU
+			,	JML_JDL_SISWA
+			,	JML_EKS_SISWA
+			,	JML_JDL_PEGANG
+			,	JML_EKS_PEGANG
+			,	PROSEN_PERAGA
+			,	PAKTEK
+			,	MULMED
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES (
 				pic2_new
-			, 	v_mtp
-			, 	v_jgr
-			, 	v_egr
-			, 	v_jsw
-			, 	v_esw
-			, 	v_jpg
-			,	v_epg
-			, 	v_pro
-			, 	v_pkk
-			, 	v_mmd
+			, 	v_bualpen_kd_mata_pelajaran_diajarkan
+			, 	v_bualpen_jml_jdl_guru
+			, 	v_bualpen_jml_eks_guru
+			, 	v_bualpen_jml_jdl_siswa
+			, 	v_bualpen_jml_eks_siswa
+			, 	v_bualpen_jml_jdl_pegang
+			,	v_bualpen_jml_eks_pegang
+			, 	v_bualpen_prosen_peraga
+			, 	v_bualpen_paktek
+			, 	v_bualpen_mulmed
 			, 	pivx_usr
 			, 	pits_tgl);
 		END IF;
 	UNTIL v__do END REPEAT;
 
 	CLOSE C_BUALPEN;
-
+	/* end insert into t_sekolah_bualpen */
+	
 	SET v__do = 0;
 
+	/* begin insert into t_pegawai_aktif */
 	OPEN C_GURU;
 
 	REPEAT
-		FETCH C_GURU INTO v_nip, v_tng, v_nmp, v_tmp, v_tgl, v_kel, v_umr, v_usa, v_ddk, v_pkt, v_ajb, v_ujb, v_ttr, v_sts;
+		FETCH	C_GURU
+		INTO 	v_pegawai_id_pegawai
+		, 		v_pegawai_nip
+		, 		v_pegawai_kd_jenis_ketenagaan
+		, 		v_pegawai_nm_pegawai
+		, 		v_pegawai_kota_lahir
+		, 		v_pegawai_tanggal_lahir
+		, 		v_pegawai_kd_jenis_kelamin
+		, 		v_pegawai_umur
+		, 		v_pegawai_kd_usia_pegawai
+		, 		v_pegawai_urut_didik
+		, 		v_pegawai_urut_pangkat
+		, 		v_pegawai_awal_jabatan
+		, 		v_pegawai_urut_jabatan
+		, 		v_pegawai_urut_tatar
+		, 		v_pegawai_status_aktif;
 
 		IF NOT v__do THEN
-			INSERT INTO T_PEGAWAI_AKTIF
+			INSERT INTO T_PEGAWAI_AKTIF(
+				KD_TAHUN_AJARAN
+			,	ID_PEGAWAI
+			,	NIP
+			,	KD_JENIS_KETENAGAAN
+			,	NM_PEGAWAI
+			,	KOTA_LAHIR
+			,	TANGGAL_LAHIR
+			,	KD_JENIS_KELAMIN
+			,	UMUR
+			,	KD_USIA_PEGAWAI
+			,	URUT_DIDIK
+			,	URUT_PANGKAT
+			,	AWAL_JABATAN
+			,	URUT_JABATAN
+			,	URUT_TATAR
+			,	STATUS_AKTIF
+			,	STATUS_ENTRI
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES (
 				pic2_new
-			, 	v_nip
-			, 	v_tng
-			, 	v_nmp
-			, 	v_tmp
-			, 	v_tgl
-			, 	v_kel
-			,	v_umr
-			, 	v_usa
-			, 	v_ddk
-			, 	v_pkt
-			, 	v_ajb
-			, 	v_ujb
-			, 	v_ttr
-			, 	v_sts
+			, 	v_pegawai_id_pegawai
+			, 	v_pegawai_nip
+			, 	v_pegawai_kd_jenis_ketenagaan
+			, 	v_pegawai_nm_pegawai
+			, 	v_pegawai_kota_lahir
+			, 	v_pegawai_tanggal_lahir
+			, 	v_pegawai_kd_jenis_kelamin
+			,	v_pegawai_umur
+			, 	v_pegawai_kd_usia_pegawai
+			, 	v_pegawai_urut_didik
+			, 	v_pegawai_urut_pangkat
+			, 	v_pegawai_awal_jabatan
+			, 	v_pegawai_urut_jabatan
+			, 	v_pegawai_urut_tatar
+			, 	v_pegawai_status_aktif
 			,	'0'
 			, 	pivx_usr
 			, 	pits_tgl);
@@ -753,121 +917,200 @@ BEGIN
 	UNTIL v__do END REPEAT;
 
 	CLOSE C_GURU;
-
+	/* end insert into t_pegawai_aktif */
+	
 	SET v__do = 0;
 
+	/* begin insert into t_sekolah_pkh_kegiatan */
 	OPEN C_GIAT_PKH;
 
 	REPEAT
-		FETCH C_GIAT_PKH INTO v_urt, v_jpk, v_taw, v_pjm, v_hev, v_ktr;
+		FETCH	C_GIAT_PKH
+		INTO 	v_pkh_kegiatan_no_urut
+		, 		v_pkh_kegiatan_id_jenis_pkh
+		, 		v_pkh_kegiatan_tahun_awal
+		, 		v_pkh_kegiatan_jumlah
+		, 		v_pkh_kegiatan_kd_hasil_evaluasi
+		, 		v_pkh_kegiatan_keterangan;
 
 		IF NOT v__do THEN
-			INSERT INTO T_SEKOLAH_PKH_KEGIATAN
+			INSERT INTO T_SEKOLAH_PKH_KEGIATAN(
+				KD_TAHUN_AJARAN
+			,	NO_URUT
+			,	ID_JENIS_PKH
+			,	TAHUN_AWAL
+			,	JUMLAH
+			,	KD_HASIL_EVALUASI
+			,	KETERANGAN
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES (
 				pic2_new
-			, 	v_urt
-			, 	v_jpk
-			, 	v_taw
-			, 	v_pjm
-			, 	v_hev
-			,	v_ktr
+			, 	v_pkh_kegiatan_no_urut
+			, 	v_pkh_kegiatan_id_jenis_pkh
+			, 	v_pkh_kegiatan_tahun_awal
+			, 	v_pkh_kegiatan_jumlah
+			, 	v_pkh_kegiatan_kd_hasil_evaluasi
+			,	v_pkh_kegiatan_keterangan
 			, 	pivx_usr
 			,	pits_tgl);
 		END IF;
 	UNTIL v__do END REPEAT;
 
 	CLOSE C_GIAT_PKH;
-
+	/* end insert into t_sekolah_pkh_kegiatan */
+	
 	SET v__do = 0;
 
+	/* begin insert into t_sekolah_pkh_alat */
 	OPEN C_ALAT_PKH;
 
 	REPEAT
-		FETCH C_ALAT_PKH INTO v_urt, v_nma, v_jba, v_jri, v_jse, v_jbe;
+		FETCH	C_ALAT_PKH
+		INTO 	v_pkh_alat_no_urut
+		, 		v_pkh_alat_nm_alat
+		, 		v_pkh_alat_jumlah_baik
+		, 		v_pkh_alat_jumlah_ringan
+		, 		v_pkh_alat_jumlah_sedang
+		, 		v_pkh_alat_jumlah_berat;
 
 		IF NOT v__do THEN
-			INSERT INTO T_SEKOLAH_PKH_ALAT
+			INSERT INTO T_SEKOLAH_PKH_ALAT(
+				KD_TAHUN_AJARAN
+			,	NO_URUT
+			,	NM_ALAT
+			,	JUMLAH_BAIK
+			,	JUMLAH_RINGAN
+			,	JUMLAH_SEDANG
+			,	JUMLAH_BERAT
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES (
 				pic2_new
-			, 	v_urt
-			, 	v_nma
-			, 	v_jba
-			, 	v_jri
-			, 	v_jse
-			, 	v_jbe
+			, 	v_pkh_alat_no_urut
+			, 	v_pkh_alat_nm_alat
+			, 	v_pkh_alat_jumlah_baik
+			, 	v_pkh_alat_jumlah_ringan
+			, 	v_pkh_alat_jumlah_sedang
+			, 	v_pkh_alat_jumlah_berat
 			, 	pivx_usr
 			,	pits_tgl);
 		END IF;
 	UNTIL v__do END REPEAT;
 
 	CLOSE C_ALAT_PKH;
-
+	/* end insert into t_sekolah_pkh_alat */
+	
 	SET v__do = 0;
 
+	/* begin insert into t_sekolah_pkh_mitra */
 	OPEN C_MITRA_PKH;
 
 	REPEAT
-		FETCH C_MITRA_PKH INTO v_urt, v_nma, v_ktr;
+		FETCH	C_MITRA_PKH
+		INTO 	v_pkh_mitra_no_urut
+		, 		v_pkh_mitra_nm_mitra
+		, 		v_pkh_mitra_keterangan;
 
 		IF NOT v__do THEN
-			INSERT INTO T_SEKOLAH_PKH_MITRA
+			INSERT INTO T_SEKOLAH_PKH_MITRA(
+				KD_TAHUN_AJARAN
+			,	NO_URUT
+			,	NM_MITRA
+			,	KETERANGAN
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES(
 				pic2_new
-			, 	v_urt
-			, 	v_nma
-			, 	v_ktr
+			, 	v_pkh_mitra_no_urut
+			, 	v_pkh_mitra_nm_mitra
+			, 	v_pkh_mitra_keterangan
 			, 	pivx_usr
 			, 	pits_tgl);
 		END IF;
 	UNTIL v__do END REPEAT;
 
 	CLOSE C_MITRA_PKH;
-
+	/* end insert into t_sekolah_pkh_mitra */
+	
 	SET v__do = 0;
 
+	/* begin insert into t_sekolah_pkh_guru */
 	OPEN C_GURU_PKH;
 
 	REPEAT
-		FETCH C_GURU_PKH INTO v_nip;
+		FETCH	C_GURU_PKH
+		INTO 	v_pkh_guru_id_pegawai
+		, 		v_pkh_guru_keterangan;
 
 		IF NOT v__do THEN
-			INSERT INTO T_SEKOLAH_PKH_GURU
+			INSERT INTO T_SEKOLAH_PKH_GURU(
+				KD_TAHUN_AJARAN
+			,	ID_PEGAWAI
+			,	KETERANGAN
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES (
 				pic2_new
-			, 	v_nip
+			, 	v_pkh_guru_id_pegawai
+			, 	v_pkh_guru_keterangan
 			, 	pivx_usr
 			, 	pits_tgl);
 		END IF;
 	UNTIL v__do END REPEAT;
 
 	CLOSE C_GURU_PKH;
-
+	/* end insert into t_sekolah_pkh_guru */
+	
 	SET v__do = 0;
 
+	/* begin insert into t_sekolah_pkh_narasumber */
 	OPEN C_NARSUM_PKH;
 
 	REPEAT
-		FETCH C_NARSUM_PKH INTO v_urt, v_nma, v_tgl, v_ijz, v_prd, v_krj, v_bid, v_wkt, v_ktr;
+		FETCH	C_NARSUM_PKH
+		INTO 	v_pkh_narasumber_no_urut
+		, 		v_pkh_narasumber_nm_narasumber
+		, 		v_pkh_narasumber_tanggal_lahir
+		, 		v_pkh_narasumber_kd_tingkat_ijazah
+		, 		v_pkh_narasumber_kd_program_studi
+		, 		v_pkh_narasumber_id_gol_pekerjaan_ortu
+		, 		v_pkh_narasumber_bidang_keahlian
+		, 		v_pkh_narasumber_sedia_waktu
+		, 		v_pkh_narasumber_keterangan;
 
 		IF NOT v__do THEN
-			INSERT INTO T_SEKOLAH_PKH_NARSUMBER
+			INSERT INTO T_SEKOLAH_PKH_NARASUMBER(
+				KD_TAHUN_AJARAN
+			,	NO_URUT
+			,	NM_NARASUMBER
+			,	TANGGAL_LAHIR
+			,	KD_TINGKAT_IJAZAH
+			,	KD_PROGRAM_STUDI
+			,	ID_GOL_PEKERJAAN_ORTU
+			,	BIDANG_KEAHLIAN
+			,	SEDIA_WAKTU
+			,	KETERANGAN
+			,	USERNAME
+			,	TANGGAL_AKSES)
 			VALUES (
 				pic2_new
-			, 	v_urt
-			, 	v_nma
-			, 	v_tgl
-			, 	v_ijz
-			, 	v_prd
-			, 	v_krj
-			, 	v_bid
-			, 	v_wkt
-			,	v_ktr
+			, 	v_pkh_narasumber_no_urut
+			, 	v_pkh_narasumber_nm_narasumber
+			, 	v_pkh_narasumber_tanggal_lahir
+			, 	v_pkh_narasumber_kd_tingkat_ijazah
+			, 	v_pkh_narasumber_kd_program_studi
+			, 	v_pkh_narasumber_id_gol_pekerjaan_ortu
+			, 	v_pkh_narasumber_bidang_keahlian
+			, 	v_pkh_narasumber_sedia_waktu
+			,	v_pkh_narasumber_keterangan
 			, 	pivx_usr
 			, 	pits_tgl);
 		END IF;
 	UNTIL v__do END REPEAT;
 
 	CLOSE C_NARSUM_PKH;
+	/* end insert into t_sekolah_pkh_narasumber */
 END
 $$
 
