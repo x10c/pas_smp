@@ -1964,7 +1964,7 @@ delimiter $$
 create trigger T_SEKOLAH_IDENTITAS_BUR before update
 on T_SEKOLAH_IDENTITAS for each row
 begin
-	DECLARE v_ubh TINYINT;
+	DECLARE v_ubh BIGINT;
     DECLARE v_cnt TINYINT;
 
 	IF ((new.KD_STATUS_SEKOLAH = old.KD_STATUS_SEKOLAH) OR (new.KD_STATUS_SEKOLAH = '1') AND (old.KD_STATUS_SEKOLAH = '2')) THEN
