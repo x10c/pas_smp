@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="281_sr2" pageWidth="535" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT t_sekolah_properti.kd_penggunaan_tanah,
+      r_penggunaan_tanah.nm_penggunaan_tanah,
+			t_sekolah_properti.kd_kepemilikan,
+			(t_sekolah_properti.luas) as luas,
+			r_kepemilikan.nm_kepemilikan
+    FROM t_sekolah_properti
+RIGHT OUTER JOIN r_kepemilikan ON t_sekolah_properti.kd_kepemilikan = r_kepemilikan.kd_kepemilikan
+INNER JOIN r_penggunaan_tanah ON t_sekolah_properti.kd_penggunaan_tanah = r_penggunaan_tanah.kd_penggunaan_tanah
+	WHERE t_sekolah_properti.kd_tahun_ajaran = $P{KODE_THN_AJARAN}]]>
+	</queryString>
+	<field name="kd_penggunaan_tanah" class="java.lang.String"/>
+	<field name="nm_penggunaan_tanah" class="java.lang.String"/>
+	<field name="kd_kepemilikan" class="java.lang.String"/>
+	<field name="luas" class="java.math.BigDecimal"/>
+	<field name="nm_kepemilikan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="300" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="535" height="300"/>
+					<chartTitle>
+						<font fontName="Arial"/>
+					</chartTitle>
+					<chartSubtitle>
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</chartSubtitle>
+					<chartLegend position="Bottom">
+						<font fontName="Arial"/>
+					</chartLegend>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{nm_kepemilikan}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{nm_penggunaan_tanah}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{luas}]]></valueExpression>
+						<labelExpression><![CDATA[$F{nm_penggunaan_tanah}]]></labelExpression>
+						<itemHyperlink>
+							<hyperlinkTooltipExpression><![CDATA[$F{nm_penggunaan_tanah}]]></hyperlinkTooltipExpression>
+						</itemHyperlink>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot labelRotation="90.0"/>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF">
+						<font fontName="Arial" size="10"/>
+					</itemLabel>
+					<categoryAxisFormat labelRotation="90.0">
+						<axisFormat verticalTickLabels="true">
+							<labelFont>
+								<font fontName="Arial" size="10"/>
+							</labelFont>
+							<tickLabelFont>
+								<font fontName="Arial" size="8"/>
+							</tickLabelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="10"/>
+							</labelFont>
+							<tickLabelFont>
+								<font fontName="Arial" size="10"/>
+							</tickLabelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

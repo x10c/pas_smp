@@ -32,7 +32,7 @@ try{
 			+" where	a.id_siswa			= b.id_siswa"
 			+" and		a.kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
 			+" and		a.kd_status_siswa	in ('0','1','3','4')"
-			+" order by	b.nm_siswa";
+			+" order by	a.kd_tingkat_kelas, b.nis";
 	
 	ResultSet	rs		= db_stmt.executeQuery(q);
 	int			i		= 0;

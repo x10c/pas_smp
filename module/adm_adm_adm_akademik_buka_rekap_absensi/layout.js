@@ -103,7 +103,7 @@ function M_AdmAdmAdmAkademikBukaRekapAbsensi(title)
 	this.do_process = function()
 	{
 		Ext.MessageBox.confirm('Konfirmasi', 'Buka Rekap Absensi Siswa?', function(btn, text){
-			if (btn == 'ok'){
+			if (btn == 'yes'){
 				this.dml_type = 5;
 				Ext.Ajax.request({
 						params  : {
@@ -120,7 +120,7 @@ function M_AdmAdmAdmAkademikBukaRekapAbsensi(title)
 									Ext.MessageBox.alert('Pesan', msg.info);
 								}
 
-								this.do_load();
+								m_adm_adm_adm_akademik_buka_rekap_absensi.do_load();
 							}
 					,	scope	: this
 				});
@@ -143,7 +143,7 @@ function M_AdmAdmAdmAkademikBukaRekapAbsensi(title)
 					return;
 				}
 
-				if (msg.status_naik_kelas < msg.kd_periode_belajar){
+				if (msg.jumlah < 1 || msg.status_naik_kelas < msg.kd_periode_belajar){
 					this.btn_process.setDisabled(true);
 				} else {
 					this.btn_process.setDisabled(false);
@@ -156,12 +156,6 @@ function M_AdmAdmAdmAkademikBukaRekapAbsensi(title)
 	this.do_load = function()
 	{
 		this.store.load();
-
-		if (this.store.getTotalCount() < 1){
-			this.btn_process.setDisabled(true);
-		} else {
-			this.btn_process.setDisabled(false);
-		}
 
 		this.do_check();
 	}

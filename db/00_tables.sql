@@ -746,6 +746,20 @@ create table R_PROPINSI
 );
 
 /*==============================================================*/
+/* Table: R_REPORT                                              */
+/*==============================================================*/
+create table R_REPORT
+(
+   ID_REPORT            varchar(10) not null,
+   NAMA_REPORT          varchar(255) not null,
+   TIPE_REPORT          varchar(10) not null,
+   FILE_LOCATION        varchar(255) not null,
+   WEB_PARAMS           varchar(100),
+   REPORT_PARAMS        varchar(100),
+   primary key (ID_REPORT)
+);
+
+/*==============================================================*/
 /* Table: R_RUANG                                               */
 /*==============================================================*/
 create table R_RUANG

@@ -14,7 +14,7 @@
 		<description></description>
 		<display-name>ReportGeneratorServlet</display-name>
 		<servlet-name>ReportGeneratorServlet</servlet-name>
-		<servlet-class>id.co.pgn.k3pl.controller.ReportGeneratorServlet</servlet-class>
+		<servlet-class>id.go.diknas.smp.pas.controller.ReportGeneratorServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ReportGeneratorServlet</servlet-name>

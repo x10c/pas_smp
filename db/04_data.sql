@@ -116,7 +116,7 @@ insert into __menu values ('03.05','2.5 Praktek Keterampilan Hidup','adm_sekolah
 insert into __menu values ('03.06','2.6 Lain-Lain','adm_sekolah_lain_lain','1',2,'03.06','03','','1');
 insert into __menu values ('03.07','2.7 Cetak LISM','adm_sekolah_cetak_lism','0',2,'03.07','03','module','1');
 insert into __menu values ('03.07.01','2.7.1 Individu Sekolah','adm_sekolah_cetak_lism_individu_sekolah','1',3,'03.07.01','03.07','report','1');
-insert into __menu values ('03.07.02','2.7.2 Individu Guru','adm_sekolah_cetak_lism_individu_guru','1',3,'03.07.02','03.07','report','1');
+insert into __menu values ('03.07.02','2.7.2 Individu Guru','adm_sekolah_cetak_lism_individu_guru','1',3,'03.07.02','03.07','report','0');
 insert into __menu values ('03.08','2.8 Laporan Grafik Sekolah','adm_sekolah_laporan_grafik_sekolah','0',2,'03.08','03','module','1');
 insert into __menu values ('03.08.01','2.8.1 Properti Sekolah','adm_sekolah_laporan_grafik_sekolah_properti_sekolah','1',3,'03.08.01','03.08','report','1');
 insert into __menu values ('03.08.02','2.8.2 Perlengkapan Sekolah','adm_sekolah_laporan_grafik_sekolah_perlengkapan_sekolah','1',3,'03.08.02','03.08','report','1');
@@ -16889,3 +16889,21 @@ insert into t_kur_kurikulum (KD_KURIKULUM, KD_TINGKAT_KELAS, KD_PERIODE_BELAJAR,
 insert into t_kur_kurikulum (KD_KURIKULUM, KD_TINGKAT_KELAS, KD_PERIODE_BELAJAR, KD_MATA_PELAJARAN_DIAJARKAN, STATUS_CIRI_KHAS, UAN, ELEMEN, USERNAME) values('02','03','2','30001','0','0','9','pas');
 insert into t_kur_kurikulum (KD_KURIKULUM, KD_TINGKAT_KELAS, KD_PERIODE_BELAJAR, KD_MATA_PELAJARAN_DIAJARKAN, STATUS_CIRI_KHAS, UAN, ELEMEN, USERNAME) values('02','03','2','60001','0','0','0','pas');
 insert into t_kur_kurikulum (KD_KURIKULUM, KD_TINGKAT_KELAS, KD_PERIODE_BELAJAR, KD_MATA_PELAJARAN_DIAJARKAN, STATUS_CIRI_KHAS, UAN, ELEMEN, USERNAME) values('02','03','2','61001','0','0','0','pas');
+
+/* r_report */
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('271','LISM Sekolah','pdf','reports/271.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('281','Laporan Properti Sekolah','doc','reports/281.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('282','Laporan Perlengkapan Sekolah','doc','reports/282.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('283','Laporan Perlengkapan KBM','doc','reports/283.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('284','Laporan Ruangan Sekolah','doc','reports/284.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('287','Laporan Penggunaan Laboratorium Sekolah','doc','reports/287.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('331','Laporan Daftar Guru','doc','reports/331.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('332','Laporan Identitas Guru','doc','reports/332.jasper','id_pegawai','ID_PEGAWAI');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('333','Laporan Daftar Tenaga Administrasi','doc','reports/333.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('334','Laporan Identitas Tenaga Administrasi','doc','reports/334.jasper','id_pegawai','ID_PEGAWAI');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('3351','Rekapitulasi Pegawai Berdasarkan Status Kepegawaian dan Golongan Pangkat','doc','reports/3351.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('3352','Rekapitulasi Tenaga Administrasi Berdasarkan Jenis Pekerjaan','doc','reports/3352.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('3353','Rekapitulasi Pegawai Berdasarkan Usia dan Masa Kerja','doc','reports/3353.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('3354','Rekapitulasi Pegawai Berdasarkan Ijazah Tertinggi','doc','reports/3354.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('336','Rekapitulasi Jumlah Pegawai Berdasarkan Jenis Ketenagaan','doc','reports/336.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');
+insert into r_report (ID_REPORT, NAMA_REPORT, TIPE_REPORT, FILE_LOCATION, WEB_PARAMS, REPORT_PARAMS) values('337','Laporan Kebutuhan Guru','doc','reports/337.jasper','kd_tahun_ajaran','KODE_THN_AJARAN');

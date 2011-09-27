@@ -113,7 +113,7 @@ function M_AdmAdmAdmAkademikBukaNaikKelas(title)
 	this.do_process = function()
 	{
 		Ext.MessageBox.confirm('Konfirmasi', 'Buka Kembali Kenaikan Kelas?', function(btn, text){
-			if (btn == 'ok'){
+			if (btn == 'yes'){
 				this.dml_type = 5;
 				Ext.Ajax.request({
 						params  : {
@@ -130,7 +130,7 @@ function M_AdmAdmAdmAkademikBukaNaikKelas(title)
 									Ext.MessageBox.alert('Pesan', msg.info);
 								}
 
-								this.do_load();
+								m_adm_adm_adm_akademik_buka_naik_kelas.do_load();
 							}
 					,	scope	: this
 				});
@@ -166,12 +166,6 @@ function M_AdmAdmAdmAkademikBukaNaikKelas(title)
 	this.do_load = function()
 	{
 		this.store.load();
-
-		if (this.store.getTotalCount() < 1){
-			this.btn_process.setDisabled(true);
-		} else {
-			this.btn_process.setDisabled(false);
-		}
 
 		this.do_check();
 	}
