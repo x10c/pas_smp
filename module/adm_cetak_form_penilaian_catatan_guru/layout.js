@@ -6,19 +6,19 @@
  *   - agus sugianto (agus.delonge@gmail.com)
  */
 
-var m_adm_akademik_cetak_rapor_ktsp;
-var m_adm_akademik_cetak_rapor_ktsp_kd_tahun_ajaran;
-var m_adm_akademik_cetak_rapor_ktsp_kd_tingkat_kelas;
-var m_adm_akademik_cetak_rapor_ktsp_kd_rombel;
-var m_adm_akademik_cetak_rapor_ktsp_kd_periode_belajar;
-var m_adm_akademik_cetak_rapor_ktsp_d = _g_root +'/module/adm_akademik_cetak_rapor_ktsp/';
+var m_adm_cetak_form_penilaian_catatan_guru;
+var m_adm_cetak_form_penilaian_catatan_guru_kd_tahun_ajaran;
+var m_adm_cetak_form_penilaian_catatan_guru_kd_tingkat_kelas;
+var m_adm_cetak_form_penilaian_catatan_guru_kd_rombel;
+var m_adm_cetak_form_penilaian_catatan_guru_kd_periode_belajar;
+var m_adm_cetak_form_penilaian_catatan_guru_d = _g_root +'/module/adm_cetak_form_penilaian_catatan_guru/';
 
-function M_AdmAkademikCetakRaporKTSP(title)
+function M_AdmCetakFormPenilaianCatatanGuru(title)
 {
 	this.title				= title;
 	this.ha_level			= 0;
-	this.id_report			= '634';
-	this.tipe_report		= 'pdf';
+	this.id_report			= '991362';
+	this.tipe_report		= 'doc';
 
 	this.record = new Ext.data.Record.create([
 			{ name	: 'kd_tahun_ajaran' }
@@ -32,7 +32,7 @@ function M_AdmAkademikCetakRaporKTSP(title)
 
 	this.store = new Ext.data.ArrayStore({
 			fields		: this.record
-		,	url			: m_adm_akademik_cetak_rapor_ktsp_d +'data.jsp'
+		,	url			: m_adm_cetak_form_penilaian_catatan_guru_d +'data.jsp'
 		,	autoLoad	: false
 	});
 
@@ -79,16 +79,16 @@ function M_AdmAkademikCetakRaporKTSP(title)
 				,	selectionchange	: function(sm) {
 						var data = sm.getSelections();
 						if (data.length) {
-							m_adm_akademik_cetak_rapor_ktsp_kd_tahun_ajaran 	= data[0].data['kd_tahun_ajaran'];
-							m_adm_akademik_cetak_rapor_ktsp_kd_tingkat_kelas 	= data[0].data['kd_tingkat_kelas'];
-							m_adm_akademik_cetak_rapor_ktsp_kd_rombel 			= data[0].data['kd_rombel'];
-							m_adm_akademik_cetak_rapor_ktsp_kd_periode_belajar	= data[0].data['kd_periode_belajar'];
+							m_adm_cetak_form_penilaian_catatan_guru_kd_tahun_ajaran 	= data[0].data['kd_tahun_ajaran'];
+							m_adm_cetak_form_penilaian_catatan_guru_kd_tingkat_kelas 	= data[0].data['kd_tingkat_kelas'];
+							m_adm_cetak_form_penilaian_catatan_guru_kd_rombel 			= data[0].data['kd_rombel'];
+							m_adm_cetak_form_penilaian_catatan_guru_kd_periode_belajar	= data[0].data['kd_periode_belajar'];
 							this.btn_print.setDisabled(false);
 						} else {
-							m_adm_akademik_cetak_rapor_ktsp_kd_tahun_ajaran 	= '';
-							m_adm_akademik_cetak_rapor_ktsp_kd_tingkat_kelas 	= '';
-							m_adm_akademik_cetak_rapor_ktsp_kd_rombel 			= '';
-							m_adm_akademik_cetak_rapor_ktsp_kd_periode_belajar	= '';
+							m_adm_cetak_form_penilaian_catatan_guru_kd_tahun_ajaran 	= '';
+							m_adm_cetak_form_penilaian_catatan_guru_kd_tingkat_kelas 	= '';
+							m_adm_cetak_form_penilaian_catatan_guru_kd_rombel 			= '';
+							m_adm_cetak_form_penilaian_catatan_guru_kd_periode_belajar	= '';
 							this.btn_print.setDisabled(true);
 						}
 					}
@@ -123,7 +123,7 @@ function M_AdmAkademikCetakRaporKTSP(title)
 	});
 
 	this.panel = new Ext.grid.GridPanel({
-			id					: 'adm_akademik_cetak_rapor_ktsp_panel'
+			id					: 'adm_cetak_form_penilaian_catatan_guru_panel'
 		,	title				: this.title
 		,	store				: this.store
 		,	sm					: this.sm
@@ -137,10 +137,10 @@ function M_AdmAkademikCetakRaporKTSP(title)
 
 	this.do_print = function()
 	{
-		if (m_adm_akademik_cetak_rapor_ktsp_kd_tahun_ajaran == ''
-		||	m_adm_akademik_cetak_rapor_ktsp_kd_tingkat_kelas == ''
-		||	m_adm_akademik_cetak_rapor_ktsp_kd_rombel == ''
-		||	m_adm_akademik_cetak_rapor_ktsp_kd_periode_belajar == ''){
+		if (m_adm_cetak_form_penilaian_catatan_guru_kd_tahun_ajaran == ''
+		||	m_adm_cetak_form_penilaian_catatan_guru_kd_tingkat_kelas == ''
+		||	m_adm_cetak_form_penilaian_catatan_guru_kd_rombel == ''
+		||	m_adm_cetak_form_penilaian_catatan_guru_kd_periode_belajar == ''){
 			return;
 		}
 		
@@ -164,22 +164,22 @@ function M_AdmAkademikCetakRaporKTSP(title)
 		var hiddenField3 = document.createElement ('input');
         hiddenField1.setAttribute('type', 'hidden');
 		hiddenField3.setAttribute('name', 'kd_tahun_ajaran');
-        hiddenField3.setAttribute('value', m_adm_akademik_cetak_rapor_ktsp_kd_tahun_ajaran);
+        hiddenField3.setAttribute('value', m_adm_cetak_form_penilaian_catatan_guru_kd_tahun_ajaran);
 		
 		var hiddenField4 = document.createElement ('input');
         hiddenField1.setAttribute('type', 'hidden');
 		hiddenField4.setAttribute('name', 'kd_tingkat_kelas');
-        hiddenField4.setAttribute('value', m_adm_akademik_cetak_rapor_ktsp_kd_tingkat_kelas);
+        hiddenField4.setAttribute('value', m_adm_cetak_form_penilaian_catatan_guru_kd_tingkat_kelas);
 
 		var hiddenField5 = document.createElement ('input');
         hiddenField1.setAttribute('type', 'hidden');
 		hiddenField5.setAttribute('name', 'kd_rombel');
-        hiddenField5.setAttribute('value', m_adm_akademik_cetak_rapor_ktsp_kd_rombel);
+        hiddenField5.setAttribute('value', m_adm_cetak_form_penilaian_catatan_guru_kd_rombel);
 
 		var hiddenField6 = document.createElement ('input');
         hiddenField1.setAttribute('type', 'hidden');
 		hiddenField5.setAttribute('name', 'kd_periode_belajar');
-        hiddenField5.setAttribute('value', m_adm_akademik_cetak_rapor_ktsp_kd_periode_belajar);
+        hiddenField5.setAttribute('value', m_adm_cetak_form_penilaian_catatan_guru_kd_periode_belajar);
 		
 		form.appendChild(hiddenField1);
 		form.appendChild(hiddenField2);
@@ -211,6 +211,6 @@ function M_AdmAkademikCetakRaporKTSP(title)
 	}
 }
 
-m_adm_akademik_cetak_rapor_ktsp = new M_AdmAkademikCetakRaporKTSP('Cetak Rapor');
+m_adm_cetak_form_penilaian_catatan_guru = new M_AdmCetakFormPenilaianCatatanGuru('Cetak Formulir Penilaian Catatan Guru');
 
-//@ sourceURL=adm_akademik_cetak_rapor_ktsp.layout.js
+//@ sourceURL=adm_cetak_form_penilaian_catatan_guru.layout.js
