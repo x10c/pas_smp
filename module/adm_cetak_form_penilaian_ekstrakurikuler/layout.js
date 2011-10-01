@@ -178,8 +178,8 @@ function M_AdmCetakFormPenilaianEkstrakurikuler(title)
 
 		var hiddenField6 = document.createElement ('input');
         hiddenField1.setAttribute('type', 'hidden');
-		hiddenField5.setAttribute('name', 'kd_periode_belajar');
-        hiddenField5.setAttribute('value', m_adm_cetak_form_penilaian_ekstrakurikuler_kd_periode_belajar);
+		hiddenField6.setAttribute('name', 'kd_periode_belajar');
+        hiddenField6.setAttribute('value', m_adm_cetak_form_penilaian_ekstrakurikuler_kd_periode_belajar);
 		
 		form.appendChild(hiddenField1);
 		form.appendChild(hiddenField2);

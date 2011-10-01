@@ -157,6 +157,107 @@ $$
 
 delimiter ;
 
+DELIMITER $$
+
+CREATE FUNCTION F_KONVERSI_BILANGAN(
+	angka	NUMERIC
+)
+RETURNS	VARCHAR(5000)
+BEGIN
+	DECLARE sString VARCHAR(30);
+	DECLARE Bil1 VARCHAR(255);
+	DECLARE Bil2 VARCHAR(255);
+	DECLARE STot VARCHAR(255);
+	DECLARE X INT;
+	DECLARE Y INT;
+	DECLARE Z INT;
+	DECLARE Urai VARCHAR(5000);
+	
+	SET sString = CAST(angka AS CHAR);
+	SET Urai = '';
+	SET X = 0;
+	SET Y = 0;
+	
+	WHILE X <> LENGTH(sString) DO
+		SET X = X + 1;
+		SET sTot = MID(sString, X, 1);
+		SET Y = Y + CAST(sTot AS UNSIGNED);
+		SET Z = LENGTH(sString) - X + 1;
+		
+		CASE CAST(sTot AS UNSIGNED)
+			WHEN 1 THEN
+				BEGIN
+					IF (Z = 1 OR Z = 7 OR Z = 10 OR Z = 13) THEN
+						SET Bil1 = 'SATU ';
+					ELSEIF (z = 4) THEN
+						IF (X = 1) THEN
+							SET Bil1 = 'SE';
+						ELSE
+							SET Bil1 = 'SATU';
+						END IF;
+					ELSEIF (Z = 2 OR Z = 5 OR Z = 8 OR Z = 11 OR Z = 14) THEN
+						SET X = X + 1;
+						SET sTot = MID(sString, X, 1);
+						SET Z = LENGTH(sString) - X + 1;
+						SET Bil2 = '';
+						CASE CAST(sTot AS UNSIGNED)
+							WHEN 0 THEN SET Bil1 = 'Sepuluh ';
+							WHEN 1 THEN SET Bil1 = 'Sebelas ';
+							WHEN 2 THEN SET Bil1 = 'Dua Belas ';
+							WHEN 3 THEN SET Bil1 = 'Tiga Belas ';
+							WHEN 4 THEN SET Bil1 = 'Empat Belas ';
+							WHEN 5 THEN SET Bil1 = 'Lima Belas ';
+							WHEN 6 THEN SET Bil1 = 'Enam Belas ';
+							WHEN 7 THEN SET Bil1 = 'Tujuh Belas ';
+							WHEN 8 THEN SET Bil1 = 'Delapan Belas ';
+							WHEN 9 THEN SET Bil1 = 'Sembilan Belas ';
+							ELSE BEGIN END;
+						END CASE;
+					ELSE
+						SET Bil1 = 'SE';
+					END IF;
+				END;
+			WHEN 2 THEN SET Bil1 = 'Dua ';
+			WHEN 3 THEN SET Bil1 = 'Tiga ';
+			WHEN 4 THEN SET Bil1 = 'Empat ';
+			WHEN 5 THEN SET Bil1 = 'Lima ';
+			WHEN 6 THEN SET Bil1 = 'Enam ';
+			WHEN 7 THEN SET Bil1 = 'Tujuh ';
+			WHEN 8 THEN SET Bil1 = 'Delapan ';
+			WHEN 9 THEN SET Bil1 = 'Sembilan ';
+			ELSE SET Bil1 = '';
+		END CASE;
+		
+		IF CAST(sTot AS UNSIGNED) > 0 THEN
+			IF (Z = 2 OR Z = 5 OR Z = 8 OR Z = 11 OR Z = 14) THEN
+				SET Bil2 = 'Puluh ';
+			ELSEIF (Z = 3 OR Z = 6 OR Z = 9 OR Z = 12 OR Z = 15) THEN
+				SET Bil2 = 'Ratus ';
+			ELSE
+				SET Bil2 = '';
+			END IF;
+		ELSE
+			SET Bil2 = '';
+		END IF;
+		
+		IF Y > 0 THEN
+			CASE Z
+				WHEN 4 THEN BEGIN SET Bil2 = CONCAT(Bil2, 'Ribu '); SET Y = 0; END;
+				WHEN 7 THEN BEGIN SET Bil2 = CONCAT(Bil2, 'Juta '); SET Y = 0; END;
+				WHEN 10 THEN BEGIN SET Bil2 = CONCAT(Bil2, 'Milyar '); SET Y = 0; END;
+				WHEN 13 THEN BEGIN SET Bil2 = CONCAT(Bil2, 'Trilyun '); SET Y = 0; END;
+				ELSE BEGIN END;
+			END CASE;
+		END IF;
+		
+		SET Urai = CONCAT(Urai, Bil1, Bil2);
+	END WHILE;
+	
+	RETURN Urai;
+END
+$$
+
+DELIMITER ;
 
 delimiter $$
 
