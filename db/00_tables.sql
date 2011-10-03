@@ -2113,7 +2113,7 @@ create table T_SISWA_TINGKAT
    KD_TAHUN_AJARAN      char(2) not null,
    KD_TINGKAT_KELAS     char(2) not null,
    KD_ROMBEL            varchar(15) not null,
-   KD_STATUS_SISWA      char(1) not null default '0',
+   KD_STATUS_SISWA      char(1) not null default '0' comment '0 = aktif; 1 = cuti; 2 = putus sekolah (do); 3 = masuk dari kab/kota ini; 4 = masuk dari kab/kota lain; 5 = keluar/pindah; 6 = lulus',
    KD_USIA_SISWA        char(2) not null default '00',
    KD_AGAMA             char(1) not null default '0',
    KD_JENIS_KELAMIN     char(1) not null default '0',

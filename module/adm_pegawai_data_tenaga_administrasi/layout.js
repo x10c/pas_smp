@@ -6,55 +6,47 @@
  *   - agus sugianto (agus.delonge@gmail.com)
  */
 
-var m_adm_pegawai_pemeliharaan_data_induk_guru;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_master;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_list;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_detail;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_list;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_detail;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_pangkat;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_jabatan;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_list;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_detail;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_prestasi;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penghargaan;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_mengajar;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai = '';
-var m_adm_pegawai_pemeliharaan_data_induk_guru_keluarga_no_urut = '';
-var m_adm_pegawai_pemeliharaan_data_induk_guru_pendidikan_formal_no_urut = '';
-var m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_no_urut = '';
-var m_adm_pegawai_pemeliharaan_data_induk_guru_d = _g_root +'/module/adm_pegawai_pemeliharaan_data_induk_guru/';
-var m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level = 0;
+var m_adm_pegawai_data_tenaga_administrasi;
+var m_adm_pegawai_data_tenaga_administrasi_master_list;
+var m_adm_pegawai_data_tenaga_administrasi_master_detail;
+var m_adm_pegawai_data_tenaga_administrasi_detail_keluarga;
+var m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_list;
+var m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_detail;
+var m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal;
+var m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_list;
+var m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_detail;
+var m_adm_pegawai_data_tenaga_administrasi_detail_riwayat_pangkat;
+var m_adm_pegawai_data_tenaga_administrasi_detail_riwayat_jabatan;
+var m_adm_pegawai_data_tenaga_administrasi_detail_penataran;
+var m_adm_pegawai_data_tenaga_administrasi_detail_penataran_list;
+var m_adm_pegawai_data_tenaga_administrasi_detail_penataran_detail;
+var m_adm_pegawai_data_tenaga_administrasi_id_pegawai = '';
+var m_adm_pegawai_data_tenaga_administrasi_keluarga_no_urut = '';
+var m_adm_pegawai_data_tenaga_administrasi_pendidikan_formal_no_urut = '';
+var m_adm_pegawai_data_tenaga_administrasi_detail_penataran_no_urut = '';
+var m_adm_pegawai_data_tenaga_administrasi_d = _g_root +'/module/adm_pegawai_data_tenaga_administrasi/';
+var m_adm_pegawai_data_tenaga_administrasi_ha_level = 0;
 
-function m_adm_pegawai_pemeliharaan_data_induk_guru_master_on_select_load_detail()
+function m_adm_pegawai_data_tenaga_administrasi_master_on_select_load_detail()
 {
- 	if (typeof m_adm_pegawai_pemeliharaan_data_induk_guru_master == 'undefined'
-	||  typeof m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga == 'undefined'
-	||  typeof m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal == 'undefined'
-	||  typeof m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_pangkat == 'undefined'
-	||  typeof m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_jabatan == 'undefined'
-	||  typeof m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran == 'undefined'
-	||  typeof m_adm_pegawai_pemeliharaan_data_induk_guru_detail_prestasi == 'undefined'
-	||  typeof m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penghargaan == 'undefined'
-	||  typeof m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_mengajar == 'undefined'
-	||	m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
+ 	if (typeof m_adm_pegawai_data_tenaga_administrasi_master_list == 'undefined'
+	||  typeof m_adm_pegawai_data_tenaga_administrasi_detail_keluarga == 'undefined'
+	||  typeof m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal == 'undefined'
+	||  typeof m_adm_pegawai_data_tenaga_administrasi_detail_riwayat_pangkat == 'undefined'
+	||  typeof m_adm_pegawai_data_tenaga_administrasi_detail_riwayat_jabatan == 'undefined'
+	||  typeof m_adm_pegawai_data_tenaga_administrasi_detail_penataran == 'undefined'
+	||	m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
 		return;
 	}
 
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga.do_refresh();
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal.do_refresh();
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_pangkat.do_refresh();
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_jabatan.do_refresh();
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran.do_refresh();
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_prestasi.do_refresh();
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penghargaan.do_refresh();
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_mengajar.do_refresh();
+	m_adm_pegawai_data_tenaga_administrasi_detail_keluarga.do_refresh();
+	m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal.do_refresh();
+	m_adm_pegawai_data_tenaga_administrasi_detail_riwayat_pangkat.do_refresh();
+	m_adm_pegawai_data_tenaga_administrasi_detail_riwayat_jabatan.do_refresh();
+	m_adm_pegawai_data_tenaga_administrasi_detail_penataran.do_refresh();
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaDetail()
+function M_AdmPegawaiDataTenagaAdministrasiDetailKeluargaDetail()
 {
 	this.dml_type	= 0;
 
@@ -81,14 +73,14 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaDetail()
 
 	this.store_agama = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_agama.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_agama.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
 
 	this.store_gol_darah = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_gol_darah.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_gol_darah.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
@@ -364,10 +356,10 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaDetail()
 		this.dml_type	= 3;
 
 		Ext.Ajax.request({
-			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_keluarga.jsp'
+			url		: m_adm_pegawai_data_tenaga_administrasi_d +'data_detail_keluarga.jsp'
 		,	params	: {
-				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
-			,	no_urut	: m_adm_pegawai_pemeliharaan_data_induk_guru_keluarga_no_urut
+				id_pegawai		: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
+			,	no_urut	: m_adm_pegawai_data_tenaga_administrasi_keluarga_no_urut
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
 		,	failure	: function(response) {
@@ -389,17 +381,14 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaDetail()
 
 	this.do_back = function()
 	{
-		m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(false);
+		m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(false);
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(1);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(2);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(3);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(4);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(5);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(6);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(7);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(1);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(2);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(3);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(4);
 		
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga.panel.layout.setActiveItem(0);
+		m_adm_pegawai_data_tenaga_administrasi_detail_keluarga.panel.layout.setActiveItem(0);
 	}
 
 	this.is_valid = function()
@@ -457,9 +446,9 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaDetail()
 		main_load.show();
 		
 		Ext.Ajax.request({
-				url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_keluarga.jsp'
+				url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_keluarga.jsp'
 			,	params  : {
-						id_pegawai						: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
+						id_pegawai						: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
 					,	no_urut					: this.form_no_urut.getValue()
 					,	nm_keluarga				: this.form_nm_keluarga.getValue()
 					,	kd_hub_keluarga			: this.form_hubungan_keluarga.getValue()
@@ -493,18 +482,15 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaDetail()
 						
 						Ext.MessageBox.alert('Informasi', msg.info);
 
-						m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(false);
+						m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(false);
 						
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(1);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(2);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(3);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(4);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(5);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(6);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(7);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(1);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(2);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(3);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(4);
 
-						m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_list.store.reload();
-						m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga.panel.layout.setActiveItem(0);
+						m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_list.store.reload();
+						m_adm_pegawai_data_tenaga_administrasi_detail_keluarga.panel.layout.setActiveItem(0);
 					}
 			,	scope	: this
 		});
@@ -517,7 +503,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaDetail()
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
+function M_AdmPegawaiDataTenagaAdministrasiDetailKeluargaList()
 {
 	this.record = new Ext.data.Record.create([
 			{ name	: 'id_pegawai' }
@@ -529,7 +515,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 
 	this.store = new Ext.data.ArrayStore({
 			fields		: this.record
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_keluarga_list.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_detail_keluarga_list.jsp'
 		,	autoLoad	: false
 	});
 
@@ -610,13 +596,13 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
 					if (data.length){
-						m_adm_pegawai_pemeliharaan_data_induk_guru_keluarga_no_urut = data[0].data['no_urut'];
+						m_adm_pegawai_data_tenaga_administrasi_keluarga_no_urut = data[0].data['no_urut'];
 						
-						if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
+						if (m_adm_pegawai_data_tenaga_administrasi_ha_level == 4) {
 							this.btn_del.setDisabled(false);
 						}
 					} else {
-						m_adm_pegawai_pemeliharaan_data_induk_guru_keluarga_no_urut = '';
+						m_adm_pegawai_data_tenaga_administrasi_keluarga_no_urut = '';
 						this.btn_del.setDisabled(true);
 					}
 				}
@@ -687,8 +673,8 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
@@ -699,7 +685,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 		}
 
 		Ext.Ajax.request({
-			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_keluarga.jsp'
+			url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_keluarga.jsp'
 		,	params	: {
 				dml_type			: 4
 			,	id_pegawai					: data.get('id_pegawai')
@@ -739,8 +725,8 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 
 	this.do_edit = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
@@ -750,74 +736,68 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 			return;
 		}
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_detail.do_refresh();
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_detail.do_edit(data.get('no_urut'));
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga.panel.layout.setActiveItem(1);
+		m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_detail.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_detail.do_edit(data.get('no_urut'));
+		m_adm_pegawai_data_tenaga_administrasi_detail_keluarga.panel.layout.setActiveItem(1);
 		
-		m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(true);
+		m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(true);
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(1);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(2);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(3);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(4);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(5);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(6);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(7);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(1);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(2);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(3);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(4);
 	}
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_detail.do_add();
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_detail.do_refresh();
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga.panel.layout.setActiveItem(1);
+		m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_detail.do_add();
+		m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_detail.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi_detail_keluarga.panel.layout.setActiveItem(1);
 		
-		m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(true);
+		m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(true);
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(1);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(2);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(3);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(4);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(5);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(6);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(7);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(1);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(2);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(3);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(4);
 	}
 	
 	this.do_load = function()
 	{
 		this.store.load({
 			params	: {
-				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
+				id_pegawai		: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
 			}
 		});
 	}
 
 	this.do_refresh = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 1) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 1) {
 			this.panel.setDisabled(true);
 			return;
 		} else {
 			this.panel.setDisabled(false);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level == 4) {
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 3) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 3) {
 			this.btn_edit.setDisabled(true);
 		} else {
 			this.btn_edit.setDisabled(false);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 2) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
 			this.btn_add.setDisabled(true);
@@ -827,10 +807,10 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList()
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluarga(title)
+function M_AdmPegawaiDataTenagaAdministrasiDetailKeluarga(title)
 {
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_list		= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaList();
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_detail	= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluargaDetail();
+	m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_list		= new M_AdmPegawaiDataTenagaAdministrasiDetailKeluargaList();
+	m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_detail	= new M_AdmPegawaiDataTenagaAdministrasiDetailKeluargaDetail();
 	
 	this.panel = new Ext.Panel({
 			title			: title
@@ -840,38 +820,38 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluarga(title)
 		,	autoWidth		: true
 		,	autoScroll		: true
 		,	items			: [
-				m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_list.panel
-			,	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_detail.panel
+				m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_list.panel
+			,	m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_detail.panel
 			]
 	});
 	
 	this.do_refresh = function()
 	{
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga_list.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi_detail_keluarga_list.do_refresh();
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalDetail()
+function M_AdmPegawaiDataTenagaAdministrasiDetailPendidikanFormalDetail()
 {
 	this.dml_type	= 0;
 
 	this.store_tingkat_ijazah = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_tingkat_ijazah.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_tingkat_ijazah.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
 
 	this.store_program_studi = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_program_studi.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_program_studi.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
 
 	this.store_akreditasi = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_akreditasi.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_akreditasi.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
@@ -1109,10 +1089,10 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalDetail()
 		this.dml_type	= 3;
 
 		Ext.Ajax.request({
-			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_pendidikan_formal.jsp'
+			url		: m_adm_pegawai_data_tenaga_administrasi_d +'data_detail_pendidikan_formal.jsp'
 		,	params	: {
-				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
-			,	no_urut	: m_adm_pegawai_pemeliharaan_data_induk_guru_pendidikan_formal_no_urut
+				id_pegawai		: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
+			,	no_urut	: m_adm_pegawai_data_tenaga_administrasi_pendidikan_formal_no_urut
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
 		,	failure	: function(response) {
@@ -1134,17 +1114,14 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalDetail()
 
 	this.do_back = function()
 	{
-		m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(false);
+		m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(false);
 		
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(0);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(2);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(3);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(4);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(5);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(6);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(7);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(0);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(2);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(3);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(4);
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal.panel.layout.setActiveItem(0);		
+		m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal.panel.layout.setActiveItem(0);		
 	}
 
 	this.is_valid = function()
@@ -1190,9 +1167,9 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalDetail()
 		main_load.show();
 		
 		Ext.Ajax.request({
-				url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_pendidikan_formal.jsp'
+				url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_pendidikan_formal.jsp'
 			,	params  : {
-						id_pegawai						: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
+						id_pegawai						: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
 					,	no_urut					: this.form_no_urut.getValue()
 					,	kd_tingkat_ijazah		: this.form_tingkat_ijazah.getValue()
 					,	nm_instansi_penddkn		: this.form_nm_instansi_penddkn.getValue()
@@ -1223,18 +1200,15 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalDetail()
 						
 						Ext.MessageBox.alert('Informasi', msg.info);
 
-						m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(false);
+						m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(false);
 						
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(0);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(2);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(3);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(4);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(5);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(6);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(7);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(0);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(2);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(3);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(4);
 
-						m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_list.store.reload();
-						m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal.panel.layout.setActiveItem(0);
+						m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_list.store.reload();
+						m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal.panel.layout.setActiveItem(0);
 					}
 			,	scope	: this
 		});
@@ -1248,7 +1222,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalDetail()
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
+function M_AdmPegawaiDataTenagaAdministrasiDetailPendidikanFormalList()
 {
 	this.record = new Ext.data.Record.create([
 			{ name	: 'id_pegawai' }
@@ -1260,20 +1234,20 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 
 	this.store = new Ext.data.ArrayStore({
 			fields		: this.record
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_pendidikan_formal_list.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_detail_pendidikan_formal_list.jsp'
 		,	autoLoad	: false
 	});
 
 	this.store_tingkat_ijazah = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d + 'data_ref_tingkat_ijazah.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d + 'data_ref_tingkat_ijazah.jsp'
 		,	autoLoad	: false
 		,	idIndex		: 0
 	});
 
 	this.store_program_studi = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d + 'data_ref_program_studi.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d + 'data_ref_program_studi.jsp'
 		,	autoLoad	: false
 		,	idIndex		: 0
 	});
@@ -1360,13 +1334,13 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
 					if (data.length){
-						m_adm_pegawai_pemeliharaan_data_induk_guru_pendidikan_formal_no_urut = data[0].data['no_urut'];
+						m_adm_pegawai_data_tenaga_administrasi_pendidikan_formal_no_urut = data[0].data['no_urut'];
 						
-						if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
+						if (m_adm_pegawai_data_tenaga_administrasi_ha_level == 4) {
 							this.btn_del.setDisabled(false);
 						}
 					} else {
-						m_adm_pegawai_pemeliharaan_data_induk_guru_pendidikan_formal_no_urut = '';
+						m_adm_pegawai_data_tenaga_administrasi_pendidikan_formal_no_urut = '';
 						this.btn_del.setDisabled(true);
 					}
 				}
@@ -1437,8 +1411,8 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
@@ -1449,7 +1423,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 		}
 
 		Ext.Ajax.request({
-			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_pendidikan_formal.jsp'
+			url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_pendidikan_formal.jsp'
 		,	params	: {
 				dml_type			: 4
 			,	id_pegawai					: data.get('id_pegawai')
@@ -1486,8 +1460,8 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 
 	this.do_edit = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
@@ -1497,41 +1471,35 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 			return;
 		}
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_detail.do_refresh();
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_detail.do_edit(data.get('no_urut'));
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal.panel.layout.setActiveItem(1);
+		m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_detail.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_detail.do_edit(data.get('no_urut'));
+		m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal.panel.layout.setActiveItem(1);
 		
-		m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(true);
+		m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(true);
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(0);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(2);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(3);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(4);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(5);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(6);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(7);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(0);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(2);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(3);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(4);
 	}
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_detail.do_add();
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_detail.do_refresh();
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal.panel.layout.setActiveItem(1);
+		m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_detail.do_add();
+		m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_detail.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal.panel.layout.setActiveItem(1);
 		
-		m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(true);
+		m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(true);
 		
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(0);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(2);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(3);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(4);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(5);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(6);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(7);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(0);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(2);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(3);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(4);
 	}
 	
 	this.do_load = function()
@@ -1542,7 +1510,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 					callback	: function(){
 						this.store.load({
 							params	: {
-								id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
+								id_pegawai		: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
 							}
 						});
 					}
@@ -1555,26 +1523,26 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 
 	this.do_refresh = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 1) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 1) {
 			this.panel.setDisabled(true);
 			return;
 		} else {
 			this.panel.setDisabled(false);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level == 4) {
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 3) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 3) {
 			this.btn_edit.setDisabled(true);
 		} else {
 			this.btn_edit.setDisabled(false);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 2) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
 			this.btn_add.setDisabled(true);
@@ -1584,10 +1552,10 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList()
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormal(title)
+function M_AdmPegawaiDataTenagaAdministrasiDetailPendidikanFormal(title)
 {
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_list	= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalList();
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_detail	= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormalDetail();
+	m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_list	= new M_AdmPegawaiDataTenagaAdministrasiDetailPendidikanFormalList();
+	m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_detail	= new M_AdmPegawaiDataTenagaAdministrasiDetailPendidikanFormalDetail();
 	
 	this.panel = new Ext.Panel({
 			title			: title
@@ -1597,18 +1565,18 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormal(title)
 		,	autoWidth		: true
 		,	autoScroll		: true
 		,	items			: [
-				m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_list.panel
-			,	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_detail.panel
+				m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_list.panel
+			,	m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_detail.panel
 			]
 	});
 	
 	this.do_refresh = function()
 	{
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal_list.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal_list.do_refresh();
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
+function M_AdmPegawaiDataTenagaAdministrasiDetailRiwayatPangkat(title)
 {
 	this.title		= title;
 	this.dml_type	= 0;
@@ -1627,20 +1595,20 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 
 	this.store = new Ext.data.ArrayStore({
 			fields		: this.record
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_riwayat_pangkat.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_detail_riwayat_pangkat.jsp'
 		,	autoLoad	: false
 	});
 	
 	this.store_status_pegawai = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_status_pegawai.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_status_pegawai.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
 
 	this.store_pangkat = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_pangkat.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_pangkat.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
@@ -1784,7 +1752,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 				scope		: this
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
-					if (data.length && m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
+					if (data.length && m_adm_pegawai_data_tenaga_administrasi_ha_level == 4) {
 						this.btn_del.setDisabled(false);
 					} else {
 						this.btn_del.setDisabled(true);
@@ -1855,8 +1823,8 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
@@ -1881,8 +1849,8 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
@@ -1907,7 +1875,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 	{
 		Ext.Ajax.request({
 				params  : {
-						id_pegawai					: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
+						id_pegawai					: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
 					,	no_urut				: record.data['no_urut']
 					,	no_urut_old			: record.data['no_urut_old']
 					,	no_sk				: record.data['no_sk']
@@ -1918,7 +1886,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 					,	keterangan			: record.data['keterangan']
 					,	dml_type			: this.dml_type
 				}
-			,	url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_riwayat_pangkat.jsp'
+			,	url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_riwayat_pangkat.jsp'
 			,	waitMsg	: 'Mohon Tunggu ...'
 			,	success :
 					function (response)
@@ -1937,12 +1905,12 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 3) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level >= 3) {
 			this.dml_type = 3;
 			return true;
 		}
@@ -1957,7 +1925,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 					callback	: function(){
 						this.store.load({
 							params	: {
-								id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
+								id_pegawai	: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
 							}
 						});
 					}
@@ -1970,20 +1938,20 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 
 	this.do_refresh = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 1) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 1) {
 			this.panel.setDisabled(true);
 			return;
 		} else {
 			this.panel.setDisabled(false);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 2) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
 			this.btn_add.setDisabled(true);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level == 4) {
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
@@ -1993,7 +1961,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat(title)
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
+function M_AdmPegawaiDataTenagaAdministrasiDetailRiwayatJabatan(title)
 {
 	this.title		= title;
 	this.dml_type	= 0;
@@ -2006,19 +1974,27 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 		,	{ name	: 'tanggal_sk' }
 		,	{ name	: 'tmt_sk' }
 		,	{ name	: 'kd_jenis_pegawai' }
+		,	{ name	: 'kd_tenaga_administrasi' }
 		,	{ name	: 'tahun_berhenti' }
 		,	{ name	: 'keterangan' }
 	]);
 
 	this.store = new Ext.data.ArrayStore({
 			fields		: this.record
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_riwayat_jabatan.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_detail_riwayat_jabatan.jsp'
 		,	autoLoad	: false
 	});
 	
 	this.store_jenis_pegawai = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_jenis_pegawai.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_jenis_pegawai.jsp'
+		,	idIndex		: 0
+		,	autoLoad	: false
+	});
+
+	this.store_tenaga_administrasi = new Ext.data.ArrayStore({
+			fields		: ['id','name']
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_tenaga_administrasi.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
@@ -2060,6 +2036,19 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 		,	triggerAction	: 'all'
 		,	selectOnFocus	: true
 		,	listWidth		: 400
+	});
+
+	this.form_tenaga_administrasi = new Ext.form.ComboBox({
+			store			: this.store_tenaga_administrasi
+		,	valueField		: 'id'
+		,	displayField	: 'name'
+		,	mode			: 'local'
+		,	allowBlank		: false
+		,	forceSelection	: true
+		,	typeAhead		: true
+		,	triggerAction	: 'all'
+		,	selectOnFocus	: true
+		,	listWidth		: 300
 	});
 
 	this.form_tahun_berhenti = new Ext.form.NumberField({
@@ -2104,7 +2093,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 			, sortable		: true
 			, editor		: this.form_tanggal_sk
 			, align			: 'center'
-			, width			: 100
+			, width			: 90
 			, filter		: {
 								type	: 'date'
 							}
@@ -2114,7 +2103,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 			, sortable		: true
 			, editor		: this.form_tmt_sk
 			, align			: 'center'
-			, width			: 100
+			, width			: 90
 			, filter		: {
 								type	: 'date'
 							}
@@ -2124,10 +2113,23 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 			, sortable		: true
 			, editor		: this.form_jenis_pegawai
 			, renderer		: combo_renderer(this.form_jenis_pegawai)
-			, width			: 300
+			, width			: 250
 			, filter		: {
 					type		: 'list'
 				,	store		: this.store_jenis_pegawai
+				,	labelField	: 'name'
+				,	phpMode		: false
+			 }
+			}
+		,	{ header		: 'Jenis Ketenagaan'
+			, dataIndex		: 'kd_tenaga_administrasi'
+			, sortable		: true
+			, editor		: this.form_tenaga_administrasi
+			, renderer		: combo_renderer(this.form_tenaga_administrasi)
+			, width			: 150
+			, filter		: {
+					type		: 'list'
+				,	store		: this.store_tenaga_administrasi
 				,	labelField	: 'name'
 				,	phpMode		: false
 			 }
@@ -2137,7 +2139,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 			, sortable		: true
 			, editor		: this.form_tahun_berhenti
 			, align			: 'center'
-			, width			: 100
+			, width			: 90
 			, filter		: {
 					type		: 'numeric'
 			 }
@@ -2157,7 +2159,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 				scope		: this
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
-					if (data.length && m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
+					if (data.length && m_adm_pegawai_data_tenaga_administrasi_ha_level == 4) {
 						this.btn_del.setDisabled(false);
 					} else {
 						this.btn_del.setDisabled(true);
@@ -2228,20 +2230,21 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
 		this.record_new = new this.record({
-				id_pegawai					: ''
-			,	no_urut				: ''
-			,	no_sk				: ''
-			,	tanggal_sk			: ''
-			,	tmt_sk				: ''
-			,	kd_jenis_pegawai	: ''
-			,	tahun_berhenti		: ''
-			,	keterangan			: ''
+				id_pegawai						: ''
+			,	no_urut					: ''
+			,	no_sk					: ''
+			,	tanggal_sk				: ''
+			,	tmt_sk					: ''
+			,	kd_jenis_pegawai		: ''
+			,	kd_tenaga_adminitrasi	: ''
+			,	tahun_berhenti			: ''
+			,	keterangan				: ''
 			});
 
 		this.editor.stopEditing();
@@ -2254,8 +2257,8 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
@@ -2280,18 +2283,19 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 	{
 		Ext.Ajax.request({
 				params  : {
-						id_pegawai					: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
-					,	no_urut				: record.data['no_urut']
-					,	no_urut_old			: record.data['no_urut_old']
-					,	no_sk				: record.data['no_sk']
-					,	tanggal_sk			: record.data['tanggal_sk']
-					,	tmt_sk				: record.data['tmt_sk']
-					,	kd_jenis_pegawai	: record.data['kd_jenis_pegawai']
-					,	tahun_berhenti		: record.data['tahun_berhenti']
-					,	keterangan			: record.data['keterangan']
-					,	dml_type			: this.dml_type
+						id_pegawai						: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
+					,	no_urut					: record.data['no_urut']
+					,	no_urut_old				: record.data['no_urut_old']
+					,	no_sk					: record.data['no_sk']
+					,	tanggal_sk				: record.data['tanggal_sk']
+					,	tmt_sk					: record.data['tmt_sk']
+					,	kd_jenis_pegawai		: record.data['kd_jenis_pegawai']
+					,	kd_tenaga_administrasi	: record.data['kd_tenaga_administrasi']
+					,	tahun_berhenti			: record.data['tahun_berhenti']
+					,	keterangan				: record.data['keterangan']
+					,	dml_type				: this.dml_type
 				}
-			,	url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_riwayat_jabatan.jsp'
+			,	url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_riwayat_jabatan.jsp'
 			,	waitMsg	: 'Mohon Tunggu ...'
 			,	success :
 					function (response)
@@ -2310,12 +2314,12 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 
 	this.do_edit = function(row)
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 3) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level >= 3) {
 			this.dml_type = 3;
 			return true;
 		}
@@ -2326,10 +2330,15 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 	{
 		this.store_jenis_pegawai.load({
 			callback	: function(){
-				this.store.load({
-					params	: {
-						id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
+				this.store_tenaga_administrasi.load({
+					callback	: function(){
+						this.store.load({
+							params	: {
+								id_pegawai	: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
+							}
+						});
 					}
+				,	scope		: this
 				});
 			}
 		,	scope		: this
@@ -2338,20 +2347,20 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 
 	this.do_refresh = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 1) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 1) {
 			this.panel.setDisabled(true);
 			return;
 		} else {
 			this.panel.setDisabled(false);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 2) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
 			this.btn_add.setDisabled(true);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level == 4) {
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
@@ -2361,41 +2370,34 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan(title)
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
+function M_AdmPegawaiDataTenagaAdministrasiDetailPenataranDetail()
 {
 	this.dml_type	= 0;
 
 	this.store_penataran = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_penataran.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_penataran.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
 
 	this.store_penyelenggara_penataran = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_penyelenggara_penataran.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_penyelenggara_penataran.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
 
 	this.store_jenis_penataran = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_jenis_penataran.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_jenis_penataran.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
 
 	this.store_jenis_peserta_penataran = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_jenis_peserta_penataran.jsp'
-		,	idIndex		: 0
-		,	autoLoad	: false
-	});
-
-	this.store_mata_pelajaran_diajarkan = new Ext.data.ArrayStore({
-			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_mata_pelajaran_diajarkan.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_jenis_peserta_penataran.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
@@ -2471,21 +2473,6 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 		,	msgTarget		: 'side'
 	});
 
-	this.form_mata_pelajaran_diajarkan = new Ext.form.ComboBox({
-			fieldLabel		: 'Mata Pelajaran'
-		,	store			: this.store_mata_pelajaran_diajarkan
-		,	valueField		: 'id'
-		,	displayField	: 'name'
-		,	mode			: 'local'
-		,	allowBlank		: false
-		,	forceSelection	: true
-		,	typeAhead		: true
-		,	triggerAction	: 'all'
-		,	selectOnFocus	: true
-		,	width			: 400
-		,	msgTarget		: 'side'
-	});
-
 	this.form_tanggal_awal = new Ext.form.DateField({
 			fieldLabel		: 'Tanggal Awal'
 		,	emptyText		: 'Tahun-Bulan-Tanggal'
@@ -2528,7 +2515,6 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 				,	this.form_penyelenggara_penataran
 				,	this.form_jenis_penataran
 				,	this.form_jenis_peserta_penataran
-				,	this.form_mata_pelajaran_diajarkan
 				,	this.form_tanggal_awal
 				,	this.form_tanggal_akhir
 				,	this.form_jam
@@ -2587,7 +2573,6 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 		this.form_penyelenggara_penataran.setValue('');
 		this.form_jenis_penataran.setValue('');
 		this.form_jenis_peserta_penataran.setValue('');
-		this.form_mata_pelajaran_diajarkan.setValue('');
 		this.form_tanggal_awal.setValue('');
 		this.form_tanggal_akhir.setValue('');
 		this.form_jam.setValue('');
@@ -2600,7 +2585,6 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 		this.form_penyelenggara_penataran.setValue(data.kd_penyelenggara_penataran);
 		this.form_jenis_penataran.setValue(data.kd_jenis_penataran);
 		this.form_jenis_peserta_penataran.setValue(data.kd_jenis_peserta_penataran);
-		this.form_mata_pelajaran_diajarkan.setValue(data.kd_mata_pelajaran_diajarkan);
 		this.form_tanggal_awal.setValue(data.tanggal_awal);
 		this.form_tanggal_akhir.setValue(data.tanggal_akhir);
 		this.form_jam.setValue(data.jam);
@@ -2619,10 +2603,10 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 		this.dml_type	= 3;
 
 		Ext.Ajax.request({
-			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_penataran.jsp'
+			url		: m_adm_pegawai_data_tenaga_administrasi_d +'data_detail_penataran.jsp'
 		,	params	: {
-				id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
-			,	no_urut	: m_adm_pegawai_pemeliharaan_data_induk_guru_penataran_no_urut
+				id_pegawai		: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
+			,	no_urut	: m_adm_pegawai_data_tenaga_administrasi_penataran_no_urut
 			}
 		,	waitMsg	: 'Mohon Tunggu ...'
 		,	failure	: function(response) {
@@ -2644,17 +2628,14 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 
 	this.do_back = function()
 	{
-		m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(false);
+		m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(false);
 		
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(0);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(1);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(2);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(3);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(5);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(6);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(7);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(0);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(1);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(2);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(3);
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran.panel.layout.setActiveItem(0);		
+		m_adm_pegawai_data_tenaga_administrasi_detail_penataran.panel.layout.setActiveItem(0);		
 	}
 
 	this.is_valid = function()
@@ -2679,10 +2660,6 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 			return false;
 		}
 
-		if (!this.form_mata_pelajaran_diajarkan.isValid()) {
-			return false;
-		}
-
 		if (!this.form_jam.isValid()) {
 			return false;
 		}
@@ -2700,15 +2677,14 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 		main_load.show();
 		
 		Ext.Ajax.request({
-				url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_penataran.jsp'
+				url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_penataran.jsp'
 			,	params  : {
-						id_pegawai							: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
+						id_pegawai							: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
 					,	no_urut						: this.form_no_urut.getValue()
 					,	id_penataran				: this.form_penataran.getValue()
 					,	kd_penyelenggara_penataran	: this.form_penyelenggara_penataran.getValue()
 					,	kd_jenis_penataran			: this.form_jenis_penataran.getValue()
 					,	kd_jenis_peserta_penataran	: this.form_jenis_peserta_penataran.getValue()
-					,	kd_mata_pelajaran_diajarkan	: this.form_mata_pelajaran_diajarkan.getValue()
 					,	tanggal_awal				: this.form_tanggal_awal.getValue()
 					,	tanggal_akhir				: this.form_tanggal_akhir.getValue()
 					,	jam							: this.form_jam.getValue()
@@ -2732,18 +2708,15 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 						
 						Ext.MessageBox.alert('Informasi', msg.info);
 
-						m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(false);
+						m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(false);
 						
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(0);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(1);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(2);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(3);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(5);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(6);
-						m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.unhideTabStripItem(7);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(0);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(1);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(2);
+						m_adm_pegawai_data_tenaga_administrasi.panel_detail.unhideTabStripItem(3);
 
-						m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_list.store.reload();
-						m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran.panel.layout.setActiveItem(0);
+						m_adm_pegawai_data_tenaga_administrasi_detail_penataran_list.store.reload();
+						m_adm_pegawai_data_tenaga_administrasi_detail_penataran.panel.layout.setActiveItem(0);
 					}
 			,	scope	: this
 		});
@@ -2755,11 +2728,10 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail()
 		this.store_penyelenggara_penataran.load();
 		this.store_jenis_penataran.load();
 		this.store_jenis_peserta_penataran.load();
-		this.store_mata_pelajaran_diajarkan.load();
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
+function M_AdmPegawaiDataTenagaAdministrasiDetailPenataranList()
 {
 	this.record = new Ext.data.Record.create([
 			{ name	: 'id_pegawai' }
@@ -2771,20 +2743,20 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 
 	this.store = new Ext.data.ArrayStore({
 			fields		: this.record
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_penataran_list.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_detail_penataran_list.jsp'
 		,	autoLoad	: false
 	});
 
 	this.store_penataran = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d + 'data_ref_penataran.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d + 'data_ref_penataran.jsp'
 		,	autoLoad	: false
 		,	idIndex		: 0
 	});
 
 	this.store_jenis_peserta_penataran = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d + 'data_ref_jenis_peserta_penataran.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d + 'data_ref_jenis_peserta_penataran.jsp'
 		,	autoLoad	: false
 		,	idIndex		: 0
 	});
@@ -2874,13 +2846,13 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
 					if (data.length){
-						m_adm_pegawai_pemeliharaan_data_induk_guru_penataran_no_urut = data[0].data['no_urut'];
+						m_adm_pegawai_data_tenaga_administrasi_penataran_no_urut = data[0].data['no_urut'];
 						
-						if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
+						if (m_adm_pegawai_data_tenaga_administrasi_ha_level == 4) {
 							this.btn_del.setDisabled(false);
 						}
 					} else {
-						m_adm_pegawai_pemeliharaan_data_induk_guru_penataran_no_urut = '';
+						m_adm_pegawai_data_tenaga_administrasi_penataran_no_urut = '';
 						this.btn_del.setDisabled(true);
 					}
 				}
@@ -2951,8 +2923,8 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 
 	this.do_del = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
@@ -2963,7 +2935,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 		}
 
 		Ext.Ajax.request({
-			url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_penataran.jsp'
+			url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_penataran.jsp'
 		,	params	: {
 				dml_type					: 4
 			,	id_pegawai							: data.get('id_pegawai')
@@ -2999,8 +2971,8 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 
 	this.do_edit = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
@@ -3010,41 +2982,35 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 			return;
 		}
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_detail.do_refresh();
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_detail.do_edit(data.get('no_urut'));
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran.panel.layout.setActiveItem(1);
+		m_adm_pegawai_data_tenaga_administrasi_detail_penataran_detail.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi_detail_penataran_detail.do_edit(data.get('no_urut'));
+		m_adm_pegawai_data_tenaga_administrasi_detail_penataran.panel.layout.setActiveItem(1);
 		
-		m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(true);
+		m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(true);
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(0);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(1);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(2);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(3);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(5);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(6);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(7);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(0);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(1);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(2);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(3);
 	}
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
+		if (m_adm_pegawai_data_tenaga_administrasi_id_pegawai == '') {
+			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Tenaga Administrasi terlebih dahulu!");
 			return;
 		}
 
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_detail.do_add();
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_detail.do_refresh();
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran.panel.layout.setActiveItem(1);
+		m_adm_pegawai_data_tenaga_administrasi_detail_penataran_detail.do_add();
+		m_adm_pegawai_data_tenaga_administrasi_detail_penataran_detail.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi_detail_penataran.panel.layout.setActiveItem(1);
 		
-		m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel.setDisabled(true);
+		m_adm_pegawai_data_tenaga_administrasi_master.panel.setDisabled(true);
 		
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(0);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(1);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(2);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(3);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(5);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(6);
-		m_adm_pegawai_pemeliharaan_data_induk_guru.panel_detail.hideTabStripItem(7);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(0);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(1);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(2);
+		m_adm_pegawai_data_tenaga_administrasi.panel_detail.hideTabStripItem(3);
 	}
 	
 	this.do_load = function()
@@ -3055,7 +3021,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 					callback	: function(){
 						this.store.load({
 							params	: {
-								id_pegawai		: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
+								id_pegawai		: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
 							}
 						});
 					}
@@ -3068,26 +3034,26 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 
 	this.do_refresh = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 1) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 1) {
 			this.panel.setDisabled(true);
 			return;
 		} else {
 			this.panel.setDisabled(false);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level == 4) {
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 3) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 3) {
 			this.btn_edit.setDisabled(true);
 		} else {
 			this.btn_edit.setDisabled(false);
 		}
 
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 2) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
 			this.btn_add.setDisabled(true);
@@ -3097,10 +3063,10 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList()
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataran(title)
+function M_AdmPegawaiDataTenagaAdministrasiDetailPenataran(title)
 {
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_list	= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranList();
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_detail	= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataranDetail();
+	m_adm_pegawai_data_tenaga_administrasi_detail_penataran_list	= new M_AdmPegawaiDataTenagaAdministrasiDetailPenataranList();
+	m_adm_pegawai_data_tenaga_administrasi_detail_penataran_detail	= new M_AdmPegawaiDataTenagaAdministrasiDetailPenataranDetail();
 	
 	this.panel = new Ext.Panel({
 			title			: title
@@ -3110,300 +3076,540 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataran(title)
 		,	autoWidth		: true
 		,	autoScroll		: true
 		,	items			: [
-				m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_list.panel
-			,	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_detail.panel
+				m_adm_pegawai_data_tenaga_administrasi_detail_penataran_list.panel
+			,	m_adm_pegawai_data_tenaga_administrasi_detail_penataran_detail.panel
 			]
 	});
 	
 	this.do_refresh = function()
 	{
-		m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran_list.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi_detail_penataran_list.do_refresh();
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPrestasi(title)
+function M_AdmPegawaiDataTenagaAdministrasiMasterDetail(title)
 {
-	this.title		= title;
 	this.dml_type	= 0;
 
-	this.record = new Ext.data.Record.create([
-			{ name	: 'id_pegawai' }
-		,	{ name	: 'id_jenis_lomba' }
-		,	{ name	: 'id_jenis_lomba_old' }
-		,	{ name	: 'kd_tingkat_prestasi' }
-		,	{ name	: 'kd_tingkat_prestasi_old' }
-		,	{ name	: 'tanggal_prestasi' }
-		,	{ name	: 'tanggal_prestasi_old' }
-		,	{ name	: 'juara_ke' }
-		,	{ name	: 'keterangan' }
-	]);
-
-	this.store = new Ext.data.ArrayStore({
-			fields		: this.record
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_prestasi.jsp'
-		,	autoLoad	: false
-	});
-	
-	this.store_jenis_lomba = new Ext.data.ArrayStore({
+	this.store_jenis_kelamin = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_jenis_lomba.jsp'
+		,	data		: [
+				['1','Laki-Laki']
+			,	['2','Perempuan']
+			]
+		,	idIndex		: 0
+	});
+
+	this.store_agama = new Ext.data.ArrayStore({
+			fields		: ['id','name']
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_agama.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
 
-	this.store_tingkat_prestasi = new Ext.data.ArrayStore({
+	this.store_gol_darah = new Ext.data.ArrayStore({
 			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_tingkat_prestasi.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_ref_gol_darah.jsp'
 		,	idIndex		: 0
 		,	autoLoad	: false
 	});
 
-	this.form_jenis_lomba = new Ext.form.ComboBox({
-			store			: this.store_jenis_lomba
-		,	valueField		: 'id'
-		,	displayField	: 'name'
-		,	mode			: 'local'
-		,	allowBlank		: false
-		,	forceSelection	: true
-		,	typeAhead		: true
-		,	triggerAction	: 'all'
-		,	selectOnFocus	: true
-		,	listWidth		: 400
+	this.store_status_nikah = new Ext.data.ArrayStore({
+			fields		: ['id','name']
+		,	data		: [
+				['N','Menikah']
+			,	['J','Janda']
+			,	['D','Duda']
+			,	['B','Belum Menikah']
+			]
+		,	idIndex		: 0
 	});
 
-	this.form_tingkat_prestasi = new Ext.form.ComboBox({
-			store			: this.store_tingkat_prestasi
-		,	valueField		: 'id'
-		,	displayField	: 'name'
-		,	mode			: 'local'
-		,	allowBlank		: false
-		,	forceSelection	: true
-		,	typeAhead		: true
-		,	triggerAction	: 'all'
-		,	selectOnFocus	: true
+	this.store_operasi_komputer = new Ext.data.ArrayStore({
+			fields		: ['id','name']
+		,	data		: [
+				['0','Belum Mampu Mengoperasikan']
+			,	['1','Sudah Mampu Mengoperasikan']
+			]
+		,	idIndex		: 0
 	});
 
-	this.form_tanggal_prestasi = new Ext.form.DateField({
-			emptyText		: 'Y-m-d'
+	this.store_kursus_komputer = new Ext.data.ArrayStore({
+			fields		: ['id','name']
+		,	data		: [
+				['0','Belum Pernah']
+			,	['1','Pernah']
+			]
+		,	idIndex		: 0
+	});
+
+	this.store_sertifikasi = new Ext.data.ArrayStore({
+			fields		: ['id','name']
+		,	data		: [
+				['0','Sudah']
+			,	['1','Belum']
+			]
+		,	idIndex		: 0
+	});
+
+	this.form_nip = new Ext.form.NumberField({
+			fieldLabel		: 'NIP'
+		,	allowBlank		: false
+		,	allowDecimals	: false
+		,	allowNegative	: false
+		,	maxLength		: 18
+		,	maxLengthText	: 'Maksimal panjang kolom adalah 18'
+		,	width			: 150
+		,	msgTarget		: 'side'
+		,	listeners		: {
+				change	: function(form, newvalue, oldvalue) {
+					this.foto.el.dom.src = _g_root + '/images/foto_guru/' + newvalue + '.jpg';
+				}
+			,	scope	: this
+			}
+	});
+
+	this.form_nuptk = new Ext.form.NumberField({
+			fieldLabel		: 'NUPTK'
+		,	allowBlank		: true
+		,	allowDecimals	: false
+		,	allowNegative	: false
+		,	maxLength		: 16
+		,	maxLengthText	: 'Maksimal panjang kolom adalah 16'
+		,	width			: 150
+		,	msgTarget		: 'side'
+	});
+
+	this.form_nm_pegawai = new Ext.form.TextField({
+			fieldLabel		: 'Nama Tenaga Administrasi'
+		,	allowBlank		: false
+		,	width			: 400
+		,	msgTarget		: 'side'
+	});
+
+	this.form_inisial = new Ext.form.TextField({
+			fieldLabel		: 'Inisial'
+		,	allowBlank		: false
+		,	maxLength		: 3
+		,	maxLengthText	: 'Maksimal panjang kolom adalah 3'
+		,	width			: 30
+		,	msgTarget		: 'side'
+	});
+
+	this.form_kota_lahir = new Ext.form.TextField({
+			fieldLabel		: 'Kota Lahir'
+		,	allowBlank		: false
+		,	width			: 250
+		,	msgTarget		: 'side'
+	});
+
+	this.form_tanggal_lahir = new Ext.form.DateField({
+			fieldLabel		: 'Tanggal Lahir'
+		,	emptyText		: 'Tahun-Bulan-Tanggal'
 		,	format			: 'Y-m-d'
 		,	allowBlank		: false
 		,	invalidText		: 'Kolom ini harus berformat tanggal'
+		,	width			: 150
+		,	msgTarget		: 'side'
 	});
 
-	this.form_juara_ke = new Ext.form.NumberField({
-			allowBlank		: false
+	this.form_jenis_kelamin = new Ext.form.ComboBox({
+			fieldLabel		: 'Jenis Kelamin'
+		,	store			: this.store_jenis_kelamin
+		,	valueField		: 'id'
+		,	displayField	: 'name'
+		,	mode			: 'local'
+		,	allowBlank		: false
+		,	forceSelection	: true
+		,	typeAhead		: true
+		,	triggerAction	: 'all'
+		,	selectOnFocus	: true
+		,	width			: 100
+		,	msgTarget		: 'side'
+	});
+
+	this.form_agama = new Ext.form.ComboBox({
+			fieldLabel		: 'Agama'
+		,	store			: this.store_agama
+		,	valueField		: 'id'
+		,	displayField	: 'name'
+		,	mode			: 'local'
+		,	allowBlank		: false
+		,	forceSelection	: true
+		,	typeAhead		: true
+		,	triggerAction	: 'all'
+		,	selectOnFocus	: true
+		,	width			: 150
+		,	msgTarget		: 'side'
+	});
+
+	this.form_alamat = new Ext.form.TextArea({
+			fieldLabel		: 'Alamat'
+		,	allowBlank		: false
+		,	width			: 400
+		,	msgTarget		: 'side'
+	});
+
+	this.form_kode_pos = new Ext.form.NumberField({
+			fieldLabel		: 'Kode Pos'
+		,	allowBlank		: true
 		,	allowDecimals	: false
 		,	allowNegative	: false
-		,	maxValue		: 255
-		,	maxText			: 'Nilai Maksimal adalah 255'
+		,	maxLength		: 5
+		,	maxLengthText	: 'Maksimal panjang kolom adalah 5'
+		,	width			: 100
+		,	msgTarget		: 'side'
 	});
 
-	this.form_keterangan = new Ext.form.TextField({});
-
-	/* plugins */
-	this.filters = new Ext.ux.grid.GridFilters({
-			encode	: true
-		,	local	: true
+	this.form_gol_darah = new Ext.form.ComboBox({
+			fieldLabel		: 'Gol.Darah'
+		,	store			: this.store_gol_darah
+		,	valueField		: 'id'
+		,	displayField	: 'name'
+		,	mode			: 'local'
+		,	allowBlank		: false
+		,	forceSelection	: true
+		,	typeAhead		: true
+		,	triggerAction	: 'all'
+		,	selectOnFocus	: true
+		,	width			: 100
+		,	msgTarget		: 'side'
 	});
 
-	/* columns */
-	this.columns = [
-			new Ext.grid.RowNumberer()
-		,	{ header		: 'Jenis Lomba'
-			, dataIndex		: 'id_jenis_lomba'
-			, sortable		: true
-			, editor		: this.form_jenis_lomba
-			, renderer		: combo_renderer(this.form_jenis_lomba)
-			, width			: 300
-			, filter		: {
-					type		: 'list'
-				,	store		: this.store_jenis_lomba
-				,	labelField	: 'name'
-				,	phpMode		: false
-			 }
-			}
-		,	{ header		: 'Tingkat Prestasi'
-			, dataIndex		: 'kd_tingkat_prestasi'
-			, sortable		: true
-			, editor		: this.form_tingkat_prestasi
-			, renderer		: combo_renderer(this.form_tingkat_prestasi)
-			, width			: 150
-			, filter		: {
-					type		: 'list'
-				,	store		: this.store_tingkat_prestasi
-				,	labelField	: 'name'
-				,	phpMode		: false
-			 }
-			}
-		,	{ header		: 'Tanggal Prestasi'
-			, dataIndex		: 'tanggal_prestasi'
-			, sortable		: true
-			, editor		: this.form_tanggal_prestasi
-			, align			: 'center'
-			, width			: 120
-			, filter		: {
-					type		: 'date'
-			 }
-			}
-		,	{ header		: 'Juara Ke'
-			, dataIndex		: 'juara_ke'
-			, sortable		: true
-			, editor		: this.form_juara_ke
-			, align			: 'center'
-			, width			: 60
-			, filter		: {
-					type		: 'numeric'
-			 }
-			}
-		,	{ id			: 'keterangan'
-			, header		: 'Keterangan'
-			, dataIndex		: 'keterangan'
-			, sortable		: true
-			, editor		: this.form_keterangan
-			, filterable	: true
-			}
-	];
-
-	this.sm = new Ext.grid.RowSelectionModel({
-			singleSelect	: true
-		,	listeners	: {
-				scope		: this
-			,	selectionchange	: function(sm) {
-					var data = sm.getSelections();
-					if (data.length && m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
-						this.btn_del.setDisabled(false);
-					} else {
-						this.btn_del.setDisabled(true);
-					}
-				}
-			}
+	this.form_no_telp = new Ext.form.NumberField({
+			fieldLabel		: 'No.Telepon'
+		,	allowBlank		: true
+		,	allowDecimals	: false
+		,	allowNegative	: false
+		,	maxLength		: 30
+		,	maxLengthText	: 'Maksimal panjang kolom adalah 30'
+		,	width			: 150
+		,	msgTarget		: 'side'
 	});
 
-	this.editor = new MyRowEditor(this);
+	this.form_no_hp = new Ext.form.NumberField({
+			fieldLabel		: 'No.HP'
+		,	allowBlank		: true
+		,	allowDecimals	: false
+		,	allowNegative	: false
+		,	maxLength		: 30
+		,	maxLengthText	: 'Maksimal panjang kolom adalah 30'
+		,	width			: 150
+		,	msgTarget		: 'side'
+	});
 
-	this.btn_add = new Ext.Button({
-			text	: 'Tambah'
-		,	iconCls	: 'add16'
+	this.form_status_nikah = new Ext.form.ComboBox({
+			fieldLabel		: 'Status Nikah'
+		,	store			: this.store_status_nikah
+		,	valueField		: 'id'
+		,	displayField	: 'name'
+		,	mode			: 'local'
+		,	allowBlank		: false
+		,	forceSelection	: true
+		,	typeAhead		: true
+		,	triggerAction	: 'all'
+		,	selectOnFocus	: true
+		,	width			: 150
+		,	msgTarget		: 'side'
+	});
+
+	this.form_operasi_komputer = new Ext.form.ComboBox({
+			fieldLabel		: 'Operasi Komputer'
+		,	store			: this.store_operasi_komputer
+		,	valueField		: 'id'
+		,	displayField	: 'name'
+		,	mode			: 'local'
+		,	allowBlank		: true
+		,	forceSelection	: true
+		,	typeAhead		: true
+		,	triggerAction	: 'all'
+		,	selectOnFocus	: true
+		,	width			: 200
+		,	msgTarget		: 'side'
+	});
+
+	this.form_kursus_komputer = new Ext.form.ComboBox({
+			fieldLabel		: 'Kursus Komputer'
+		,	store			: this.store_kursus_komputer
+		,	valueField		: 'id'
+		,	displayField	: 'name'
+		,	mode			: 'local'
+		,	allowBlank		: true
+		,	forceSelection	: true
+		,	typeAhead		: true
+		,	triggerAction	: 'all'
+		,	selectOnFocus	: true
+		,	width			: 150
+		,	msgTarget		: 'side'
+	});
+
+	this.form_sertifikasi = new Ext.form.ComboBox({
+			fieldLabel		: 'Sertifikasi'
+		,	store			: this.store_sertifikasi
+		,	valueField		: 'id'
+		,	displayField	: 'name'
+		,	mode			: 'local'
+		,	allowBlank		: true
+		,	forceSelection	: true
+		,	typeAhead		: true
+		,	triggerAction	: 'all'
+		,	selectOnFocus	: true
+		,	width			: 150
+		,	msgTarget		: 'side'
+	});
+
+	this.foto = new Ext.BoxComponent({
+		anchor		: ''
+	,	fieldLabel	: 'Foto (130px X 170px)'
+	,	isFormField	: true
+	,	height		: 170
+	,	width		: 130
+	,	autoEl		: {
+			tag	: 'img'
+		,	src	: _g_root + '/images/foto_guru/default.gif'
+		}
+	});
+
+	this.panel_form = new Ext.form.FormPanel({
+			labelAlign		: 'right'
+		,	labelWidth		: 175
+		,	autoWidth		: true
+		,	autoHeight		: true
+		,	style			: 'margin: 8px;'
+		,	bodyCssClass	: 'stop-panel-form'
+		,	items			: [
+					this.form_nip
+				,	this.foto
+				,	this.form_nuptk
+				,	this.form_nm_pegawai
+				,	this.form_inisial
+				,	this.form_kota_lahir
+				,	this.form_tanggal_lahir
+				,	this.form_jenis_kelamin
+				,	this.form_agama
+				,	this.form_alamat
+				,	this.form_kode_pos
+				,	this.form_gol_darah
+				,	this.form_no_telp
+				,	this.form_no_hp
+				,	this.form_status_nikah
+				,	this.form_operasi_komputer
+				,	this.form_kursus_komputer
+				,	this.form_sertifikasi
+			]
+	});
+
+	this.btn_back = new Ext.Button({
+			text	: 'Kembali'
+		,	iconCls	: 'back16'
 		,	scope	: this
 		,	handler	: function() {
-				this.do_add();
+				this.do_back();
 			}
 	});
 
-	this.btn_ref = new Ext.Button({
-			text	: 'Refresh'
-		,	iconCls	: 'refresh16'
+	this.btn_save	= new Ext.Button({
+			text	: 'Simpan'
+		,	iconCls	: 'save16'
 		,	scope	: this
 		,	handler	: function() {
-				this.do_load();
-			}
-	});
-
-	this.btn_del = new Ext.Button({
-			text		: 'Hapus'
-		,	iconCls		: 'del16'
-		,	disabled	: true
-		,	scope		: this
-		,	handler		: function() {
-				this.do_del();
+				this.do_save();
 			}
 	});
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
-		,	'-'
-		,	this.btn_add
+			this.btn_back
+		,	'->'
+		,	this.btn_save
 		]
 	});
 
-	this.panel = new Ext.grid.GridPanel({
-			title		: this.title
-		,	region		: 'center'
-		,	store		: this.store
-		,	sm			: this.sm
-		,	columns		: this.columns
-		,	stripeRows	: true
-		,	columnLines	: true
-		,	plugins		: [this.editor, this.filters]
+	this.panel = new Ext.Panel({
+			title		: title
+		,	autoWidth	: true
+		,	autoScroll	: true
+		,	padding		:'6'
 		,	tbar		: this.toolbar
-		,	autoExpandColumn: 'keterangan'
-		,	listeners	: {
-					scope		: this
-				,	rowclick	:
-						function (g, r, e) {
-							return this.do_edit(r);
-						}
+		,	defaults	:{
+				style		:{
+					marginLeft		:'auto'
+				,	marginRight		:'auto'
+				,	marginBottom	:'8px'
+				}
 			}
+		,	items		: [
+				this.panel_form
+			]
 	});
+
+	this.do_reset = function()
+	{
+		this.form_nip.setValue('');
+		this.form_nuptk.setValue('');
+		this.form_nm_pegawai.setValue('');
+		this.form_inisial.setValue('');
+		this.form_kota_lahir.setValue('');
+		this.form_tanggal_lahir.setValue('');
+		this.form_jenis_kelamin.setValue('');
+		this.form_agama.setValue('');
+		this.form_alamat.setValue('');
+		this.form_kode_pos.setValue('');
+		this.form_gol_darah.setValue('');
+		this.form_no_telp.setValue('');
+		this.form_no_hp.setValue('');
+		this.form_status_nikah.setValue('');
+		this.form_operasi_komputer.setValue('');
+		this.form_kursus_komputer.setValue('');
+		this.form_sertifikasi.setValue('');
+		
+		this.foto.el.dom.src = _g_root + '/images/foto_guru/default.gif'
+	}
+
+	this.edit_fill_form = function(data)
+	{
+		this.form_nip.setValue(data.nip);
+		this.form_nuptk.setValue(data.nuptk);
+		this.form_nm_pegawai.setValue(data.nm_pegawai);
+		this.form_inisial.setValue(data.inisial);
+		this.form_kota_lahir.setValue(data.kota_lahir);
+		this.form_tanggal_lahir.setValue(data.tanggal_lahir);
+		this.form_jenis_kelamin.setValue(data.kd_jenis_kelamin);
+		this.form_agama.setValue(data.kd_agama);
+		this.form_alamat.setValue(data.alamat);
+		this.form_kode_pos.setValue(data.kd_pos);
+		this.form_gol_darah.setValue(data.kd_gol_darah);
+		this.form_no_telp.setValue(data.no_telp);
+		this.form_no_hp.setValue(data.no_hp);
+		this.form_status_nikah.setValue(data.kd_status_nikah);
+		this.form_operasi_komputer.setValue(data.operasi_komputer);
+		this.form_kursus_komputer.setValue(data.kursus_komputer);
+		this.form_sertifikasi.setValue(data.sertifikasi);
+		
+		this.foto.el.dom.src = _g_root + '/images/foto_guru/' + this.form_nip.getValue() + '.jpg'
+	}
 
 	this.do_add = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
-			return;
-		}
-
-		this.record_new = new this.record({
-				id_pegawai					: ''
-			,	id_jenis_lomba		: ''
-			,	kd_tingkat_prestasi	: ''
-			,	tanggal_prestasi	: ''
-			,	juara_ke			: ''
-			,	keterangan			: ''
-			});
-
-		this.editor.stopEditing();
-		this.store.insert(0, this.record_new);
-		this.sm.selectRow(0);
-		this.editor.startEditing(0);
-
-		this.dml_type = 2;
+		this.do_reset();
+		this.dml_type	= 2;
 	}
 
-	this.do_del = function()
+	this.do_edit = function(id)
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
-			return;
-		}
+		this.dml_type	= 3;
 
-		var data = this.sm.getSelections();
-		if (!data.length) {
-			return;
-		}
-
-		this.dml_type = 4;
-		this.do_save(data[0]);
-	}
-
-	this.do_cancel = function()
-	{
-		if (this.dml_type == 2) {
-			this.store.remove(this.record_new);
-			this.sm.selectRow(0);
-		}
-	}
-
-	this.do_save = function(record)
-	{
 		Ext.Ajax.request({
-				params  : {
-						id_pegawai						: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
-					,	id_jenis_lomba			: record.data['id_jenis_lomba']
-					,	id_jenis_lomba_old		: record.data['id_jenis_lomba_old']
-					,	kd_tingkat_prestasi		: record.data['kd_tingkat_prestasi']
-					,	kd_tingkat_prestasi_old	: record.data['kd_tingkat_prestasi_old']
-					,	tanggal_prestasi		: record.data['tanggal_prestasi']
-					,	tanggal_prestasi_old	: record.data['tanggal_prestasi_old']
-					,	juara_ke				: record.data['juara_ke']
-					,	keterangan				: record.data['keterangan']
+			url		: m_adm_pegawai_data_tenaga_administrasi_d +'data_master.jsp'
+		,	params	: {
+				id_pegawai	: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
+			}
+		,	waitMsg	: 'Mohon Tunggu ...'
+		,	failure	: function(response) {
+				Ext.MessageBox.alert('Gagal', response.responseText);
+			}
+		,	success : function (response) {
+				var msg = Ext.util.JSON.decode(response.responseText);
+
+				if (msg.success == false) {
+					Ext.MessageBox.alert('Pesan', msg.info);
+					return;
+				}
+
+				this.edit_fill_form(msg);
+			}
+		,	scope	: this
+		});
+	}
+
+	this.do_back = function()
+	{
+		m_adm_pegawai_data_tenaga_administrasi.panel.layout.setActiveItem(0);
+	}
+
+	this.is_valid = function()
+	{
+		if (!this.form_nip.isValid()) {
+			return false;
+		}
+
+		if (!this.form_nm_pegawai.isValid()) {
+			return false;
+		}
+
+		if (!this.form_inisial.isValid()) {
+			return false;
+		}
+
+		if (!this.form_kota_lahir.isValid()) {
+			return false;
+		}
+
+		if (!this.form_tanggal_lahir.isValid()) {
+			return false;
+		}
+
+		if (!this.form_jenis_kelamin.isValid()) {
+			return false;
+		}
+
+		if (!this.form_agama.isValid()) {
+			return false;
+		}
+
+		if (!this.form_alamat.isValid()) {
+			return false;
+		}
+
+		if (!this.form_gol_darah.isValid()) {
+			return false;
+		}
+
+		if (!this.form_status_nikah.isValid()) {
+			return false;
+		}
+
+		return true;
+	}
+	
+	this.do_save = function()
+	{
+		if (!this.is_valid()) {
+			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
+			return;
+		}
+
+		main_load.show();
+		
+		Ext.Ajax.request({
+				url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_master.jsp'
+			,	params  : {
+						id_pegawai				: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
+					,	nip						: this.form_nip.getValue()
+					,	nuptk					: this.form_nuptk.getValue()
+					,	nm_pegawai				: this.form_nm_pegawai.getValue()
+					,	inisial					: this.form_inisial.getValue()
+					,	kota_lahir				: this.form_kota_lahir.getValue()
+					,	tanggal_lahir			: this.form_tanggal_lahir.getValue()
+					,	kd_jenis_kelamin		: this.form_jenis_kelamin.getValue()
+					,	kd_agama				: this.form_agama.getValue()
+					,	alamat					: this.form_alamat.getValue()
+					,	kd_pos					: this.form_kode_pos.getValue()
+					,	kd_gol_darah			: this.form_gol_darah.getValue()
+					,	no_telp					: this.form_no_telp.getValue()
+					,	no_hp					: this.form_no_hp.getValue()
+					,	kd_status_nikah			: this.form_status_nikah.getValue()
+					,	kd_jenis_ketenagaan		: '2'
+					,	operasi_komputer		: this.form_operasi_komputer.getValue()
+					,	kursus_komputer			: this.form_kursus_komputer.getValue()
+					,	sertifikasi				: this.form_sertifikasi.getValue()
 					,	dml_type				: this.dml_type
 				}
-			,	url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_prestasi.jsp'
 			,	waitMsg	: 'Mohon Tunggu ...'
+			,	failure	: function(response) {
+					main_load.hide();
+					Ext.MessageBox.alert('Gagal', response.responseText);
+				}
 			,	success :
 					function (response)
 					{
@@ -3413,676 +3619,42 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPrestasi(title)
 							Ext.MessageBox.alert('Pesan', msg.info);
 						}
 
-						this.do_load();
+						main_load.hide();
+						
+						Ext.MessageBox.alert('Informasi', msg.info);
+
+						m_adm_pegawai_data_tenaga_administrasi_master_list.store.reload();
+						m_adm_pegawai_data_tenaga_administrasi.panel.layout.setActiveItem(0);
 					}
 			,	scope	: this
 		});
 	}
 
-	this.do_edit = function(row)
-	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
-			return;
-		}
-
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 3) {
-			this.dml_type = 3;
-			return true;
-		}
-		return false;
-	}
-
-	this.do_load = function()
-	{
-		this.store_jenis_lomba.load({
-			callback	: function(){
-				this.store_tingkat_prestasi.load({
-					callback	: function(){
-						this.store.load({
-							params	: {
-								id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
-							}
-						});
-					}
-				,	scope		: this
-				});
-			}
-		,	scope		: this
-		});
-	}
-
 	this.do_refresh = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 1) {
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
-		}
-
-		this.do_load();
+		this.store_agama.load();
+		this.store_gol_darah.load();
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenghargaan(title)
-{
-	this.title		= title;
-	this.dml_type	= 0;
-
-	this.record = new Ext.data.Record.create([
-			{ name	: 'id_pegawai' }
-		,	{ name	: 'kd_jenis_penghargaan' }
-		,	{ name	: 'kd_jenis_penghargaan_old' }
-		,	{ name	: 'tanggal_penghargaan' }
-		,	{ name	: 'keterangan' }
-	]);
-
-	this.store = new Ext.data.ArrayStore({
-			fields		: this.record
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_penghargaan.jsp'
-		,	autoLoad	: false
-	});
-	
-	this.store_jenis_penghargaan = new Ext.data.ArrayStore({
-			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_jenis_penghargaan.jsp'
-		,	idIndex		: 0
-		,	autoLoad	: false
-	});
-
-	this.form_jenis_penghargaan = new Ext.form.ComboBox({
-			store			: this.store_jenis_penghargaan
-		,	valueField		: 'id'
-		,	displayField	: 'name'
-		,	mode			: 'local'
-		,	allowBlank		: false
-		,	forceSelection	: true
-		,	typeAhead		: true
-		,	triggerAction	: 'all'
-		,	selectOnFocus	: true
-	});
-
-	this.form_tanggal_penghargaan = new Ext.form.DateField({
-			emptyText		: 'Y-m-d'
-		,	format			: 'Y-m-d'
-		,	allowBlank		: false
-		,	invalidText		: 'Kolom ini harus berformat tanggal'
-	});
-
-	this.form_keterangan = new Ext.form.TextField({});
-
-	/* plugins */
-	this.filters = new Ext.ux.grid.GridFilters({
-			encode	: true
-		,	local	: true
-	});
-
-	/* columns */
-	this.columns = [
-			new Ext.grid.RowNumberer()
-		,	{ header		: 'Jenis Penghargaan'
-			, dataIndex		: 'kd_jenis_penghargaan'
-			, sortable		: true
-			, editor		: this.form_jenis_penghargaan
-			, renderer		: combo_renderer(this.form_jenis_penghargaan)
-			, width			: 300
-			, filter		: {
-					type		: 'list'
-				,	store		: this.store_jenis_penghargaan
-				,	labelField	: 'name'
-				,	phpMode		: false
-			 }
-			}
-		,	{ header		: 'Tanggal Penghargaan'
-			, dataIndex		: 'tanggal_penghargaan'
-			, sortable		: true
-			, editor		: this.form_tanggal_penghargaan
-			, align			: 'center'
-			, width			: 150
-			, filter		: {
-					type		: 'date'
-			 }
-			}
-		,	{ id			: 'keterangan'
-			, header		: 'Keterangan'
-			, dataIndex		: 'keterangan'
-			, sortable		: true
-			, editor		: this.form_keterangan
-			, filterable	: true
-			}
-	];
-
-	this.sm = new Ext.grid.RowSelectionModel({
-			singleSelect	: true
-		,	listeners	: {
-				scope		: this
-			,	selectionchange	: function(sm) {
-					var data = sm.getSelections();
-					if (data.length && m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
-						this.btn_del.setDisabled(false);
-					} else {
-						this.btn_del.setDisabled(true);
-					}
-				}
-			}
-	});
-
-	this.editor = new MyRowEditor(this);
-
-	this.btn_add = new Ext.Button({
-			text	: 'Tambah'
-		,	iconCls	: 'add16'
-		,	scope	: this
-		,	handler	: function() {
-				this.do_add();
-			}
-	});
-
-	this.btn_ref = new Ext.Button({
-			text	: 'Refresh'
-		,	iconCls	: 'refresh16'
-		,	scope	: this
-		,	handler	: function() {
-				this.do_load();
-			}
-	});
-
-	this.btn_del = new Ext.Button({
-			text		: 'Hapus'
-		,	iconCls		: 'del16'
-		,	disabled	: true
-		,	scope		: this
-		,	handler		: function() {
-				this.do_del();
-			}
-	});
-
-	this.toolbar = new Ext.Toolbar({
-		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
-		,	'-'
-		,	this.btn_add
-		]
-	});
-
-	this.panel = new Ext.grid.GridPanel({
-			title		: this.title
-		,	region		: 'center'
-		,	store		: this.store
-		,	sm			: this.sm
-		,	columns		: this.columns
-		,	stripeRows	: true
-		,	columnLines	: true
-		,	plugins		: [this.editor, this.filters]
-		,	tbar		: this.toolbar
-		,	autoExpandColumn: 'keterangan'
-		,	listeners	: {
-					scope		: this
-				,	rowclick	:
-						function (g, r, e) {
-							return this.do_edit(r);
-						}
-			}
-	});
-
-	this.do_add = function()
-	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
-			return;
-		}
-
-		this.record_new = new this.record({
-				id_pegawai						: ''
-			,	kd_jenis_penghargaan	: ''
-			,	tanggal_penghargaan		: ''
-			,	keterangan				: ''
-			});
-
-		this.editor.stopEditing();
-		this.store.insert(0, this.record_new);
-		this.sm.selectRow(0);
-		this.editor.startEditing(0);
-
-		this.dml_type = 2;
-	}
-
-	this.do_del = function()
-	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
-			return;
-		}
-
-		var data = this.sm.getSelections();
-		if (!data.length) {
-			return;
-		}
-
-		this.dml_type = 4;
-		this.do_save(data[0]);
-	}
-
-	this.do_cancel = function()
-	{
-		if (this.dml_type == 2) {
-			this.store.remove(this.record_new);
-			this.sm.selectRow(0);
-		}
-	}
-
-	this.do_save = function(record)
-	{
-		Ext.Ajax.request({
-				params  : {
-						id_pegawai							: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
-					,	kd_jenis_penghargaan		: record.data['kd_jenis_penghargaan']
-					,	kd_jenis_penghargaan_old	: record.data['kd_jenis_penghargaan_old']
-					,	tanggal_penghargaan			: record.data['tanggal_penghargaan']
-					,	keterangan					: record.data['keterangan']
-					,	dml_type					: this.dml_type
-				}
-			,	url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_penghargaan.jsp'
-			,	waitMsg	: 'Mohon Tunggu ...'
-			,	success :
-					function (response)
-					{
-						var msg = Ext.util.JSON.decode(response.responseText);
-
-						if (msg.success == false) {
-							Ext.MessageBox.alert('Pesan', msg.info);
-						}
-
-						this.do_load();
-					}
-			,	scope	: this
-		});
-	}
-
-	this.do_edit = function(row)
-	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
-			return;
-		}
-
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 3) {
-			this.dml_type = 3;
-			return true;
-		}
-		return false;
-	}
-
-	this.do_load = function()
-	{
-		this.store_jenis_penghargaan.load({
-			callback	: function(){
-				this.store.load({
-					params	: {
-						id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
-					}
-				});
-			}
-		,	scope		: this
-		});
-	}
-
-	this.do_refresh = function()
-	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 1) {
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
-		}
-
-		this.do_load();
-	}
-}
-
-function M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatMengajar(title)
-{
-	this.title		= title;
-	this.dml_type	= 0;
-
-	this.record = new Ext.data.Record.create([
-			{ name	: 'id_pegawai' }
-		,	{ name	: 'kd_mata_pelajaran_diajarkan' }
-		,	{ name	: 'kd_mata_pelajaran_diajarkan_old' }
-		,	{ name	: 'tahun_mulai_ajar' }
-	]);
-
-	this.store = new Ext.data.ArrayStore({
-			fields		: this.record
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_detail_riwayat_mengajar.jsp'
-		,	autoLoad	: false
-	});
-	
-	this.store_mata_pelajaran_diajarkan = new Ext.data.ArrayStore({
-			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_mata_pelajaran_diajarkan.jsp'
-		,	idIndex		: 0
-		,	autoLoad	: false
-	});
-
-	this.form_mata_pelajaran_diajarkan = new Ext.form.ComboBox({
-			store			: this.store_mata_pelajaran_diajarkan
-		,	valueField		: 'id'
-		,	displayField	: 'name'
-		,	mode			: 'local'
-		,	allowBlank		: false
-		,	forceSelection	: true
-		,	typeAhead		: true
-		,	triggerAction	: 'all'
-		,	selectOnFocus	: true
-	});
-
-	this.form_tahun_mulai_ajar = new Ext.form.NumberField({
-			fieldLabel		: 'Tahun Mulai Ajar'
-		,	allowBlank		: false
-		,	allowDecimals	: false
-		,	allowNegative	: false
-		,	maxLength		: 4
-		,	maxLengthText	: 'Maksimal panjang kolom adalah 4'
-	});
-
-	/* plugins */
-	this.filters = new Ext.ux.grid.GridFilters({
-			encode	: true
-		,	local	: true
-	});
-
-	/* columns */
-	this.columns = [
-			new Ext.grid.RowNumberer()
-		,	{ header		: 'Mata Pelajaran Diajarkan'
-			, dataIndex		: 'kd_mata_pelajaran_diajarkan'
-			, sortable		: true
-			, editor		: this.form_mata_pelajaran_diajarkan
-			, renderer		: combo_renderer(this.form_mata_pelajaran_diajarkan)
-			, width			: 350
-			, filter		: {
-					type		: 'list'
-				,	store		: this.store_mata_pelajaran_diajarkan
-				,	labelField	: 'name'
-				,	phpMode		: false
-			 }
-			}
-		,	{ header		: 'Tahun Mulai Ajar'
-			, dataIndex		: 'tahun_mulai_ajar'
-			, sortable		: true
-			, editor		: this.form_tahun_mulai_ajar
-			, align			: 'center'
-			, width			: 120
-			, filter		: {
-					type		: 'numeric'
-			 }
-			}
-	];
-
-	this.sm = new Ext.grid.RowSelectionModel({
-			singleSelect	: true
-		,	listeners	: {
-				scope		: this
-			,	selectionchange	: function(sm) {
-					var data = sm.getSelections();
-					if (data.length && m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
-						this.btn_del.setDisabled(false);
-					} else {
-						this.btn_del.setDisabled(true);
-					}
-				}
-			}
-	});
-
-	this.editor = new MyRowEditor(this);
-
-	this.btn_add = new Ext.Button({
-			text	: 'Tambah'
-		,	iconCls	: 'add16'
-		,	scope	: this
-		,	handler	: function() {
-				this.do_add();
-			}
-	});
-
-	this.btn_ref = new Ext.Button({
-			text	: 'Refresh'
-		,	iconCls	: 'refresh16'
-		,	scope	: this
-		,	handler	: function() {
-				this.do_load();
-			}
-	});
-
-	this.btn_del = new Ext.Button({
-			text		: 'Hapus'
-		,	iconCls		: 'del16'
-		,	disabled	: true
-		,	scope		: this
-		,	handler		: function() {
-				this.do_del();
-			}
-	});
-
-	this.toolbar = new Ext.Toolbar({
-		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
-		,	'-'
-		,	this.btn_add
-		]
-	});
-
-	this.panel = new Ext.grid.GridPanel({
-			title		: this.title
-		,	region		: 'center'
-		,	store		: this.store
-		,	sm			: this.sm
-		,	columns		: this.columns
-		,	stripeRows	: true
-		,	columnLines	: true
-		,	plugins		: [this.editor, this.filters]
-		,	tbar		: this.toolbar
-		,	listeners	: {
-					scope		: this
-				,	rowclick	:
-						function (g, r, e) {
-							return this.do_edit(r);
-						}
-			}
-	});
-
-	this.do_add = function()
-	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
-			return;
-		}
-
-		this.record_new = new this.record({
-				id_pegawai							: ''
-			,	kd_mata_pelajaran_diajarkan	: ''
-			,	tahun_mulai_ajar			: ''
-			});
-
-		this.editor.stopEditing();
-		this.store.insert(0, this.record_new);
-		this.sm.selectRow(0);
-		this.editor.startEditing(0);
-
-		this.dml_type = 2;
-	}
-
-	this.do_del = function()
-	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
-			return;
-		}
-
-		var data = this.sm.getSelections();
-		if (!data.length) {
-			return;
-		}
-
-		this.dml_type = 4;
-		this.do_save(data[0]);
-	}
-
-	this.do_cancel = function()
-	{
-		if (this.dml_type == 2) {
-			this.store.remove(this.record_new);
-			this.sm.selectRow(0);
-		}
-	}
-
-	this.do_save = function(record)
-	{
-		Ext.Ajax.request({
-				params  : {
-						id_pegawai								: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
-					,	kd_mata_pelajaran_diajarkan		: record.data['kd_mata_pelajaran_diajarkan']
-					,	kd_mata_pelajaran_diajarkan_old	: record.data['kd_mata_pelajaran_diajarkan_old']
-					,	tahun_mulai_ajar				: record.data['tahun_mulai_ajar']
-					,	dml_type						: this.dml_type
-				}
-			,	url		: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'submit_detail_riwayat_mengajar.jsp'
-			,	waitMsg	: 'Mohon Tunggu ...'
-			,	success :
-					function (response)
-					{
-						var msg = Ext.util.JSON.decode(response.responseText);
-
-						if (msg.success == false) {
-							Ext.MessageBox.alert('Pesan', msg.info);
-						}
-
-						this.do_load();
-					}
-			,	scope	: this
-		});
-	}
-
-	this.do_edit = function(row)
-	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai == '') {
-			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Guru terlebih dahulu!");
-			return;
-		}
-
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 3) {
-			this.dml_type = 3;
-			return true;
-		}
-		return false;
-	}
-
-	this.do_load = function()
-	{
-		this.store_mata_pelajaran_diajarkan.load({
-			callback	: function(){
-				this.store.load({
-					params	: {
-						id_pegawai	: m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai
-					}
-				});
-			}
-		,	scope		: this
-		});
-	}
-
-	this.do_refresh = function()
-	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 1) {
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
-		}
-
-		this.do_load();
-	}
-}
-
-function M_AdmPegawaiPemeliharaanDataIndukGuruMaster(title)
+function M_AdmPegawaiDataTenagaAdministrasiMasterList(title)
 {
 	this.title		= title;
 
 	this.record = new Ext.data.Record.create([
 			{ name	: 'id_pegawai' }
 		,	{ name	: 'nip' }
+		,	{ name	: 'nuptk' }
 		,	{ name	: 'nm_pegawai' }
-		,	{ name	: 'kd_jenis_ketenagaan' }
 		,	{ name	: 'alamat' }
 	]);
 
 	this.store = new Ext.data.ArrayStore({
 			fields		: this.record
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_master.jsp'
+		,	url			: m_adm_pegawai_data_tenaga_administrasi_d +'data_master_list.jsp'
 		,	autoLoad	: false
 	});
 
-	this.store_jenis_ketenagaan = new Ext.data.ArrayStore({
-			fields		: ['id','name']
-		,	url			: m_adm_pegawai_pemeliharaan_data_induk_guru_d +'data_ref_jenis_ketenagaan.jsp'
-		,	idIndex		: 0
-		,	autoLoad	: false
-	});
-	
-	/* form items */
-	this.form_jenis_ketenagaan = new Ext.form.ComboBox({
-			store			: this.store_jenis_ketenagaan
-		,	valueField		: 'id'
-		,	displayField	: 'name'
-		,	mode			: 'local'
-		,	forceSelection	: true
-		,	typeAhead		: true
-		,	triggerAction	: 'all'
-		,	selectOnFocus	: true
-	});
-	
 	/* plugins */
 	this.filters = new Ext.ux.grid.GridFilters({
 			encode	: true
@@ -4095,26 +3667,20 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruMaster(title)
 			new Ext.grid.RowNumberer()
 		,	{ header		: 'NIP'
 			, dataIndex		: 'nip'
+			, align			: 'center'
 			, width			: 120
 			, filterable	: true
 			}
-		,	{ header		: 'Nama Guru'
+		,	{ header		: 'NUPTK'
+			, dataIndex		: 'nuptk'
+			, align			: 'center'
+			, width			: 120
+			, filterable	: true
+			}
+		,	{ header		: 'Nama Tenaga Administrasi'
 			, dataIndex		: 'nm_pegawai'
 			, width			: 250
 			, filterable	: true
-			}
-		,	{ header		: 'Jenis Ketenagaan'
-			, dataIndex		: 'kd_jenis_ketenagaan'
-			, editor		: this.form_jenis_ketenagaan
-			, renderer		: combo_renderer(this.form_jenis_ketenagaan)
-			, align			: 'center'
-			, width			: 120
-			, filter		: {
-					type		: 'list'
-				,	store		: this.store_jenis_ketenagaan
-				,	labelField	: 'name'
-				,	phpMode		: false
-			 }
 			}
 		,	{ id			: 'alamat'
 			, header		: 'Alamat'
@@ -4135,13 +3701,22 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruMaster(title)
 			,	selectionchange	: function(sm) {
 					var data = sm.getSelections();
 					if (data.length){
-						m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai = data[0].data['id_pegawai'];						
+						m_adm_pegawai_data_tenaga_administrasi_id_pegawai = data[0].data['id_pegawai'];						
 					} else {
-						m_adm_pegawai_pemeliharaan_data_induk_guru_id_pegawai = '';
+						m_adm_pegawai_data_tenaga_administrasi_id_pegawai = '';
 					}
 					
-					m_adm_pegawai_pemeliharaan_data_induk_guru_master_on_select_load_detail();
+					m_adm_pegawai_data_tenaga_administrasi_master_on_select_load_detail();
 				}
+			}
+	});
+
+	this.btn_edit = new Ext.Button({
+			text	: 'Ubah'
+		,	iconCls	: 'edit16'
+		,	scope	: this
+		,	handler	: function() {
+				this.do_edit();
 			}
 	});
 
@@ -4154,9 +3729,22 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruMaster(title)
 			}
 	});
 
+	this.btn_add = new Ext.Button({
+			text	: 'Tambah'
+		,	iconCls	: 'add16'
+		,	scope	: this
+		,	handler	: function() {
+				this.do_add();
+			}
+	});
+
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_ref
+			this.btn_edit
+		,	'-'
+		,	this.btn_ref
+		,	'-'
+		,	this.btn_add
 		]
 	});
 
@@ -4175,40 +3763,65 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruMaster(title)
 		,	autoExpandColumn	: 'alamat'
 	});
 
+	this.do_edit = function()
+	{
+		var data = this.sm.getSelected();
+
+		if (data == undefined) {
+			return;
+		}
+
+		m_adm_pegawai_data_tenaga_administrasi_master_detail.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi_master_detail.do_edit(data.get('id_pegawai'));
+		m_adm_pegawai_data_tenaga_administrasi.panel.layout.setActiveItem(1);
+	}
+
+	this.do_add = function()
+	{
+		m_adm_pegawai_data_tenaga_administrasi_master_detail.do_add();
+		m_adm_pegawai_data_tenaga_administrasi_master_detail.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi.panel.layout.setActiveItem(1);
+	}
+
 	this.do_load = function()
 	{
-		this.store_jenis_ketenagaan.load({
-			callback	: function(){
-				this.store.load();
-			}
-		,	scope		: this
-		});
+		this.store.load();
 	}
 
 	this.do_refresh = function()
 	{
-		if (m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level < 1) {
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 1) {
 			this.panel.setDisabled(true);
 			return;
 		} else {
 			this.panel.setDisabled(false);
 		}
 
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 3) {
+			this.btn_edit.setDisabled(true);
+		} else {
+			this.btn_edit.setDisabled(false);
+		}
+
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
 		this.do_load();
 	}
 }
 
-function M_AdmPegawaiPemeliharaanDataIndukGuru()
+function M_AdmPegawaiDataTenagaAdministrasi()
 {
-	m_adm_pegawai_pemeliharaan_data_induk_guru_master					= new M_AdmPegawaiPemeliharaanDataIndukGuruMaster('Pemeliharaan Data Induk Guru');
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga			= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailKeluarga('Keluarga');
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal	= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailPendidikanFormal('Pendidikan Formal');
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_pangkat	= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatPangkat('Riwayat Pangkat');
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_jabatan	= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatJabatan('Riwayat Jabatan');
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran			= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenataran('Penataran');
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_prestasi			= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailPrestasi('Prestasi');
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penghargaan		= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailPenghargaan('Penghargaan');
-	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_mengajar	= new M_AdmPegawaiPemeliharaanDataIndukGuruDetailRiwayatMengajar('Riwayat Mengajar');
+	m_adm_pegawai_data_tenaga_administrasi_master_list				= new M_AdmPegawaiDataTenagaAdministrasiMasterList('Data Tenaga Administrasi');
+	m_adm_pegawai_data_tenaga_administrasi_master_detail			= new M_AdmPegawaiDataTenagaAdministrasiMasterDetail('Data Tenaga Administrasi');
+	m_adm_pegawai_data_tenaga_administrasi_detail_keluarga			= new M_AdmPegawaiDataTenagaAdministrasiDetailKeluarga('Keluarga');
+	m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal	= new M_AdmPegawaiDataTenagaAdministrasiDetailPendidikanFormal('Pendidikan Formal');
+	m_adm_pegawai_data_tenaga_administrasi_detail_riwayat_pangkat	= new M_AdmPegawaiDataTenagaAdministrasiDetailRiwayatPangkat('Riwayat Pangkat');
+	m_adm_pegawai_data_tenaga_administrasi_detail_riwayat_jabatan	= new M_AdmPegawaiDataTenagaAdministrasiDetailRiwayatJabatan('Riwayat Jabatan');
+	m_adm_pegawai_data_tenaga_administrasi_detail_penataran			= new M_AdmPegawaiDataTenagaAdministrasiDetailPenataran('Penataran');
 
 	this.panel_detail = new Ext.TabPanel({
 			autoScroll		: true
@@ -4222,20 +3835,16 @@ function M_AdmPegawaiPemeliharaanDataIndukGuru()
 			,	animCollapse	: true
     		}
 		,	items			: [
-				m_adm_pegawai_pemeliharaan_data_induk_guru_detail_keluarga.panel
-			,	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_pendidikan_formal.panel
-			,	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_pangkat.panel
-			,	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_jabatan.panel
-			,	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penataran.panel
-			,	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_prestasi.panel
-			,	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_penghargaan.panel
-			,	m_adm_pegawai_pemeliharaan_data_induk_guru_detail_riwayat_mengajar.panel
+				m_adm_pegawai_data_tenaga_administrasi_detail_keluarga.panel
+			,	m_adm_pegawai_data_tenaga_administrasi_detail_pendidikan_formal.panel
+			,	m_adm_pegawai_data_tenaga_administrasi_detail_riwayat_pangkat.panel
+			,	m_adm_pegawai_data_tenaga_administrasi_detail_riwayat_jabatan.panel
+			,	m_adm_pegawai_data_tenaga_administrasi_detail_penataran.panel
 			]
 	});
 
-	this.panel = new Ext.Panel({
-			id				: 'adm_pegawai_pemeliharaan_data_induk_guru_panel'
-		,	layout			: 'border'
+	this.panel_master_detail = new Ext.Panel({
+			layout			: 'border'
 		,	bodyBorder		: false
 		,	defaults		: {
 				loadMask		: {msg: 'Pemuatan...'}
@@ -4245,19 +3854,38 @@ function M_AdmPegawaiPemeliharaanDataIndukGuru()
 			,	animCollapse	: true
     			}
 		,	items			: [
-				m_adm_pegawai_pemeliharaan_data_induk_guru_master.panel
+				m_adm_pegawai_data_tenaga_administrasi_master_list.panel
 			,	this.panel_detail
 			]
 	});
-	
+
+	this.panel = new Ext.Panel({
+			id				: 'adm_pegawai_data_tenaga_administrasi_panel'
+		,	layout			: 'card'
+		,	activeItem		: 0
+		,	autoWidth		: true
+		,	autoScroll		: true
+		,	items			: [
+				this.panel_master_detail
+			,	m_adm_pegawai_data_tenaga_administrasi_master_detail.panel
+			]
+	});
+
 	this.do_refresh = function(ha_level)
 	{
-		m_adm_pegawai_pemeliharaan_data_induk_guru_ha_level = ha_level;
-		
-		m_adm_pegawai_pemeliharaan_data_induk_guru_master.do_refresh();
+		m_adm_pegawai_data_tenaga_administrasi_ha_level = ha_level;
+
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 1) {
+			this.panel.setDisabled(true);
+			return;
+		} else {
+			this.panel.setDisabled(false);
+		}
+
+		m_adm_pegawai_data_tenaga_administrasi_master_list.do_refresh();
 	}
 }
 
-m_adm_pegawai_pemeliharaan_data_induk_guru = new M_AdmPegawaiPemeliharaanDataIndukGuru();
+m_adm_pegawai_data_tenaga_administrasi = new M_AdmPegawaiDataTenagaAdministrasi();
 
-//@ sourceURL=adm_pegawai_pemeliharaan_data_induk_guru.layout.js
+//@ sourceURL=adm_pegawai_data_tenaga_administrasi.layout.js

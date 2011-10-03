@@ -6,10 +6,10 @@
  *   - agus sugianto (agus.delonge@gmail.com)
  */
 
-var m_adm_pegawai_pemeliharaan_data_induk_guru_aktif;
-var m_adm_pegawai_pemeliharaan_data_induk_guru_aktif_d = _g_root +'/module/adm_pegawai_pemeliharaan_data_induk_guru_aktif/';
+var m_adm_pegawai_guru_aktif;
+var m_adm_pegawai_guru_aktif_d = _g_root +'/module/adm_pegawai_guru_aktif/';
 
-function M_AdmPegawaiPemeliharaanDataIndukGuruAktif(title)
+function M_AdmPegawaiGuruAktif(title)
 {
 	this.title		= title;
 	this.ha_level	= 0;
@@ -29,7 +29,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruAktif(title)
 	);
 
 	this.store = new Ext.data.Store({
-			url			: m_adm_pegawai_pemeliharaan_data_induk_guru_aktif_d +'data.jsp'
+			url			: m_adm_pegawai_guru_aktif_d +'data.jsp'
 		,	reader		: this.reader
 		,	autoLoad	: false
 	});
@@ -101,7 +101,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruAktif(title)
 	});
 
 	this.panel = new Ext.grid.EditorGridPanel({
-			id					: 'adm_pegawai_pemeliharaan_data_induk_guru_aktif_panel'
+			id					: 'adm_pegawai_guru_aktif_panel'
 		,	title				: this.title
 		,	store				: this.store
 		,	cm					: this.cm
@@ -134,7 +134,7 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruAktif(title)
 		data +="]";
 
 		Ext.Ajax.request({
-				url		: m_adm_pegawai_pemeliharaan_data_induk_guru_aktif_d +'submit.jsp'
+				url		: m_adm_pegawai_guru_aktif_d +'submit.jsp'
 			,	params  : {
 					rows	: data
 				}
@@ -186,6 +186,6 @@ function M_AdmPegawaiPemeliharaanDataIndukGuruAktif(title)
 	}
 }
 
-m_adm_pegawai_pemeliharaan_data_induk_guru_aktif = new M_AdmPegawaiPemeliharaanDataIndukGuruAktif('Guru Aktif');
+m_adm_pegawai_guru_aktif = new M_AdmPegawaiGuruAktif('Guru Aktif');
 
-//@ sourceURL=m_adm_pegawai_pemeliharaan_data_induk_guru_aktif.layout.js
+//@ sourceURL=m_adm_pegawai_guru_aktif.layout.js

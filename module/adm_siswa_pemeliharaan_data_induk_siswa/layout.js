@@ -4170,6 +4170,8 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaMaster(title)
 
 	this.do_load = function()
 	{
+		delete this.store.lastParams;
+		
 		this.store.load({
 			params	: {
 				start	: 0

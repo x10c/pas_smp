@@ -24,7 +24,7 @@ try{
 			+" ,		a.nm_siswa"
 			+" ,		a.alamat"
 			+" from		t_siswa			as a"
-			+" ,		((select id_siswa, kd_tahun_ajaran from t_siswa_tingkat where kd_tahun_ajaran = '" + kd_tahun_ajaran + "')"
+			+" ,		((select id_siswa, kd_tahun_ajaran from t_siswa_tingkat where kd_tahun_ajaran = '" + kd_tahun_ajaran + "' and kd_status_siswa in ('0','3','4'))"
 			+" 	union 	 (select id_siswa, kd_tahun_ajaran from t_siswa_tingkat_thn where kd_tahun_ajaran = '" + kd_tahun_ajaran + "')"
 			+" 	union 	 (select id_siswa, kd_tahun_ajaran from t_siswa_tingkat_thn_baru where kd_tahun_ajaran = '" + kd_tahun_ajaran + "')) as b"
 			+" where	a.id_siswa	= b.id_siswa"
