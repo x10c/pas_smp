@@ -2299,6 +2299,7 @@ begin
 	DECLARE v_tahunx SMALLINT;
 	DECLARE v_usiasw CHAR(2);
 	DECLARE v_asalsk CHAR(2);
+    DECLARE v_temp   TINYINT;
 
 	IF old.STATUS_SISWA <> '6' THEN
 		SELECT	COUNT(*)
@@ -2457,14 +2458,16 @@ begin
 		END IF;
 	  
 		IF old.STATUS_SISWA <> new.STATUS_SISWA THEN
-			IF (( old.STATUS_SISWA <> '0' ) AND ( old.STATUS_SISWA <> '2' ) AND ( old.STATUS_SISWA <> '3' )) THEN
-				CASE old.STATUS_SISWA
+			IF ( old.STATUS_SISWA not in ('0','2','3')) THEN
+				CASE new.STATUS_SISWA
 					WHEN '1' THEN
 						DELETE FROM T_SISWA_PUTUS WHERE ID_SISWA = old.ID_SISWA;
 					WHEN '4' THEN
 						DELETE FROM T_SISWA_PINDAH WHERE ID_SISWA = old.ID_SISWA;
 					WHEN '5' THEN
 						DELETE FROM T_SISWA_CUTI WHERE ID_SISWA = old.ID_SISWA;
+                    ELSE
+                        SET v_temp = 0;
 				END CASE;
 			END IF;
 

@@ -2795,6 +2795,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 			, dataIndex		: 'tanggal'
 			, sortable		: true
 			, editor		: this.form_tanggal
+			, align			: 'center'
 			, width			: 150
 			, filter		: {
 					type		: 'date'
@@ -2804,6 +2805,7 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 			, dataIndex		: 'tanggal_masuk'
 			, sortable		: true
 			, editor		: this.form_tanggal_masuk
+			, align			: 'center'
 			, width			: 150
 			, filter		: {
 					type		: 'date'
