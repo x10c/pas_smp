@@ -17,7 +17,7 @@ function M_AdmAkademikCetakRaporKTSP(title)
 {
 	this.title				= title;
 	this.ha_level			= 0;
-	this.id_report			= '634';
+	this.id_report			= '';
 	this.tipe_report		= 'pdf';
 
 	this.record = new Ext.data.Record.create([
@@ -104,14 +104,57 @@ function M_AdmAkademikCetakRaporKTSP(title)
 			}
 	});
 
+	this.menu_print = new Ext.menu.Menu({
+		items	:[
+			{
+				text	: 'Halaman 1'
+			,	scope	: this
+			,	handler	: function (b,e) {
+					this.id_report = '6341';
+					this.do_print();
+				}
+			}
+		,	{
+				text	: 'Halaman 2'
+			,	scope	: this
+			,	handler	: function (b,e) {
+					this.id_report = '6342';
+					this.do_print();
+				}
+			}
+		,	{
+				text	: 'Halaman 3'
+			,	scope	: this
+			,	handler	: function (b,e) {
+					this.id_report = '6343';
+					this.do_print();
+				}
+			}
+		,	{
+				text	: 'Halaman 4'
+			,	scope	: this
+			,	handler	: function (b,e) {
+					this.id_report = '6344';
+					this.do_print();
+				}
+			}
+		,	{
+				text	: 'Halaman 5'
+			,	scope	: this
+			,	handler	: function (b,e) {
+					this.id_report = '6345';
+					this.do_print();
+				}
+			}
+		]
+	});
+
 	this.btn_print = new Ext.Button({
 			text		: 'Cetak'
 		,	iconCls		: 'print16'
 		,	scope		: this
 		,	disabled	: true
-		,	handler		: function() {
-				this.do_print();
-			}
+		,	menu		: this.menu_print
 	});
 
 	this.tbar = new Ext.Toolbar({
