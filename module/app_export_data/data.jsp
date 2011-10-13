@@ -21,6 +21,10 @@ try{
 	
 	String q=" select	a.kd_tahun_ajaran"
 			+" ,		b.nm_tahun_ajaran"
+			+" ,		a.npsn"
+			+" ,		a.id_propinsi"
+			+" ,		a.id_kabupaten"
+			+" ,		a.id_kecamatan"
 			+" from		t_sekolah_identitas	as a"
 			+" ,		r_tahun_ajaran		as b"
 			+" where	a.kd_tahun_ajaran	= b.kd_tahun_ajaran"
@@ -38,6 +42,10 @@ try{
 		}
 		data 	+="['"+ rs.getString("kd_tahun_ajaran") + "'"
 				+ ",\""+ rs.getString("nm_tahun_ajaran") +"\""
+				+ ",'"+ rs.getString("npsn") +"'"
+				+ ",'"+ rs.getString("id_propinsi") +"'"
+				+ ",'"+ rs.getString("id_kabupaten") +"'"
+				+ ",'"+ rs.getString("id_kecamatan") +"'"
 				+ "]";
 	}	
 	data += "]";
