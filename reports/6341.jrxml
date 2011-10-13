@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="6341" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="125"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String"/>
+	<parameter name="KODE_TGK_KELAS" class="java.lang.String"/>
+	<parameter name="KODE_ROMBEL" class="java.lang.String"/>
+	<parameter name="KODE_PRD_BELAJAR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT	a.nm_siswa
+,	a.nis
+,	F_KD_TAHUN_AJARAN(NOW())	as tahun
+FROM	t_siswa		AS a
+,	t_nilai_rapor	AS b
+WHERE	a.id_siswa		= b.id_siswa
+AND	b.kd_tahun_ajaran	= $P{KODE_THN_AJARAN}
+AND	b.kd_periode_belajar	= $P{KODE_PRD_BELAJAR}
+AND	b.kd_tingkat_kelas	= $P{KODE_TGK_KELAS}
+AND	b.kd_rombel	= $P{KODE_ROMBEL}]]>
+	</queryString>
+	<field name="nm_siswa" class="java.lang.String"/>
+	<field name="nis" class="java.lang.String"/>
+	<field name="tahun" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="790" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="243" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEKOLAH MENENGAH PERTAMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="268" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[(SMP)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="545" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Nama Siswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="577" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[NIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="545" width="17" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="577" width="17" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="215" y="545" width="269" height="20"/>
+				<box bottomPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_siswa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="215" y="577" width="269" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nis}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="236" y="84" width="90" height="93"/>
+				<imageExpression class="java.lang.String"><![CDATA["logo_garuda.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="226" y="351" width="134" height="102"/>
+				<imageExpression class="java.lang.String"><![CDATA["logo_tut_wuri_handayani.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="692" width="555" height="28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[KEMENTERIAN PENDIDIKAN NASIONAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="720" width="555" height="28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[REPUBLIK INDONESIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="218" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tahun}.equals($P{KODE_THN_AJARAN})?"LAPORAN HASIL BELAJAR SISWA":"LAPORAN HASIL BELAJAR SISWA PENGGANTI"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

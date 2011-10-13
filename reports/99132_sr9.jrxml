@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="99132_sr9" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT	nm_tahun_ajaran
+FROM	r_tahun_ajaran]]>
+	</queryString>
+	<field name="nm_tahun_ajaran" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="320">
+			<staticText>
+				<reportElement x="10" y="27" width="20" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="27" width="657" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Mata Pelajaran Diajarkan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="0" width="273" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[I. DATA RIWAYAT MENGAJAR PEGAWAI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="687" y="27" width="100" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tahun Mulai Ajar]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="60" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="60" width="657" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="687" y="60" width="100" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="110" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="110" width="657" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="687" y="110" width="100" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="160" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="687" y="160" width="100" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="160" width="657" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="687" y="260" width="100" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="260" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="210" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="687" y="210" width="100" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="260" width="657" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="210" width="657" height="50"/>
+			</rectangle>
+		</band>
+	</title>
+</jasperReport>

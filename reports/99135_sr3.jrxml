@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="99135_sr3" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 0 AS kolom]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="588" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="273" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E. DATA WALI SISWA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="30" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Nama Ayah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="30" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="49" width="350" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="130" y="54" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="54" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tempat / Tanggal Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="102" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Agama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="102" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="121" width="30" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="126" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Kewarganegaraan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="126" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="145" width="200" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="130" y="151" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="170" width="200" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="151" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Pendidikan Terakhir]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="195" width="200" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="130" y="176" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="176" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Pekerjaan]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="219" width="200" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="130" y="200" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="200" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Penghasilan Per Bulan]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="318" width="30" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="299" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Status Ayah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="299" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="342" width="30" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="130" y="323" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="323" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Status Nikah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="347" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Masih Hidup]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="366" width="30" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="130" y="347" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="440" y="366" width="50" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="337" y="346" width="93" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tahun Meninggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="346" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="224" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="224" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="243" width="350" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="272" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[No.Telp / No.HP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="272" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="101" width="364" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[1. Islam     2. Protestan     3. Katolik     4. Hindu     5. Budha     6. Kunghuchu]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="73" width="150" height="1"/>
+			</line>
+			<line>
+				<reportElement x="300" y="72" width="150" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="290" y="54" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<line>
+				<reportElement x="360" y="269" width="130" height="1"/>
+			</line>
+			<line>
+				<reportElement x="250" y="268" width="40" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="300" y="249" width="50" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Kode Pos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="249" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="170" y="267" width="40" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="220" y="248" width="20" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[RW]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="247" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="247" width="20" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[RT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="248" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="291" width="150" height="1"/>
+			</line>
+			<line>
+				<reportElement x="300" y="292" width="150" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="290" y="272" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="299" width="364" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[1. Kandung     2. Tiri     3. Angkat     4. Lain-Lain]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="323" width="364" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[1. Menikah     2. Duda     3. Janda     4. Belum Menikah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="347" width="157" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[1. Ya     2. Tidak]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="409" width="36" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="379" width="273" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F. DATA HOBI SISWA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="409" width="237" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Nama Hobi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="77" width="165" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[1. Laki-Laki          2. Perempuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="77" width="120" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Jenis Kelamin]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="96" width="30" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="130" y="77" width="10" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="409" width="207" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Keterangan]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="429" width="36" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="46" y="429" width="237" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="283" y="429" width="207" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="459" width="36" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="46" y="459" width="237" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="283" y="459" width="207" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="489" width="36" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="46" y="489" width="237" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="283" y="489" width="207" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="519" width="36" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="46" y="519" width="237" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="283" y="519" width="207" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="549" width="36" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="46" y="549" width="237" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="283" y="549" width="207" height="30"/>
+			</rectangle>
+		</band>
+	</title>
+</jasperReport>

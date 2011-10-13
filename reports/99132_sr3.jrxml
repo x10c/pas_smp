@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="99132_sr3" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT	nm_tahun_ajaran
+FROM	r_tahun_ajaran]]>
+	</queryString>
+	<field name="nm_tahun_ajaran" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="415">
+			<staticText>
+				<reportElement x="10" y="27" width="20" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="27" width="80" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tingkat Ijazah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="0" width="273" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[C. DATA PENDIDIKAN FORMAL PEGAWAI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="27" width="150" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Nama Instansi Pendidikan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="27" width="130" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Program Studi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="27" width="60" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Akreditasi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="27" width="50" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tahun
+Mulai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="27" width="55" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Status
+Lulus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="555" y="27" width="50" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tahun Selesai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="605" y="27" width="110" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Nomor Ijazah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="715" y="27" width="72" height="33"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tanggal
+Ijazah]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="60" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="60" width="80" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="60" width="150" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="260" y="60" width="130" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="390" y="60" width="60" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="450" y="60" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="500" y="60" width="55" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="555" y="60" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="605" y="60" width="110" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="715" y="60" width="72" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="260" y="110" width="130" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="110" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="500" y="110" width="55" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="450" y="110" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="390" y="110" width="60" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="605" y="110" width="110" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="110" width="150" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="555" y="110" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="110" width="80" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="715" y="110" width="72" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="390" y="160" width="60" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="160" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="715" y="160" width="72" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="160" width="150" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="500" y="160" width="55" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="160" width="80" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="555" y="160" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="260" y="160" width="130" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="605" y="210" width="110" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="450" y="160" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="715" y="260" width="72" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="450" y="260" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="260" y="210" width="130" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="500" y="260" width="55" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="605" y="260" width="110" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="390" y="210" width="60" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="260" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="210" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="715" y="210" width="72" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="210" width="150" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="555" y="260" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="260" width="80" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="500" y="210" width="55" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="260" width="150" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="260" y="260" width="130" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="390" y="260" width="60" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="605" y="160" width="110" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="555" y="210" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="450" y="210" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="210" width="80" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="310" width="80" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="310" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="310" width="150" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="360" width="80" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="10" y="360" width="20" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="360" width="150" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="450" y="310" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="500" y="310" width="55" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="260" y="310" width="130" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="390" y="310" width="60" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="450" y="360" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="500" y="360" width="55" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="260" y="360" width="130" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="390" y="360" width="60" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="715" y="310" width="72" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="605" y="310" width="110" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="555" y="310" width="50" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="715" y="360" width="72" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="605" y="360" width="110" height="50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="555" y="360" width="50" height="50"/>
+			</rectangle>
+		</band>
+	</title>
+</jasperReport>

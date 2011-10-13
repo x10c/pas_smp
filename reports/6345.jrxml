@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="6345" pageWidth="555" pageHeight="802" columnWidth="515" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="80"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String"/>
+	<parameter name="KODE_TGK_KELAS" class="java.lang.String"/>
+	<parameter name="KODE_ROMBEL" class="java.lang.String"/>
+	<parameter name="KODE_PRD_BELAJAR" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Apache Software Foundation\\Tomcat 7.0\\webapps\\pas-smp\\reports\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT	DISTINCT a.id_siswa				AS id_siswa
+,	CAST(a.id_siswa as char)			AS id
+,	b.nm_siswa					AS nm_siswa
+,	b.nis					AS nis
+,	CONCAT(c.nm_tingkat_kelas, '/', a.kd_rombel)	AS kelas
+,	d.nm_tahun_ajaran				AS nm_tahun_ajaran
+,	e.nm_periode_belajar				AS nm_periode_belajar
+FROM 	t_nilai_rapor		AS a
+,	t_siswa			AS b
+,	r_tingkat_kelas		AS c
+,	r_tahun_ajaran		AS d
+,	r_periode_belajar		AS e
+WHERE	a.id_siswa			= b.id_siswa
+AND	a.kd_tingkat_kelas		= c.kd_tingkat_kelas
+AND	a.kd_tahun_ajaran		= d.kd_tahun_ajaran
+AND	a.kd_periode_belajar		= e.kd_periode_belajar
+AND	a.kd_tahun_ajaran		= $P{KODE_THN_AJARAN}
+AND	a.kd_periode_belajar		= $P{KODE_PRD_BELAJAR}
+AND	a.kd_tingkat_kelas		= $P{KODE_TGK_KELAS}
+AND	a.kd_rombel		= $P{KODE_ROMBEL}]]>
+	</queryString>
+	<field name="id_siswa" class="java.math.BigInteger"/>
+	<field name="id" class="java.lang.String"/>
+	<field name="nm_siswa" class="java.lang.String"/>
+	<field name="nis" class="java.lang.String"/>
+	<field name="kelas" class="java.lang.String"/>
+	<field name="nm_tahun_ajaran" class="java.lang.String"/>
+	<field name="nm_periode_belajar" class="java.lang.String"/>
+	<variable name="NO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{NO} + 1]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="384">
+			<textField>
+				<reportElement x="85" y="6" width="167" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_siswa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="6" width="73" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Nama Siswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="6" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="27" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="27" width="73" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[NIS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="85" y="27" width="167" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nis}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="419" y="6" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="6" width="87" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Tahun Pelajaran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="27" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="27" width="87" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Periode Belajar]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="431" y="6" width="84" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_tahun_ajaran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="27" width="84" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_periode_belajar}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="72" width="515" height="50"/>
+				<subreportParameter name="KODE_THN_AJARAN">
+					<subreportParameterExpression><![CDATA[$P{KODE_THN_AJARAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_TGK_KELAS">
+					<subreportParameterExpression><![CDATA[$P{KODE_TGK_KELAS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_ROMBEL">
+					<subreportParameterExpression><![CDATA[$P{KODE_ROMBEL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_PRD_BELAJAR">
+					<subreportParameterExpression><![CDATA[$P{KODE_PRD_BELAJAR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID_SISWA">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "6345_sr1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="132" width="515" height="50"/>
+				<subreportParameter name="KODE_THN_AJARAN">
+					<subreportParameterExpression><![CDATA[$P{KODE_THN_AJARAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_TGK_KELAS">
+					<subreportParameterExpression><![CDATA[$P{KODE_TGK_KELAS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_ROMBEL">
+					<subreportParameterExpression><![CDATA[$P{KODE_ROMBEL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_PRD_BELAJAR">
+					<subreportParameterExpression><![CDATA[$P{KODE_PRD_BELAJAR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID_SISWA">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "6345_sr2.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="192" width="515" height="50"/>
+				<subreportParameter name="KODE_THN_AJARAN">
+					<subreportParameterExpression><![CDATA[$P{KODE_THN_AJARAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_TGK_KELAS">
+					<subreportParameterExpression><![CDATA[$P{KODE_TGK_KELAS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_ROMBEL">
+					<subreportParameterExpression><![CDATA[$P{KODE_ROMBEL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_PRD_BELAJAR">
+					<subreportParameterExpression><![CDATA[$P{KODE_PRD_BELAJAR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID_SISWA">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "6345_sr3.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="262" width="255" height="50"/>
+				<subreportParameter name="KODE_THN_AJARAN">
+					<subreportParameterExpression><![CDATA[$P{KODE_THN_AJARAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_TGK_KELAS">
+					<subreportParameterExpression><![CDATA[$P{KODE_TGK_KELAS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_ROMBEL">
+					<subreportParameterExpression><![CDATA[$P{KODE_ROMBEL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_PRD_BELAJAR">
+					<subreportParameterExpression><![CDATA[$P{KODE_PRD_BELAJAR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID_SISWA">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "6345_sr4.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="260" y="262" width="255" height="50"/>
+				<subreportParameter name="KODE_THN_AJARAN">
+					<subreportParameterExpression><![CDATA[$P{KODE_THN_AJARAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_TGK_KELAS">
+					<subreportParameterExpression><![CDATA[$P{KODE_TGK_KELAS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_ROMBEL">
+					<subreportParameterExpression><![CDATA[$P{KODE_ROMBEL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_PRD_BELAJAR">
+					<subreportParameterExpression><![CDATA[$P{KODE_PRD_BELAJAR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID_SISWA">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "6345_sr5.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="327" width="515" height="50"/>
+				<subreportParameter name="KODE_THN_AJARAN">
+					<subreportParameterExpression><![CDATA[$P{KODE_THN_AJARAN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_TGK_KELAS">
+					<subreportParameterExpression><![CDATA[$P{KODE_TGK_KELAS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_ROMBEL">
+					<subreportParameterExpression><![CDATA[$P{KODE_ROMBEL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="KODE_PRD_BELAJAR">
+					<subreportParameterExpression><![CDATA[$P{KODE_PRD_BELAJAR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "6345_sr6.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

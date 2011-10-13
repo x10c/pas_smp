@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="6345_sr5" pageWidth="255" pageHeight="802" columnWidth="255" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String"/>
+	<parameter name="KODE_TGK_KELAS" class="java.lang.String"/>
+	<parameter name="KODE_ROMBEL" class="java.lang.String"/>
+	<parameter name="KODE_PRD_BELAJAR" class="java.lang.String"/>
+	<parameter name="ID_SISWA" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT	(
+	SELECT	CONCAT('0', (d.kd_tingkat_kelas + 1))
+	FROM	r_tingkat_kelas	AS d
+	WHERE	d.kd_tingkat_kelas	= a.kd_tingkat_kelas
+	) AS naik_tingkat
+,	(
+	SELECT	e.nm_tingkat_kelas
+	FROM	r_tingkat_kelas	AS e
+	WHERE	e.kd_tingkat_kelas	= CONCAT('0', (a.kd_tingkat_kelas + 1))
+	) AS nm_naik_tingkat
+,	(
+	SELECT	f.keterangan
+	FROM	r_tingkat_kelas	AS f
+	WHERE	f.kd_tingkat_kelas	= CONCAT('0', (a.kd_tingkat_kelas + 1))
+	) AS ket_naik_kelas
+,	c.kd_lulus
+,	b.nm_tingkat_kelas
+,	b.keterangan
+FROM 	t_nilai_rapor	AS a
+,	r_tingkat_kelas	AS b
+,	t_siswa_tingkat	AS c
+WHERE	a.kd_tingkat_kelas	= b.kd_tingkat_kelas
+AND	a.id_siswa		= c.id_siswa
+AND	a.kd_tahun_ajaran	= $P{KODE_THN_AJARAN}
+AND	a.kd_periode_belajar	= $P{KODE_PRD_BELAJAR}
+AND	a.kd_tingkat_kelas	= $P{KODE_TGK_KELAS}
+AND	a.kd_rombel	= $P{KODE_ROMBEL}
+AND	a.id_siswa		= $P{ID_SISWA}]]>
+	</queryString>
+	<field name="naik_tingkat" class="java.lang.String"/>
+	<field name="nm_naik_tingkat" class="java.lang.String"/>
+	<field name="ket_naik_kelas" class="java.lang.String"/>
+	<field name="kd_lulus" class="java.lang.String"/>
+	<field name="nm_tingkat_kelas" class="java.lang.String"/>
+	<field name="keterangan" class="java.lang.String"/>
+	<variable name="NO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{NO} + 1]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100">
+			<rectangle>
+				<reportElement x="0" y="0" width="255" height="95">
+					<printWhenExpression><![CDATA[$P{KODE_PRD_BELAJAR}.equals("2")]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="5" width="245" height="42">
+					<printWhenExpression><![CDATA[$P{KODE_PRD_BELAJAR}.equals("2")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Keputusan:
+Berdasarkan hasil yang dicapai pada
+semester 1 dan 2, maka peserta didik ditetapkan:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="47" width="245" height="20">
+					<printWhenExpression><![CDATA[$P{KODE_PRD_BELAJAR}.equals("2") && $P{KODE_TGK_KELAS}.equals("03") && $F{kd_lulus}.equals("1")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[LULUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="47" width="245" height="20">
+					<printWhenExpression><![CDATA[$P{KODE_PRD_BELAJAR}.equals("2") && $P{KODE_TGK_KELAS}.equals("03") && $F{kd_lulus}.equals("0")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[TIDAK LULUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="47" width="78" height="20">
+					<printWhenExpression><![CDATA[$P{KODE_PRD_BELAJAR}.equals("2") && ($P{KODE_TGK_KELAS}.equals("01") || $P{KODE_TGK_KELAS}.equals("02"))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[naik ke kelas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="67" width="78" height="20">
+					<printWhenExpression><![CDATA[$P{KODE_PRD_BELAJAR}.equals("2") && ($P{KODE_TGK_KELAS}.equals("01") || $P{KODE_TGK_KELAS}.equals("02"))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[tinggal di kelas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="83" y="47" width="167" height="20">
+					<printWhenExpression><![CDATA[$P{KODE_PRD_BELAJAR}.equals("2") && ($P{KODE_TGK_KELAS}.equals("01") || $P{KODE_TGK_KELAS}.equals("02"))]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kd_lulus}.equals("1")?$F{nm_naik_tingkat} + " (" + $F{ket_naik_kelas} + ")":"-"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="83" y="67" width="167" height="20">
+					<printWhenExpression><![CDATA[$P{KODE_PRD_BELAJAR}.equals("2") && ($P{KODE_TGK_KELAS}.equals("01") || $P{KODE_TGK_KELAS}.equals("02"))]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kd_lulus}.equals("0")?$F{nm_tingkat_kelas} + " (" + $F{keterangan} + ")":"-"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

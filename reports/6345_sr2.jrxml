@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="6345_sr2" pageWidth="515" pageHeight="802" columnWidth="515" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String"/>
+	<parameter name="KODE_TGK_KELAS" class="java.lang.String"/>
+	<parameter name="KODE_ROMBEL" class="java.lang.String"/>
+	<parameter name="KODE_PRD_BELAJAR" class="java.lang.String"/>
+	<parameter name="ID_SISWA" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT	catatan
+FROM 	t_nilai_rapor
+WHERE	kd_tahun_ajaran	= $P{KODE_THN_AJARAN}
+AND	kd_periode_belajar	= $P{KODE_PRD_BELAJAR}
+AND	kd_tingkat_kelas	= $P{KODE_TGK_KELAS}
+AND	kd_rombel		= $P{KODE_ROMBEL}
+AND	id_siswa		= $P{ID_SISWA}]]>
+	</queryString>
+	<field name="catatan" class="java.lang.String"/>
+	<variable name="NO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{NO} + 1]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="77">
+			<staticText>
+				<reportElement x="0" y="0" width="147" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CATATAN PERILAKU SISWA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="25" width="515" height="50"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="5" y="30" width="505" height="40"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{catatan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

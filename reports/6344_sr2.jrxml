@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="6344_sr2" pageWidth="515" pageHeight="802" columnWidth="515" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String"/>
+	<parameter name="KODE_TGK_KELAS" class="java.lang.String"/>
+	<parameter name="KODE_ROMBEL" class="java.lang.String"/>
+	<parameter name="KODE_PRD_BELAJAR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT	DISTINCT
+	CONCAT('NIP : ', c.nip)			AS nip_wali_kelas
+,	c.nm_pegawai				AS nm_wali_kelas
+,	DATE_FORMAT(a.tanggal_diberikan, '%d-%m-%Y')	AS tanggal_diberikan
+,	e.nm_kabupaten				AS nm_kabupaten
+,	CONCAT('NIP : ', f.nip)			AS nip_kepala_sekolah
+,	g.nm_pegawai				AS nm_kepala_sekolah
+,	F_KD_TAHUN_AJARAN(NOW())			AS tahun
+,	DATE_FORMAT(NOW(),'%d-%m-%Y')			AS hari_ini
+FROM 	t_nilai_rapor	AS a
+,	t_pegawai_rombel	AS b
+,	t_pegawai		AS c
+,	t_sekolah_identitas	AS d
+,	r_kabupaten	AS e
+,	t_pegawai		AS f
+,	t_sekolah_kepala	AS g
+WHERE	a.kd_tahun_ajaran		= b.kd_tahun_ajaran
+AND	a.kd_tingkat_kelas		= b.kd_tingkat_kelas
+AND	a.kd_rombel		= b.kd_rombel
+AND	b.id_pegawai		= c.id_pegawai
+AND	a.kd_tahun_ajaran		= d.kd_tahun_ajaran
+AND	d.id_kabupaten		= e.id_kabupaten
+AND	f.id_pegawai		= g.id_pegawai
+AND	a.kd_tahun_ajaran		= g.kd_tahun_ajaran
+AND	g.tmt_sk			IN
+				(
+				SELECT	MAX(h.tmt_sk)
+				FROM 	t_sekolah_kepala AS h
+				WHERE 	h.tmt_sk < IFNULL(a.tanggal_diberikan, NOW())
+				)
+AND	a.kd_tahun_ajaran		= $P{KODE_THN_AJARAN}
+AND	a.kd_periode_belajar		= $P{KODE_PRD_BELAJAR}
+AND	a.kd_tingkat_kelas		= $P{KODE_TGK_KELAS}
+AND	a.kd_rombel		= $P{KODE_ROMBEL}]]>
+	</queryString>
+	<field name="nip_wali_kelas" class="java.lang.String"/>
+	<field name="nm_wali_kelas" class="java.lang.String"/>
+	<field name="tanggal_diberikan" class="java.lang.String"/>
+	<field name="nm_kabupaten" class="java.lang.String"/>
+	<field name="nip_kepala_sekolah" class="java.lang.String"/>
+	<field name="nm_kepala_sekolah" class="java.lang.String"/>
+	<field name="tahun" class="java.lang.String"/>
+	<field name="hari_ini" class="java.lang.String"/>
+	<variable name="NO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{NO} + 1]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="154" splitType="Stretch">
+			<textField>
+				<reportElement x="159" y="105" width="168" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_kepala_sekolah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="125" width="168" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nip_kepala_sekolah}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="159" y="20" width="168" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Mengetahui:
+Kepala Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="125" width="122" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="40" width="122" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Orang Tua/Wali Siswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="40" width="145" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Wali Kelas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="368" y="105" width="145" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_wali_kelas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="125" width="145" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nip_wali_kelas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="0" width="186" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tahun}.equals($P{KODE_THN_AJARAN})?$F{nm_kabupaten} + ", " + $F{tanggal_diberikan}:$F{nm_kabupaten} + ", " + $F{hari_ini}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="6343" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="446"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String"/>
+	<parameter name="KODE_TGK_KELAS" class="java.lang.String"/>
+	<parameter name="KODE_ROMBEL" class="java.lang.String"/>
+	<parameter name="KODE_PRD_BELAJAR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT	b.nm_siswa					AS nm_siswa
+,	b.nis						AS nis
+,	b.kota_lahir					AS tempat_lahir
+,	DATE_FORMAT(b.tanggal_lahir, '%d-%m-%Y')	AS tanggal_lahir
+,	b.kd_jenis_kelamin				AS jenis_kelamin
+,	(
+	SELECT	c.nm_agama
+	FROM 	r_agama		AS c
+	WHERE	c.kd_agama	= b.kd_agama
+	) AS agama
+,	(
+	SELECT	IFNULL(d.anak_ke, '')
+	FROM 	t_siswa_info	AS d
+	WHERE	d.id_siswa	= b.id_siswa
+	) AS anak_ke
+,	b.alamat					AS alamat
+,	IFNULL(b.rt, '')				AS rt
+,	IFNULL(b.rw, '')				AS rw
+,	IFNULL(b.kd_pos, '')				AS kode_pos
+,	DATE_FORMAT(b.diterima_tanggal, '%d-%m-%Y')	AS tanggal_diterima
+,	(
+	SELECT	e.nm_tingkat_kelas
+	FROM 	r_tingkat_kelas	AS e
+	WHERE	e.kd_tingkat_kelas	= b.kd_tingkat_kelas
+	) AS tingkat_kelas
+,	(
+	SELECT	f.kd_rombel
+	FROM 	t_siswa_tingkat		AS f
+	WHERE	f.kd_tingkat_kelas	= b.kd_tingkat_kelas
+	AND	f.id_siswa		= b.id_siswa
+	) AS rombel
+,	(
+	SELECT	g.nm_sekolah
+	FROM 	r_asal_sekolah	AS g
+	WHERE	g.asal_sd	= b.asal_sd
+	) AS asal_sekolah
+,	(
+	SELECT	h.alamat_sekolah
+	FROM 	r_asal_sekolah	AS h
+	WHERE	h.asal_sd	= b.asal_sd
+	) AS alamat_asal_sekolah
+,	(
+	SELECT	i.tanggal_stl_sd
+	FROM 	t_siswa_info	AS i
+	WHERE	i.id_siswa	= b.id_siswa
+	) AS tanggal_stl_sd
+,	(
+	SELECT	j.no_stl_sd
+	FROM 	t_siswa_info	AS j
+	WHERE	j.id_siswa	= b.id_siswa
+	) AS no_stl_sd
+,	(
+	SELECT	k.nm_ortu
+	FROM 	t_siswa_ortu	AS k
+	WHERE	k.id_siswa	= b.id_siswa
+	AND	k.kd_jenis_ortu	= '1'
+	) AS nama_ayah
+,	(
+	SELECT	l.nm_ortu
+	FROM 	t_siswa_ortu	AS l
+	WHERE	l.id_siswa	= b.id_siswa
+	AND	l.kd_jenis_ortu	= '2'
+	) AS nama_ibu
+,	(
+	SELECT	m.alamat
+	FROM 	t_siswa_ortu	AS m
+	WHERE	m.id_siswa	= b.id_siswa
+	AND	m.kd_jenis_ortu	= '1'
+	) AS alamat_ortu
+,	(
+	SELECT	n.no_telp
+	FROM 	t_siswa_ortu	AS n
+	WHERE	n.id_siswa	= b.id_siswa
+	AND	n.kd_jenis_ortu	= '1'
+	) AS no_telp_ortu
+,	(
+	SELECT	CONCAT
+		(
+		(
+		SELECT	p.nm_pekerjaan_ortu
+		FROM 	r_pekerjaan_ortu	AS p
+		,	r_gol_pekerjaan_ortu	AS q
+		WHERE	q.id_gol_pekerjaan_ortu	= o.id_gol_pekerjaan_ortu
+		AND	p.kd_pekerjaan_ortu	= q.kd_pekerjaan_ortu
+		)
+		, ' - '
+		,
+		(
+		SELECT	r.nm_gol_pekerjaan_ortu
+		FROM 	r_gol_pekerjaan_ortu	AS r
+		WHERE	r.id_gol_pekerjaan_ortu	= o.id_gol_pekerjaan_ortu
+		)
+		)
+	FROM 	t_siswa_ortu	AS o
+	WHERE	o.id_siswa	= b.id_siswa
+	AND	o.kd_jenis_ortu	= '1'
+	) AS pekerjaan_ayah
+,	(
+	SELECT	CONCAT
+		(
+		(
+		SELECT	t.nm_pekerjaan_ortu
+		FROM 	r_pekerjaan_ortu	AS t
+		,	r_gol_pekerjaan_ortu	AS u
+		WHERE	u.id_gol_pekerjaan_ortu	= s.id_gol_pekerjaan_ortu
+		AND	t.kd_pekerjaan_ortu	= u.kd_pekerjaan_ortu
+		)
+		, ' - '
+		,
+		(
+		SELECT	v.nm_gol_pekerjaan_ortu
+		FROM 	r_gol_pekerjaan_ortu	AS v
+		WHERE	v.id_gol_pekerjaan_ortu	= s.id_gol_pekerjaan_ortu
+		)
+		)
+	FROM 	t_siswa_ortu	AS s
+	WHERE	s.id_siswa	= b.id_siswa
+	AND	s.kd_jenis_ortu	= '2'
+	) AS pekerjaan_ibu
+,	(
+	SELECT	w.nm_ortu
+	FROM 	t_siswa_ortu	AS w
+	WHERE	w.id_siswa	= b.id_siswa
+	AND	w.kd_jenis_ortu	= '3'
+	) AS nama_wali
+,	(
+	SELECT	tso.alamat
+	FROM 	t_siswa_ortu	AS tso
+	WHERE	tso.id_siswa		= b.id_siswa
+	AND	tso.kd_jenis_ortu	= '3'
+	) AS alamat_wali
+,	(
+	SELECT	t_so.no_telp
+	FROM 	t_siswa_ortu	AS t_so
+	WHERE	t_so.id_siswa		= b.id_siswa
+	AND	t_so.kd_jenis_ortu	= '3'
+	) AS no_telp_wali
+,	(
+	SELECT	CONCAT
+		(
+		(
+		SELECT	rpo.nm_pekerjaan_ortu
+		FROM 	r_pekerjaan_ortu	AS rpo
+		,	r_gol_pekerjaan_ortu	AS rgpo
+		WHERE	rgpo.id_gol_pekerjaan_ortu	= ts_o.id_gol_pekerjaan_ortu
+		AND	rpo.kd_pekerjaan_ortu		= rgpo.kd_pekerjaan_ortu
+		)
+		, ' - '
+		,
+		(
+		SELECT	r_gpo.nm_gol_pekerjaan_ortu
+		FROM 	r_gol_pekerjaan_ortu	AS r_gpo
+		WHERE	r_gpo.id_gol_pekerjaan_ortu	= ts_o.id_gol_pekerjaan_ortu
+		)
+		)
+	FROM 	t_siswa_ortu	AS ts_o
+	WHERE	ts_o.id_siswa		= b.id_siswa
+	AND	ts_o.kd_jenis_ortu	= '3'
+	) AS pekerjaan_wali
+FROM 	t_nilai_rapor		AS a
+,	t_siswa			AS b
+WHERE	b.id_siswa		= a.id_siswa
+AND	a.kd_tahun_ajaran	= $P{KODE_THN_AJARAN}
+AND	a.kd_periode_belajar	= $P{KODE_PRD_BELAJAR}
+AND	a.kd_tingkat_kelas	= $P{KODE_TGK_KELAS}
+AND	a.kd_rombel	= $P{KODE_ROMBEL}]]>
+	</queryString>
+	<field name="nm_siswa" class="java.lang.String"/>
+	<field name="nis" class="java.lang.String"/>
+	<field name="tempat_lahir" class="java.lang.String"/>
+	<field name="tanggal_lahir" class="java.lang.String"/>
+	<field name="jenis_kelamin" class="java.lang.String"/>
+	<field name="agama" class="java.lang.String"/>
+	<field name="anak_ke" class="java.lang.String"/>
+	<field name="alamat" class="java.lang.String"/>
+	<field name="rt" class="java.lang.String"/>
+	<field name="rw" class="java.lang.String"/>
+	<field name="kode_pos" class="java.lang.String"/>
+	<field name="tanggal_diterima" class="java.lang.String"/>
+	<field name="tingkat_kelas" class="java.lang.String"/>
+	<field name="rombel" class="java.lang.String"/>
+	<field name="asal_sekolah" class="java.lang.String"/>
+	<field name="alamat_asal_sekolah" class="java.lang.String"/>
+	<field name="tanggal_stl_sd" class="java.sql.Date"/>
+	<field name="no_stl_sd" class="java.lang.String"/>
+	<field name="nama_ayah" class="java.lang.String"/>
+	<field name="nama_ibu" class="java.lang.String"/>
+	<field name="alamat_ortu" class="java.lang.String"/>
+	<field name="no_telp_ortu" class="java.lang.String"/>
+	<field name="pekerjaan_ayah" class="java.lang.String"/>
+	<field name="pekerjaan_ibu" class="java.lang.String"/>
+	<field name="nama_wali" class="java.lang.String"/>
+	<field name="alamat_wali" class="java.lang.String"/>
+	<field name="no_telp_wali" class="java.lang.String"/>
+	<field name="pekerjaan_wali" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="790" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="25" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IDENTITAS SISWA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="60" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[1.  Nama Siswa]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="60" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_siswa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="198" y="60" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="83" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[2.  NIS]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="83" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nis}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="198" y="83" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="106" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[3.  Tempat dan Tanggal Lahir]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="106" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tempat_lahir} + " / " + $F{tanggal_lahir}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="198" y="106" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="129" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[4.  Jenis Kelamin]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="129" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{jenis_kelamin}.equals("1")?"Laki-Laki":"Perempuan"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="198" y="129" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="152" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[5.  Agama]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="152" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{agama}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="198" y="152" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="175" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[6.  Anak Ke]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="210" y="175" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{anak_ke}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="198" y="175" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="198" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[7.  Alamat Siswa]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="198" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="198" y="198" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="221" width="25" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[RT]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="235" y="221" width="50" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{rt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="221" width="25" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[RW]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="320" y="221" width="50" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{rw}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="375" y="221" width="52" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Kode Pos]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="221" width="84" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kode_pos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="267" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     a. Pada Tanggal]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="267" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tanggal_diterima}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="244" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[8.  Diterima Di Sekolah Ini]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="290" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tingkat_kelas} + " " + $F{rombel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="198" y="267" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="290" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     b. Di Kelas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="290" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="313" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[9.  Sekolah Asal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="336" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     a. Nama Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="336" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="336" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{asal_sekolah}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="198" y="359" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="359" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     b. Alamat]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="359" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat_asal_sekolah}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="198" y="428" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="382" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[10. Surat Tanda Lulus (STL) SD/MI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="428" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     b. Nomor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="405" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="405" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     a. Tanggal]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="405" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{tanggal_stl_sd}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="428" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_stl_sd}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="474" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     a. Ayah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="451" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[11. Orang Tua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="497" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="474" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="497" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     b. Ibu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="543" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="520" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="520" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     c. Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="543" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     d. Telepon Ayah/Ibu]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="474" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_ayah}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="497" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_ibu}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="520" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat_ortu}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="543" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_telp_ortu}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="198" y="589" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="589" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     a. Ayah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="566" width="205" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[12. Pekerjaan / Gol.Pekerjaan Orang Tua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="612" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="612" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     b. Ibu]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="589" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pekerjaan_ayah}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="612" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pekerjaan_ibu}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="681" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     b. Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="658" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     a. Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="681" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="658" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="635" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[13. Wali]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="704" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     c. Telepon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="704" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="727" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="727" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[     d. Pekerjaan/Gol.Pekerjaan]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="658" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_wali}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="681" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat_wali}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="704" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_telp_wali}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="727" width="305" height="20"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pekerjaan_wali}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="6344_sr1" pageWidth="515" pageHeight="802" columnWidth="515" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String"/>
+	<parameter name="KODE_TGK_KELAS" class="java.lang.String"/>
+	<parameter name="KODE_ROMBEL" class="java.lang.String"/>
+	<parameter name="KODE_PRD_BELAJAR" class="java.lang.String"/>
+	<parameter name="ID_SISWA" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT	DISTINCT
+	f.order_rapor				AS order_rapor
+,	a.id_siswa					AS id_siswa
+,	b.nm_siswa					AS nm_siswa
+,	b.nis					AS nis
+,	CONCAT(c.nm_tingkat_kelas, '/', a.kd_rombel)	AS kelas
+,	d.nm_tahun_ajaran				AS nm_tahun_ajaran
+,	e.nm_periode_belajar				AS nm_periode_belajar
+,	CONCAT(' ', f.nm_mata_pelajaran_diajarkan)	AS nm_mata_pelajaran_diajarkan
+,	a.kkm					AS kkm
+,	a.nilai					AS nilai
+,	IF(a.nilai = 0, NULL, a.nilai)			AS nilai_angka
+,	CONCAT(' ', F_KONVERSI_BILANGAN(a.nilai))		AS nilai_huruf
+,	a.keterangan				AS catatan_guru
+FROM 	t_nilai_rapor_nilai		AS a
+,	t_siswa			AS b
+,	r_tingkat_kelas		AS c
+,	r_tahun_ajaran		AS d
+,	r_periode_belajar		AS e
+,	r_mata_pelajaran_diajarkan	AS f
+,	t_kur_kkm_matpel		AS g
+WHERE	a.id_siswa			= b.id_siswa
+AND	a.kd_tingkat_kelas		= c.kd_tingkat_kelas
+AND	a.kd_tahun_ajaran		= d.kd_tahun_ajaran
+AND	a.kd_periode_belajar		= e.kd_periode_belajar
+AND	a.kd_mata_pelajaran_diajarkan	= f.kd_mata_pelajaran_diajarkan
+AND	a.kd_tahun_ajaran		= g.kd_tahun_ajaran
+AND	a.kd_tingkat_kelas		= g.kd_tingkat_kelas
+AND	a.kd_periode_belajar		= g.kd_periode_belajar
+AND	a.kd_rombel		= g.kd_rombel
+AND	a.kd_mata_pelajaran_diajarkan	= g.kd_mata_pelajaran_diajarkan
+AND	a.kd_tahun_ajaran		= $P{KODE_THN_AJARAN}
+AND	a.kd_periode_belajar		= $P{KODE_PRD_BELAJAR}
+AND	a.kd_tingkat_kelas		= $P{KODE_TGK_KELAS}
+AND	a.kd_rombel		= $P{KODE_ROMBEL}
+AND	a.id_siswa			= $P{ID_SISWA}
+ORDER BY f.order_rapor]]>
+	</queryString>
+	<field name="order_rapor" class="java.lang.Integer"/>
+	<field name="id_siswa" class="java.math.BigInteger"/>
+	<field name="nm_siswa" class="java.lang.String"/>
+	<field name="nis" class="java.lang.String"/>
+	<field name="kelas" class="java.lang.String"/>
+	<field name="nm_tahun_ajaran" class="java.lang.String"/>
+	<field name="nm_periode_belajar" class="java.lang.String"/>
+	<field name="nm_mata_pelajaran_diajarkan" class="java.lang.String"/>
+	<field name="kkm" class="java.lang.Integer"/>
+	<field name="nilai" class="java.math.BigDecimal"/>
+	<field name="nilai_angka" class="java.math.BigDecimal"/>
+	<field name="nilai_huruf" class="java.lang.String"/>
+	<field name="catatan_guru" class="java.lang.String"/>
+	<variable name="NO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{NO} + 1]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="27" height="40"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="0" width="153" height="40"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mata Pelajaran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="38" height="40"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KKM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="0" width="161" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nilai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="20" width="46" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Angka]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="20" width="115" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Huruf]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="0" width="136" height="40"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Catatan Guru]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="27" y="0" width="153" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_mata_pelajaran_diajarkan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="27" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="38" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{kkm}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="218" y="0" width="46" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{nilai_angka}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="379" y="0" width="136" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{catatan_guru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="0" width="115" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nilai_huruf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
