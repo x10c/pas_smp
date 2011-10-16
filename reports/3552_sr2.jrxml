@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="3352_sr2" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT 	C.KD_TENAGA_ADMINISTRASI AS KD_TENAGA_ADMINISTRASI,
+	A.KD_JENIS_KELAMIN AS KD_JENIS_KELAMIN,
+	D.NM_TENAGA_ADMINISTRASI
+FROM	T_PEGAWAI A,
+	V_PEGAWAI_JABATAN_AWAL_AKHIR B,
+	T_PEGAWAI_RWYT_JABATAN C,
+	R_TENAGA_ADMINISTRASI D
+WHERE	B.ID_PEGAWAI = A.ID_PEGAWAI
+AND	C.ID_PEGAWAI = B.ID_PEGAWAI
+AND	C.NO_URUT = B.MAX_NO_URUT
+AND	A.KD_JENIS_KETENAGAAN NOT IN ('1','6')
+AND	C.KD_TENAGA_ADMINISTRASI = D.KD_TENAGA_ADMINISTRASI]]>
+	</queryString>
+	<field name="KD_TENAGA_ADMINISTRASI" class="java.lang.String"/>
+	<field name="KD_JENIS_KELAMIN" class="java.lang.String"/>
+	<field name="NM_TENAGA_ADMINISTRASI" class="java.lang.String"/>
+	<variable name="JUMLAH" class="java.lang.Integer" incrementType="Report" calculation="Count">
+		<variableExpression><![CDATA[$F{KD_TENAGA_ADMINISTRASI}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="300" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="792" height="300"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{NM_TENAGA_ADMINISTRASI}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{NM_TENAGA_ADMINISTRASI}]]></categoryExpression>
+						<valueExpression><![CDATA[$V{JUMLAH}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisLabelExpression><![CDATA["JENIS TENAGA ADMINISTRASI"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="12" isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["JUMLAH"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="12" isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

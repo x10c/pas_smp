@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="3351_sr3" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT	kd_tahun_ajaran
+,	kd_jenis_pegawai
+FROM	v_pegawai_detil
+WHERE	sts_aktif		= '1'
+AND	kd_jenis_pegawai	in ('04','05','06','08','09','17','18','21','22','23','24','28','29','32','33')
+AND	kd_tahun_ajaran	= $P{KODE_THN_AJARAN}]]>
+	</queryString>
+	<field name="kd_tahun_ajaran" class="java.lang.String"/>
+	<field name="kd_jenis_pegawai" class="java.lang.String"/>
+	<variable name="JUMLAH" class="java.lang.Integer" incrementType="Report" calculation="Count">
+		<variableExpression><![CDATA[$F{kd_jenis_pegawai}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="300" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="545" height="300"/>
+					<chartTitle>
+						<font fontName="Arial" size="14" isBold="true"/>
+						<titleExpression><![CDATA["PEGAWAI TIDAK TETAP"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[(
+    $F{kd_jenis_pegawai}.equals("21")
+||  $F{kd_jenis_pegawai}.equals("06")
+||  $F{kd_jenis_pegawai}.equals("17")
+||  $F{kd_jenis_pegawai}.equals("09")
+||  $F{kd_jenis_pegawai}.equals("28")
+||  $F{kd_jenis_pegawai}.equals("32")
+)?"Tidak Tetap PNS":
+(
+    $F{kd_jenis_pegawai}.equals("28")
+||  $F{kd_jenis_pegawai}.equals("18")
+||  $F{kd_jenis_pegawai}.equals("08")
+||  $F{kd_jenis_pegawai}.equals("29")
+||  $F{kd_jenis_pegawai}.equals("33")
+)?"Tidak Tetap Bukan PNS":
+(
+    $F{kd_jenis_pegawai}.equals("23")
+||  $F{kd_jenis_pegawai}.equals("04")
+)?"Bantu Pusat":"Bantu Daerah"]]></seriesExpression>
+						<categoryExpression><![CDATA[(
+    $F{kd_jenis_pegawai}.equals("21")
+||  $F{kd_jenis_pegawai}.equals("22")
+||  $F{kd_jenis_pegawai}.equals("23")
+||  $F{kd_jenis_pegawai}.equals("24")
+)?"Kepala Sekolah":
+(
+    $F{kd_jenis_pegawai}.equals("06")
+||  $F{kd_jenis_pegawai}.equals("17")
+||  $F{kd_jenis_pegawai}.equals("18")
+||  $F{kd_jenis_pegawai}.equals("04")
+||  $F{kd_jenis_pegawai}.equals("05")
+)?"Guru":"Tenaga Administrasi"]]></categoryExpression>
+						<valueExpression><![CDATA[$V{JUMLAH}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

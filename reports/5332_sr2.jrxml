@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="5332_sr2" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT   sum(if(a.kd_jenis_kelamin = '1',1,0)) as jml,
+         "Laki-Laki" as jns_kelamin
+FROM t_siswa_tingkat a,
+     t_sekolah_identitas
+WHERE ( a.kd_tahun_ajaran = t_sekolah_identitas.kd_tahun_ajaran ) and
+         (a.kd_tahun_ajaran = $P{KODE_THN_AJARAN}) AND
+         t_sekolah_identitas.kd_tahun_ajaran = a.kd_tahun_ajaran and
+		a.kd_status_siswa in ('0','3','4')
+union all
+SELECT   sum(if(a.kd_jenis_kelamin = '2',1,0)) as jml,
+         "Perempuan" as jns_kelamin
+FROM t_siswa_tingkat a,
+     t_sekolah_identitas
+WHERE ( a.kd_tahun_ajaran = t_sekolah_identitas.kd_tahun_ajaran ) and
+         (a.kd_tahun_ajaran = $P{KODE_THN_AJARAN}) AND
+         t_sekolah_identitas.kd_tahun_ajaran = a.kd_tahun_ajaran and
+		a.kd_status_siswa in ('0','3','4')]]>
+	</queryString>
+	<field name="jml" class="java.math.BigDecimal"/>
+	<field name="jns_kelamin" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="300" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="555" height="300"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{jns_kelamin}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jns_kelamin}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jml}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisLabelExpression><![CDATA["JENIS KELAMIN"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="12" isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["JUMLAH"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="12" isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

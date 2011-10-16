@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="5334_sr2" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select  "SD" as asal_sekolah,
+        "Laki-Laki" as kelamin,
+        jml_term_sd_l as jml
+from    k_sekolah_passing_grade
+where   kd_tahun_ajaran = $P{KODE_THN_AJARAN}
+union all
+select  "SD" as asal_sekolah,
+        "Perempuan" as kelamin,
+        jml_term_sd_p
+from    k_sekolah_passing_grade
+where   kd_tahun_ajaran = $P{KODE_THN_AJARAN}
+union all
+select  "MI" as asal_sekolah,
+        "Laki-Laki" as kelamin,
+        jml_term_mi_l
+from    k_sekolah_passing_grade
+where   kd_tahun_ajaran = $P{KODE_THN_AJARAN}
+union all
+select  "MI" as asal_sekolah,
+        "Perempuan" as kelamin,
+        jml_term_mi_p
+from    k_sekolah_passing_grade
+where   kd_tahun_ajaran = $P{KODE_THN_AJARAN}
+union all
+select  "Paket A / B" as asal_sekolah,
+        "Laki-Laki" as kelamin,
+        jml_term_pkt_l
+from    k_sekolah_passing_grade
+where   kd_tahun_ajaran = $P{KODE_THN_AJARAN}
+union all
+select  "Paket A / B" as asal_sekolah,
+        "Perempuan" as kelamin,
+        jml_term_pkt_p
+from    k_sekolah_passing_grade
+where   kd_tahun_ajaran = $P{KODE_THN_AJARAN}]]>
+	</queryString>
+	<field name="asal_sekolah" class="java.lang.String"/>
+	<field name="kelamin" class="java.lang.String"/>
+	<field name="jml" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="300" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="555" height="300"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{kelamin}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{asal_sekolah}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jml}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisLabelExpression><![CDATA["AGAMA"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="12" isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["JUMLAH"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="12" isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="535_sr2" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.kd_tingkat_kelas,
+		 a.nm_tingkat_kelas,
+       (
+        select count(*)
+        from t_siswa_tingkat as b
+        where (b.kd_tingkat_kelas = a.kd_tingkat_kelas) and
+              (b.kd_tahun_ajaran = $P{KODE_THN_AJARAN})
+       ) as jml_1,
+       (
+        select count(*)
+        from t_siswa_tingkat_thn as b
+        where (b.kd_tingkat_kelas = a.kd_tingkat_kelas) and
+              (b.kd_tahun_ajaran = $P{KODE_THN_AJARAN})
+       ) as jml_2,
+       (
+        select count(*)
+        from t_siswa_tingkat_thn_baru as b
+        where (b.kd_tingkat_kelas = a.kd_tingkat_kelas) and
+              (b.kd_tahun_ajaran = $P{KODE_THN_AJARAN})
+       ) as jml_3
+from r_tingkat_kelas as a
+group by a.kd_tingkat_kelas, a.nm_tingkat_kelas]]>
+	</queryString>
+	<field name="kd_tingkat_kelas" class="java.lang.String"/>
+	<field name="nm_tingkat_kelas" class="java.lang.String"/>
+	<field name="jml_1" class="java.lang.Long"/>
+	<field name="jml_2" class="java.lang.Long"/>
+	<field name="jml_3" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="300" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="555" height="300"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{nm_tingkat_kelas}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{nm_tingkat_kelas}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jml_1}+$F{jml_2}+$F{jml_3}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisLabelExpression><![CDATA["TINGKAT KELAS"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="12" isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["JUMLAH"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="12" isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="3351_sr2" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT	kd_tahun_ajaran
+,	kd_jenis_pegawai
+,	kd_golongan_pangkat
+FROM	v_pegawai_detil
+WHERE	sts_aktif = '1'
+AND	kd_jenis_pegawai IN ('15','20','01','02','03','07','10','11','12','19','25','26','27','30','31')
+AND	kd_tahun_ajaran = $P{KODE_THN_AJARAN}
+AND 	kd_golongan_pangkat is not NULL]]>
+	</queryString>
+	<field name="kd_tahun_ajaran" class="java.lang.String"/>
+	<field name="kd_jenis_pegawai" class="java.lang.String"/>
+	<field name="kd_golongan_pangkat" class="java.lang.String"/>
+	<variable name="JUMLAH" class="java.lang.Integer" incrementType="Report" calculation="Count">
+		<variableExpression><![CDATA[$F{kd_golongan_pangkat}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="300" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="545" height="300"/>
+					<chartTitle>
+						<font fontName="Arial" size="14" isBold="true"/>
+						<titleExpression><![CDATA["PEGAWAI TETAP"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{kd_golongan_pangkat}.equals("1")?"Gol.1":
+$F{kd_golongan_pangkat}.equals("2")?"Gol.2":
+$F{kd_golongan_pangkat}.equals("3")?"Gol.3":
+$F{kd_golongan_pangkat}.equals("4")?"Gol.4":
+"Yayasan"]]></seriesExpression>
+						<categoryExpression><![CDATA[(
+    $F{kd_jenis_pegawai}.equals("15")
+||  $F{kd_jenis_pegawai}.equals("20")
+)?"Kepala Sekolah":
+(
+    $F{kd_jenis_pegawai}.equals("01")
+||  $F{kd_jenis_pegawai}.equals("02")
+||  $F{kd_jenis_pegawai}.equals("03")
+||  $F{kd_jenis_pegawai}.equals("10")
+||  $F{kd_jenis_pegawai}.equals("11")
+||  $F{kd_jenis_pegawai}.equals("12")
+||  $F{kd_jenis_pegawai}.equals("25")
+)?"Guru"
+:"Tenaga Administrasi"]]></categoryExpression>
+						<valueExpression><![CDATA[$V{JUMLAH}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="5335_sr1_1" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+r_tahun_ajaran.kd_tahun_ajaran,
+V_SISWA_JML_MUTASI.KOTAINI_2L as KOTAINI_2L,
+V_SISWA_JML_MUTASI.KOTAINI_2P as KOTAINI_2P,
+V_SISWA_JML_MUTASI.KOTAINI_3L as KOTAINI_3L,
+V_SISWA_JML_MUTASI.KOTAINI_3P as KOTAINI_3P,
+V_SISWA_JML_MUTASI.KOTALAIN_2L as KOTALAIN_2L,
+V_SISWA_JML_MUTASI.KOTALAIN_2P as KOTALAIN_2P,
+V_SISWA_JML_MUTASI.KOTALAIN_3L as KOTALAIN_3L,
+V_SISWA_JML_MUTASI.KOTALAIN_3P as KOTALAIN_3P,
+V_SISWA_JML_MUTASI.KELUAR_2L as KELUAR_2L,
+V_SISWA_JML_MUTASI.KELUAR_2P as KELUAR_2P,
+V_SISWA_JML_MUTASI.KELUAR_3L as KELUAR_3L,
+V_SISWA_JML_MUTASI.KELUAR_3P as KELUAR_3P
+FROM V_SISWA_JML_MUTASI
+RIGHT JOIN r_tahun_ajaran on r_tahun_ajaran.kd_tahun_ajaran = V_SISWA_JML_MUTASI.kd_tahun_ajaran
+WHERE r_tahun_ajaran.kd_tahun_ajaran = $P{KODE_THN_AJARAN}]]>
+	</queryString>
+	<field name="kd_tahun_ajaran" class="java.lang.String"/>
+	<field name="KOTAINI_2L" class="java.math.BigDecimal"/>
+	<field name="KOTAINI_2P" class="java.math.BigDecimal"/>
+	<field name="KOTAINI_3L" class="java.math.BigDecimal"/>
+	<field name="KOTAINI_3P" class="java.math.BigDecimal"/>
+	<field name="KOTALAIN_2L" class="java.math.BigDecimal"/>
+	<field name="KOTALAIN_2P" class="java.math.BigDecimal"/>
+	<field name="KOTALAIN_3L" class="java.math.BigDecimal"/>
+	<field name="KOTALAIN_3P" class="java.math.BigDecimal"/>
+	<field name="KELUAR_2L" class="java.math.BigDecimal"/>
+	<field name="KELUAR_2P" class="java.math.BigDecimal"/>
+	<field name="KELUAR_3L" class="java.math.BigDecimal"/>
+	<field name="KELUAR_3P" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="40" width="25" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="60"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mutasi
+Tahun Ajaran Sebelumnya]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="25" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1a.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="40" width="160" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Keluar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="20" width="160" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Masuk dari Kab/Kota lain]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="20" width="25" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1b.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="0" width="160" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Masuk dari Kab/Kota ini]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="265" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTAINI_2L}.intValue() == 0 ? "" : $F{KOTAINI_2L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTAINI_2P}.intValue() == 0 ? "" : $F{KOTAINI_2P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTAINI_3L}.intValue() == 0 ? "" : $F{KOTAINI_3L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTAINI_3P}.intValue() == 0 ? "" : $F{KOTAINI_3P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTAINI_2L}.add( $F{KOTAINI_3L} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTAINI_2P}.add( $F{KOTAINI_3P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="0" width="50" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTAINI_2L}.add( $F{KOTAINI_3L} ).add( $F{KOTAINI_2P} ).add( $F{KOTAINI_3P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTALAIN_3L}.intValue() == 0 ? "" : $F{KOTALAIN_3L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTALAIN_2L}.add( $F{KOTALAIN_3L} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTALAIN_2L}.intValue() == 0 ? "" : $F{KOTALAIN_2L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="20" width="50" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTALAIN_2L}.add( $F{KOTALAIN_3L} ).add( $F{KOTALAIN_2P} ).add( $F{KOTALAIN_3P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTALAIN_2P}.add( $F{KOTALAIN_3P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTALAIN_3P}.intValue() == 0 ? "" : $F{KOTALAIN_3P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTALAIN_2P}.intValue() == 0 ? "" : $F{KOTALAIN_2P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KELUAR_2P}.add( $F{KELUAR_3P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KELUAR_2L}.add( $F{KELUAR_3L} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KELUAR_3P}.intValue() == 0 ? "" : $F{KELUAR_3P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KELUAR_2L}.intValue() == 0 ? "" : $F{KELUAR_2L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KELUAR_2P}.intValue() == 0 ? "" : $F{KELUAR_2P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="40" width="50" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KELUAR_2L}.add( $F{KELUAR_3L} ).add( $F{KELUAR_2P} ).add( $F{KELUAR_3P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KELUAR_3L}.intValue() == 0 ? "" : $F{KELUAR_3L}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

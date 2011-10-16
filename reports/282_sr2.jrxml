@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="282_sr2" pageWidth="535" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="106"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT  	t_sekolah_perlengkapan.kd_tahun_ajaran ,
+        	t_sekolah_perlengkapan.kd_perlengkapan_sekolah ,
+         t_sekolah_perlengkapan.jumlah,
+	r_perlengkapan_sekolah.nm_perlengkapan_sekolah
+FROM 		t_sekolah_perlengkapan, r_perlengkapan_sekolah
+WHERE		t_sekolah_perlengkapan.kd_tahun_ajaran = $P{KODE_THN_AJARAN} and t_sekolah_perlengkapan.kd_perlengkapan_sekolah = r_perlengkapan_sekolah.kd_perlengkapan_sekolah]]>
+	</queryString>
+	<field name="kd_tahun_ajaran" class="java.lang.String"/>
+	<field name="kd_perlengkapan_sekolah" class="java.lang.String"/>
+	<field name="jumlah" class="java.lang.Integer"/>
+	<field name="nm_perlengkapan_sekolah" class="java.lang.String"/>
+	<variable name="CONSTANT" class="java.lang.String">
+		<variableExpression><![CDATA[$F{kd_perlengkapan_sekolah}.equals( "01" ) ? "KP" :
+$F{kd_perlengkapan_sekolah}.equals( "02" ) ? "MK" :
+$F{kd_perlengkapan_sekolah}.equals( "03" ) ? "MH" :
+$F{kd_perlengkapan_sekolah}.equals( "04" ) ? "MS" :
+$F{kd_perlengkapan_sekolah}.equals( "05" ) ? "FC" :
+$F{kd_perlengkapan_sekolah}.equals( "06" ) ? "BR" :
+$F{kd_perlengkapan_sekolah}.equals( "07" ) ? "CB" :
+$F{kd_perlengkapan_sekolah}.equals( "08" ) ? "LM" :
+$F{kd_perlengkapan_sekolah}.equals( "09" ) ? "RB" :
+$F{kd_perlengkapan_sekolah}.equals( "10" ) ? "MG" :
+$F{kd_perlengkapan_sekolah}.equals( "11" ) ? "KG" :
+$F{kd_perlengkapan_sekolah}.equals( "12" ) ? "MW" :
+$F{kd_perlengkapan_sekolah}.equals( "13" ) ? "KW" :
+$F{kd_perlengkapan_sekolah}.equals( "14" ) ? "PR" :
+$F{kd_perlengkapan_sekolah}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="300" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="535" height="300"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["PERLENGKAPAN SEKOLAH"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{nm_perlengkapan_sekolah}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jumlah}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot labelRotation="90.0"/>
+					<itemLabel/>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

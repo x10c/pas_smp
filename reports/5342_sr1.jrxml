@@ -1,0 +1,2107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="5342_sr1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select r_tahun_ajaran.kd_tahun_ajaran,
+    sum(if( v_siswa_umur.umur<13 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR12IL,
+    sum(if( v_siswa_umur.umur=13 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR13IL,
+    sum(if( v_siswa_umur.umur=14 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR14IL,
+    sum(if( v_siswa_umur.umur=15 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR15IL,
+    sum(if( v_siswa_umur.umur=16 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR16IL,
+    sum(if( v_siswa_umur.umur=17 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR17IL,
+    sum(if( v_siswa_umur.umur=18 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR18IL,
+    sum(if( v_siswa_umur.umur=19 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR19IL,
+    sum(if( v_siswa_umur.umur=20 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR20IL,
+    sum(if( v_siswa_umur.umur=21 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR21IL,
+    sum(if( v_siswa_umur.umur>21 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR22IL,
+    sum(if( v_siswa_umur.umur<13 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR12IP,
+    sum(if( v_siswa_umur.umur=13 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR13IP,
+    sum(if( v_siswa_umur.umur=14 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR14IP,
+    sum(if( v_siswa_umur.umur=15 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR15IP,
+    sum(if( v_siswa_umur.umur=16 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR16IP,
+    sum(if( v_siswa_umur.umur=17 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR17IP,
+    sum(if( v_siswa_umur.umur=18 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR18IP,
+    sum(if( v_siswa_umur.umur=19 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR19IP,
+    sum(if( v_siswa_umur.umur=20 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR20IP,
+    sum(if( v_siswa_umur.umur=21 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR21IP,
+    sum(if( v_siswa_umur.umur>21 and t_siswa_tingkat.kd_tingkat_kelas='01' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR22IP,
+    sum(if( v_siswa_umur.umur<13 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR12IIL,
+    sum(if( v_siswa_umur.umur=13 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR13IIL,
+    sum(if( v_siswa_umur.umur=14 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR14IIL,
+    sum(if( v_siswa_umur.umur=15 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR15IIL,
+    sum(if( v_siswa_umur.umur=16 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR16IIL,
+    sum(if( v_siswa_umur.umur=17 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR17IIL,
+    sum(if( v_siswa_umur.umur=18 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR18IIL,
+    sum(if( v_siswa_umur.umur=19 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR19IIL,
+    sum(if( v_siswa_umur.umur=20 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR20IIL,
+    sum(if( v_siswa_umur.umur=21 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR21IIL,
+    sum(if( v_siswa_umur.umur>21 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR22IIL,
+    sum(if( v_siswa_umur.umur<13 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR12IIP,
+    sum(if( v_siswa_umur.umur=13 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR13IIP,
+    sum(if( v_siswa_umur.umur=14 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR14IIP,
+    sum(if( v_siswa_umur.umur=15 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR15IIP,
+    sum(if( v_siswa_umur.umur=16 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR16IIP,
+    sum(if( v_siswa_umur.umur=17 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR17IIP,
+    sum(if( v_siswa_umur.umur=18 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR18IIP,
+    sum(if( v_siswa_umur.umur=19 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR19IIP,
+    sum(if( v_siswa_umur.umur=20 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR20IIP,
+    sum(if( v_siswa_umur.umur=21 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR21IIP,
+    sum(if( v_siswa_umur.umur>21 and t_siswa_tingkat.kd_tingkat_kelas='02' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR22IIP,
+    sum(if( v_siswa_umur.umur<13 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR12IIIL,
+    sum(if( v_siswa_umur.umur=13 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR13IIIL,
+    sum(if( v_siswa_umur.umur=14 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR14IIIL,
+    sum(if( v_siswa_umur.umur=15 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR15IIIL,
+    sum(if( v_siswa_umur.umur=16 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR16IIIL,
+    sum(if( v_siswa_umur.umur=17 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR17IIIL,
+    sum(if( v_siswa_umur.umur=18 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR18IIIL,
+    sum(if( v_siswa_umur.umur=19 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR19IIIL,
+    sum(if( v_siswa_umur.umur=20 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR20IIIL,
+    sum(if( v_siswa_umur.umur=21 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR21IIIL,
+    sum(if( v_siswa_umur.umur>21 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='1',1,0 )) as UMUR22IIIL,
+    sum(if( v_siswa_umur.umur<13 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR12IIIP,
+    sum(if( v_siswa_umur.umur=13 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR13IIIP,
+    sum(if( v_siswa_umur.umur=14 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR14IIIP,
+    sum(if( v_siswa_umur.umur=15 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR15IIIP,
+    sum(if( v_siswa_umur.umur=16 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR16IIIP,
+    sum(if( v_siswa_umur.umur=17 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR17IIIP,
+    sum(if( v_siswa_umur.umur=18 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR18IIIP,
+    sum(if( v_siswa_umur.umur=19 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR19IIIP,
+    sum(if( v_siswa_umur.umur=20 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR20IIIP,
+    sum(if( v_siswa_umur.umur=21 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR21IIIP,
+    sum(if( v_siswa_umur.umur>21 and t_siswa_tingkat.kd_tingkat_kelas='03' and v_siswa_umur.kd_jns_kelamin='2',1,0 )) as UMUR22IIIP
+    from t_siswa_tingkat
+right join v_siswa_umur on (t_siswa_tingkat.id_siswa=v_siswa_umur.id_siswa)
+inner join r_tahun_ajaran on (t_siswa_tingkat.kd_tahun_ajaran = r_tahun_ajaran.kd_tahun_ajaran)
+    where (r_tahun_ajaran.kd_tahun_ajaran = $P{KODE_THN_AJARAN})
+    group by r_tahun_ajaran.kd_tahun_ajaran]]>
+	</queryString>
+	<field name="kd_tahun_ajaran" class="java.lang.String"/>
+	<field name="UMUR12IL" class="java.math.BigDecimal"/>
+	<field name="UMUR13IL" class="java.math.BigDecimal"/>
+	<field name="UMUR14IL" class="java.math.BigDecimal"/>
+	<field name="UMUR15IL" class="java.math.BigDecimal"/>
+	<field name="UMUR16IL" class="java.math.BigDecimal"/>
+	<field name="UMUR17IL" class="java.math.BigDecimal"/>
+	<field name="UMUR18IL" class="java.math.BigDecimal"/>
+	<field name="UMUR19IL" class="java.math.BigDecimal"/>
+	<field name="UMUR20IL" class="java.math.BigDecimal"/>
+	<field name="UMUR21IL" class="java.math.BigDecimal"/>
+	<field name="UMUR22IL" class="java.math.BigDecimal"/>
+	<field name="UMUR12IP" class="java.math.BigDecimal"/>
+	<field name="UMUR13IP" class="java.math.BigDecimal"/>
+	<field name="UMUR14IP" class="java.math.BigDecimal"/>
+	<field name="UMUR15IP" class="java.math.BigDecimal"/>
+	<field name="UMUR16IP" class="java.math.BigDecimal"/>
+	<field name="UMUR17IP" class="java.math.BigDecimal"/>
+	<field name="UMUR18IP" class="java.math.BigDecimal"/>
+	<field name="UMUR19IP" class="java.math.BigDecimal"/>
+	<field name="UMUR20IP" class="java.math.BigDecimal"/>
+	<field name="UMUR21IP" class="java.math.BigDecimal"/>
+	<field name="UMUR22IP" class="java.math.BigDecimal"/>
+	<field name="UMUR12IIL" class="java.math.BigDecimal"/>
+	<field name="UMUR13IIL" class="java.math.BigDecimal"/>
+	<field name="UMUR14IIL" class="java.math.BigDecimal"/>
+	<field name="UMUR15IIL" class="java.math.BigDecimal"/>
+	<field name="UMUR16IIL" class="java.math.BigDecimal"/>
+	<field name="UMUR17IIL" class="java.math.BigDecimal"/>
+	<field name="UMUR18IIL" class="java.math.BigDecimal"/>
+	<field name="UMUR19IIL" class="java.math.BigDecimal"/>
+	<field name="UMUR20IIL" class="java.math.BigDecimal"/>
+	<field name="UMUR21IIL" class="java.math.BigDecimal"/>
+	<field name="UMUR22IIL" class="java.math.BigDecimal"/>
+	<field name="UMUR12IIP" class="java.math.BigDecimal"/>
+	<field name="UMUR13IIP" class="java.math.BigDecimal"/>
+	<field name="UMUR14IIP" class="java.math.BigDecimal"/>
+	<field name="UMUR15IIP" class="java.math.BigDecimal"/>
+	<field name="UMUR16IIP" class="java.math.BigDecimal"/>
+	<field name="UMUR17IIP" class="java.math.BigDecimal"/>
+	<field name="UMUR18IIP" class="java.math.BigDecimal"/>
+	<field name="UMUR19IIP" class="java.math.BigDecimal"/>
+	<field name="UMUR20IIP" class="java.math.BigDecimal"/>
+	<field name="UMUR21IIP" class="java.math.BigDecimal"/>
+	<field name="UMUR22IIP" class="java.math.BigDecimal"/>
+	<field name="UMUR12IIIL" class="java.math.BigDecimal"/>
+	<field name="UMUR13IIIL" class="java.math.BigDecimal"/>
+	<field name="UMUR14IIIL" class="java.math.BigDecimal"/>
+	<field name="UMUR15IIIL" class="java.math.BigDecimal"/>
+	<field name="UMUR16IIIL" class="java.math.BigDecimal"/>
+	<field name="UMUR17IIIL" class="java.math.BigDecimal"/>
+	<field name="UMUR18IIIL" class="java.math.BigDecimal"/>
+	<field name="UMUR19IIIL" class="java.math.BigDecimal"/>
+	<field name="UMUR20IIIL" class="java.math.BigDecimal"/>
+	<field name="UMUR21IIIL" class="java.math.BigDecimal"/>
+	<field name="UMUR22IIIL" class="java.math.BigDecimal"/>
+	<field name="UMUR12IIIP" class="java.math.BigDecimal"/>
+	<field name="UMUR13IIIP" class="java.math.BigDecimal"/>
+	<field name="UMUR14IIIP" class="java.math.BigDecimal"/>
+	<field name="UMUR15IIIP" class="java.math.BigDecimal"/>
+	<field name="UMUR16IIIP" class="java.math.BigDecimal"/>
+	<field name="UMUR17IIIP" class="java.math.BigDecimal"/>
+	<field name="UMUR18IIIP" class="java.math.BigDecimal"/>
+	<field name="UMUR19IIIP" class="java.math.BigDecimal"/>
+	<field name="UMUR20IIIP" class="java.math.BigDecimal"/>
+	<field name="UMUR21IIIP" class="java.math.BigDecimal"/>
+	<field name="UMUR22IIIP" class="java.math.BigDecimal"/>
+	<variable name="12L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR12IL}.add( $F{UMUR12IIL} ).add( $F{UMUR12IIIL} )]]></variableExpression>
+	</variable>
+	<variable name="12P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR12IP}.add( $F{UMUR12IIP} ).add( $F{UMUR12IIIP} )]]></variableExpression>
+	</variable>
+	<variable name="13L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR13IL}.add( $F{UMUR13IIL} ).add( $F{UMUR13IIIL} )]]></variableExpression>
+	</variable>
+	<variable name="13P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR13IP}.add( $F{UMUR13IIP} ).add( $F{UMUR13IIIP} )]]></variableExpression>
+	</variable>
+	<variable name="14L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR14IL}.add( $F{UMUR14IIL} ).add( $F{UMUR14IIIL} )]]></variableExpression>
+	</variable>
+	<variable name="14P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR14IP}.add( $F{UMUR14IIP} ).add( $F{UMUR14IIIP} )]]></variableExpression>
+	</variable>
+	<variable name="15L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR15IL}.add( $F{UMUR15IIL} ).add( $F{UMUR15IIIL} )]]></variableExpression>
+	</variable>
+	<variable name="15P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR15IP}.add( $F{UMUR15IIP} ).add( $F{UMUR15IIIP} )]]></variableExpression>
+	</variable>
+	<variable name="16L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR16IL}.add( $F{UMUR16IIL} ).add( $F{UMUR16IIIL} )]]></variableExpression>
+	</variable>
+	<variable name="16P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR16IP}.add( $F{UMUR16IIP} ).add( $F{UMUR16IIIP} )]]></variableExpression>
+	</variable>
+	<variable name="17L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR17IL}.add( $F{UMUR17IIL} ).add( $F{UMUR17IIIL} )]]></variableExpression>
+	</variable>
+	<variable name="17P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR17IP}.add( $F{UMUR17IIP} ).add( $F{UMUR17IIIP} )]]></variableExpression>
+	</variable>
+	<variable name="18L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR18IL}.add( $F{UMUR18IIL} ).add( $F{UMUR18IIIL} )]]></variableExpression>
+	</variable>
+	<variable name="18P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR18IP}.add( $F{UMUR18IIP} ).add( $F{UMUR18IIIP} )]]></variableExpression>
+	</variable>
+	<variable name="19L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR19IL}.add( $F{UMUR19IIL} ).add( $F{UMUR19IIIL} )]]></variableExpression>
+	</variable>
+	<variable name="19P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR19IP}.add( $F{UMUR19IIP} ).add( $F{UMUR19IIIP} )]]></variableExpression>
+	</variable>
+	<variable name="20L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR20IL}.add( $F{UMUR20IIL} ).add( $F{UMUR20IIIL} )]]></variableExpression>
+	</variable>
+	<variable name="20P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR20IP}.add( $F{UMUR20IIP} ).add( $F{UMUR20IIIP} )]]></variableExpression>
+	</variable>
+	<variable name="21L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR21IL}.add( $F{UMUR21IIL} ).add( $F{UMUR21IIIL} )]]></variableExpression>
+	</variable>
+	<variable name="21P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR21IP}.add( $F{UMUR21IIP} ).add( $F{UMUR21IIIP} )]]></variableExpression>
+	</variable>
+	<variable name="22L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR22IL}.add( $F{UMUR22IIL} ).add( $F{UMUR22IIIL} )]]></variableExpression>
+	</variable>
+	<variable name="22P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{UMUR22IP}.add( $F{UMUR22IIP} ).add( $F{UMUR22IIIP} )]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="40"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Umur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="140" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tingkat I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="0" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tingkat II]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="0" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tingkat III]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="20" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L + P]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="220" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[< 13 Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[13 Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[14 Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[15 Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="120" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[18 Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="100" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[17 Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[16 Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="180" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[21 Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="140" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[19 Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="200" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[> 21 Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="160" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[20 Tahun]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IIIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IIIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{12L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{12P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{12L}.add( $V{12P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{13P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{13L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR13IIIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR13IIIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR13IIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR13IL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR13IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="20" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR13IIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="20" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{13L}.add( $V{13P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR14IL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR14IIIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR14IIIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{14P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{14L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR14IIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR14IIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="40" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{14L}.add( $V{14P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR14IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="60" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR15IL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="60" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR15IIIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="60" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{15L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="60" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{15P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="60" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{15L}.add( $V{15P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="60" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR15IIIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="60" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR15IIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="60" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR15IIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="60" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR15IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="100" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{17L}.add( $V{17P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="80" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR16IIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="140" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR19IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="120" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR18IL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="100" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR17IIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="80" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR16IIIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="140" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{19P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="100" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{17P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="100" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR17IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="120" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{18P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="140" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{19L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="140" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR19IL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="120" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR18IIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="120" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR18IIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="120" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR18IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="80" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR16IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="80" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{16P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="100" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR17IIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="140" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR19IIIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="140" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR19IIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="140" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{19L}.add( $V{19P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="80" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR16IIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="100" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR17IIIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="120" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR18IIIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="120" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{18L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="80" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR16IIIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="140" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR19IIIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="80" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{16L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="80" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{16L}.add( $V{16P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="80" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR16IL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="120" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{18L}.add( $V{18P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="140" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR19IIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="100" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR17IL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="100" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{17L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="120" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR18IIIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="100" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR17IIIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="160" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{20L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="160" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR20IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="160" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR20IIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="160" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{20L}.add( $V{20P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="160" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR20IIIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="160" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR20IL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="160" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR20IIIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="160" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR20IIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="160" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{20P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="180" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{21L}.add( $V{21P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="180" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR21IIIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="180" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR21IIIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="180" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR21IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="180" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{21L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="180" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{21P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="180" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR21IIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="180" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR21IL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="180" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR21IIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="200" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{22L}.add( $V{22P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="200" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR22IIIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="200" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR22IIIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="200" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR22IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="200" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{22L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="200" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{22P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="200" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR22IIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="200" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR22IL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="200" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR22IIP}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IL}.add( $F{UMUR13IL} ).add( $F{UMUR14IL} ).add( $F{UMUR15IL} ).add( $F{UMUR16IL} ).add( $F{UMUR17IL} ).add( $F{UMUR18IL} ).add( $F{UMUR19IL} ).add( $F{UMUR20IL} ).add( $F{UMUR21IL} ).add( $F{UMUR22IL} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IP}.add( $F{UMUR13IP} ).add( $F{UMUR14IP} ).add( $F{UMUR15IP} ).add( $F{UMUR16IP} ).add( $F{UMUR17IP} ).add( $F{UMUR18IP} ).add( $F{UMUR19IP} ).add( $F{UMUR20IP} ).add( $F{UMUR21IP} ).add( $F{UMUR22IP} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IIP}.add( $F{UMUR13IIP} ).add( $F{UMUR14IIP} ).add( $F{UMUR15IIP} ).add( $F{UMUR16IIP} ).add( $F{UMUR17IIP} ).add( $F{UMUR18IIP} ).add( $F{UMUR19IIP} ).add( $F{UMUR20IIP} ).add( $F{UMUR21IIP} ).add( $F{UMUR22IIP} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IIL}.add( $F{UMUR13IIL} ).add( $F{UMUR14IIL} ).add( $F{UMUR15IIL} ).add( $F{UMUR16IIL} ).add( $F{UMUR17IIL} ).add( $F{UMUR18IIL} ).add( $F{UMUR19IIL} ).add( $F{UMUR20IIL} ).add( $F{UMUR21IIL} ).add( $F{UMUR22IIL} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IIIP}.add( $F{UMUR13IIIP} ).add( $F{UMUR14IIIP} ).add( $F{UMUR15IIIP} ).add( $F{UMUR16IIIP} ).add( $F{UMUR17IIIP} ).add( $F{UMUR18IIIP} ).add( $F{UMUR19IIIP} ).add( $F{UMUR20IIIP} ).add( $F{UMUR21IIIP} ).add( $F{UMUR22IIIP} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UMUR12IIIL}.add( $F{UMUR13IIIL} ).add( $F{UMUR14IIIL} ).add( $F{UMUR15IIIL} ).add( $F{UMUR16IIIL} ).add( $F{UMUR17IIIL} ).add( $F{UMUR18IIIL} ).add( $F{UMUR19IIIL} ).add( $F{UMUR20IIIL} ).add( $F{UMUR21IIIL} ).add( $F{UMUR22IIIL} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{12P}.add( $V{13P} ).add( $V{14P} ).add( $V{15P} ).add( $V{16P} ).add( $V{17P} ).add( $V{18P} ).add( $V{19P} ).add( $V{20P} ).add( $V{21P} ).add( $V{22P} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{12L}.add( $V{13L} ).add( $V{14L} ).add( $V{15L} ).add( $V{16L} ).add( $V{17L} ).add( $V{18L} ).add( $V{19L} ).add( $V{20L} ).add( $V{21L} ).add( $V{22L} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{12L}.add( $V{13L} ).add( $V{14L} ).add( $V{15L} ).add( $V{16L} ).add( $V{17L} ).add( $V{18L} ).add( $V{19L} ).add( $V{20L} ).add( $V{21L} ).add( $V{22L} ).add( $V{12P} ).add( $V{13P} ).add( $V{14P} ).add( $V{15P} ).add( $V{16P} ).add( $V{17P} ).add( $V{18P} ).add( $V{19P} ).add( $V{20P} ).add( $V{21P} ).add( $V{22P} )]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

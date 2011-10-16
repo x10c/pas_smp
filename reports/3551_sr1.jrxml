@@ -1,0 +1,1465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="3351_sr1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select b.kd_tahun_ajaran,
+			kasek_ttp_2_l,
+         kasek_ttp_2_p,
+         kasek_ttp_3_l,
+         kasek_ttp_3_p,
+         kasek_ttp_4_l,
+         kasek_ttp_4_p,
+         kasek_ttp_y_l,
+         kasek_ttp_y_p,
+         kasek_takttp_pns_l,
+         kasek_takttp_pns_p,
+         kasek_takttp_bpns_l,
+         kasek_takttp_bpns_p,
+         kasek_takttp_pst_l,
+         kasek_takttp_pst_p,
+         kasek_takttp_drh_l,
+         kasek_takttp_drh_p,
+         guru_ttp_2_l,
+         guru_ttp_2_p,
+         guru_ttp_3_l,
+         guru_ttp_3_p,
+         guru_ttp_4_l,
+         guru_ttp_4_p,
+         guru_ttp_y_l,
+         guru_ttp_y_p,
+         guru_takttp_pns_l,
+         guru_takttp_pns_p,
+         guru_takttp_bpns_l,
+         guru_takttp_bpns_p,
+         guru_takttp_pst_l,
+         guru_takttp_pst_p,
+         guru_takttp_drh_l,
+         guru_takttp_drh_p,
+         admin_ttp_1_l,
+         admin_ttp_1_p,
+         admin_ttp_2_l,
+         admin_ttp_2_p,
+         admin_ttp_3_l,
+         admin_ttp_3_p,
+         admin_ttp_4_l,
+         admin_ttp_4_p,
+         admin_ttp_y_l,
+         admin_ttp_y_p,
+         admin_takttp_pns_l,
+         admin_takttp_pns_p,
+         admin_takttp_bpns_l,
+         admin_takttp_bpns_p
+    from v_pegawai_status as a
+right join r_tahun_ajaran as b on (b.kd_tahun_ajaran = a.kd_tahun_ajaran)
+   where (b.kd_tahun_ajaran = $P{KODE_THN_AJARAN} )]]>
+	</queryString>
+	<field name="kd_tahun_ajaran" class="java.lang.String"/>
+	<field name="kasek_ttp_2_l" class="java.math.BigDecimal"/>
+	<field name="kasek_ttp_2_p" class="java.math.BigDecimal"/>
+	<field name="kasek_ttp_3_l" class="java.math.BigDecimal"/>
+	<field name="kasek_ttp_3_p" class="java.math.BigDecimal"/>
+	<field name="kasek_ttp_4_l" class="java.math.BigDecimal"/>
+	<field name="kasek_ttp_4_p" class="java.math.BigDecimal"/>
+	<field name="kasek_ttp_y_l" class="java.math.BigDecimal"/>
+	<field name="kasek_ttp_y_p" class="java.math.BigDecimal"/>
+	<field name="kasek_takttp_pns_l" class="java.math.BigDecimal"/>
+	<field name="kasek_takttp_pns_p" class="java.math.BigDecimal"/>
+	<field name="kasek_takttp_bpns_l" class="java.math.BigDecimal"/>
+	<field name="kasek_takttp_bpns_p" class="java.math.BigDecimal"/>
+	<field name="kasek_takttp_pst_l" class="java.math.BigDecimal"/>
+	<field name="kasek_takttp_pst_p" class="java.math.BigDecimal"/>
+	<field name="kasek_takttp_drh_l" class="java.math.BigDecimal"/>
+	<field name="kasek_takttp_drh_p" class="java.math.BigDecimal"/>
+	<field name="guru_ttp_2_l" class="java.math.BigDecimal"/>
+	<field name="guru_ttp_2_p" class="java.math.BigDecimal"/>
+	<field name="guru_ttp_3_l" class="java.math.BigDecimal"/>
+	<field name="guru_ttp_3_p" class="java.math.BigDecimal"/>
+	<field name="guru_ttp_4_l" class="java.math.BigDecimal"/>
+	<field name="guru_ttp_4_p" class="java.math.BigDecimal"/>
+	<field name="guru_ttp_y_l" class="java.math.BigDecimal"/>
+	<field name="guru_ttp_y_p" class="java.math.BigDecimal"/>
+	<field name="guru_takttp_pns_l" class="java.math.BigDecimal"/>
+	<field name="guru_takttp_pns_p" class="java.math.BigDecimal"/>
+	<field name="guru_takttp_bpns_l" class="java.math.BigDecimal"/>
+	<field name="guru_takttp_bpns_p" class="java.math.BigDecimal"/>
+	<field name="guru_takttp_pst_l" class="java.math.BigDecimal"/>
+	<field name="guru_takttp_pst_p" class="java.math.BigDecimal"/>
+	<field name="guru_takttp_drh_l" class="java.math.BigDecimal"/>
+	<field name="guru_takttp_drh_p" class="java.math.BigDecimal"/>
+	<field name="admin_ttp_1_l" class="java.math.BigDecimal"/>
+	<field name="admin_ttp_1_p" class="java.math.BigDecimal"/>
+	<field name="admin_ttp_2_l" class="java.math.BigDecimal"/>
+	<field name="admin_ttp_2_p" class="java.math.BigDecimal"/>
+	<field name="admin_ttp_3_l" class="java.math.BigDecimal"/>
+	<field name="admin_ttp_3_p" class="java.math.BigDecimal"/>
+	<field name="admin_ttp_4_l" class="java.math.BigDecimal"/>
+	<field name="admin_ttp_4_p" class="java.math.BigDecimal"/>
+	<field name="admin_ttp_y_l" class="java.math.BigDecimal"/>
+	<field name="admin_ttp_y_p" class="java.math.BigDecimal"/>
+	<field name="admin_takttp_pns_l" class="java.math.BigDecimal"/>
+	<field name="admin_takttp_pns_p" class="java.math.BigDecimal"/>
+	<field name="admin_takttp_bpns_l" class="java.math.BigDecimal"/>
+	<field name="admin_takttp_bpns_p" class="java.math.BigDecimal"/>
+	<variable name="TOTAL_KEPSEK_L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{kasek_ttp_2_l}.add($F{kasek_ttp_3_l}).add($F{kasek_ttp_4_l}).add($F{kasek_ttp_y_l}).add($F{kasek_takttp_pns_l}).add($F{kasek_takttp_bpns_l}).add($F{kasek_takttp_pst_l}).add($F{kasek_takttp_drh_l})]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_KEPSEK_P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{kasek_ttp_2_p}.add($F{kasek_ttp_3_p}).add($F{kasek_ttp_4_p}).add($F{kasek_ttp_y_p}).add($F{kasek_takttp_pns_p}).add($F{kasek_takttp_bpns_p}).add($F{kasek_takttp_pst_p}).add($F{kasek_takttp_drh_p})]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_GURU_L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{guru_ttp_2_l}.add($F{guru_ttp_3_l}).add($F{guru_ttp_4_l}).add($F{guru_ttp_y_l}).add($F{guru_takttp_pns_l}).add($F{guru_takttp_bpns_l}).add($F{guru_takttp_pst_l}).add($F{guru_takttp_drh_l})]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_GURU_P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{guru_ttp_2_p}.add($F{guru_ttp_3_p}).add($F{guru_ttp_4_p}).add($F{guru_ttp_y_p}).add($F{guru_takttp_pns_p}).add($F{guru_takttp_bpns_p}).add($F{guru_takttp_pst_p}).add($F{guru_takttp_drh_p})]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_ADM_L" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{admin_ttp_1_l}.add($F{admin_ttp_2_l}).add($F{admin_ttp_3_l}).add($F{admin_ttp_4_l}).add($F{admin_ttp_y_l}).add($F{admin_takttp_pns_l}).add($F{admin_takttp_bpns_l})]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_ADM_P" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{admin_ttp_1_p}.add($F{admin_ttp_2_p}).add($F{admin_ttp_3_p}).add($F{admin_ttp_4_p}).add($F{admin_ttp_y_p}).add($F{admin_takttp_pns_p}).add($F{admin_takttp_bpns_p})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="80"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jabatan
+Pegawai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Yayasan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gol I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gol II]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gol III]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gol IV]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PNS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bantu Pusat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bantu Daerah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="40" width="40" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BPNS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="60" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="20" width="200" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tetap]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="20" width="160" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tidak Tetap]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="360" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status Kepegawaian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="95" height="60"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="60" width="30" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="60" width="30" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="60" width="35" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L + P]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Arial"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Kepala Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Arial"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Guru]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="100" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Arial"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Tenaga Administrasi]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_ttp_2_l} == 0 ? "" : $F{kasek_ttp_2_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_ttp_2_p} == 0 ? "" : $F{kasek_ttp_2_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_ttp_2_l} == 0 ? "" : $F{guru_ttp_2_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_ttp_2_p} == 0 ? "" : $F{guru_ttp_2_p}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="100" y="0" width="40" height="40" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_ttp_3_l} == 0 ? "" : $F{kasek_ttp_3_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_ttp_3_p} == 0 ? "" : $F{kasek_ttp_3_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_ttp_4_l} == 0 ? "" : $F{kasek_ttp_4_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_ttp_4_p} == 0 ? "" : $F{kasek_ttp_4_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_ttp_y_p} == 0 ? "" : $F{kasek_ttp_y_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_ttp_y_l} == 0 ? "" : $F{kasek_ttp_y_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_ttp_3_l} == 0 ? "" : $F{guru_ttp_3_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_ttp_3_p} == 0 ? "" : $F{guru_ttp_3_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_ttp_4_l} == 0 ? "" : $F{guru_ttp_4_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_ttp_4_p} == 0 ? "" : $F{guru_ttp_4_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_ttp_y_l} == 0 ? "" : $F{guru_ttp_y_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_ttp_y_p} == 0 ? "" : $F{guru_ttp_y_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_ttp_1_l} == 0 ? "" : $F{admin_ttp_1_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_ttp_1_p} == 0 ? "" : $F{admin_ttp_1_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_ttp_2_l} == 0 ? "" : $F{admin_ttp_2_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_ttp_2_p} == 0 ? "" : $F{admin_ttp_2_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_ttp_3_l} == 0 ? "" : $F{admin_ttp_3_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_ttp_3_p} == 0 ? "" : $F{admin_ttp_3_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_ttp_4_l} == 0 ? "" : $F{admin_ttp_4_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_ttp_4_p} == 0 ? "" : $F{admin_ttp_4_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_ttp_y_l} == 0 ? "" : $F{admin_ttp_y_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_ttp_y_p} == 0 ? "" : $F{admin_ttp_y_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_takttp_pns_l} == 0 ? "" : $F{kasek_takttp_pns_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_takttp_pns_p} == 0 ? "" : $F{kasek_takttp_pns_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_takttp_bpns_p} == 0 ? "" : $F{kasek_takttp_bpns_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_takttp_bpns_l} == 0 ? "" : $F{kasek_takttp_bpns_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_takttp_pst_p} == 0 ? "" : $F{kasek_takttp_pst_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_takttp_pst_l} == 0 ? "" : $F{kasek_takttp_pst_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_takttp_drh_p} == 0 ? "" : $F{kasek_takttp_drh_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kasek_takttp_drh_l} == 0 ? "" : $F{kasek_takttp_drh_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_takttp_pns_p} == 0 ? "" : $F{guru_takttp_pns_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_takttp_pns_l} == 0 ? "" : $F{guru_takttp_pns_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_takttp_bpns_p} == 0 ? "" : $F{guru_takttp_bpns_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_takttp_bpns_l} == 0 ? "" : $F{guru_takttp_bpns_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_takttp_pst_p} == 0 ? "" : $F{guru_takttp_pst_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_takttp_pst_l} == 0 ? "" : $F{guru_takttp_pst_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_takttp_drh_p} == 0 ? "" : $F{guru_takttp_drh_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="20" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{guru_takttp_drh_l} == 0 ? "" : $F{guru_takttp_drh_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_takttp_pns_p} == 0 ? "" : $F{admin_takttp_pns_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_takttp_pns_l} == 0 ? "" : $F{admin_takttp_pns_l}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_takttp_bpns_p} == 0 ? "" : $F{admin_takttp_bpns_p}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="40" width="20" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin_takttp_bpns_l} == 0 ? "" : $F{admin_takttp_bpns_l}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="380" y="40" width="80" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="460" y="0" width="30" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KEPSEK_L} == 0 ? "" : $V{TOTAL_KEPSEK_L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="30" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_KEPSEK_P} == 0 ? "" : $V{TOTAL_KEPSEK_P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="20" width="30" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_GURU_L} == 0 ? "" : $V{TOTAL_GURU_L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="20" width="30" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_GURU_P} == 0 ? "" : $V{TOTAL_GURU_P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="40" width="30" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_ADM_L} == 0 ? "" : $V{TOTAL_ADM_L}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="40" width="30" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_ADM_P} == 0 ? "" : $V{TOTAL_ADM_P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="0" width="35" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($V{TOTAL_KEPSEK_L}+$V{TOTAL_KEPSEK_P}) == 0 ? "" : $V{TOTAL_KEPSEK_L}+$V{TOTAL_KEPSEK_P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="20" width="35" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($V{TOTAL_GURU_L}+$V{TOTAL_GURU_P}) == 0 ? "" : $V{TOTAL_GURU_L}+$V{TOTAL_GURU_P}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="40" width="35" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($V{TOTAL_ADM_L}+$V{TOTAL_ADM_P}) == 0 ? "" : $V{TOTAL_ADM_L}+$V{TOTAL_ADM_P}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

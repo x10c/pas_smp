@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="5341_sr1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.kd_tahun_ajaran,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '01' and kd_agama = '1' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) islamI,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '01' and kd_agama = '2' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) protestanI,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '01' and kd_agama = '3' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) katolikI,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '01' and kd_agama = '4' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) hinduI,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '01' and kd_agama = '5' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) budhaI,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '01' and kd_agama = '6' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) kounghuchuI,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '02' and kd_agama = '1' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) islamII,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '02' and kd_agama = '2' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) protestanII,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '02' and kd_agama = '3' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) katolikII,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '02' and kd_agama = '4' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) hinduII,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '02' and kd_agama = '5' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) budhaII,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '02' and kd_agama = '6' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) kounghuchuII,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '03' and kd_agama = '1' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) islamIII,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '03' and kd_agama = '2' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) protestanIII,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '03' and kd_agama = '3' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) katolikIII,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '03' and kd_agama = '4' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) hinduIII,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '03' and kd_agama = '5' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) budhaIII,
+       (select count(*) from t_siswa_tingkat b
+         where kd_tingkat_kelas = '03' and kd_agama = '6' and
+               b.kd_tahun_ajaran = a.kd_tahun_ajaran) kounghuchuIII
+  from t_sekolah_identitas a
+ where a.kd_tahun_ajaran = $P{KODE_THN_AJARAN}]]>
+	</queryString>
+	<field name="kd_tahun_ajaran" class="java.lang.String"/>
+	<field name="islamI" class="java.lang.Long"/>
+	<field name="protestanI" class="java.lang.Long"/>
+	<field name="katolikI" class="java.lang.Long"/>
+	<field name="hinduI" class="java.lang.Long"/>
+	<field name="budhaI" class="java.lang.Long"/>
+	<field name="kounghuchuI" class="java.lang.Long"/>
+	<field name="islamII" class="java.lang.Long"/>
+	<field name="protestanII" class="java.lang.Long"/>
+	<field name="katolikII" class="java.lang.Long"/>
+	<field name="hinduII" class="java.lang.Long"/>
+	<field name="budhaII" class="java.lang.Long"/>
+	<field name="kounghuchuII" class="java.lang.Long"/>
+	<field name="islamIII" class="java.lang.Long"/>
+	<field name="protestanIII" class="java.lang.Long"/>
+	<field name="katolikIII" class="java.lang.Long"/>
+	<field name="hinduIII" class="java.lang.Long"/>
+	<field name="budhaIII" class="java.lang.Long"/>
+	<field name="kounghuchuIII" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="40"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tingkat
+Kelas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="0" width="420" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Islam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Protestan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Katolik]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hindu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Budha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Konghuchu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="70" height="40"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kelas I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kelas II]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kelas III]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="60" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="0" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{islamI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{protestanI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{katolikI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hinduI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{budhaI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="0" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kounghuchuI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{islamI}+$F{protestanI}+$F{katolikI}+$F{hinduI}+$F{budhaI}+$F{kounghuchuI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{islamII}+$F{protestanII}+$F{katolikII}+$F{hinduII}+$F{budhaII}+$F{kounghuchuII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{budhaII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{katolikII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kounghuchuII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hinduII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{protestanII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="20" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{islamII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="40" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{islamIII}+$F{protestanIII}+$F{katolikIII}+$F{hinduIII}+$F{budhaIII}+$F{kounghuchuIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="40" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{budhaIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="40" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{katolikIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="40" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kounghuchuIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="40" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hinduIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="40" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{protestanIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="40" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{islamIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="60" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{budhaI}+$F{budhaII}+$F{budhaIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="60" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kounghuchuI}+$F{kounghuchuII}+$F{kounghuchuIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="60" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{protestanI}+$F{protestanII}+$F{protestanIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="60" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hinduI}+$F{hinduII}+$F{hinduIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="60" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{islamI}+$F{islamII}+$F{islamIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="60" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{katolikI}+$F{katolikII}+$F{katolikIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="60" width="70" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{islamI}+$F{protestanI}+$F{katolikI}+$F{hinduI}+$F{budhaI}+$F{kounghuchuI}+$F{islamII}+$F{protestanII}+$F{katolikII}+$F{hinduII}+$F{budhaII}+$F{kounghuchuII}+$F{islamIII}+$F{protestanIII}+$F{katolikIII}+$F{hinduIII}+$F{budhaIII}+$F{kounghuchuIII}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

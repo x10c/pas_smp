@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="3353_sr3" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="128"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KODE_THN_AJARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 	"Kepala Sekolah" as jabatan,
+		"< 5" as umur,
+		sum(if(ms_krj_sk < 5 and kd_jenis_pegawai in ('15','20','21','22','23','24'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Kepala Sekolah" as jabatan,
+		"5 - 9" as umur,
+		sum(if(ms_krj_sk >= 5 and ms_krj_sk < 10 and kd_jenis_pegawai in ('15','20','21','22','23','24'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Kepala Sekolah" as jabatan,
+		"10 - 14" as umur,
+		sum(if(ms_krj_sk >= 10 and ms_krj_sk < 15 and kd_jenis_pegawai in ('15','20','21','22','23','24'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Kepala Sekolah" as jabatan,
+		"15 - 19" as umur,
+		sum(if(ms_krj_sk >= 15 and ms_krj_sk < 20 and kd_jenis_pegawai in ('15','20','21','22','23','24'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Kepala Sekolah" as jabatan,
+		"20 - 24" as umur,
+		sum(if(ms_krj_sk >= 20 and ms_krj_sk < 25 and kd_jenis_pegawai in ('15','20','21','22','23','24'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Kepala Sekolah" as jabatan,
+		"> 24" as umur,
+		sum(if(ms_krj_sk >= 25 and kd_jenis_pegawai in ('15','20','21','22','23','24'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Pemda" as jabatan,
+		"< 5" as umur,
+		sum(if(ms_krj_sk < 5 and kd_jenis_pegawai in ('01','12'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Pemda" as jabatan,
+		"5 - 9" as umur,
+		sum(if(ms_krj_sk >= 5 and ms_krj_sk < 10 and kd_jenis_pegawai in ('01','12'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Pemda" as jabatan,
+		"10 - 14" as umur,
+		sum(if(ms_krj_sk >= 10 and ms_krj_sk < 15 and kd_jenis_pegawai in ('01','12'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Pemda" as jabatan,
+		"15 - 19" as umur,
+		sum(if(ms_krj_sk >= 15 and ms_krj_sk < 20 and kd_jenis_pegawai in ('01','12'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Pemda" as jabatan,
+		"20 - 24" as umur,
+		sum(if(ms_krj_sk >= 20 and ms_krj_sk < 25 and kd_jenis_pegawai in ('01','12'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Pemda" as jabatan,
+		"> 24" as umur,
+		sum(if(ms_krj_sk >= 25 and kd_jenis_pegawai in ('01','12'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Depag" as jabatan,
+		"< 5" as umur,
+		sum(if(ms_krj_sk < 5 and kd_jenis_pegawai in ('02','10','11'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Depag" as jabatan,
+		"5 - 9" as umur,
+		sum(if(ms_krj_sk >= 5 and ms_krj_sk < 10 and kd_jenis_pegawai in ('02','10','11'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Depag" as jabatan,
+		"10 - 14" as umur,
+		sum(if(ms_krj_sk >= 10 and ms_krj_sk < 15 and kd_jenis_pegawai in ('02','10','11'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Depag" as jabatan,
+		"15 - 19" as umur,
+		sum(if(ms_krj_sk >= 15 and ms_krj_sk < 20 and kd_jenis_pegawai in ('02','10','11'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Depag" as jabatan,
+		"20 - 24" as umur,
+		sum(if(ms_krj_sk >= 20 and ms_krj_sk < 25 and kd_jenis_pegawai in ('02','10','11'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru PNS Depag" as jabatan,
+		"> 24" as umur,
+		sum(if(ms_krj_sk >= 25 and kd_jenis_pegawai in ('02','10','11'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tetap" as jabatan,
+		"< 5" as umur,
+		sum(if(ms_krj_sk < 5 and kd_jenis_pegawai in ('03','25'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tetap" as jabatan,
+		"5 - 9" as umur,
+		sum(if(ms_krj_sk >= 5 and ms_krj_sk < 10 and kd_jenis_pegawai in ('03','25'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tetap" as jabatan,
+		"10 - 14" as umur,
+		sum(if(ms_krj_sk >= 10 and ms_krj_sk < 15 and kd_jenis_pegawai in ('03','25'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tetap" as jabatan,
+		"15 - 19" as umur,
+		sum(if(ms_krj_sk >= 15 and ms_krj_sk < 20 and kd_jenis_pegawai in ('03','25'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tetap" as jabatan,
+		"20 - 24" as umur,
+		sum(if(ms_krj_sk >= 20 and ms_krj_sk < 25 and kd_jenis_pegawai in ('03','25'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tetap" as jabatan,
+		"> 24" as umur,
+		sum(if(ms_krj_sk >= 25 and kd_jenis_pegawai in ('03','25'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Pusat" as jabatan,
+		"< 5" as umur,
+		sum(if(ms_krj_sk < 5 and kd_jenis_pegawai='04',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Pusat" as jabatan,
+		"5 - 9" as umur,
+		sum(if(ms_krj_sk >= 5 and ms_krj_sk < 10 and kd_jenis_pegawai='04',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Pusat" as jabatan,
+		"10 - 14" as umur,
+		sum(if(ms_krj_sk >= 10 and ms_krj_sk < 15 and kd_jenis_pegawai='04',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Pusat" as jabatan,
+		"15 - 19" as umur,
+		sum(if(ms_krj_sk >= 15 and ms_krj_sk < 20 and kd_jenis_pegawai='04',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Pusat" as jabatan,
+		"20 - 24" as umur,
+		sum(if(ms_krj_sk >= 20 and ms_krj_sk < 25 and kd_jenis_pegawai='04',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Pusat" as jabatan,
+		"> 24" as umur,
+		sum(if(ms_krj_sk >= 25 and kd_jenis_pegawai='04',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Daerah" as jabatan,
+		"< 5" as umur,
+		sum(if(ms_krj_sk < 5 and kd_jenis_pegawai='05',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Daerah" as jabatan,
+		"5 - 9" as umur,
+		sum(if(ms_krj_sk >= 5 and ms_krj_sk < 10 and kd_jenis_pegawai='05',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Daerah" as jabatan,
+		"10 - 14" as umur,
+		sum(if(ms_krj_sk >= 10 and ms_krj_sk < 15 and kd_jenis_pegawai='05',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Daerah" as jabatan,
+		"15 - 19" as umur,
+		sum(if(ms_krj_sk >= 15 and ms_krj_sk < 20 and kd_jenis_pegawai='05',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Daerah" as jabatan,
+		"20 - 24" as umur,
+		sum(if(ms_krj_sk >= 20 and ms_krj_sk < 25 and kd_jenis_pegawai='05',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Bantu Daerah" as jabatan,
+		"> 24" as umur,
+		sum(if(ms_krj_sk >= 25 and kd_jenis_pegawai='05',1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tidak Tetap" as jabatan,
+		"< 5" as umur,
+		sum(if(ms_krj_sk < 5 and kd_jenis_pegawai in ('06','17','18'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tidak Tetap" as jabatan,
+		"5 - 9" as umur,
+		sum(if(ms_krj_sk >= 5 and ms_krj_sk < 10 and kd_jenis_pegawai in ('06','17','18'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tidak Tetap" as jabatan,
+		"10 - 14" as umur,
+		sum(if(ms_krj_sk >= 10 and ms_krj_sk < 15 and kd_jenis_pegawai in ('06','17','18'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tidak Tetap" as jabatan,
+		"15 - 19" as umur,
+		sum(if(ms_krj_sk >= 15 and ms_krj_sk < 20 and kd_jenis_pegawai in ('06','17','18'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tidak Tetap" as jabatan,
+		"20 - 24" as umur,
+		sum(if(ms_krj_sk >= 20 and ms_krj_sk < 25 and kd_jenis_pegawai in ('06','17','18'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})
+union all
+select 	"Guru Tidak Tetap" as jabatan,
+		"> 24" as umur,
+		sum(if(ms_krj_sk >= 25 and kd_jenis_pegawai in ('06','17','18'),1,0)) as jml
+from	v_pegawai_usia_masakerja
+where	(kd_jenis_ketenagaan in ('1','6')) and ( KD_TAHUN_AJARAN = $P{KODE_THN_AJARAN})]]>
+	</queryString>
+	<field name="jabatan" class="java.lang.String"/>
+	<field name="umur" class="java.lang.String"/>
+	<field name="jml" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="300" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="792" height="300"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<chartTitle>
+						<font fontName="Arial" size="14" isBold="true"/>
+						<titleExpression><![CDATA["MASA KERJA PEGAWAI"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{umur}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jabatan}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jml}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot labelRotation="90.0"/>
+					<itemLabel/>
+					<categoryAxisLabelExpression><![CDATA["JABATAN PEGAWAI"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat labelRotation="90.0">
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="12" isBold="true"/>
+							</labelFont>
+							<tickLabelFont>
+								<font fontName="Arial" size="8"/>
+							</tickLabelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["JUMLAH"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="12" isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>
