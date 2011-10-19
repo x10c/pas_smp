@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="334_sr1" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_PEGAWAI" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT t_pegawai.nip ,
+t_pegawai.nuptk,
+       t_pegawai.nm_pegawai ,
+       t_pegawai.kota_lahir ,
+       t_pegawai.tanggal_lahir ,
+       t_pegawai.kd_jenis_kelamin ,
+       r_gol_darah.nm_gol_darah ,
+       r_agama.nm_agama ,
+       t_pegawai.kd_status_nikah ,
+       t_pegawai.alamat ,
+       t_pegawai.kd_pos ,
+       t_pegawai.no_telp ,
+       t_pegawai.no_hp,
+       t_pegawai.inisial,
+       r_jenis_ketenagaan.nm_jenis_ketenagaan,
+			  t_pegawai.operasi_komputer,
+			  t_pegawai.kursus_komputer,
+			  t_pegawai.sertifikasi
+FROM t_pegawai,
+     r_jenis_ketenagaan,
+r_gol_darah,
+r_agama
+WHERE (( t_pegawai.kd_jenis_ketenagaan <> '1' ) and
+( t_pegawai.kd_jenis_ketenagaan <> '6' )) and
+( t_pegawai.kd_jenis_ketenagaan = r_jenis_ketenagaan.kd_jenis_ketenagaan ) and
+( t_pegawai.id_pegawai = $P{ID_PEGAWAI}) and
+( r_gol_darah.kd_gol_darah = t_pegawai.kd_gol_darah) and
+( r_agama.kd_agama = t_pegawai.kd_agama)]]>
+	</queryString>
+	<field name="nip" class="java.lang.String"/>
+	<field name="nuptk" class="java.lang.String"/>
+	<field name="nm_pegawai" class="java.lang.String"/>
+	<field name="kota_lahir" class="java.lang.String"/>
+	<field name="tanggal_lahir" class="java.sql.Date"/>
+	<field name="kd_jenis_kelamin" class="java.lang.String"/>
+	<field name="nm_gol_darah" class="java.lang.String"/>
+	<field name="nm_agama" class="java.lang.String"/>
+	<field name="kd_status_nikah" class="java.lang.String"/>
+	<field name="alamat" class="java.lang.String"/>
+	<field name="kd_pos" class="java.lang.String"/>
+	<field name="no_telp" class="java.lang.String"/>
+	<field name="no_hp" class="java.lang.String"/>
+	<field name="inisial" class="java.lang.String"/>
+	<field name="nm_jenis_ketenagaan" class="java.lang.String"/>
+	<field name="operasi_komputer" class="java.lang.String"/>
+	<field name="kursus_komputer" class="java.lang.String"/>
+	<field name="sertifikasi" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="380" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="10" width="213" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A. DATA IDENTITAS PEGAWAI]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="108" width="319" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pegawai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="329" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[Kursus Komputer]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="189" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kd_pos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="45" width="182" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nip}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="45" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[NIP]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="229" width="319" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kota_lahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="289" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_agama}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="247" y="249" width="77" height="20"/>
+				<textElement/>
+				<text><![CDATA[Jenis Kelamin]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="336" y="249" width="119" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kd_jenis_kelamin}.equals("1")?"Laki-Laki":"Perempuan"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="124" y="108" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="209" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="128" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[Inisial]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="148" width="319" height="41"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="247" y="269" width="77" height="20"/>
+				<textElement/>
+				<text><![CDATA[Status Nikah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="209" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[No. Telp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="65" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="108" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nama Guru]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="95" width="627" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="124" y="128" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="229" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tempat Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="209" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="269" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_gol_darah}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="247" y="209" width="77" height="20"/>
+				<textElement/>
+				<text><![CDATA[No. HP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="289" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[Agama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="269" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[Gol. Darah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="148" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="249" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tanggal Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="329" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="269" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="309" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[Operasi Komputer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="229" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="209" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_telp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="124" y="269" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="336" y="209" width="119" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_hp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="269" width="119" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kd_status_nikah}.equals("N")?"Nikah":
+$F{kd_status_nikah}.equals("D")?"Duda":
+$F{kd_status_nikah}.equals("J")?"Janda":
+$F{kd_status_nikah}.equals("B")?"Belum":
+""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="128" width="57" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{inisial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="324" y="249" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="349" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="329" width="292" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kursus_komputer}.equals("1")?"Sudah":"Belum"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="189" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[Kode Pos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="189" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="349" width="143" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sertifikasi}.equals("1")?"Sudah":"Belum"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="124" y="309" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="45" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="249" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{tanggal_lahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="65" width="127" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nuptk}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="349" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[Sertifikasi]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="309" width="292" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{operasi_komputer}.equals("1")?"Sudah Mampu Mengoprasikan":
+"Belum Mampu Mengoprasikan"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="124" y="289" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="65" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[NUPTK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="249" width="12" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="148" width="109" height="20"/>
+				<textElement/>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="357" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KD_TAHUN_AJARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.nm_kel_mata_pelajaran,
+       (
+        select b.jumlah_tetap
+        from t_pegawai_guru_kebutuhan as b
+        where (b.kd_kel_mata_pelajaran = a.kd_kel_mata_pelajaran) and
+              (b.kd_tahun_ajaran = $P{KD_TAHUN_AJARAN})
+       ) as jumlah_ada_1,
+       (
+        select b.jumlah_tak_tetap
+        from t_pegawai_guru_kebutuhan as b
+        where (b.kd_kel_mata_pelajaran = a.kd_kel_mata_pelajaran) and
+              (b.kd_tahun_ajaran = $P{KD_TAHUN_AJARAN})
+       ) as jumlah_ada_2,
+       (
+        select (b.jumlah_butuh+b.jumlah_tak_tetap+b.jumlah_tetap)
+        from t_pegawai_guru_kebutuhan as b
+        where (b.kd_kel_mata_pelajaran = a.kd_kel_mata_pelajaran) and
+              (b.kd_tahun_ajaran = $P{KD_TAHUN_AJARAN})
+       ) as jumlah_seharusnya
+from r_kel_mata_pelajaran as a
+where a.kd_kel_mata_pelajaran in ('01','02','03','04','11','13','15','16','19','21','22','29','30')
+order by kd_kel_mata_pelajaran]]>
+	</queryString>
+	<field name="nm_kel_mata_pelajaran" class="java.lang.String"/>
+	<field name="jumlah_ada_1" class="java.lang.Integer"/>
+	<field name="jumlah_ada_2" class="java.lang.Integer"/>
+	<field name="jumlah_seharusnya" class="java.math.BigInteger"/>
+	<variable name="ROW" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{ROW}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="jml_ada" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{jumlah_ada_1}+$F{jumlah_ada_2}]]></variableExpression>
+	</variable>
+	<variable name="kekurangan" class="java.lang.Integer">
+		<variableExpression><![CDATA[($F{jumlah_ada_1}+$F{jumlah_ada_2})>=$F{jumlah_seharusnya}? 0:
+($F{jumlah_ada_1}+$F{jumlah_ada_2})-$F{jumlah_seharusnya}]]></variableExpression>
+	</variable>
+	<variable name="kelebihan" class="java.lang.Integer">
+		<variableExpression><![CDATA[($F{jumlah_ada_1}+$F{jumlah_ada_2})<=$F{jumlah_seharusnya}? 0:
+($F{jumlah_ada_1}+$F{jumlah_ada_2})-$F{jumlah_seharusnya}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="20" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="0" width="141" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nama Mata Pelajaran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="161" y="0" width="78" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Jumlah Seharusnya]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="0" width="75" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Jumlah yang Ada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="0" width="50" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Kekurangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="0" width="50" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Kelebihan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="20" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{ROW}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="0" width="141" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="8"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_kel_mata_pelajaran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="0" width="78" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Number"><![CDATA[$F{jumlah_seharusnya}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="0" width="75" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{jml_ada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="0" width="50" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{kekurangan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="0" width="50" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{kelebihan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

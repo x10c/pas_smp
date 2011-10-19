@@ -1,0 +1,1049 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="532_sr1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_SISWA" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT     a.id_siswa ,
+	a.nis,
+           a.nm_siswa ,
+           a.kd_jenis_kelamin ,
+           a.kota_lahir ,
+           a.tanggal_lahir ,
+           d.nm_agama ,
+           a.alamat,
+           a.no_telp ,
+           e.nm_gol_darah ,
+           a.status_siswa ,
+           a.no_hp ,
+           c.kewarganegaraan  as kewarganegaraan,
+           c.anak_ke  as anak_ke,
+           c.jumlah_kandung  as jumlah_kandung,
+           c.jumlah_tiri as jumlah_tiri,
+           c.status_yatim_piatu  as status_yatim_piatu,
+           c.jumlah_angkat as jumlah_angkat,
+           c.bahasa as bahasa,
+           c.hubungi ,
+           c.tinggal_di as tinggal_di,
+           c.jarak_sek as jarak_sek,
+           f.nm_ketunaan ,
+           c.tinggi_badan as tinggi_badan,
+           c.berat_badan as berat_badan,
+           g.nm_sekolah ,
+           c.tanggal_stl_sd ,
+           c.no_stl_sd as no_stl_sd,
+           c.lama_belajar_sd as lama_belajar,
+           ( select nm_sekolah from r_asal_sekolah where asal_smp = a.asal_smp) as nm_asal_smp ,
+           a.pindah_alasan ,
+           a.kd_tingkat_kelas ,
+           a.diterima_tanggal ,
+           a.nm_panggilan ,
+			c.tanggung_biaya,
+				(select b.tanggal_keluar from t_siswa_putus as b where (b.id_siswa = a.id_siswa)) tgl_keluar_sek,
+				(select b.alasan_keluar from t_siswa_putus as b where (b.id_siswa = a.id_siswa)) alasan_keluar,
+				(select b.tahun_lulus from t_siswa_alumni as b where (b.id_siswa = a.id_siswa)) thn_lulus,
+				(select b.no_stl_lulus from t_siswa_alumni as b where (b.id_siswa = a.id_siswa)) no_stl_lulus,
+				(select b.lanjut_di from t_siswa_alumni as b where (b.id_siswa = a.id_siswa)) lanjut_di,
+				(select b.tanggal_bekerja from t_siswa_alumni as b where (b.id_siswa = a.id_siswa)) tgl_bekerja,
+				(select b.nm_perusahaan from t_siswa_alumni as b where (b.id_siswa = a.id_siswa)) nm_perusahaan
+        FROM t_siswa as a,
+t_siswa_info as c,
+r_agama as d,
+r_gol_darah as e,
+r_ketunaan as f,
+r_asal_sekolah as g
+WHERE c.id_siswa = a.id_siswa
+and a.id_siswa = $P{ID_SISWA}
+and d.kd_agama = a.kd_agama
+and e.kd_gol_darah = a.kd_gol_darah
+and f.kd_ketunaan = c.kd_ketunaan
+and g.asal_sd = a.asal_sd]]>
+	</queryString>
+	<field name="id_siswa" class="java.math.BigInteger"/>
+	<field name="nis" class="java.lang.String"/>
+	<field name="nm_siswa" class="java.lang.String"/>
+	<field name="kd_jenis_kelamin" class="java.lang.String"/>
+	<field name="kota_lahir" class="java.lang.String"/>
+	<field name="tanggal_lahir" class="java.sql.Date"/>
+	<field name="nm_agama" class="java.lang.String"/>
+	<field name="alamat" class="java.lang.String"/>
+	<field name="no_telp" class="java.lang.String"/>
+	<field name="nm_gol_darah" class="java.lang.String"/>
+	<field name="status_siswa" class="java.lang.String"/>
+	<field name="no_hp" class="java.lang.String"/>
+	<field name="kewarganegaraan" class="java.lang.String"/>
+	<field name="anak_ke" class="java.lang.Integer"/>
+	<field name="jumlah_kandung" class="java.lang.Integer"/>
+	<field name="jumlah_tiri" class="java.lang.Integer"/>
+	<field name="status_yatim_piatu" class="java.lang.String"/>
+	<field name="jumlah_angkat" class="java.lang.Integer"/>
+	<field name="bahasa" class="java.lang.String"/>
+	<field name="hubungi" class="java.lang.String"/>
+	<field name="tinggal_di" class="java.lang.String"/>
+	<field name="jarak_sek" class="java.math.BigDecimal"/>
+	<field name="nm_ketunaan" class="java.lang.String"/>
+	<field name="tinggi_badan" class="java.math.BigDecimal"/>
+	<field name="berat_badan" class="java.math.BigDecimal"/>
+	<field name="nm_sekolah" class="java.lang.String"/>
+	<field name="tanggal_stl_sd" class="java.sql.Date"/>
+	<field name="no_stl_sd" class="java.lang.String"/>
+	<field name="lama_belajar" class="java.lang.Integer"/>
+	<field name="nm_asal_smp" class="java.lang.String"/>
+	<field name="pindah_alasan" class="java.lang.String"/>
+	<field name="kd_tingkat_kelas" class="java.lang.String"/>
+	<field name="diterima_tanggal" class="java.sql.Date"/>
+	<field name="nm_panggilan" class="java.lang.String"/>
+	<field name="tanggung_biaya" class="java.lang.Integer"/>
+	<field name="tgl_keluar_sek" class="java.sql.Date"/>
+	<field name="alasan_keluar" class="java.lang.String"/>
+	<field name="thn_lulus" class="java.lang.Integer"/>
+	<field name="no_stl_lulus" class="java.lang.String"/>
+	<field name="lanjut_di" class="java.lang.String"/>
+	<field name="tgl_bekerja" class="java.sql.Date"/>
+	<field name="nm_perusahaan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="715" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A. IDENTITAS SISWA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="116" y="25" width="136" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nis}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="25" width="107" height="13"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nomor Induk Siswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="25" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="40" width="397" height="15"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[A. Keterangan Tentang Diri Siswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="59" width="150" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[1.  Nama Siswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="73" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[a. Nama Lengkap]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="86" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[b. Nama Panggilan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="99" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[2.  Tempat dan Tanggal Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="112" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[3.  Jenis Kelamin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="125" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[4.  Agama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="138" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[5.  Kewarganegaraan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="151" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[6.  Anak ke]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="164" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[7.  Jumlah Saudara Kandung]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="216" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[11. Bahasa Sehari-hari di rumah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="242" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[13. Penanggung Biaya]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="190" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[9.  Jumlah Saudara Angkat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="229" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[12. Pihak yang bisa dihubungi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="203" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[10. Anak Yatim/ Piatu/ Yatim Piatu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="177" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[8.  Jumlah Saudara Tiri]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="73" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="86" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="99" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="112" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="125" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="164" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="151" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="138" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="177" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="229" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="216" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="203" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="190" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="242" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="267" y="73" width="214" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_siswa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="86" width="74" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_panggilan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="99" width="127" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kota_lahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="99" width="77" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{tanggal_lahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="112" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kd_jenis_kelamin}.equals("1")?"Laki-Laki":"Perempuan"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="125" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_agama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="138" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kewarganegaraan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="151" width="51" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{anak_ke}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="164" width="51" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{jumlah_kandung}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="177" width="51" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{jumlah_tiri}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="190" width="51" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{jumlah_angkat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="203" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{status_yatim_piatu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="216" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bahasa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="229" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{hubungi}.equals("1")?"Ayah":
+$F{hubungi}.equals("1")?"Ibu":
+"Wali Siswa"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="242" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{tanggung_biaya}.equals("1")?"Ayah":
+$F{tanggung_biaya}.equals("1")?"Ibu":
+$F{tanggung_biaya}.equals("1")?"Wali Siswa":
+"Sendiri"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="97" y="255" width="397" height="16"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[B. Keterangan Tempat Tinggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="302" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="276" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[14 Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="302" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[15. No Telepon/ Handphone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="315" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="328" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[17. Jarak Tempat Tinggal ke Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="328" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="315" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[16. Tinggal di]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="276" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="267" y="276" width="214" height="26"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="302" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_telp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="367" y="302" width="11" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ / ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="378" y="302" width="103" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_hp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="315" width="214" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tinggal_di}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="328" width="51" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{jarak_sek}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="97" y="341" width="397" height="16"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[C. Keterangan Kesehatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="362" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="375" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="362" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[18. Golongan Darah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="375" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[19. Kelainan Jasmani]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="388" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[20. Tinggi/ Berat Badan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="388" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="266" y="362" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_gol_darah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="375" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_ketunaan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="388" width="40" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{tinggi_badan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="307" y="388" width="11" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ / ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="318" y="388" width="48" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{berat_badan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="97" y="401" width="397" height="16"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[D. Keterangan Pendidikan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="422" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[21. Status Siswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="422" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="435" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[22. Pendidikan Sebelumnya]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="448" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="461" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[b. Tanggal/ Nomor STL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="448" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[a. Lulusan Dari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="461" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="474" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[c. Lama belajar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="474" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="487" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[23. Pindahan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="513" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[b. Alasan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="513" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="500" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[a. Dari Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="500" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="552" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[b. Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="539" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[a. Di tingkat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="526" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[24. Diterima di sekolah ini]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="539" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="552" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="578" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[a. Tgl meninggalkan sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="565" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[25. Meninggalkan Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="578" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="591" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="591" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[b. Alasan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="604" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[26. Akhir Pendidikan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="617" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="617" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[a. Tamat Belajar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="630" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[b. STL Nomor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="630" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="643" width="397" height="16"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[D. Keterangan Setelah Selesai Pendidikan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="689" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[a. Tgl Mulai Kerja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="663" width="150" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[27. Melanjutkan di]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="676" width="149" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[28. Bekerja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="702" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="689" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="702" width="135" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[b. Nama Perusahaan/ Lembaga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="663" width="9" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="267" y="422" width="214" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{status_siswa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="448" width="214" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_sekolah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="461" width="63" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{tanggal_stl_sd}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="330" y="461" width="11" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ / ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="341" y="461" width="140" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_stl_sd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="474" width="63" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{lama_belajar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="500" width="214" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_asal_smp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="513" width="214" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pindah_alasan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="539" width="63" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kd_tingkat_kelas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="552" width="63" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{diterima_tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="578" width="63" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{tgl_keluar_sek}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="591" width="214" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{alasan_keluar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="617" width="63" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{thn_lulus}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="630" width="214" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_stl_lulus}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="663" width="214" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{lanjut_di}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="689" width="63" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{tgl_bekerja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="702" width="214" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_perusahaan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>
