@@ -14,24 +14,16 @@ function M_AkademikTutupTahunPelajaran(title)
 	this.title		= title;
 	this.dml_type	= 0;
 	this.ha_level	= 0;
-	this.saldo_awal = 0;
 
 	this.record = new Ext.data.Record.create([
 			{ name	: 'kd_tahun_ajaran' }
-		,	{ name	: 'saldo_awal' }
+		,	{ name	: 'nm_tahun_ajaran' }
 	]);
 
 	this.store = new Ext.data.ArrayStore({
 			fields		: this.record
 		,	url			: m_akademik_tutup_tahun_pelajaran_d +'data.jsp'
 		,	autoLoad	: false
-	});
-
-	this.form_saldo_awal = new Ext.ux.NumericField({
-			allowBlank				: false
-		,	allowDecimals			: true
-		,	allowNegative			: false
-		,	alwaysDisplayDecimals	: true
 	});
 
 	this.filters = new Ext.ux.grid.GridFilters({
@@ -41,13 +33,11 @@ function M_AkademikTutupTahunPelajaran(title)
 
 	this.columns = [
 			new Ext.grid.RowNumberer()
-		,	{ header		: 'Saldo Awal'
-			, dataIndex		: 'saldo_awal'
+		,	{ header		: 'Tahun Pelajaran'
+			, dataIndex		: 'nm_tahun_ajaran'
 			, sortable		: true
-			, editor		: this.form_saldo_awal
-			, editable		: false
-			, align			: 'right'
-			, width			: 300
+			, align			: 'center'
+			, width			: 200
 			}
 	];
 
@@ -105,8 +95,7 @@ function M_AkademikTutupTahunPelajaran(title)
 				this.dml_type = 5;
 				Ext.Ajax.request({
 						params  : {
-								saldo_awal	: m_akademik_tutup_tahun_pelajaran.saldo_awal
-							,	dml_type	: this.dml_type
+							dml_type	: this.dml_type
 						}
 					,	url		: m_akademik_tutup_tahun_pelajaran_d +'submit.jsp'
 					,	waitMsg	: 'Mohon Tunggu ...'

@@ -245,6 +245,20 @@ function M_AdmSekolahFasilitasSekolahPropertiSekolah(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -261,6 +275,8 @@ function M_AdmSekolahFasilitasSekolahPropertiSekolah(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -276,14 +292,20 @@ function M_AdmSekolahFasilitasSekolahPropertiSekolah(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						kd_penggunaan_tanah		: record.data['kd_penggunaan_tanah']
@@ -322,6 +344,21 @@ function M_AdmSekolahFasilitasSekolahPropertiSekolah(title)
 		return false;
 	}
 
+	this.set_button = function()
+	{
+		if (m_adm_sekolah_fasilitas_sekolah_ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (m_adm_sekolah_fasilitas_sekolah_ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
 	this.do_load = function()
 	{
 		this.store_kd_penggunaan_tanah.load({
@@ -339,7 +376,9 @@ function M_AdmSekolahFasilitasSekolahPropertiSekolah(title)
 				});
 			}
 		,	scope		: this
-		});		
+		});
+		
+		this.set_button();
 	}
 
 	this.do_refresh = function()
@@ -349,18 +388,6 @@ function M_AdmSekolahFasilitasSekolahPropertiSekolah(title)
 			return;
 		} else {
 			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_sekolah_fasilitas_sekolah_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_sekolah_fasilitas_sekolah_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
 		}
 
 		this.do_load();
@@ -728,6 +755,7 @@ function M_AdmSekolahFasilitasSekolahRuanganSekolah(title)
 		,	valueField		: 'id'
 		,	displayField	: 'name'
 		,	mode			: 'local'
+		,	listWidth		: '250'
 		,	allowBlank		: false
 		,	forceSelection	: true
 		,	typeAhead		: true
@@ -975,6 +1003,20 @@ function M_AdmSekolahFasilitasSekolahRuanganSekolah(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_compute = function()
 	{
 		var luas = 0;
@@ -1008,6 +1050,8 @@ function M_AdmSekolahFasilitasSekolahRuanganSekolah(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -1023,14 +1067,20 @@ function M_AdmSekolahFasilitasSekolahRuanganSekolah(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						id_ruang_kelas		: record.data['id_ruang_kelas']
@@ -1071,6 +1121,21 @@ function M_AdmSekolahFasilitasSekolahRuanganSekolah(title)
 		return false;
 	}
 
+	this.set_button = function()
+	{
+		if (m_adm_sekolah_fasilitas_sekolah_ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (m_adm_sekolah_fasilitas_sekolah_ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
 	this.do_load = function()
 	{
 		this.store_kd_ruang.load({
@@ -1088,7 +1153,9 @@ function M_AdmSekolahFasilitasSekolahRuanganSekolah(title)
 				});
 			}
 		,	scope		: this
-		});		
+		});
+		
+		this.set_button();
 	}
 
 	this.do_refresh = function()
@@ -1098,18 +1165,6 @@ function M_AdmSekolahFasilitasSekolahRuanganSekolah(title)
 			return;
 		} else {
 			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_sekolah_fasilitas_sekolah_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_sekolah_fasilitas_sekolah_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
 		}
 
 		this.do_load();

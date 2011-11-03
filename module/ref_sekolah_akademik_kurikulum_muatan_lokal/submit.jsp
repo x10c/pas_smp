@@ -35,7 +35,7 @@ try{
 	switch (dml) {
 	case 2:
 		q	=" insert into t_kur_kurikulum (kd_kurikulum, kd_tingkat_kelas, kd_periode_belajar, kd_mata_pelajaran_diajarkan, status_ciri_khas, uan, elemen, username)"
-			+" values ('"+ kd_kurikulum +"', '"+ kd_tingkat_kelas +"', '"+ kd_periode_belajar +"', '"+ kd_mata_pelajaran_diajarkan +"', '"+ status_ciri_khas +"', '"+ uan +"', "+ elemen +", '" + username +"')";
+			+" values ('"+ kd_kurikulum +"', '"+ kd_tingkat_kelas +"', '1', '"+ kd_mata_pelajaran_diajarkan +"', '"+ status_ciri_khas +"', '"+ uan +"', "+ elemen +", '" + username +"')";
 		
 		q2	=" insert into t_kur_kurikulum (kd_kurikulum, kd_tingkat_kelas, kd_periode_belajar, kd_mata_pelajaran_diajarkan, status_ciri_khas, uan, elemen, username)"
 			+" values ('"+ kd_kurikulum +"', '"+ kd_tingkat_kelas +"', '2', '"+ kd_mata_pelajaran_diajarkan +"', '"+ status_ciri_khas +"', '"+ uan +"', "+ elemen +", '" + username +"')";

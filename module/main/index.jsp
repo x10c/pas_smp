@@ -119,7 +119,7 @@ if (null == user || null == db_url) {
 <div id='content'></div>
 
 <div id='footer'>
-&copy; 2011 Kementerian Pendidikan Nasional - Dit.PSMP. Aplikasi ini milik Negara, tidak untuk diperdagangkan.
+&copy; 2011 Kementerian Pendidikan & Kebudayaan - Dit.PSMP. Aplikasi ini milik Negara, tidak untuk diperdagangkan.
 </div>
 
 </body>

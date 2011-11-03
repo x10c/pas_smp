@@ -58,18 +58,7 @@ function M_RefSekolahAkademikNilaiAfektif(title)
 	];
 
 	this.sm = new Ext.grid.RowSelectionModel({
-			singleSelect	: true
-		,	listeners	: {
-				scope		: this
-			,	selectionchange	: function(sm) {
-					var data = sm.getSelections();
-					if (data.length && this.ha_level == 4) {
-						this.btn_del.setDisabled(false);
-					} else {
-						this.btn_del.setDisabled(true);
-					}
-				}
-			}
+		singleSelect	: true
 	});
 
 	this.editor = new MyRowEditor(this);
@@ -92,22 +81,9 @@ function M_RefSekolahAkademikNilaiAfektif(title)
 			}
 	});
 
-
-	this.btn_del = new Ext.Button({
-			text		: 'Hapus'
-		,	iconCls		: 'del16'
-		,	disabled	: true
-		,	scope		: this
-		,	handler		: function() {
-				this.do_del();
-			}
-	});
-
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
 		]
@@ -133,6 +109,18 @@ function M_RefSekolahAkademikNilaiAfektif(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -147,29 +135,26 @@ function M_RefSekolahAkademikNilaiAfektif(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
-	}
-
-	this.do_del = function()
-	{
-		var data = this.sm.getSelections();
-		if (!data.length) {
-			return;
-		}
-
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		
+		this.set_disabled();
 	}
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						id_nilai_afektif	: record.data['id_nilai_afektif']
@@ -203,9 +188,20 @@ function M_RefSekolahAkademikNilaiAfektif(title)
 		return false;
 	}
 
+	this.set_button = function()
+	{
+		if (this.ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+	}
+
 	this.do_load = function()
 	{
-		this.store.load();	
+		this.store.load();
+		
+		this.set_button();
 	}
 
 	this.do_refresh = function(ha_level)
@@ -218,18 +214,6 @@ function M_RefSekolahAkademikNilaiAfektif(title)
 			return;
 		} else {
 			this.panel.setDisabled(false);
-		}
-
-		if (this.ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (this.ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
 		}
 
 		this.do_load();

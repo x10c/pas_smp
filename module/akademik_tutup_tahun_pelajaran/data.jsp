@@ -19,11 +19,12 @@ try{
 
 	String kd_tahun_ajaran		= (String) session.getAttribute("kd.tahun_pelajaran");
 	
-	String q=" select	kd_tahun_ajaran"
-			+" ,		saldo_awal"
-			+" from		t_sekolah_saldo_awal"
-			+" where	kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'"
-			+" order by	kd_tahun_ajaran";
+	String q=" select	a.kd_tahun_ajaran"
+			+" ,		b.nm_tahun_ajaran"
+			+" from		t_sekolah_identitas	as a"
+			+" ,		r_tahun_ajaran		as b"
+			+" where	a.kd_tahun_ajaran	= b.kd_tahun_ajaran"
+			+" and		a.kd_tahun_ajaran	= '" + kd_tahun_ajaran + "'";
 	
 	ResultSet	rs	= db_stmt.executeQuery(q);
 	int		i	= 0;
@@ -36,7 +37,7 @@ try{
 			i++;
 		}
 		data 	+="['"+ rs.getString("kd_tahun_ajaran") + "'"
-				+ ","+ rs.getString("saldo_awal")
+				+ ",\""+ rs.getString("nm_tahun_ajaran") +"\""
 				+ "]";
 	}	
 	data += "]";

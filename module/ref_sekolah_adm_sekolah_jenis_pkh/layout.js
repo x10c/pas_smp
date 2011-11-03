@@ -122,6 +122,20 @@ function M_RefSekolahAdmSekolahJenisPKH(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -135,6 +149,8 @@ function M_RefSekolahAdmSekolahJenisPKH(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -150,14 +166,20 @@ function M_RefSekolahAdmSekolahJenisPKH(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						id_jenis_pkh	: record.data['id_jenis_pkh']
@@ -190,9 +212,26 @@ function M_RefSekolahAdmSekolahJenisPKH(title)
 		return false;
 	}
 
+	this.set_button = function()
+	{
+		if (this.ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (this.ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
 	this.do_load = function()
 	{
-		this.store.load();	
+		this.store.load();
+		
+		this.set_button();
 	}
 
 	this.do_refresh = function(ha_level)
@@ -205,18 +244,6 @@ function M_RefSekolahAdmSekolahJenisPKH(title)
 			return;
 		} else {
 			this.panel.setDisabled(false);
-		}
-
-		if (this.ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (this.ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
 		}
 
 		this.do_load();

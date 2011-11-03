@@ -2617,6 +2617,20 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
@@ -2636,6 +2650,8 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -2656,14 +2672,20 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_hobi.jsp'
 			,	params  : {
@@ -2703,6 +2725,21 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 		return false;
 	}
 
+	this.set_button = function()
+	{
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
 	this.do_load = function()
 	{
 		this.store_hobi.load({
@@ -2715,6 +2752,8 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 			}
 		,	scope		: this
 		});
+		
+		this.set_button();
 	}
 
 	this.do_refresh = function()
@@ -2724,18 +2763,6 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 			return;
 		} else {
 			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
 		}
 
 		this.do_load();
@@ -2895,6 +2922,20 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
@@ -2915,6 +2956,8 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -2935,14 +2978,20 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_cuti.jsp'
 			,	params  : {
@@ -2983,24 +3032,8 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 		return false;
 	}
 
-	this.do_load = function()
+	this.set_button = function()
 	{
-		this.store.load({
-			params	: {
-				id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
-			}
-		});
-	}
-
-	this.do_refresh = function()
-	{
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 1) {
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
 		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
@@ -3011,6 +3044,27 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
+		}
+	}
+
+	this.do_load = function()
+	{
+		this.store.load({
+			params	: {
+				id_siswa	: m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa
+			}
+		});
+		
+		this.set_button();
+	}
+
+	this.do_refresh = function()
+	{
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 1) {
+			this.panel.setDisabled(true);
+			return;
+		} else {
+			this.panel.setDisabled(false);
 		}
 
 		this.do_load();
@@ -3612,6 +3666,20 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
@@ -3633,6 +3701,8 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -3653,14 +3723,20 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_riwayat_sakit.jsp'
 			,	params  : {
@@ -3702,6 +3778,21 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 		return false;
 	}
 
+	this.set_button = function()
+	{
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
 	this.do_load = function()
 	{
 		this.store_penyakit.load({
@@ -3714,6 +3805,8 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 			}
 		,	scope		: this
 		});
+		
+		this.set_button();
 	}
 
 	this.do_refresh = function()
@@ -3723,18 +3816,6 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 			return;
 		} else {
 			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
 		}
 
 		this.do_load();
@@ -3930,6 +4011,20 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
@@ -3951,6 +4046,8 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -3971,14 +4068,20 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_beasiswa.jsp'
 			,	params  : {
@@ -4021,6 +4124,21 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 		return false;
 	}
 
+	this.set_button = function()
+	{
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
 	this.do_load = function()
 	{
 		this.store_beasiswa.load({
@@ -4033,6 +4151,8 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 			}
 		,	scope		: this
 		});
+		
+		this.set_button();
 	}
 
 	this.do_refresh = function()
@@ -4042,18 +4162,6 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 			return;
 		} else {
 			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
 		}
 
 		this.do_load();

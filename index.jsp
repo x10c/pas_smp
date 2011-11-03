@@ -111,7 +111,7 @@ if (user != null) {
 		</div>
 		<div id="footer" class="clearfloat">
 			<div class="right">
-			<p>PAS-SMP &#169; 2011 KEMENDIKNAS - Dit.PSMP. Aplikasi ini milik Negara, tidak untuk diperdagangkan.</p>
+			<p>PAS-SMP &#169; 2011 KEMENDIKBUD - Dit.PSMP. Aplikasi ini milik Negara, tidak untuk diperdagangkan.</p>
 			</div>
 		</div><!--end #footer-->
 	</div><!--end wrap-->

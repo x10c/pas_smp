@@ -2628,13 +2628,13 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahKeuanganSekolah(title)
 							,	{
 									xtype	: 'fieldset'
 								,	items	: [
-										this.form_jml_pengeluaran
+										this.form_saldo_akhir
 									]
 								}
 							,	{
 									xtype	: 'fieldset'
 								,	items	: [
-										this.form_saldo_akhir
+										this.form_jml_pengeluaran
 									]
 								}
 							]
@@ -2737,7 +2737,7 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahKeuanganSekolah(title)
 		
 		this.form_jml_penerimaan.setValue(penerimaan);
 		
-		this.form_jml_pengeluaran.setValue(pengeluaran);
+		this.form_jml_pengeluaran.setValue(penerimaan);
 		
 		this.form_saldo_akhir.setValue(saldoAkhir);
 	}
@@ -3260,6 +3260,20 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahBantuanSekolah(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -3277,6 +3291,8 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahBantuanSekolah(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -3292,14 +3308,20 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahBantuanSekolah(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						kd_bantuan			: record.data['kd_bantuan']
@@ -3338,25 +3360,8 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahBantuanSekolah(title)
 		return false;
 	}
 
-	this.do_load = function()
+	this.set_button = function()
 	{
-		this.store_kd_bantuan.load({
-				callback	: function(){
-					this.store.load();
-				}
-			,	scope		: this
-		});		
-	}
-
-	this.do_refresh = function()
-	{
-		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 1) {
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
 		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
@@ -3367,6 +3372,28 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahBantuanSekolah(title)
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
+		}
+	}
+
+	this.do_load = function()
+	{
+		this.store_kd_bantuan.load({
+				callback	: function(){
+					this.store.load();
+				}
+			,	scope		: this
+		});
+		
+		this.set_button();
+	}
+
+	this.do_refresh = function()
+	{
+		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 1) {
+			this.panel.setDisabled(true);
+			return;
+		} else {
+			this.panel.setDisabled(false);
 		}
 
 		this.do_load();
@@ -3544,6 +3571,20 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahRekeningSekolah(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -3560,6 +3601,8 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahRekeningSekolah(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -3575,14 +3618,20 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahRekeningSekolah(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						no_urut			: record.data['no_urut']
@@ -3619,20 +3668,8 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahRekeningSekolah(title)
 		return false;
 	}
 
-	this.do_load = function()
+	this.set_button = function()
 	{
-		this.store.load();
-	}
-
-	this.do_refresh = function()
-	{
-		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 1) {
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
 		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
@@ -3643,6 +3680,23 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahRekeningSekolah(title)
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
+		}
+	}
+
+	this.do_load = function()
+	{
+		this.store.load();
+		
+		this.set_button();
+	}
+
+	this.do_refresh = function()
+	{
+		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 1) {
+			this.panel.setDisabled(true);
+			return;
+		} else {
+			this.panel.setDisabled(false);
 		}
 
 		this.do_load();

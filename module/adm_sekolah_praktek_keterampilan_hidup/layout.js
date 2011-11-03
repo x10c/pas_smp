@@ -163,6 +163,20 @@ function M_AdmSekolahPraktekKeterampilanHidupGuruPKH(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -176,6 +190,8 @@ function M_AdmSekolahPraktekKeterampilanHidupGuruPKH(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -191,14 +207,20 @@ function M_AdmSekolahPraktekKeterampilanHidupGuruPKH(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						id_pegawai		: record.data['id_pegawai']
@@ -232,25 +254,8 @@ function M_AdmSekolahPraktekKeterampilanHidupGuruPKH(title)
 		return false;
 	}
 
-	this.do_load = function()
+	this.set_button = function()
 	{
-		this.store_pegawai.load({
-			callback	: function(){
-				this.store.load();
-			}
-		,	scope		: this
-		});
-	}
-
-	this.do_refresh = function()
-	{
-		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level < 1) {
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
 		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
@@ -261,6 +266,28 @@ function M_AdmSekolahPraktekKeterampilanHidupGuruPKH(title)
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
+		}
+	}
+
+	this.do_load = function()
+	{
+		this.store_pegawai.load({
+			callback	: function(){
+				this.store.load();
+			}
+		,	scope		: this
+		});
+		
+		this.set_button();
+	}
+
+	this.do_refresh = function()
+	{
+		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level < 1) {
+			this.panel.setDisabled(true);
+			return;
+		} else {
+			this.panel.setDisabled(false);
 		}
 
 		this.do_load();
@@ -1010,6 +1037,20 @@ function M_AdmSekolahPraktekKeterampilanHidupMitraPKH(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -1024,6 +1065,8 @@ function M_AdmSekolahPraktekKeterampilanHidupMitraPKH(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -1039,14 +1082,20 @@ function M_AdmSekolahPraktekKeterampilanHidupMitraPKH(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						no_urut		: record.data['no_urut']
@@ -1081,20 +1130,8 @@ function M_AdmSekolahPraktekKeterampilanHidupMitraPKH(title)
 		return false;
 	}
 
-	this.do_load = function()
+	this.set_button = function()
 	{
-		this.store.load();
-	}
-
-	this.do_refresh = function()
-	{
-		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level < 1) {
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
 		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
@@ -1105,6 +1142,23 @@ function M_AdmSekolahPraktekKeterampilanHidupMitraPKH(title)
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
+		}
+	}
+
+	this.do_load = function()
+	{
+		this.store.load();
+		
+		this.set_button();
+	}
+
+	this.do_refresh = function()
+	{
+		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level < 1) {
+			this.panel.setDisabled(true);
+			return;
+		} else {
+			this.panel.setDisabled(false);
 		}
 
 		this.do_load();
@@ -1311,6 +1365,20 @@ function M_AdmSekolahPraktekKeterampilanHidupAlatPKH(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -1328,6 +1396,8 @@ function M_AdmSekolahPraktekKeterampilanHidupAlatPKH(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -1343,14 +1413,20 @@ function M_AdmSekolahPraktekKeterampilanHidupAlatPKH(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						no_urut			: record.data['no_urut']
@@ -1388,20 +1464,8 @@ function M_AdmSekolahPraktekKeterampilanHidupAlatPKH(title)
 		return false;
 	}
 
-	this.do_load = function()
+	this.set_button = function()
 	{
-		this.store.load();
-	}
-
-	this.do_refresh = function()
-	{
-		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level < 1) {
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
 		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
@@ -1412,6 +1476,23 @@ function M_AdmSekolahPraktekKeterampilanHidupAlatPKH(title)
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
+		}
+	}
+
+	this.do_load = function()
+	{
+		this.store.load();
+		
+		this.set_button();
+	}
+
+	this.do_refresh = function()
+	{
+		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level < 1) {
+			this.panel.setDisabled(true);
+			return;
+		} else {
+			this.panel.setDisabled(false);
 		}
 
 		this.do_load();
@@ -1648,6 +1729,20 @@ function M_AdmSekolahPraktekKeterampilanHidupKegiatanPKH(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -1665,6 +1760,8 @@ function M_AdmSekolahPraktekKeterampilanHidupKegiatanPKH(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -1680,14 +1777,20 @@ function M_AdmSekolahPraktekKeterampilanHidupKegiatanPKH(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						no_urut				: record.data['no_urut']
@@ -1725,6 +1828,21 @@ function M_AdmSekolahPraktekKeterampilanHidupKegiatanPKH(title)
 		return false;
 	}
 
+	this.set_button = function()
+	{
+		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
 	this.do_load = function()
 	{
 		this.store_jenis_pkh.load({
@@ -1738,6 +1856,8 @@ function M_AdmSekolahPraktekKeterampilanHidupKegiatanPKH(title)
 			}
 		,	scope		: this
 		});
+		
+		this.set_button();
 	}
 
 	this.do_refresh = function()
@@ -1747,18 +1867,6 @@ function M_AdmSekolahPraktekKeterampilanHidupKegiatanPKH(title)
 			return;
 		} else {
 			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
 		}
 
 		this.do_load();

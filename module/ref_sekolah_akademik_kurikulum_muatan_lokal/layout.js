@@ -263,6 +263,20 @@ function M_RefSekolahAkademikKurikulumMuatanLokalDetail(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.form_mata_pelajaran.setDisabled(false);
@@ -288,6 +302,8 @@ function M_RefSekolahAkademikKurikulumMuatanLokalDetail(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -308,16 +324,22 @@ function M_RefSekolahAkademikKurikulumMuatanLokalDetail(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
 		
 		this.form_mata_pelajaran.setDisabled(false);
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						kd_kurikulum				: m_ref_sekolah_akademik_kurikulum_muatan_lokal_kd_kurikulum
@@ -361,6 +383,21 @@ function M_RefSekolahAkademikKurikulumMuatanLokalDetail(title)
 		return false;
 	}
 
+	this.set_button = function()
+	{
+		if (m_ref_sekolah_akademik_kurikulum_muatan_lokal_ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (m_ref_sekolah_akademik_kurikulum_muatan_lokal_ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
 	this.do_load = function()
 	{
 		this.store_mata_pelajaran.load({
@@ -374,6 +411,8 @@ function M_RefSekolahAkademikKurikulumMuatanLokalDetail(title)
 				}
 			,	scope		: this
 		});
+		
+		this.set_button();
 	}
 
 	this.do_refresh = function()
@@ -383,18 +422,6 @@ function M_RefSekolahAkademikKurikulumMuatanLokalDetail(title)
 			return;
 		} else {
 			this.grid.setDisabled(false);
-		}
-
-		if (m_ref_sekolah_akademik_kurikulum_muatan_lokal_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_ref_sekolah_akademik_kurikulum_muatan_lokal_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
 		}
 
 		this.do_load();

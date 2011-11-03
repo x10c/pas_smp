@@ -230,6 +230,20 @@ function M_AdmSekolahPrestasiSekolahPrestasiAkademik(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -246,6 +260,8 @@ function M_AdmSekolahPrestasiSekolahPrestasiAkademik(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -261,14 +277,20 @@ function M_AdmSekolahPrestasiSekolahPrestasiAkademik(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						id_jenis_lomba			: record.data['id_jenis_lomba']
@@ -307,6 +329,21 @@ function M_AdmSekolahPrestasiSekolahPrestasiAkademik(title)
 		return false;
 	}
 
+	this.set_button = function()
+	{
+		if (m_adm_sekolah_prestasi_sekolah_ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (m_adm_sekolah_prestasi_sekolah_ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
 	this.do_load = function()
 	{
 		this.store_id_jenis_lomba.load({
@@ -320,6 +357,8 @@ function M_AdmSekolahPrestasiSekolahPrestasiAkademik(title)
 			}
 		,	scope		: this
 		});
+		
+		this.set_button();
 	}
 
 	this.do_refresh = function()
@@ -329,18 +368,6 @@ function M_AdmSekolahPrestasiSekolahPrestasiAkademik(title)
 			return;
 		} else {
 			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_sekolah_prestasi_sekolah_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_sekolah_prestasi_sekolah_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
 		}
 
 		this.do_load();
@@ -564,6 +591,20 @@ function M_AdmSekolahPrestasiSekolahPrestasiNonAkademik(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -580,6 +621,8 @@ function M_AdmSekolahPrestasiSekolahPrestasiNonAkademik(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -595,14 +638,20 @@ function M_AdmSekolahPrestasiSekolahPrestasiNonAkademik(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						id_jenis_lomba			: record.data['id_jenis_lomba']
@@ -641,6 +690,21 @@ function M_AdmSekolahPrestasiSekolahPrestasiNonAkademik(title)
 		return false;
 	}
 
+	this.set_button = function()
+	{
+		if (m_adm_sekolah_prestasi_sekolah_ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (m_adm_sekolah_prestasi_sekolah_ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
 	this.do_load = function()
 	{
 		this.store_id_jenis_lomba.load({
@@ -654,6 +718,8 @@ function M_AdmSekolahPrestasiSekolahPrestasiNonAkademik(title)
 			}
 		,	scope		: this
 		});
+		
+		this.set_button();
 	}
 
 	this.do_refresh = function()
@@ -663,18 +729,6 @@ function M_AdmSekolahPrestasiSekolahPrestasiNonAkademik(title)
 			return;
 		} else {
 			this.panel.setDisabled(false);
-		}
-
-		if (m_adm_sekolah_prestasi_sekolah_ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (m_adm_sekolah_prestasi_sekolah_ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
 		}
 
 		this.do_load();
@@ -852,6 +906,20 @@ function M_AdmSekolahPrestasiSekolahPeringkatUAN(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_del.setDisabled(true);
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_del.setDisabled(false);
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -866,6 +934,8 @@ function M_AdmSekolahPrestasiSekolahPeringkatUAN(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
+		
+		this.set_disabled();
 	}
 
 	this.do_del = function()
@@ -881,14 +951,20 @@ function M_AdmSekolahPrestasiSekolahPeringkatUAN(title)
 
 	this.do_cancel = function()
 	{
+		this.set_enabled();
+		
 		if (this.dml_type == 2) {
 			this.store.remove(this.record_new);
 			this.sm.selectRow(0);
 		}
+		
+		this.set_button();
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+		
 		Ext.Ajax.request({
 				params  : {
 						kd_tingkat_prestasi		: record.data['kd_tingkat_prestasi']
@@ -923,25 +999,8 @@ function M_AdmSekolahPrestasiSekolahPeringkatUAN(title)
 		return false;
 	}
 
-	this.do_load = function()
+	this.set_button = function()
 	{
-		this.store_kd_tingkat_prestasi.load({
-			callback	: function(){
-				this.store.load();
-			}
-		,	scope		: this
-		});
-	}
-
-	this.do_refresh = function()
-	{
-		if (m_adm_sekolah_prestasi_sekolah_ha_level < 1) {
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
 		if (m_adm_sekolah_prestasi_sekolah_ha_level >= 2) {
 			this.btn_add.setDisabled(false);
 		} else {
@@ -952,6 +1011,28 @@ function M_AdmSekolahPrestasiSekolahPeringkatUAN(title)
 			this.btn_del.setDisabled(false);
 		} else {
 			this.btn_del.setDisabled(true);
+		}
+	}
+
+	this.do_load = function()
+	{
+		this.store_kd_tingkat_prestasi.load({
+			callback	: function(){
+				this.store.load();
+			}
+		,	scope		: this
+		});
+		
+		this.set_button();
+	}
+
+	this.do_refresh = function()
+	{
+		if (m_adm_sekolah_prestasi_sekolah_ha_level < 1) {
+			this.panel.setDisabled(true);
+			return;
+		} else {
+			this.panel.setDisabled(false);
 		}
 
 		this.do_load();
