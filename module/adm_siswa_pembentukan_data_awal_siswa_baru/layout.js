@@ -699,11 +699,11 @@ function M_AdmSiswaPembentukanDataAwalSiswaBaruList()
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_edit
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_edit
 		]
 	});
 

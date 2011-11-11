@@ -155,6 +155,12 @@ function M_RefSekolahAkademikNilaiAfektif(title)
 	{
 		this.set_enabled();
 		
+		if (this.ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						id_nilai_afektif	: record.data['id_nilai_afektif']

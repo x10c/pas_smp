@@ -185,6 +185,12 @@ function M_AdmAkademikTransRutinSiswaKenaikanKelasDetailKenaikanKelas(title)
 
 	this.do_process = function()
 	{
+		if (m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.MessageBox.confirm('Konfirmasi', 'Kenaikan Kelas?', function(btn, text){
 			if (btn == 'yes'){
 				this.dml_type = 5;
@@ -220,6 +226,12 @@ function M_AdmAkademikTransRutinSiswaKenaikanKelasDetailKenaikanKelas(title)
 	
 	this.do_save = function()
 	{
+		if (m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		var data	= "[";
 		var mods	= this.store.getModifiedRecords();
 		var i;
@@ -441,6 +453,12 @@ function M_AdmAkademikTransRutinSiswaKenaikanKelasDetailPesertaUN(title)
 
 	this.do_save = function()
 	{
+		if (m_adm_akademik_trans_rutin_siswa_kenaikan_kelas_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		var data	= "[";
 		var mods	= this.store.getModifiedRecords();
 		var i;

@@ -21,11 +21,30 @@
 .upload16 {background-image: url(../images/upload16.png) !important;}
 .dir16 {background-image: url(../images/dir16.png) !important;}
 .dirup16 {background-image: url(../images/dirup16.png) !important;}
+.setting16 {background-image: url(../images/setting16.png) !important;}
+.account16 {background-image: url(../images/account16.png) !important;}
+.password16 {background-image: url(../images/password16.png) !important;}
 
 .app {background-image: url(../images/app16.png) !important;}
 .module {background-image: url(../images/module16.png) !important;}
 .report {background-image: url(../images/report16.png) !important;}
 .logout {background-image: url(../images/logout16.png) !important;}
+.menu_leaf {background-image: url(../images/menu_leaf16.png) !important;}
+
+.beranda {background-image: url(../images/beranda16.png) !important;}
+.users {background-image: url(../images/user16.png) !important;}
+.export_data {background-image: url(../images/export_data16.png) !important;}
+.monev {background-image: url(../images/monev16.png) !important;}
+
+.referensi {background-image: url(../images/referensi16.png) !important;}
+.adm_sekolah {background-image: url(../images/adm_sekolah16.png) !important;}
+.adm_kepegawaian {background-image: url(../images/adm_kepegawaian16.png) !important;}
+.psb {background-image: url(../images/psb16.png) !important;}
+.adm_kesiswaan {background-image: url(../images/adm_kesiswaan16.png) !important;}
+.adm_akademik {background-image: url(../images/adm_akademik16.png) !important;}
+.akademik {background-image: url(../images/akademik16.png) !important;}
+.keuangan {background-image: url(../images/keuangan16.png) !important;}
+.administrator {background-image: url(../images/administrator16.png) !important;}
 
 /*
  * set default element style

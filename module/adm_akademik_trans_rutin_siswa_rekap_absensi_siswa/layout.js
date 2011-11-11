@@ -150,6 +150,12 @@ function M_AdmAkademikTransRutinSiswaRekapAbsensiSiswa(title)
 	
 	this.do_process = function()
 	{
+		if (this.ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.MessageBox.confirm('Konfirmasi', 'Rekap Absensi Siswa?', function(btn, text){
 			if (btn == 'yes'){
 				m_adm_akademik_trans_rutin_siswa_rekap_absensi_siswa.win.show();

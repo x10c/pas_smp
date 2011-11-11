@@ -168,11 +168,11 @@ function M_AdmSekolahLainLainKegiatanSekolah(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -236,8 +236,12 @@ function M_AdmSekolahLainLainKegiatanSekolah(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -256,6 +260,12 @@ function M_AdmSekolahLainLainKegiatanSekolah(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_sekolah_lain_lain_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						no_kegiatan		: record.data['no_kegiatan']
@@ -432,6 +442,11 @@ function M_AdmSekolahLainLainTerancamDO(title)
 
 	this.do_save = function(record)
 	{
+		if (m_adm_sekolah_lain_lain_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						kd_tingkat_kelas	: record.data['kd_tingkat_kelas']
@@ -715,6 +730,11 @@ function M_AdmSekolahLainLainPeringkatDO(title)
 	
 	this.do_save = function()
 	{
+		if (m_adm_sekolah_lain_lain_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -931,11 +951,11 @@ function M_AdmSekolahLainLainPerangkatLunak(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -998,8 +1018,12 @@ function M_AdmSekolahLainLainPerangkatLunak(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -1018,6 +1042,12 @@ function M_AdmSekolahLainLainPerangkatLunak(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_sekolah_lain_lain_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						nm_software		: record.data['nm_software']

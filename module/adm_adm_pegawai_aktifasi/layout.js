@@ -115,6 +115,12 @@ function M_AdmAdmPegawaiAktifasi(title)
 
 	this.do_save = function()
 	{
+		if (this.ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		var data	= "[";
 		var mods	= this.store.getModifiedRecords();
 		var i;

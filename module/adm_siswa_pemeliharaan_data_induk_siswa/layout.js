@@ -496,6 +496,11 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailInfoSiswa(title)
 			return;
 		}
 
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -1108,6 +1113,11 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataAyah(title)
 			return;
 		}
 
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -1717,6 +1727,11 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataIbu(title)
 	{
 		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
+			return;
+		}
+
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
 			return;
 		}
 
@@ -2365,6 +2380,11 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataWali(title)
 			return;
 		}
 
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -2589,11 +2609,11 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -2666,8 +2686,12 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -2686,6 +2710,12 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataHobi(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_hobi.jsp'
 			,	params  : {
@@ -2894,11 +2924,11 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -2972,8 +3002,12 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -2992,6 +3026,12 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataCuti(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_cuti.jsp'
 			,	params  : {
@@ -3199,6 +3239,11 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataPindahSekolah(title)
 			return;
 		}
 
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -3394,6 +3439,11 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailDataPutusSekolah(title)
 	{
 		if (m_adm_siswa_pemeliharaan_data_induk_siswa_id_siswa == '') {
 			Ext.Msg.alert("Kesalahan Operasi", "Silahkan pilih salah satu data Siswa terlebih dahulu!");
+			return;
+		}
+
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
 			return;
 		}
 
@@ -3638,11 +3688,11 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -3717,8 +3767,12 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -3737,6 +3791,12 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailRiwayatSakit(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_riwayat_sakit.jsp'
 			,	params  : {
@@ -3983,11 +4043,11 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -4062,8 +4122,12 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -4082,6 +4146,12 @@ function M_AdmSiswaPemeliharaanDataIndukSiswaDetailBeasiswa(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_siswa_pemeliharaan_data_induk_siswa_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				url		: m_adm_siswa_pemeliharaan_data_induk_siswa_d +'submit_detail_data_beasiswa.jsp'
 			,	params  : {

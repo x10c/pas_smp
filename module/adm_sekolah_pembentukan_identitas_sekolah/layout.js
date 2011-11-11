@@ -572,6 +572,11 @@ function M_AdmSekolahPembentukanIdentitasSekolah(title)
 	
 	this.do_save = function()
 	{
+		if (m_adm_sekolah_pembentukan_identitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;

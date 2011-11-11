@@ -94,11 +94,11 @@ function M_RefSekolahKesiswaanPenyakit(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -160,8 +160,12 @@ function M_RefSekolahKesiswaanPenyakit(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -180,6 +184,12 @@ function M_RefSekolahKesiswaanPenyakit(title)
 	{
 		this.set_enabled();
 		
+		if (this.ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						id_penyakit	: record.data['id_penyakit']
@@ -197,7 +207,7 @@ function M_RefSekolahKesiswaanPenyakit(title)
 							Ext.MessageBox.alert('Pesan', msg.info);
 						}
 
-						this.store.load();
+						this.do_load();
 					}
 			,	scope	: this
 		});

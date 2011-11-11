@@ -113,9 +113,9 @@ function M_AdmAdmAdmKesiswaanUbahSiswaPutus(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
+			this.btn_ref
 		,	'-'
-		,	this.btn_ref
+		,	this.btn_del
 		]
 	});
 
@@ -139,12 +139,22 @@ function M_AdmAdmAdmKesiswaanUbahSiswaPutus(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_save = function(record)
 	{
+		if (this.ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				url		: m_adm_adm_adm_kesiswaan_ubah_siswa_putus_d +'submit.jsp'
 			,	params  : {

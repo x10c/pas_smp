@@ -132,8 +132,28 @@ function M_AppExportData(title)
 		}
 	};
 
+	this.do_refresh = function(ha_level)
+	{
+		this.ha_level = ha_level;
+
+		if (ha_level < 1) {
+			Ext.MessageBox.alert('Hak Akses', 'Maaf, Anda tidak memiliki hak akses untuk melihat menu ini!');
+			this.panel.setDisabled(true);
+		} else {
+			this.panel.setDisabled(false);
+		}
+
+		this.do_load();
+	}
+
 	this.do_export = function()
 	{
+		if (this.ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.MessageBox.show({
 			title			: 'Mohon Tunggu...'
 		,	msg				: 'Export Data...'
@@ -152,20 +172,6 @@ function M_AppExportData(title)
 	this.do_load = function()
 	{
 		this.store.load();
-	}
-
-	this.do_refresh = function(ha_level)
-	{
-		this.ha_level = ha_level;
-
-		if (ha_level < 1) {
-			Ext.MessageBox.alert('Hak Akses', 'Maaf, Anda tidak memiliki hak akses untuk melihat menu ini!');
-			this.panel.setDisabled(true);
-		} else {
-			this.panel.setDisabled(false);
-		}
-
-		this.do_load();
 	}
 }
 

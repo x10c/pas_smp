@@ -218,11 +218,11 @@ function M_AdmSekolahFasilitasSekolahPropertiSekolah(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -286,8 +286,12 @@ function M_AdmSekolahFasilitasSekolahPropertiSekolah(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -306,6 +310,12 @@ function M_AdmSekolahFasilitasSekolahPropertiSekolah(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_sekolah_fasilitas_sekolah_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						kd_penggunaan_tanah		: record.data['kd_penggunaan_tanah']
@@ -496,6 +506,11 @@ function M_AdmSekolahFasilitasSekolahPerlengkapanSekolah(title)
 
 	this.do_save = function(record)
 	{
+		if (m_adm_sekolah_fasilitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						kd_perlengkapan_sekolah	: record.data['kd_perlengkapan_sekolah']
@@ -648,6 +663,11 @@ function M_AdmSekolahFasilitasSekolahPerlengkapanKBM(title)
 
 	this.do_save = function(record)
 	{
+		if (m_adm_sekolah_fasilitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						kd_perlengkapan_sekolah	: record.data['kd_perlengkapan_sekolah']
@@ -976,11 +996,11 @@ function M_AdmSekolahFasilitasSekolahRuanganSekolah(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -1061,8 +1081,12 @@ function M_AdmSekolahFasilitasSekolahRuanganSekolah(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -1081,6 +1105,12 @@ function M_AdmSekolahFasilitasSekolahRuanganSekolah(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_sekolah_fasilitas_sekolah_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						id_ruang_kelas		: record.data['id_ruang_kelas']
@@ -1348,6 +1378,11 @@ function M_AdmSekolahFasilitasSekolahPemakaianListrik(title)
 
 	this.do_save = function(record)
 	{
+		if (m_adm_sekolah_fasilitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						kd_sumber_listrik		: record.data['kd_sumber_listrik']
@@ -1723,6 +1758,11 @@ function M_AdmSekolahFasilitasSekolahBukuSekolahDanAlatPendidikan(title)
 
 	this.do_save = function(record)
 	{
+		if (m_adm_sekolah_fasilitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						kd_mata_pelajaran_diajarkan	: record.data['kd_mata_pelajaran_diajarkan']

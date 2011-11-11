@@ -112,6 +112,12 @@ function M_AdmAdmAdmAkademikBukaNaikKelas(title)
 
 	this.do_process = function()
 	{
+		if (this.ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.MessageBox.confirm('Konfirmasi', 'Buka Kembali Kenaikan Kelas?', function(btn, text){
 			if (btn == 'yes'){
 				this.dml_type = 5;

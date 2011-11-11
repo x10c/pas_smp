@@ -136,11 +136,11 @@ function M_AdmSekolahPraktekKeterampilanHidupGuruPKH(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -201,8 +201,12 @@ function M_AdmSekolahPraktekKeterampilanHidupGuruPKH(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -221,6 +225,12 @@ function M_AdmSekolahPraktekKeterampilanHidupGuruPKH(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						id_pegawai		: record.data['id_pegawai']
@@ -751,13 +761,13 @@ function M_AdmSekolahPraktekKeterampilanHidupNarasumberPKHList()
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
+			this.btn_ref
+		,	'-'
+		,	this.btn_add
 		,	'-'
 		,	this.btn_edit
 		,	'-'
-		,	this.btn_ref
-		,	'-'
-		,	this.btn_add
+		,	this.btn_del
 		]
 	});
 
@@ -782,38 +792,42 @@ function M_AdmSekolahPraktekKeterampilanHidupNarasumberPKHList()
 			return;
 		}
 
-		Ext.Ajax.request({
-			url		: m_adm_sekolah_praktek_keterampilan_hidup_d +'submit_narasumber_pkh.jsp'
-		,	params	: {
-				dml_type				: 4
-			,	no_urut					: data.get('no_urut')
-			,	nm_narasumber			: ''
-			,	tanggal_lahir			: ''
-			,	kd_tingkat_ijazah		: ''
-			,	kd_program_studi		: ''
-			,	id_gol_pekerjaan_ortu	: ''
-			,	bidang_keahlian			: ''
-			,	sedia_waktu				: ''
-			,	keterangan				: ''
-			}
-		,	waitMsg	: 'Mohon Tunggu ...'
-		,	failure	: function(response) {
-				Ext.MessageBox.alert('Gagal', response.responseText);
-			}
-		,	success : function (response) {
-				var msg = Ext.util.JSON.decode(response.responseText);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				Ext.Ajax.request({
+					url		: m_adm_sekolah_praktek_keterampilan_hidup_d +'submit_narasumber_pkh.jsp'
+				,	params	: {
+						dml_type				: 4
+					,	no_urut					: data.get('no_urut')
+					,	nm_narasumber			: ''
+					,	tanggal_lahir			: ''
+					,	kd_tingkat_ijazah		: ''
+					,	kd_program_studi		: ''
+					,	id_gol_pekerjaan_ortu	: ''
+					,	bidang_keahlian			: ''
+					,	sedia_waktu				: ''
+					,	keterangan				: ''
+					}
+				,	waitMsg	: 'Mohon Tunggu ...'
+				,	failure	: function(response) {
+						Ext.MessageBox.alert('Gagal', response.responseText);
+					}
+				,	success : function (response) {
+						var msg = Ext.util.JSON.decode(response.responseText);
 
-				if (msg.success == false) {
-					Ext.MessageBox.alert('Kesalahan', msg.info);
-					return;
-				}
+						if (msg.success == false) {
+							Ext.MessageBox.alert('Kesalahan', msg.info);
+							return;
+						}
 
-				Ext.MessageBox.alert('Informasi', msg.info);
+						Ext.MessageBox.alert('Informasi', msg.info);
 
-				this.do_load();
+						this.do_load();
+					}
+				,	scope	: this
+				});
 			}
-		,	scope	: this
-		});
+		}, this);
 	}
 
 	this.do_edit = function()
@@ -1010,11 +1024,11 @@ function M_AdmSekolahPraktekKeterampilanHidupMitraPKH(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -1076,8 +1090,12 @@ function M_AdmSekolahPraktekKeterampilanHidupMitraPKH(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -1096,6 +1114,12 @@ function M_AdmSekolahPraktekKeterampilanHidupMitraPKH(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						no_urut		: record.data['no_urut']
@@ -1338,11 +1362,11 @@ function M_AdmSekolahPraktekKeterampilanHidupAlatPKH(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -1407,8 +1431,12 @@ function M_AdmSekolahPraktekKeterampilanHidupAlatPKH(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -1427,6 +1455,12 @@ function M_AdmSekolahPraktekKeterampilanHidupAlatPKH(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						no_urut			: record.data['no_urut']
@@ -1702,11 +1736,11 @@ function M_AdmSekolahPraktekKeterampilanHidupKegiatanPKH(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -1771,8 +1805,12 @@ function M_AdmSekolahPraktekKeterampilanHidupKegiatanPKH(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -1791,6 +1829,12 @@ function M_AdmSekolahPraktekKeterampilanHidupKegiatanPKH(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_sekolah_praktek_keterampilan_hidup_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						no_urut				: record.data['no_urut']

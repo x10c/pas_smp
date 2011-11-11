@@ -160,6 +160,12 @@ function M_AdmAkademikTransRutinSiswaPenentuanSiswaBaru(title)
 
 	this.do_process = function()
 	{
+		if (this.ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.MessageBox.confirm('Konfirmasi', 'Penentuan Kelas Selesai?', function(btn, text){
 			if (btn == 'yes'){
 				this.dml_type = 5;
@@ -200,6 +206,12 @@ function M_AdmAkademikTransRutinSiswaPenentuanSiswaBaru(title)
 	
 	this.do_save = function(record)
 	{
+		if (this.ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						kd_tahun_ajaran		: record.data['kd_tahun_ajaran']

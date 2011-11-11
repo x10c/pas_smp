@@ -222,6 +222,11 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahInformasiSekolah(title)
 	
 	this.do_save = function()
 	{
+		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -509,6 +514,11 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahKumpulanSK(title)
 	
 	this.do_save = function()
 	{
+		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -946,6 +956,11 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahYayasan(title)
 	
 	this.do_save = function()
 	{
+		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -1263,6 +1278,11 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahPenggunaanLaboratorium(title)
 	
 	this.do_save = function()
 	{
+		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk merubah data!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -1488,6 +1508,11 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahPSB(title)
 	
 	this.do_save = function()
 	{
+		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -1705,6 +1730,11 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahNilaiUN(title)
 	
 	this.do_save = function()
 	{
+		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -2949,6 +2979,11 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahKeuanganSekolah(title)
 	
 	this.do_save = function()
 	{
+		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		if (!this.is_valid()) {
 			Ext.MessageBox.alert('Kesalahan', 'Form belum terisi dengan benar!');
 			return;
@@ -3233,11 +3268,11 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahBantuanSekolah(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -3302,8 +3337,12 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahBantuanSekolah(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -3322,6 +3361,12 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahBantuanSekolah(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						kd_bantuan			: record.data['kd_bantuan']
@@ -3544,11 +3589,11 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahRekeningSekolah(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -3612,8 +3657,12 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahRekeningSekolah(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -3632,6 +3681,12 @@ function M_AdmSekolahPemeliharaanIdentitasSekolahRekeningSekolah(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_sekolah_pemeliharaan_identitas_sekolah_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						no_urut			: record.data['no_urut']

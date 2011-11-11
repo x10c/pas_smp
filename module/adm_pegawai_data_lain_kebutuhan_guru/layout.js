@@ -132,6 +132,11 @@ function M_AdmPegawaiDataLainKebutuhanGuru(title)
 
 	this.do_save = function()
 	{
+		if (this.ha_level < 2) {
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			return;
+		}
+
 		var data	= "[";
 		var mods	= this.store.getModifiedRecords();
 		var changes;
@@ -206,7 +211,7 @@ function M_AdmPegawaiDataLainKebutuhanGuru(title)
 			this.panel.setDisabled(false);
 		}
 
-		if (this.ha_level == 4) {
+		if (this.ha_level >= 1) {
 			this.btn_save.setDisabled(false);
 		} else {
 			this.btn_save.setDisabled(true);

@@ -648,13 +648,13 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailKeluargaList()
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
+			this.btn_ref
+		,	'-'
+		,	this.btn_add
 		,	'-'
 		,	this.btn_edit
 		,	'-'
-		,	this.btn_ref
-		,	'-'
-		,	this.btn_add
+		,	this.btn_del
 		]
 	});
 
@@ -684,43 +684,47 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailKeluargaList()
 			return;
 		}
 
-		Ext.Ajax.request({
-			url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_keluarga.jsp'
-		,	params	: {
-				dml_type			: 4
-			,	id_pegawai					: data.get('id_pegawai')
-			,	no_urut				: data.get('no_urut')
-			,	nm_keluarga			: ''
-			, 	kd_hub_keluarga		: ''
-			, 	kd_jenis_kelamin	: ''
-			, 	prop_lahir			: ''
-			, 	kota_lahir			: ''
-			, 	tanggal_lahir		: ''
-			, 	kd_agama			: ''
-			, 	kd_gol_darah		: ''
-			, 	kd_status_nikah		: ''
-			, 	tanggal_menikah		: ''
-			, 	tahun_meninggal		: ''
-			, 	alamat				: ''
-			}
-		,	waitMsg	: 'Mohon Tunggu ...'
-		,	failure	: function(response) {
-				Ext.MessageBox.alert('Gagal', response.responseText);
-			}
-		,	success : function (response) {
-				var msg = Ext.util.JSON.decode(response.responseText);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				Ext.Ajax.request({
+					url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_keluarga.jsp'
+				,	params	: {
+						dml_type			: 4
+					,	id_pegawai					: data.get('id_pegawai')
+					,	no_urut				: data.get('no_urut')
+					,	nm_keluarga			: ''
+					, 	kd_hub_keluarga		: ''
+					, 	kd_jenis_kelamin	: ''
+					, 	prop_lahir			: ''
+					, 	kota_lahir			: ''
+					, 	tanggal_lahir		: ''
+					, 	kd_agama			: ''
+					, 	kd_gol_darah		: ''
+					, 	kd_status_nikah		: ''
+					, 	tanggal_menikah		: ''
+					, 	tahun_meninggal		: ''
+					, 	alamat				: ''
+					}
+				,	waitMsg	: 'Mohon Tunggu ...'
+				,	failure	: function(response) {
+						Ext.MessageBox.alert('Gagal', response.responseText);
+					}
+				,	success : function (response) {
+						var msg = Ext.util.JSON.decode(response.responseText);
 
-				if (msg.success == false) {
-					Ext.MessageBox.alert('Kesalahan', msg.info);
-					return;
-				}
+						if (msg.success == false) {
+							Ext.MessageBox.alert('Kesalahan', msg.info);
+							return;
+						}
 
-				Ext.MessageBox.alert('Informasi', msg.info);
+						Ext.MessageBox.alert('Informasi', msg.info);
 
-				this.do_load();
+						this.do_load();
+					}
+				,	scope	: this
+				});
 			}
-		,	scope	: this
-		});
+		}, this);
 	}
 
 	this.do_edit = function()
@@ -1386,13 +1390,13 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailPendidikanFormalList()
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
+			this.btn_ref
+		,	'-'
+		,	this.btn_add
 		,	'-'
 		,	this.btn_edit
 		,	'-'
-		,	this.btn_ref
-		,	'-'
-		,	this.btn_add
+		,	this.btn_del
 		]
 	});
 
@@ -1422,40 +1426,44 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailPendidikanFormalList()
 			return;
 		}
 
-		Ext.Ajax.request({
-			url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_pendidikan_formal.jsp'
-		,	params	: {
-				dml_type			: 4
-			,	id_pegawai					: data.get('id_pegawai')
-			,	no_urut				: data.get('no_urut')
-			,	kd_tingkat_ijazah	: ''
-			, 	nm_instansi_penddkn	: ''
-			, 	kd_program_studi	: ''
-			, 	kd_akreditasi		: ''
-			, 	tahun_mulai			: ''
-			, 	kd_status_lulus		: ''
-			, 	tahun_selesai		: ''
-			, 	no_ijazah			: ''
-			, 	tanggal_ijazah		: ''
-			}
-		,	waitMsg	: 'Mohon Tunggu ...'
-		,	failure	: function(response) {
-				Ext.MessageBox.alert('Gagal', response.responseText);
-			}
-		,	success : function (response) {
-				var msg = Ext.util.JSON.decode(response.responseText);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				Ext.Ajax.request({
+					url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_pendidikan_formal.jsp'
+				,	params	: {
+						dml_type			: 4
+					,	id_pegawai					: data.get('id_pegawai')
+					,	no_urut				: data.get('no_urut')
+					,	kd_tingkat_ijazah	: ''
+					, 	nm_instansi_penddkn	: ''
+					, 	kd_program_studi	: ''
+					, 	kd_akreditasi		: ''
+					, 	tahun_mulai			: ''
+					, 	kd_status_lulus		: ''
+					, 	tahun_selesai		: ''
+					, 	no_ijazah			: ''
+					, 	tanggal_ijazah		: ''
+					}
+				,	waitMsg	: 'Mohon Tunggu ...'
+				,	failure	: function(response) {
+						Ext.MessageBox.alert('Gagal', response.responseText);
+					}
+				,	success : function (response) {
+						var msg = Ext.util.JSON.decode(response.responseText);
 
-				if (msg.success == false) {
-					Ext.MessageBox.alert('Kesalahan', msg.info);
-					return;
-				}
+						if (msg.success == false) {
+							Ext.MessageBox.alert('Kesalahan', msg.info);
+							return;
+						}
 
-				Ext.MessageBox.alert('Informasi', msg.info);
+						Ext.MessageBox.alert('Informasi', msg.info);
 
-				this.do_load();
+						this.do_load();
+					}
+				,	scope	: this
+				});
 			}
-		,	scope	: this
-		});
+		}, this);
 	}
 
 	this.do_edit = function()
@@ -1793,11 +1801,11 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailRiwayatPangkat(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -1875,8 +1883,12 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailRiwayatPangkat(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -1895,6 +1907,12 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailRiwayatPangkat(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						id_pegawai			: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
@@ -2227,11 +2245,11 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailRiwayatJabatan(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -2310,8 +2328,12 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailRiwayatJabatan(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_cancel = function()
@@ -2330,6 +2352,12 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailRiwayatJabatan(title)
 	{
 		this.set_enabled();
 		
+		if (m_adm_pegawai_data_tenaga_administrasi_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						id_pegawai						: m_adm_pegawai_data_tenaga_administrasi_id_pegawai
@@ -2952,13 +2980,13 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailPenataranList()
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
+			this.btn_ref
+		,	'-'
+		,	this.btn_add
 		,	'-'
 		,	this.btn_edit
 		,	'-'
-		,	this.btn_ref
-		,	'-'
-		,	this.btn_add
+		,	this.btn_del
 		]
 	});
 
@@ -2988,39 +3016,43 @@ function M_AdmPegawaiDataTenagaAdministrasiDetailPenataranList()
 			return;
 		}
 
-		Ext.Ajax.request({
-			url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_penataran.jsp'
-		,	params	: {
-				dml_type					: 4
-			,	id_pegawai							: data.get('id_pegawai')
-			,	no_urut						: data.get('no_urut')
-			,	id_penataran				: ''
-			, 	kd_penyelenggara_penataran	: ''
-			, 	kd_jenis_penataran			: ''
-			, 	kd_jenis_peserta_penataran	: ''
-			, 	kd_mata_pelajaran_diajarkan	: ''
-			, 	tanggal_awal				: ''
-			, 	tanggal_akhir				: ''
-			, 	jam							: ''
-			}
-		,	waitMsg	: 'Mohon Tunggu ...'
-		,	failure	: function(response) {
-				Ext.MessageBox.alert('Gagal', response.responseText);
-			}
-		,	success : function (response) {
-				var msg = Ext.util.JSON.decode(response.responseText);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				Ext.Ajax.request({
+					url		: m_adm_pegawai_data_tenaga_administrasi_d +'submit_detail_penataran.jsp'
+				,	params	: {
+						dml_type					: 4
+					,	id_pegawai							: data.get('id_pegawai')
+					,	no_urut						: data.get('no_urut')
+					,	id_penataran				: ''
+					, 	kd_penyelenggara_penataran	: ''
+					, 	kd_jenis_penataran			: ''
+					, 	kd_jenis_peserta_penataran	: ''
+					, 	kd_mata_pelajaran_diajarkan	: ''
+					, 	tanggal_awal				: ''
+					, 	tanggal_akhir				: ''
+					, 	jam							: ''
+					}
+				,	waitMsg	: 'Mohon Tunggu ...'
+				,	failure	: function(response) {
+						Ext.MessageBox.alert('Gagal', response.responseText);
+					}
+				,	success : function (response) {
+						var msg = Ext.util.JSON.decode(response.responseText);
 
-				if (msg.success == false) {
-					Ext.MessageBox.alert('Kesalahan', msg.info);
-					return;
-				}
+						if (msg.success == false) {
+							Ext.MessageBox.alert('Kesalahan', msg.info);
+							return;
+						}
 
-				Ext.MessageBox.alert('Informasi', msg.info);
+						Ext.MessageBox.alert('Informasi', msg.info);
 
-				this.do_load();
+						this.do_load();
+					}
+				,	scope	: this
+				});
 			}
-		,	scope	: this
-		});
+		}, this);
 	}
 
 	this.do_edit = function()
@@ -3794,11 +3826,11 @@ function M_AdmPegawaiDataTenagaAdministrasiMasterList(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_edit
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_edit
 		]
 	});
 

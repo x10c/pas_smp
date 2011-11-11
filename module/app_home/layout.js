@@ -57,6 +57,7 @@ function M_HomeWinChange(title, form_old_title, form_new_title, form_new_confirm
 	,	modal		:true
 	,	layout		:'form'
 	,	labelAlign	:'left'
+	,	iconCls		:'password16'
 	,	padding		:6
 	,	closable	:false
 	,	resizable	:false
@@ -167,6 +168,7 @@ function M_Home()
 		items	:[
 			{
 				text	: 'Ganti Kata Kunci'
+			,	iconCls	: 'password16'
 			,	scope	: this
 			,	handler	: function (b,e) {
 					this.do_change_password()
@@ -177,12 +179,13 @@ function M_Home()
 
 	this.btn_my_account = new Ext.SplitButton({
 		text	:'My Account'
+	,	iconCls	: 'account16'
 	,	menu	: this.menu
 	});
 
 	this.btn_thn_periode = new Ext.Button({
 			text	: 'Tahun Pelajaran dan Periode Belajar'
-		,	iconCls	: 'export16'
+		,	iconCls	: 'setting16'
 		,	handler	: function(b, e) {
 				showTahunAjaran()
 			}

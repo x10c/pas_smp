@@ -94,11 +94,11 @@ function M_RefSekolahAdmSekolahJenisPKH(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -124,16 +124,46 @@ function M_RefSekolahAdmSekolahJenisPKH(title)
 
 	this.set_disabled = function()
 	{
-		this.btn_del.setDisabled(true);
 		this.btn_ref.setDisabled(true);
 		this.btn_add.setDisabled(true);
+		this.btn_del.setDisabled(true);
 	}
 
 	this.set_enabled = function()
 	{
-		this.btn_del.setDisabled(false);
 		this.btn_ref.setDisabled(false);
 		this.btn_add.setDisabled(false);
+		this.btn_del.setDisabled(false);
+	}
+
+	this.set_button = function()
+	{
+		if (this.ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (this.ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
+	this.do_refresh = function(ha_level)
+	{
+		this.ha_level = ha_level;
+
+		if (this.ha_level < 1) {
+			Ext.MessageBox.alert('Hak Akses', 'Maaf, Anda tidak memiliki hak akses untuk melihat menu ini!');
+			this.panel.setDisabled(true);
+			return;
+		} else {
+			this.panel.setDisabled(false);
+		}
+
+		this.do_load();
 	}
 
 	this.do_add = function()
@@ -153,6 +183,15 @@ function M_RefSekolahAdmSekolahJenisPKH(title)
 		this.set_disabled();
 	}
 
+	this.do_edit = function(row)
+	{
+		if (this.ha_level >= 3) {
+			this.dml_type = 3;
+			return true;
+		}
+		return false;
+	}
+
 	this.do_del = function()
 	{
 		var data = this.sm.getSelections();
@@ -160,26 +199,24 @@ function M_RefSekolahAdmSekolahJenisPKH(title)
 			return;
 		}
 
-		this.dml_type = 4;
-		this.do_save(data[0]);
-	}
-
-	this.do_cancel = function()
-	{
-		this.set_enabled();
-		
-		if (this.dml_type == 2) {
-			this.store.remove(this.record_new);
-			this.sm.selectRow(0);
-		}
-		
-		this.set_button();
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_save = function(record)
 	{
 		this.set_enabled();
 		
+		if (this.ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						id_jenis_pkh	: record.data['id_jenis_pkh']
@@ -197,34 +234,22 @@ function M_RefSekolahAdmSekolahJenisPKH(title)
 							Ext.MessageBox.alert('Pesan', msg.info);
 						}
 
-						this.store.load();
+						this.do_load();
 					}
 			,	scope	: this
 		});
 	}
 
-	this.do_edit = function(row)
+	this.do_cancel = function()
 	{
-		if (this.ha_level >= 3) {
-			this.dml_type = 3;
-			return true;
+		this.set_enabled();
+		
+		if (this.dml_type == 2) {
+			this.store.remove(this.record_new);
+			this.sm.selectRow(0);
 		}
-		return false;
-	}
-
-	this.set_button = function()
-	{
-		if (this.ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (this.ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
-		}
+		
+		this.set_button();
 	}
 
 	this.do_load = function()
@@ -232,21 +257,6 @@ function M_RefSekolahAdmSekolahJenisPKH(title)
 		this.store.load();
 		
 		this.set_button();
-	}
-
-	this.do_refresh = function(ha_level)
-	{
-		this.ha_level = ha_level;
-
-		if (this.ha_level < 1) {
-			Ext.MessageBox.alert('Hak Akses', 'Maaf, Anda tidak memiliki hak akses untuk melihat menu ini!');
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
-		this.do_load();
 	}
 }
 

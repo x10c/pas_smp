@@ -277,6 +277,12 @@ function M_RefPeriodikalPerSemesterPenentuanKKMKTSPDetail(title)
 
 	this.do_save = function(record)
 	{
+		if (m_ref_periodikal_per_semester_penentuan_kkm_ktsp_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						kd_tahun_ajaran				: m_ref_periodikal_per_semester_penentuan_kkm_ktsp_kd_tahun_ajaran

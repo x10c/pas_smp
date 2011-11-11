@@ -289,6 +289,12 @@ function M_AdmAkademikTransRutinSiswaPenentuanSiswaPindahanDetail(title)
 			return;
 		}
 
+		if (m_adm_akademik_trans_rutin_siswa_penentuan_siswa_pindahan_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.MessageBox.confirm('Konfirmasi', 'Penentuan Kelas Selesai?', function(btn, text){
 			if (btn == 'yes'){
 				this.dml_type = 5;
@@ -329,6 +335,12 @@ function M_AdmAkademikTransRutinSiswaPenentuanSiswaPindahanDetail(title)
 
 	this.do_save = function(record)
 	{
+		if (m_adm_akademik_trans_rutin_siswa_penentuan_siswa_pindahan_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						kd_tahun_ajaran		: m_adm_akademik_trans_rutin_siswa_penentuan_siswa_pindahan_kd_tahun_ajaran

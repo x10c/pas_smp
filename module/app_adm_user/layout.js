@@ -173,11 +173,11 @@ function M_AppAdmUser(title)
 
 	this.toolbar = new Ext.Toolbar({
 		items	: [
-			this.btn_del
-		,	'-'
-		,	this.btn_ref
+			this.btn_ref
 		,	'-'
 		,	this.btn_add
+		,	'-'
+		,	this.btn_del
 		]
 	});
 
@@ -201,6 +201,52 @@ function M_AppAdmUser(title)
 			}
 	});
 
+	this.set_disabled = function()
+	{
+		this.btn_ref.setDisabled(true);
+		this.btn_add.setDisabled(true);
+		this.btn_del.setDisabled(true);
+	}
+
+	this.set_enabled = function()
+	{
+		this.btn_ref.setDisabled(false);
+		this.btn_add.setDisabled(false);
+		this.btn_del.setDisabled(false);
+	}
+
+	this.set_button = function()
+	{
+		if (this.ha_level >= 2) {
+			this.btn_add.setDisabled(false);
+		} else {
+			this.btn_add.setDisabled(true);
+		}
+
+		if (this.ha_level == 4) {
+			this.btn_del.setDisabled(false);
+		} else {
+			this.btn_del.setDisabled(true);
+		}
+	}
+
+	this.do_refresh = function(ha_level)
+	{
+		this.ha_level = ha_level;
+
+		if (this.ha_level < 1) {
+			Ext.MessageBox.alert('Hak Akses', 'Maaf, Anda tidak memiliki hak akses untuk melihat menu ini!');
+			this.panel.setDisabled(true);
+			return;
+		} else {
+			this.panel.setDisabled(false);
+		}
+
+		this.form_username.setDisabled(false);
+		
+		this.do_load();
+	}
+
 	this.do_add = function()
 	{
 		this.record_new = new this.record({
@@ -216,17 +262,8 @@ function M_AppAdmUser(title)
 		this.editor.startEditing(0);
 
 		this.dml_type = 2;
-	}
-
-	this.do_del = function()
-	{
-		var data = this.sm.getSelections();
-		if (!data.length) {
-			return;
-		}
-
-		this.dml_type = 4;
-		this.do_save(data[0]);
+		
+		this.set_disabled();
 	}
 
 	this.do_edit = function(row)
@@ -239,18 +276,31 @@ function M_AppAdmUser(title)
 		return false;
 	}
 
-	this.do_cancel = function()
+	this.do_del = function()
 	{
-		if (this.dml_type == 2) {
-			this.store.remove(this.record_new);
-			this.sm.selectRow(0);
+		var data = this.sm.getSelections();
+		if (!data.length) {
+			return;
 		}
 		
-		this.form_username.setDisabled(false);
+		Ext.MessageBox.confirm('Konfirmasi', 'Hapus Data?', function(btn, text){
+			if (btn == 'yes'){
+				this.dml_type = 4;
+				this.do_save(data[0]);
+			}
+		}, this);
 	}
 
 	this.do_save = function(record)
 	{
+		this.set_enabled();
+
+		if (this.ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		var pass	= this.form_password.getValue();
 		var passenc	= Sha256.hash(pass, true);
 
@@ -279,6 +329,20 @@ function M_AppAdmUser(title)
 		});
 	}
 
+	this.do_cancel = function()
+	{
+		this.set_enabled();
+		
+		if (this.dml_type == 2) {
+			this.store.remove(this.record_new);
+			this.sm.selectRow(0);
+		}
+		
+		this.form_username.setDisabled(false);
+		
+		this.set_button();
+	}
+
 	this.do_load = function()
 	{
 		this.store_grup.load({
@@ -288,35 +352,7 @@ function M_AppAdmUser(title)
 			,	scope		: this
 		});
 		
-	}
-
-	this.do_refresh = function(ha_level)
-	{
-		this.ha_level = ha_level;
-
-		if (this.ha_level < 1) {
-			Ext.MessageBox.alert('Hak Akses', 'Maaf, Anda tidak memiliki hak akses untuk melihat menu ini!');
-			this.panel.setDisabled(true);
-			return;
-		} else {
-			this.panel.setDisabled(false);
-		}
-
-		if (this.ha_level >= 2) {
-			this.btn_add.setDisabled(false);
-		} else {
-			this.btn_add.setDisabled(true);
-		}
-
-		if (this.ha_level == 4) {
-			this.btn_del.setDisabled(false);
-		} else {
-			this.btn_del.setDisabled(true);
-		}
-
-		this.do_load();
-		
-		this.form_username.setDisabled(false);
+		this.set_button();
 	}
 }
 

@@ -275,6 +275,12 @@ function M_AdmAdmAdmAkademikPindahKelasDetail(title)
 
 	this.do_save = function(record)
 	{
+		if (m_adm_adm_adm_akademik_pindah_kelas_ha_level < 2){
+			Ext.Msg.alert("Perhatian", "Maaf, Anda tidak memiliki hak akses untuk melakukan proses ini!");
+			this.do_load();
+			return;
+		}
+
 		Ext.Ajax.request({
 				params  : {
 						kd_tahun_ajaran		: m_adm_adm_adm_akademik_pindah_kelas_kd_tahun_ajaran
